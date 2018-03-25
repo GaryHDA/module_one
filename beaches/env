@@ -1,0 +1,8 @@
+#variables
+DIRT_SECRET_KEY=""
+web_host=""
+dirt_db=""
+db_pass=""
+db_host=""
+db_port=""
+a_cache_table=""

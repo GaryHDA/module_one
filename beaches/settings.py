@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,12 +22,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'f6m^9q(68c-3e+iw^y=qlkc(j*k91_p)yq%%1xxf(p%53y$+48'
+
+
+SECRET_KEY = os.getenv("DIRT_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [os.getenv("web_host")]
 
 
 # Application definition
@@ -83,11 +88,11 @@ WSGI_APPLICATION = 'beaches.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'testdb',
+        'NAME': os.getenv('dirt_db'),
 	'USER': 'root',
-	'PASSWORD': 'pykee22',
-	'HOST': '127.0.0.1',
-	'PORT': '3306'
+	'PASSWORD': os.getenv('db_pass'),
+	'HOST': os.getenv('db_host'),
+	'PORT': os.getenv('db_port')
     }
 }
 
@@ -133,6 +138,6 @@ STATIC_URL = '/static/'
 CACHES = {
     'default': {
         'BACKEND':'django.core.cache.backends.db.DatabaseCache',
-        'LOCATION':'a_cache_table'
+        'LOCATION':os.getenv("a_cache_table")
     }
 }
