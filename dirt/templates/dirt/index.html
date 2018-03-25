@@ -1,0 +1,145 @@
+{% extends "dirt/temp_one.html" %}
+
+{% block style %}
+
+p, ul, li {
+  font-size: 14px;
+}
+
+card, card-body, collpase, accordion {
+  border-width: 0;
+  border-color: #ffffff;
+}
+{% endblock %}
+
+
+{% block content  %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-4 m-0 p-2">
+      <div class="w-100" id="accordion" role="tablist">
+        <div class="card pb-0 m-w-376 border-0">
+          <div class="bg-info text-white card-header" id="" style="">
+            <a class="bg-info text-white w-100 p-1" data-toggle="collapse" data-parent="#accordion" data-target="#readme" aria-expanded="false" aria-controls="links">
+              <i class="fa fa-th-list fa-lg"></i>&nbsp; Read Me - module pre-release
+            </a>
+          </div>
+          <div class="collapse" id="readme" data-parent="#accordion">
+            <div class="card-body p-1 w-100">
+              <p>The beach litter project is the first and longest running project of hammerdirt.</p>
+              <p>In anitcipatation of a few upcoming conferences in April and May we decided to make the
+                beach litter module available to get feedback from those interested in the subject.
+              </p>
+              <p class="font-weight-bold">
+                Hammerdirt is primarily concerned with the collection, aggregation, analysis and visualisation of data. To that end we use accepted mathematical methods and
+                standards and modern programing languages to develop data products for the research and NGO communities.
+              </p>
+              <p>
+                In this module we focus on GARBAGE IN THE WATER. In each section you will find the usual descriptive statistics,
+                top ten items, time-series charts and a map of locations with a summary. From there you can filter results by city.
+              </p>
+              <p>
+                If you are unfamiliar with the subject in the first section there is a 30 second primer on "Beach-Litter-Density" as well as a brief
+                history of the evolution of this project in Switzerland.
+              </p>
+              <p class="pt-1">
+                <h5 class="text-center"><a href={% url "litter_home" %}>Go to the first section</a></h5>
+                <h6 class="text-center text-muted">From there you can link to the results for each project</h6>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 m-0 p-2">
+      <div class="w-100" id="accordion2" role="tablist">
+        <div class="card pb-0 m-w-376 border-0">
+          <div class="bg-info text-white card-header" id="" style="">
+            <a class="bg-info text-white w-100 p-1" data-toggle="collapse" data-parent="#accordion2" data-target="#chart" aria-expanded="false" aria-controls="links">
+              <i class="fa fa-line-chart fa-lg"></i>&nbsp; Over 1000 observations in 4 years
+            </a>
+          </div>
+          <div class="collapse" id="chart" data-parent="accordion2">
+            <div class="card-body w-100 p-1">
+              <h5 class="card-title text-center">Beach litter observations 2015-2018</h5>
+              <h6 class="card-subtitle text-muted text-center"> Validated observations MCBP-SLR </h6>
+              <div id="scatterchart" class="w-100 bg-dark mt-2 mb-2" style="height: 360px;"></div>
+              <p class="card-text">Each point represents a table of data containng an exhaustive list of items found, location(gps), quantity of each item, sample date, and username.
+                From this information we extract/calculate the postal code, city name, closest body of water and density(per item and per sample-day)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 m-0 p-2">
+      <div class="w-100" id="addordion3" role="tablist">
+        <div class="card pb-0 m-w-376 border-0">
+          <div class="bg-info text-white card-header" id="" style="">
+            <a class="bg-info text-white w-100 p-1" data-toggle="collapse" data-parent="#accordion3" data-target="#mnp" aria-expanded="false" aria-controls="links">
+              <i class="fa fa-line-chart fa-lg"></i>&nbsp; A little math and probability
+            </a>
+          </div>
+          <div class="collapse" id="mnp" data-parent="#accordion3">
+            <div class="card-body p-1 w-100">
+              <h5 class="card-title text-center">Probability Mass Function of litter density </h5>
+              <h6 class="card-subtitle text-muted text-center"> Validated observations MCBP-SLR </h6>
+              <div id="probchart" class="w-100 bg-dark mt-2 mb-2" style="height: 360px;"></div>
+              <p class="card-text">Another way to look at these results is as a distribution of probability. We can use this to anticipate what we may find the next time we go to a beach,
+                or better understand how the litter density of one beach compares to the whole.<a href="" data-toggle="modal" data-target="#assume">See assumptions and notes </a>
+              </p>
+
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="assume">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h6 class="modal-title">Assumptions and notes</h6>
+                <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p class="font-weight-bold">Assumptions:</p>
+                <ul>
+                  <li>You know what a probability distribution is.</li>
+                  <li>In general the probability of finding any amount of trash on the shoreline is related to the total amount of trash in the environment.</li>
+                  <li>That the variety of locations are sufficient to develop a representative model.</li>
+                  <li>These are minimums. There is actually alot more trash out there. It was just not identified or counted.</li>
+                  <li>There are many variables that are unacounted for in this model</li>
+                  <li>That the samples were gathered according to the protocols provided to the particpants</li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block charts %}
+<script type="text/javascript">
+
+
+</script>
+
+<script type="text/javascript">
+
+</script>
+<script type="text/javascript">
+
+</script>
+
+<script type="text/javascript">
+
+</script>
+<script type="text/javascript">
+
+</script>
+
+{% endblock %}
