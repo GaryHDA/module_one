@@ -16,13 +16,13 @@ from datetime import date
 
 def index(request):
     return render(request, 'dirt/index.html')
-def micro_home(request):
-    return render(request, 'dirt/micro.html')
-def finance_home(request):
-    return render(request, 'dirt/pension.html')
+def services_home(request):
+    return render(request, 'dirt/services.html')
+# def finance_home(request):
+#     return render(request, 'dirt/pension.html')
 # def module_one(request):
-    slr_d = SLR_Density.objects.all().values()
-    mcbp = All_Data.objects.all().values()
+    # slr_d = SLR_Density.objects.all().values()
+    # mcbp = All_Data.objects.all().values()
 
 
 def search_SLR(request):

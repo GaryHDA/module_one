@@ -11,7 +11,7 @@ url(r'^search_SLR/$', views.search_SLR, name='SLR_search_results'),
 url(r'^mcbp.html', views.mcbp_home, name='mcbp_home'),
 url(r'^slr.html', views.slr_home, name='slr_home'),
 url(r'^beach_litter.html', cache_page(10)(views.beach_litter), name='litter_home'),
-url(r'^micro.html', views.micro_home, name='micro'),
-url(r'^pension.html', views.finance_home, name='pension'),
+url(r'^services.html', views.services_home, name='services'),
+# url(r'^pension.html', views.finance_home, name='pension'),
 
 ]
