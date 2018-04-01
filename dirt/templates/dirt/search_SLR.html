@@ -206,7 +206,7 @@
          <div class="card pb-0" id="time-series-chart">
            <div class="card-header bg-info text-white" id="" style="">
              <a class="bg-info text-white w-100 p-1 collpased" data-toggle="collapse" data-parent="#accordionTwo"  data-target="#date_results" aria-expanded="false" aria-controls="table-of-results">
-               <i class="fa fa-line-chart fa-lg "></i>&nbsp; {{ city }} compared to all otther SLR Results
+               <i class="fa fa-line-chart fa-lg "></i>&nbsp; {{ city }} vs all otther SLR Results
              </a>
            </div>
            <div class="collapse " data-parent="#accordionTwo" id="date_results" >
@@ -287,13 +287,13 @@
             </div>
           </div>
         </div>
-        <div class="card pb-0">
+        <div class="card pb-0" id="the_top_ten">
           <div class="bg-info text-white card-header" id="" style="">
             <a class="bg-info text-white w-100 p-1" data-toggle="collapse" data-parent="#accordion3" data-target="#summary2" aria-expanded="false" aria-controls="links">
               <i class="fa fa-th-list fa-lg"></i>&nbsp; Top ten items found
             </a>
           </div>
-          <div class="collapse show" style="" id="summary2">
+          <div class="collapse show" data-parent="#accordion3" id="summary2">
             <div class="card-body p-0">
               <table class="table-striped table table-sm">
                 <thead class="txt-14">
@@ -320,7 +320,7 @@
                <i class="fa fa-th fa-lg "></i>&nbsp; Results sorted by source or economic sector
              </a>
           </div>
-          <div class="collapse" id="categories">
+          <div class="collapse" data-parent="#accordion3" id="categories">
             <div class="card-body p-1 " id="" >
               <div class="mx-auto" id="">
                 {% for k in sources_as %}
@@ -370,7 +370,7 @@
                 </div>
                 <div class="modal-body">
                   <p class="txt-14">If you would like a detailed report, charts, or a summary contact us.</p>
-                  <p class="txt-14">Prices are start at CHF/USD/EUR 350</p>
+                  <p class="txt-14">Prices start at CHF/USD/EUR 350</p>
                   <p class="txt-14">Other options:
                     <ul>
                       <li>Charts</li>
@@ -383,7 +383,7 @@
                       <li>Plus many more options </li>
                     </ul>
                   </p>
-                  <p> See the services section for more information.</p>
+                  <p> Contact us for more information.</p>
                 </div>
                 <div class="modal-footer bg-dark">
                   <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
@@ -451,95 +451,6 @@
 </div>
 
 
-
-<!-- <div class="card">
-    <div class="card-header bg-info text-white " id="" style="">
-      <a class="bg-info text-white w-100 p-1" data-toggle="collapse" data-parent="#accordionTwo" data-target="#categories" aria-expanded="false" aria-controls="table-of-results">
-        <i class="fa fa-bar-chart fa-lg "></i>&nbsp; Results sorted by activity or source
-      </a>
-    </div>
-    <div class="collapse" id="categories">
-      <div class="card-body p-1" id="" >
-        <div class="align-self-center m-0 p-0" id="source_bar" style=""></div>
-        <div class="w-100 mx-auto" id="">
-          {% for x in more_bars %}
-          {% if forloop.counter0|divisibleby:3 %}
-          <div class="d-flex flex-row">
-            {% endif %}
-            <div class="d-inline-flex align-content-center p-1 " style="background-color: {{ x.color}}; width: 33%">
-              <a class="text-white text-12" data-toggle="modal" data-target="#{{ x.name|lower }}" aria-expanded="false" aria-controls="table-of-results">
-                {% if x.name == 'Water_treatment' %}
-                <i class="d-inline-flex fa fa-th-list"></i>&nbsp; Waste water:<div>{{ x.data|floatformat:2 }}%</div>
-                {% endif %}
-                {% if x.name != 'Water_treatment' %}
-                <i class="d-inline-flex fa fa-th-list"></i>&nbsp; {{ x.name }}:<div>{{ x.data|floatformat:2 }}%</div>
-                {% endif %}
-              </a>
-            </div>
-            {% if forloop.counter|divisibleby:3 %}
-          </div>
-          {% endif %}
-          {% endfor %}
-        </div>
-      </div>
-      {% for x in one_list %}
-      <div class="modal fade" style="" id="{{ x|lower }}">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-body">
-              <table id="{{ x }}" class="table-condensed table-striped table">
-                <thead>
-                  <tr>
-                    <th colspan="2" class="bg-info text-white">
-                      {{ x }}
-                      <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </th>
-                  </tr>
-                  <tr class="">
-                    <th>MLW code</th>
-                    <th>Description </th>
-                  </tr>
-                </thead>
-                {% for type in dates_four %}
-                {% if type.source == x %}
-                <tr>
-                  <td class="td_site-results">{{ type.code }}</td>
-                  <td class="td_site-results">{{ type.description }}</td>
-                </tr>
-                {% endif %}
-                {% if x == 'Personal' %}
-                {% if type.source == 'Personal effects' %}
-                <tr>
-                  <td class="td_site-results">{{ type.code }}</td>
-                  <td class="td_site-results">{{ type.description }}</td>
-                </tr>
-                {% endif %}
-                {% endif %}
-                {% if x == 'Fragment' %}
-                {% if type.source == 'Fragmented' %}
-                <tr>
-                  <td class="td_site-results">{{ type.code }}</td>
-                  <td class="td_site-results">{{ type.description }}</td>
-                </tr>
-                {% endif %}
-                {% endif %}
-                {% if x == 'Water_treatment' %}
-                {% if type.source == 'Water Treatment' %}
-                <tr>
-                  <td class="td_site-results">{{ type.code }}</td>
-                  <td class="td_site-results">{{ type.description }}</td>
-                </tr>
-                {% endif %}
-                {% endif %}
-                {% endfor %}
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div> -->
 
 {% endblock %}
 

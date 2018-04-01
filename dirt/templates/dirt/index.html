@@ -14,6 +14,7 @@ card, card-body, collpase, accordion {
 
 
 {% block content  %}
+{% load humanize %}
 <div class="container-fluid">
   <div class="row">
     <div class="col-4 m-0 p-2">
@@ -56,14 +57,14 @@ card, card-body, collpase, accordion {
         <div class="card pb-0 m-w-376 border-0">
           <div class="bg-info text-white card-header" id="" style="">
             <a class="bg-info text-white w-100 p-1" data-toggle="collapse" data-parent="#accordion2" data-target="#chart" aria-expanded="false" aria-controls="links">
-              <i class="fa fa-line-chart fa-lg"></i>&nbsp; Over 1000 observations in 4 years
+              <i class="fa fa-line-chart fa-lg"></i>&nbsp; {{ num_samps|floatformat:0|intcomma }} trash counts since Nov 2015
             </a>
           </div>
           <div class="collapse show" id="chart" data-parent="accordion2">
             <div class="card-body w-100 p-1">
               <h5 class="card-title text-center">Beach litter observations 2015-2018</h5>
               <h6 class="card-subtitle text-muted text-center"> Validated observations MCBP-SLR </h6>
-              <div id="scatterchart" class="w-100 bg-dark mt-2 mb-2" style="height: 360px;"></div>
+              <div id="scatterchart" class="w-100 bg-dark mt-2 mb-2 p-1" style="height: 360px;"></div>
               <p class="card-text">Each point represents a table of data containng an exhaustive list of items found, location(gps), quantity of each item, sample date, and username.
                 From this information we extract/calculate the postal code, city name, closest body of water and density(per item and per sample-day)</p>
             </div>
@@ -81,10 +82,10 @@ card, card-body, collpase, accordion {
           </div>
           <div class="collapse show" id="mnp" data-parent="#accordion3">
             <div class="card-body p-1 w-100">
-              <h5 class="card-title text-center">Probability Mass Function of litter density </h5>
+              <h5 class="card-title text-center">Distribution of reported litter densities </h5>
               <h6 class="card-subtitle text-muted text-center"> Validated observations MCBP-SLR </h6>
-              <div id="probchart" class="w-100 bg-dark mt-2 mb-2" style="height: 360px;"></div>
-              <p class="card-text">Another way to look at these results is as a distribution of probability. We can use this to anticipate what we may find the next time we go to a beach,
+              <div id="probchart" class="w-100 bg-dark mt-2 mb-2 p-1" style="height: 360px;"></div>
+              <p class="card-text">Another way to look at these results is by grouping the results according to density value. We can use this to anticipate what we may find the next time we go to a beach,
                 or better understand how the litter density of one beach compares to the whole.<a href="" data-toggle="modal" data-target="#assume">See assumptions and notes </a>
               </p>
 
@@ -107,8 +108,14 @@ card, card-body, collpase, accordion {
                   <li>In general the probability of finding any amount of trash on the shoreline is related to the total amount of trash in the environment.</li>
                   <li>That the variety of locations are sufficient to develop a representative model.</li>
                   <li>These are minimums. There is actually alot more trash out there. It was just not identified or counted.</li>
-                  <li>There are many variables that are unacounted for in this model</li>
-                  <li>That the samples were gathered according to the protocols provided to the particpants</li>
+                  <li>There are many variables that are unacounted for in this model.</li>
+                  <li>That the samples were gathered according to the protocols provided to the particpants.</li>
+                </ul>
+                <p class="font-weight-bold">Notes:</p>
+                <ul>
+                    <li>Density values are rounded to thousandths (.001)</li>
+                    <li>This is the work of hammerdirt association, as of {{ t_day|date:"D d M Y" }} we have received no financial or technical assistance from the SLR or WWF.</li>
+                    <li>Your comments or feedback are greatly appreciated, contac us.</li>
                 </ul>
 
               </div>
@@ -123,14 +130,279 @@ card, card-body, collpase, accordion {
 {% endblock %}
 
 {% block charts %}
+
+
+
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/histogram-bellcurve.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
 <script type="text/javascript">
+// var plot_all = {{ plot_mc|safe }};
+// var plot_data = {{ plot_density|safe }};
+var plot_list = {{ plot_list|safe }};
+var hist_list = {{ hist_list|safe }};
+var ts_plot = [];
+plot_list.forEach(function(element){
+  element.date = Date.parse(element.date);
+  element.density = parseFloat(element.density);
+  var today = new Date();
+  if (element.date < today){
+    ts_plot.push({"name":element.location_id, "x":element.date, "y":element.density});
+  }
+});
+
+// var slr_plot = [];
+// plot_data.forEach(function(element){
+//   element.date = Date.parse(element.date);
+//   element.density = parseFloat(element.density);
+//   var today = new Date();
+//   if (element.date < today){
+//     slr_plot.push({"name":element.location_id, "x":element.date, "y":element.density});
+//   }
+// });
+</script>
+
+<script type="text/javascript">
+Highcharts.chart('scatterchart', {
+    chart: {
+        type: 'scatter',
+        plotBorderWidth:0,
+        spacingBottom: 20,
+        zoomType: 'x',
+        style: {
+          fontFamily: 'sans-serif',
+        }
+    },
+    title: {
+        text: '',
+        style: {
+            display: 'none'
+        }
+    },
+    subtitle: {
+        text: '',
+        style: {
+            display: 'none'
+        }
+    },
+    credits:{
+      text:'hammerdirt 2018',
+
+    },
+    exporting: {
+      enabled:false,
+    },
+    legend: {
+      enabled: true,
+      verticalAlign: 'top',
+      horizontalAlign: 'left',
+      layout:'vertical',
+      floating:true,
+      x:-40,
+      y:10,
+      backgroundColor:'rgb(255,255,255, .4)',
+      borderColor:'rgb(10, 46, 92, .5)',
+      borderWidth:1,
+      itemMarginTop:4,
+      itemMarginBottom:4,
+      itemStyle:{
+        color: 'black',
+        fontSize: 14,
+        fontWeight: 'bold',
+      }
+    },
+    xAxis: {
+      type: 'datetime',
+      tickInterval:3600*1000*24*28*2,
+      labels: {
+        style: {
+          color:'rgb(00, 00, 00, 1)'
+        }
+      },
+      dateTimeLabelFormats: {
+        month: '%b - %Y',
+      },
+    },
+    yAxis: {
+        title: {
+            align: 'low',
+            offset: 40,
+            text: 'Pieces of trash per meter of shoreline',
+            style:{
+              fontSize: '12px',
+              color:'#000000',
+            },
+        },
+        gridLineColor:'rgb(10, 46, 92, .1)',
+        labels:{
+          style: {
+            color:'rgb(00, 00, 00, 1)'
+          }
+        },
+        tickInterval: 8,
+        min: 0,
+
+    },
+    tooltip: {
+        headerFormat: '<b>{point.key}</b><br>',
+        pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m'
+    },
+    series: [{
+      turboThreshold:5000,
+      zIndex:3,
+      type: 'scatter',
+      name:'Combined results',
+      marker: {
+        symbol: 'circle',
+        radius:6,
+        lineColor: 'rgb(10, 46, 92, .7)',
+        fillColor:  'rgb(22, 199, 158, .7)',
+        lineWidth:2,
+      },
+      data:ts_plot,
+
+    },
+    // {
+    //   zIndex:3,
+    //   type: 'scatter',
+    //   name:'{{ city }} results',
+    //   marker: {
+    //     symbol: 'circle',
+    //     radius:6,
+    //     lineColor: 'rgb(10, 46, 92, .7)',
+    //     fillColor:  'rgb(22, 199, 158, .7)',
+    //     lineWidth:2,
+    //   },
+    //   data:ts_plot,
+
+    // }
+  ],
+  }
+);
 
 
 </script>
 
 <script type="text/javascript">
+Highcharts.chart('probchart', {
+    chart:{
+      spacingBottom:20
+    },
+    title: {
+        text: '',
+        style: {
+            display: 'none'
+        }
+    },
+    subtitle: {
+        text: '',
+        style: {
+            display: 'none'
+        }
+    },
+    credits:{
+      text:'hammerdirt 2018',
+
+    },
+    exporting: {
+      enabled:false,
+    },
+    xAxis: [{
+        title: {
+          text: 'ln(density)',
+          style:{
+            fontSize:'14px',
+            color:'#000000',
+          },
+         },
+        alignTicks: false,
+    },
+  ],
+
+    yAxis: [{
+        title: {
+          text: 'Number of observations SLR-MCBP',
+          style:{
+            fontSize:'14px',
+            color:'rgb(22, 199, 158, 1)',
+          },
+
+        },
+        labels:{
+          style:{
+            color:'rgb(22, 199, 158, 1)',
+          }
+        }
+    },
+    ],
+    legend: {
+      enabled: true,
+      verticalAlign: 'top',
+      horizontalAlign: 'left',
+      layout:'horizontal',
+      floating:true,
+      x:-40,
+      y:10,
+      backgroundColor:'rgb(255,255,255, .4)',
+      borderColor:'rgb(10, 46, 92, .5)',
+      borderWidth:1,
+      itemMarginTop:4,
+      itemMarginBottom:4,
+      itemStyle:{
+        color: 'black',
+        fontSize: 14,
+        fontWeight: 'bold',
+      }
+    },
+    tooltip: {
+        headerFormat: '<b>{series.name}</b><br>',
+        pointFormat: 'min ln(density): {point.x: .2f}, # of samples: {point.y}'
+    },
+
+    series: [{
+        name: 'ln(density) -- all_results',
+        type: 'histogram',
+        xAxis: 0,
+        yAxis: 0,
+        binsNumber:'sturges',
+        borderColor: 'rgb(10, 46, 92, .5)',
+        color:  'rgb(22, 199, 158, .6)',
+        lineWidth:2,
+        baseSeries:  1,
+        zIndex: -1
+    },
+    {
+        data: hist_list,
+        visible:false,
+        showInLegend:false,
+
+    },
+    // {
+    //     name: 'ln(density) -- MCBP',
+    //     type: 'histogram',
+    //     xAxis: 0,
+    //     yAxis: 1,
+    //     binsNumber:'sturges',
+    //     borderColor:'rgb(00, 00, 00, .5)',
+    //     color:  'rgb(159, 183, 159, .6)',
+    //     lineWidth:2,
+    //     baseSeries:  3,
+    //     zIndex: -1
+    // },{
+    //     data: mc_hist,
+    //     visible:false,
+    //     showInLegend:false,
+
+    // },
+  ]
+});
 
 </script>
+
 <script type="text/javascript">
 
 </script>

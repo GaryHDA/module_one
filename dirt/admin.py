@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Material, Beaches, Source, Codes, Densities, All_Data, References, Finance, SLR_Beaches, SLR_Data
+from .models import Beaches, Codes, All_Data, References, Finance, SLR_Beaches, SLR_Data
 # Register your models here.
 
 class BeachesAdmin(admin.ModelAdmin):

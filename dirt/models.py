@@ -40,7 +40,7 @@ class Beaches(models.Model):
         return u'location:%s, lat:%s, lon:%s, city:%s, water:%s, post:%s'%(self.location, self.latitude, self.longitude, self.city, self.water, self.post)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'beaches'
         ordering = ['location']
 
@@ -67,7 +67,7 @@ class SLR_Beaches(models.Model):
         return u'location:%s, lat:%s, lon:%s'%(self.location, self.latitude, self.longitude)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'slr_beaches'
         ordering = ['location']
 
@@ -115,7 +115,7 @@ class Codes(models.Model):
 
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'codes'
         ordering = ['material']
 
@@ -129,7 +129,7 @@ class All_Data(models.Model):
 
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'all_items'
     def __str__(self):
         return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s" %(self.date, self.code.source, self.location, self.length, self.quantity, self.code, )
@@ -144,7 +144,7 @@ class SLR_Data(models.Model):
 
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'slr_data'
     def __str__(self):
         return u"date:%s,location:%s, length:%s, code:%s, quantity:%s, density:%s" %(self.date, self.location, self.length, self.code, self.quantity, self.density,)
@@ -157,7 +157,7 @@ class SLR_Density(models.Model):
     quantity = models.IntegerField(db_column='quantity', blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'slr_dens_date'
     def __str__(self):
         return u"date:%s, location:%s, density:%s, sample:%s, quantity:%s" %(self.date, self.location, self.density, self.sample, self.quantity)
@@ -191,7 +191,7 @@ class Finance(models.Model):
     project = models.CharField(db_column='project', max_length=30, blank=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'finance'
     def __str__(self):
         return u"date:%s, entry:%s, origin:%s, amount:%s, project:%s" %(self.date, self.entry, self.origin, self.amount, self.project)
@@ -229,5 +229,5 @@ class References(models.Model):
         return u"title:%s, author:%s, abstract:%s, subject:%s" %(self.title, self.author, self.abstract, self.subject)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'library'

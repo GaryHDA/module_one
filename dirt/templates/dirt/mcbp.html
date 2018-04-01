@@ -85,9 +85,13 @@
                   </div>
                   <div class="modal-body ">
                    <div class="border-bottom">
-                    <p class="font-weight-bold txt-14"></p>
-                    <p class="font-italic txt-14"></p>
-                    <p class="txt-12"></p>
+                    <p class="">
+                      <ul>
+                         <li>Relate aquatic litter in our local environment to the global problem.</li>
+                         <li>Create a benchmark that clearly establishes the trash levels in our environment for a given time frame.</li>
+                         <li>Develop a platform that facilitates open research by all those curious about the world around them.</li>
+                      </ul>
+                    </p>
                    </div>
                   </div>
                 </div>
@@ -102,9 +106,16 @@
                   </div>
                   <div class="modal-body ">
                    <div class="border-bottom">
-                    <p class="font-weight-bold txt-14"></p>
-                    <p class="font-italic txt-14"></p>
-                    <p class="txt-12"></p>
+                    <p class="">
+                        <ul>
+                            <li>Identify a common protocol for quantifying and cataloging beach-litter</li>
+                            <li>Develop an understanding of aquatic litter in relation to municipal waste sytems and urban planning</li>
+                            <li>Use technology to create an efficient method to catalog and document litter levels</li>
+                            <li>Create links/networks with others interested in the subject</li>
+                            <li>Apply current methods of data visualisation and analysis to sample results</li>
+                            <li>Accomplish all of the above with the least amount of financial burden</li>
+                        </ul>
+                    </p>
                    </div>
                   </div>
                 </div>
@@ -119,9 +130,14 @@
                   </div>
                   <div class="modal-body ">
                    <div class="border-bottom">
-                    <p class="font-weight-bold txt-14"></p>
-                    <p class="font-italic txt-14"></p>
-                    <p class="txt-12"></p>
+                    <p class="">
+                        <ul>
+                            <li>Litterature review of all topics associated with the goals and objectives</li>
+                            <li>Sampling of litter at a variety of locations</li>
+                            <li>Documentation of results</li>
+                            <li>If possible engage local authorities and experts</li>
+                        </ul>
+                    </p>
                    </div>
                   </div>
                 </div>
@@ -133,7 +149,7 @@
        <div class="card pb-0 m-w-376" id="data-summary">
          <div class="bg-info text-white card-header" id="" style="">
            <a class="bg-info text-white" data-toggle="collapse" data-parent="#accordion" data-target="#summary" aria-expanded="false" aria-controls="links">
-             <i class="fa fa-th fa-lg"></i>&nbsp; Data summary :
+             <i class="fa fa-th fa-lg"></i>&nbsp; Data summary : MCBP
            </a>
          </div>
          <div class="collapse show container-fluid m-1 w-100" data-parent="#accordion" style="" id="summary">
@@ -255,6 +271,9 @@
             <div class="modal fade" style="" id="{{ key }}">
              <div class="modal-dialog" role="document">
                <div class="modal-content">
+                 <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                 </div>
                  <div class="modal-body ">
                   {% for r in library %}
                   {% if r.subject == key %}
@@ -392,7 +411,7 @@
         <div class="card pb-0" id="distribution">
           <div class="card-header bg-info text-white" id="" style="">
             <a class="bg-info text-white w-100 p-1 collapsed" data-toggle="collapse" data-parent="#accordionTwo" data-target="#distro" aria-expanded="false" aria-controls="table-of-results">
-              <i class="fa fa-bar-chart fa-lg "></i>&nbsp; Distribution of results - Probability Mass Function
+              <i class="fa fa-bar-chart fa-lg "></i>&nbsp; Probability Mass Function
             </a>
           </div>
           <div class="collapse" data-parent="#accordionTwo" id="distro">
@@ -410,29 +429,43 @@
       <div id="accordion3" class="" role="tablist">
         <div class="card pb-0" id="density_top">
           <div class="bg-info text-white card-header" id="" style="">
-            <a class="bg-info text-white w-100 p-1 collpased" data-toggle="collapse" data-parent="#accordion3" data-target="#top-density" aria-expanded="false" aria-controls="links">
-              <i class="fa fa-th-list fa-lg"></i>&nbsp; Locations, Av Density, N<sup>o</sup> of samples
+            <a class="bg-info text-white w-100 p-1" data-toggle="modal" data-parent="#accordion3" data-target="#top-density" aria-expanded="false" aria-controls="links">
+              <i class="fa fa-th-list fa-lg"></i>&nbsp; Locations, Av Density, N<sup>o</sup> samples
             </a>
           </div>
-          <div class="collapse " data-parent="#accordion3" id="top-density">
-            <div class="card-body p-1">
-              <table class="table-striped table table-sm">
-                <thead class="txt-14">
-                  <tr>
-                    <th>Location</th>
-                    <th>Density</th>
-                    <th>N<sup>o</sup> of samples</th>
-                  </tr>
-                </thead>
-                {% for r in locs_samples %}
-                <tr class="txt-12 ">
-                  <td>{{ r.location_id }}</td>
-                  <td>{{ r.density|floatformat:2 }}</td>
-                  <td> {{ r.sample }}</td>
-                </tr>
-                {% endfor %}
-
-              </table>
+          <div class="modal fade" id="top-density">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Locations, average density, number of samples</h5>
+                  <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <table class="table-striped table table-sm">
+                    <thead class="txt-14">
+                      <tr>
+                        <th>Location</th>
+                        <th>Density</th>
+                        <th>N<sup>o</sup> of samples</th>
+                      </tr>
+                    </thead>
+                    {% for r in locs_samples %}
+                    <tr class="txt-12 ">
+                      <td>{{ r.location_id }}</td>
+                      <td>{{ r.density|floatformat:2 }}</td>
+                      <td> {{ r.sample }}</td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -522,7 +555,7 @@
                 </div>
                 <div class="modal-body">
                   <p class="txt-14">If you would like a detailed report, charts, or a summary contact us.</p>
-                  <p class="txt-14">Prices are start at CHF/USD/EUR 350</p>
+                  <p class="txt-14">Prices start at CHF/USD/EUR 350</p>
                   <p class="txt-14">Other options:
                     <ul>
                       <li>Charts</li>
@@ -535,7 +568,7 @@
                       <li>Plus many more options </li>
                     </ul>
                   </p>
-                  <p> See the services section for more information.</p>
+                  <p> Contact us for more information.</p>
                 </div>
                 <div class="modal-footer bg-dark">
                   <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
@@ -599,6 +632,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 <!-- {% for x in one_list %} -->
 <!-- <div class="modal fade" style="" id="{{ x|lower }}">

@@ -3,28 +3,32 @@
 
 
 <head>
+  {% load static %}
+
   <meta http-equiv="content-type" content="text/html" charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MW. Shovel</title>
-  <meta name="description" content="hammerdirt, helping you create knowledge.  A research partner that specilizes in the develpomnet of data products for and from crowd sourced research projects.">
+  <meta name="description" content="hammerdirt, helping you create knowledge.  A research partner that specilizes in the development of data products for and from crowd sourced research projects.">
 
  <!-- twitter card data -->
  <meta name="twitter:card" content="summary">
  <meta name="twitter:site" content="@hammerdirt">
  <meta name="twitter:title" content="MW. Shovel">
- <meta name="twitter:description" content="hammerdirt, helping you create knowledge.  A research partner that specilizes in the develpomnet of data products for and from crowd sourced research projects.">
+ <meta name="twitter:description" content="hammerdirt, helping you create knowledge.  A research partner that specilizes in the development of data products for and from crowd sourced research projects.">
  <meta name="twitter:creator" content="@hammerdirt">
- <!-- <meta name="twitter:image" content=""> -->
+ <meta name="twitter:image" content= "{% static "images/weblogo.jpg" %}"  >
 
  <!-- Open Graph Data -->
  <meta property="og:title" content="hammerdirt" />
  <meta property="og:type" content="article" />
- <meta property="og:url" content="http://hammerdirt.ch" />
- <!-- <meta propert="og:image" content="" /> -->
- <meta property="og:description" content="hammerdirt, helping you create knowledge.  A research partner that specilizes in the develpomnet of data products for and from crowd sourced research projects." />
+ <meta property="og:url" content="http://mwshovel.pythonanywhere.com/dirt/beach_litter.html" />
+ <meta property="og:image" content= "{% static "images/weblogo.jpg" %}" />
+ <meta property="og:image:width" content="400" />
+<meta property="og:image:height" content="246" />
+ <meta property="og:description" content="hammerdirt, helping you create knowledge.  A research partner that specilizes in the development of data products for and from crowd sourced research projects." />
  <meta property="og:site_name" content="MW. Shovel" />
  <!-- <meta property="fb:admins" content="" /> -->
-  {% load static %}
+
   <link rel="stylesheet" href="{% static 'css/font-awesome-4.7.0/css/font-awesome.min.css' %}"></link>
   <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}"></link>
   <script src="{% static 'js/jquery.js' %}"></script>
@@ -93,7 +97,7 @@
 
 <footer class="footer bg-dark m-0">
   <div class="container m-0 pt-2 pb-2">
-    <p class="text-white"> We have grants for organizations with unfunded requirements.  See the services section for more information.</p>
+    <p class="text-white"> We have grants for organizations with unfunded requirements. Contact us for more information.</p>
   </div>
 </footer>
 

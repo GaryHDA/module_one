@@ -135,7 +135,7 @@
        <div class="card pb-0 m-w-376" id="data-summary">
          <div class="bg-info text-white card-header" id="" style="">
            <a class="bg-info text-white" data-toggle="collapse" data-parent="#accordion" data-target="#summary" aria-expanded="false" aria-controls="links">
-             <i class="fa fa-th fa-lg"></i>&nbsp; Data summary :
+             <i class="fa fa-th fa-lg"></i>&nbsp; Data summary : SLR
            </a>
          </div>
          <div class="collapse show container-fluid m-1 w-100" data-parent="#accordion" style="" id="summary">
@@ -485,7 +485,7 @@
               <i class="fa fa-th fa-lg "></i>&nbsp; Results sorted by source or economic sector
             </a>
           </div>
-          <div class="collapse" id="categories">
+          <div class="collapse" data-parent="#accordion3" id="categories">
             <div class="card-body p-1 " id="" >
               <div class="mx-auto" id="">
                 {% for k in sources_as %}
@@ -535,7 +535,7 @@
                 </div>
                 <div class="modal-body">
                   <p class="txt-14">If you would like a detailed report, charts, or a summary contact us.</p>
-                  <p class="txt-14">Prices are start at CHF/USD/EUR 350</p>
+                  <p class="txt-14">Prices start at CHF/USD/EUR 350</p>
                   <p class="txt-14">Other options:
                     <ul>
                       <li>Charts</li>
@@ -548,7 +548,7 @@
                       <li>Plus many more options </li>
                     </ul>
                   </p>
-                  <p> See the services section for more information.</p>
+                  <p> Contact us for more information.</p>
                 </div>
                 <div class="modal-footer bg-dark">
                   <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
@@ -612,6 +612,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 
  <!-- {% for x in one_list %} -->
@@ -691,7 +692,7 @@ var lake = {{ lakes|safe }};
 var box_lake = {{ box_lake|safe }};
 var box_river = {{ box_river|safe }};
 var box_cats = {{ box_cats|safe }};
-var sources_as = {{ sources_as|safe }}
+// var sources_as = {{ sources_as|safe }}
 
 var ts_plot = [];
 plot_data.forEach(function(element){
@@ -928,7 +929,7 @@ Highcharts.chart('box-plot', {
         },
     },
     subtitle: {
-      text: 'Density values greater than 50 pcs/m not considered',
+      text: 'Density values greater than 50 pcs/m not shown',
       style:{
         fontSize: '10px',
         color:'#0A2E5C',
@@ -1081,7 +1082,7 @@ Highcharts.chart('riv-lake', {
         },
     },
     subtitle: {
-      text: 'Density values greater than 50 pcs/m not considered',
+      text: 'Density values greater than 50 pcs/m not shown',
       style:{
         fontSize: '10px',
         color:'#0A2E5C',

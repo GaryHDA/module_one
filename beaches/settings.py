@@ -24,13 +24,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 
 
-SECRET_KEY = os.getenv("DIRT_SECRET_KEY")
+SECRET_KEY = os.environ["DIRT_SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+DEBUG = False
+#DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
-ALLOWED_HOSTS = [os.getenv("web_host")]
+ALLOWED_HOSTS = ['mwshovel.pythonanywhere.com']
 
 
 # Application definition
@@ -88,11 +88,14 @@ WSGI_APPLICATION = 'beaches.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('dirt_db'),
-	'USER': 'root',
-	'PASSWORD': os.getenv('db_pass'),
-	'HOST': os.getenv('db_host'),
-	'PORT': os.getenv('db_port')
+        'NAME': 'mwshovel$dirt',
+	'USER': 'mwshovel',
+	'PASSWORD': 'pykee222',
+	'HOST': 'mwshovel.mysql.pythonanywhere-services.com',
+	'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
+	#'PORT': os.getenv('db_port')
     }
 }
 
@@ -134,7 +137,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = '/home/mwshovel/module_one/dirt/static'
 CACHES = {
     'default': {
         'BACKEND':'django.core.cache.backends.db.DatabaseCache',

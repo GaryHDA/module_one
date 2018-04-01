@@ -154,30 +154,27 @@ li {
           </div>
            <div class="collapse " id="mcbp-3" data-parent="#accordion">
              <div class="card-body p-1 w-100">
-              <p>MCBP-3 marks a departure from the hammerdirt role as volunteer trash collectors.  We decided to focus on one area of our operations to increase efficiency,
-                reduce costs and develop services that are in short supply and costly :
+              <p>MCBP-3 marks a departure from the hammerdirt role as volunteer trash collectors.  We decided to focus on one area of operations to increase efficiency,
+                reduce costs and develop B2B services that are in short supply:
                 <ul>
-                  <li> Automation of backoffice procedures</li>
+                  <li> Automation of data handling</li>
                   <ul>
                     <li>Develop our own app for logging data</li>
                     <li>Automate standard data analysis</li>
                     <li>Automate standard data visualisations</li>
                     <li>Automate the update procedures for web and app</li>
                   </ul>
-                  <li>This required immersion in the following programing languages/platforms:</li>
+                  <li>Specifically we focussed on the following programing languages/platforms:</li>
                   <ul>
-                    <li> Python (django, pandas, scikit-learn, matplotlib, numpy,)</li>
-                    <li> HTML5/CSS </li>
-                    <li> javascript (Highcharts, D3, jQuery, react, react-native, nodeJs)</li>
-                    <li> Java (android)</li>
-                    <li> mySQL</li>
-                    <li> linux </li>
+                    <li> Python (django, pandas, scikit-learn, matplotlib, numpy, et all...)</li>
+                    <li> HTML5/CSS -- frameworks </li>
+                    <li> JavaScript (Highcharts, D3, jQuery, react, react-native, nodeJs)</li>
+                    <li> Java (android), MySQL, linux(shell) </li>
                   </ul>
                 </ul>
 
               </p>
-              <p>The time investment was considerable, but the cost was offset by a reduction in software subscription costs,
-                 computer hardware investments, time spent generating reports and an overall improvement in reporting and analysing data.
+              <p>The time investment was offset by a reduction in software subscription costs, computer hardware investments, time spent generating reports and an overall improvement in reporting and analysing data.
               </p>
              </div>
            </div>
@@ -195,8 +192,7 @@ li {
                 to aquatic litter monitoring in the area.
               </p>
               <p>
-                Litter density surveillance will continue and the data and charts will conitnue to be available.  However, there are other projects
-                that are of more interest to hammerdirt and could have a better cost to value ratio.
+                Litter density surveillance will continue. However, there are other projects that are of more interest to hammerdirt and could have a better cost to value ratio.
               </p>
             </div>
           </div>
@@ -210,7 +206,7 @@ li {
            <div class="collapse " id="slr" data-parent="#accordion">
              <div class="card-body p-1 w-100">
                <p>
-                 The Swiss Litter Report(SLR) is a project by STOPPP and WWF Switzerland. WWF and STOPPP volunteers monitor over 100 sites across Switzerland.
+                 The Swiss Litter Report(SLR) is a project by <a href="http://stoppp.org/swiss-litter-report">STOPPP</a> and <a href="https://www.wwf.ch/de">WWF Switzerland</a>. WWF and STOPPP volunteers monitor over 100 sites across Switzerland.
                </p>
                <p>
                 The methods used by the SLR produce comparable data to the MCBP series and when both data sets are considered a national baseline
@@ -230,7 +226,7 @@ li {
                 <p>
                   There are a couple of differences:
                   <ul>
-                    <li>Most of the samples from MCBP were collected by three people, the SLR has hudndreds of volunteers</li>
+                    <li>Most of the samples from MCBP were collected by three people, the SLR has hundreds of volunteers</li>
                     <li>MCBP was started by two people in response to repeated observations in their own community.  The SLR is a project iniated by
                       a large organization and administered from the top down</li>
                     <li>*MCBP counts every item found with no lower size limit(OSPAR), SLR has a lower size limit of 2.5cm(MLW)</li>
@@ -387,7 +383,7 @@ li {
                using the community code "motdu".
               </p>
               <p>
-                MCBP Data can be downloaded <a href="#">here</a>
+                MCBP Data can be downloaded <a href="https://drive.google.com/open?id=1XL1-_rSHsX6nwPnUNVEQB76PkIvkGn--">here</a>
             </div>
           </div>
         </div>
@@ -405,8 +401,8 @@ li {
                  The results from MCBP fall within the disribution of the SLR.
                </p>
                <p>
-                 This is expected if the data gathered from the MCBP is a subset of the SLR. In one sense it is:
-                 the SLR is a national project and MCBP covers a region within national boundaries.
+                 This is expected and encouraging.  This means two independent groups came up with similar results.  When comapared to the density values for lakes in the
+                 SLR project the MCBP results are within the limits of the SLR.
                </p>
              </div>
            </div>
@@ -453,7 +449,7 @@ li {
               </div>
               <div class="modal-body">
                 <p class="txt-14">If you would like a detailed report, charts, or a summary contact us.</p>
-                <p class="txt-14">Prices are start at CHF/USD/EUR 350</p>
+                <p class="txt-14">Prices start at CHF/USD/EUR 350</p>
                 <p class="txt-14">Other options:
                   <ul>
                     <li>Charts</li>
@@ -584,7 +580,7 @@ li {
     <div class="modal-content p-4">
       <div class="modal-header ">
         <h5 class="modal-title ">Combined litter densities 2015-2018 : SLR and MCBP<br>
-          <small class="text-muted ">Click on symbol for summary information</small>
+          <small class="text-muted ">Click on symbol for summary information, circle size relative to average density </small>
         </h5>
         <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -722,7 +718,7 @@ Highcharts.chart('box-plot', {
         },
     },
     subtitle: {
-      text: 'Density values greater than 50 pcs/m not considered, ' + combined_sub_title,
+      text: 'Density values greater than 50 pcs/m not shown, ' + combined_sub_title,
       style:{
         fontSize: '10px',
         color:'#0A2E5C',
@@ -853,10 +849,10 @@ Highcharts.chart('box-plot', {
     },
     {
       zIndex:3,
-      fillColor:'rgb(159, 183, 159, 1)',
+       fillColor:'rgb(215, 78, 9, 1)',
       lineColor: 'rgb(00, 00, 00, 1)',
       medianColor:'rgb(22, 199, 158, 1)',
-      color:'rgb(159, 183, 159, 1)',
+      color:'rgb(215, 78, 9, 1)',
       squareSymbol: true,
       xAxis:0,
       type: 'boxplot',
@@ -909,10 +905,10 @@ Highcharts.chart('box-plot', {
       type: 'scatter',
       name:'MCBP - lake',
       marker: {
-        symbol: 'circle',
+         symbol: 'circle',
         radius:3,
-        fillColor: 'rgb(159, 183, 159, .3)',
-        lineColor: 'rgb(00, 00, 00, .4)',
+        lineColor: 'rgb(00, 00, 00, .3)',
+        fillColor:  'rgb(215, 78, 9, .4)',
         lineWidth:1,
       },
       data:plot_mc,
@@ -1068,10 +1064,10 @@ Highcharts.chart('box-plot2', {
     },
     {
       zIndex:3,
-      fillColor:'rgb(159, 183, 159, 1)',
+      fillColor:'rgb(215, 78, 9, 1)',
       lineColor: 'rgb(00, 00, 00, 1)',
       medianColor:'rgb(22, 199, 158, 1)',
-      color:'rgb(159, 183, 159, 1)',
+      color:'rgb(215, 78, 9, 1)',
       squareSymbol: true,
       xAxis:0,
       type: 'boxplot',
@@ -1126,8 +1122,8 @@ Highcharts.chart('box-plot2', {
       marker: {
         symbol: 'circle',
         radius:3,
-        fillColor: 'rgb(159, 183, 159, .3)',
-        lineColor: 'rgb(00, 00, 00, .4)',
+        lineColor: 'rgb(00, 00, 00, .3)',
+        fillColor:  'rgb(215, 78, 9, .4)',
         lineWidth:1,
       },
       data:plot_mc,

@@ -4,7 +4,7 @@ from django.db import models
 from django.db.models import Sum, Avg, Max, Min
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from dirt.models import SLR_Data, SLR_Density, SLR_Beaches, Beaches, Densities, Source, Codes, Material, Totals, All_Data, References, SUBJECT_CHOICES
+from dirt.models import SLR_Data, SLR_Density, SLR_Beaches, Beaches, Codes, All_Data, References, SUBJECT_CHOICES
 from django.contrib.auth.models import User
 import datetime
 import pandas as pd
@@ -15,7 +15,104 @@ import scipy.stats
 from datetime import date
 
 def index(request):
-    return render(request, 'dirt/index.html')
+    slr_data = SLR_Data.objects.all().values()
+    slr_density = SLR_Density.objects.all().values()
+    slr_locs = SLR_Beaches.beachList()
+    slr_beaches = SLR_Beaches.objects.all().values()
+    river_dens = SLR_Density.objects.filter(location__water = 'river').values()
+    lake_dens = SLR_Density.objects.filter(location__water = 'lake').values()
+
+    mcbp_density = All_Data.objects.all().values()
+    mc_beaches = Beaches.beachList()
+    mc_locs = Beaches.objects.all().values()
+
+    slr_total = SLR_Data.objects.all().aggregate(t_total = Sum('quantity'))
+    mcbp_total = All_Data.objects.all().aggregate(t_total = Sum('quantity'))
+
+    mc_tot = float(mcbp_total['t_total'])
+    sl_tot = float(slr_total['t_total'])
+
+    t_day = pd.to_datetime('today')
+    #
+    # def date_string_y(x):
+    #     t = x.strftime('%Y-%m-%d')
+    #     return t
+    def make_df(y):
+        a = list(y)
+        b = pd.DataFrame(a)
+        return [a, b]
+    def format_data(y):
+        a = y.columns
+        if 'quantity' in a:
+            y = y.astype({'quantity':float}, copy=False)
+        if 'density' in a:
+            y = y.astype({'density':float}, copy=False)
+        if 'date' in a:
+            y['date'] = pd.to_datetime(y['date'])
+            y = y[y.date < t_day]
+        if 'sample' in a:
+            y = y.astype({'sample':float}, copy=False)
+        if 'length' in a:
+            y = y.astype({'length':float}, copy=False)
+        return y
+
+    df0 = format_data(make_df(slr_density)[1])
+    dfMCBP = format_data(make_df(mcbp_density)[1])
+    dfR = format_data(make_df(river_dens)[1])
+    dfL = format_data(make_df(lake_dens)[1])
+
+    def mcbp_daily():
+        a = dfMCBP.copy()
+        d =  a['quantity'].groupby([a['date'], a['location_id'], a['length']]).sum()
+        e = pd.DataFrame(d)
+        e.reset_index(inplace=True)
+        e = e[e.date > min(e.date)]
+        e['density'] = e['quantity']/e['length']
+        e['density'] = e['density'].round(4)
+        for name in mc_beaches:
+            n=0
+            for i, row in e.iterrows():
+                if e.loc[i, 'location_id'] == name:
+                    n=n+1
+                    e.loc[i, 'sample'] = n
+        return e
+    mc = mcbp_daily()
+
+    def daily_density(df):
+        a = df[['date', 'location_id', 'density', 'sample']].copy()
+        bb = a[['date', 'location_id', 'density']].copy()
+        a['date'] = a['date'].dt.strftime("%Y-%m-%d")
+        x = a.to_dict(orient='records')
+        b = list(a['density'])
+        c = sorted(b)
+        d = [x for x in c if x > 0]
+        e = [math.log(x) for x in d]
+        return [x, e, bb, a]
+    plot_density = daily_density(df0)
+    plot_mc = daily_density(mc)
+    slr_hist = plot_density[1]
+    mc_hist = plot_mc[1]
+    # lakes = daily_density(dfL)
+    # rivers = daily_density(dfR)
+
+    plot_list = []
+    hist_list = []
+    def this_list(n, j):
+        for a in n:
+            j.append(a)
+    this_list(slr_hist, hist_list)
+    this_list(mc_hist, hist_list)
+    this_list(plot_mc[0], plot_list)
+    this_list(plot_density[0], plot_list)
+    num_samps = len(plot_list)
+
+
+    return render(request, 'dirt/index.html', { 'plot_list':plot_list, 'hist_list':hist_list, 'num_samps':num_samps, 't_day':t_day})
+
+
+# 'plot_mc':plot_mc[0], 'plot_density':plot_density[0],
+
+
 def services_home(request):
     return render(request, 'dirt/services.html')
 # def finance_home(request):
@@ -568,10 +665,27 @@ def beach_litter(request):
             d['density'] = d['density'].astype(float)
             e = list(d['density'])
             g = sorted(e)
-            if l == 'SLR':
-                h = [months[b],min(g), np.percentile(g, 25, interpolation='lower'), np.median(g), np.percentile(g, 75, interpolation='lower'), g[-2]]
-            elif l == 'MCBP':
-                h = [box_cats[b],min(g), np.percentile(g, 25, interpolation='lower'), np.median(g), np.percentile(g, 75, interpolation='lower'), max(g)]
+            if len(g) == 1:
+                g=g[0]
+                if l == 'SLR':
+                    h = [months[b], g, g, g, g, g]
+                if l == 'MCBP':
+                    h = [box_cats[b], g, g, g, g, g]
+            elif len(g) >= 4:
+                if l == 'SLR':
+                    h = [months[b],min(g), np.percentile(g, 25, interpolation='lower'), np.median(g), np.percentile(g, 75, interpolation='lower'), max(g)]
+                elif l == 'MCBP':
+                    h = [box_cats[b],min(g), np.percentile(g, 25, interpolation='lower'), np.median(g), np.percentile(g, 75, interpolation='lower'), max(g)]
+            elif len(g) == 3:
+                if l == 'SLR':
+                    h = [months[b],g[0], (g[0]+g[1])/2, np.median(g), (g[1]+g[2])/2 , g[2]]
+                elif l == 'MCBP':
+                    h = [box_cats[b],g[0], (g[0]+g[1])/2, np.median(g), (g[1]+g[2])/2 , g[2]]
+            elif len(g) == 2:
+                if l == 'SLR':
+                    h = [months[b],g[0], g[0], np.median(g), g[1] , g[1]]
+                elif l == 'MCBP':
+                    h = [box_cats[b],g[0], g[0], np.median(g), g[1], g[1]]
             f.append(h)
         return [f, months]
 
@@ -618,7 +732,7 @@ def beach_litter(request):
         average = f['mean'].round(2)
         first_sample = min(x['date'])
         last_sample = max(x['date'])
-        total = float(mc_tot + sl_tot)
+        total = sl_tot + mc_tot
         iqr = seven_five - two_five
         q = {'first':first_sample, 'last':last_sample, 'num_samps':num_samps, 'ave_dense':average, 'min_dense':dens_min,
         'max_dense':dens_max, 'two_five':two_five, 'seven_five':seven_five, 'stan_dev':stan_dev, 'total':total, 'iqr':iqr}
@@ -679,6 +793,7 @@ def slr_home(request):
         for x in a:
             if x['city'] not in b:
                 b.append(x['city'])
+        b=sorted(b)
         return b
     cities = city_list(slr_beaches)
 
@@ -734,7 +849,7 @@ def slr_home(request):
             d['density'] = d['density'].astype(float)
             e = list(d['density'])
             g = sorted(e)
-            h = [min(g), np.percentile(g, 25, interpolation='lower'), np.median(g), np.percentile(g, 75, interpolation='lower'), g[-2]]
+            h = [min(g), np.percentile(g, 25, interpolation='lower'), np.median(g), np.percentile(g, 75, interpolation='lower'), g[-1]]
             f.append(h)
         return [f, months]
 
