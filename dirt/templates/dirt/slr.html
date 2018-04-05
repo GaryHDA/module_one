@@ -53,7 +53,7 @@
 {% load humanize %}
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-4" style="">
+    <div class="col-sm-4 col-xs-12" style="">
       <div id="accordion" class="w-100" role="tablist">
        <div class="card pb-0 m-w-376" id="goals-objectives">
          <div class="card-header bg-info text-white " id="" style="">
@@ -354,7 +354,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4" style:"">
+    <div class="col-sm-4 col-xs-12" style:"">
       <div id="accordionTwo" class="" role="tablist">
         <div class="card pb-0" id="map-of-locations">
           <div class="card-header bg-info text-white" id="" style="">
@@ -405,7 +405,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4" style:"">
+    <div class="col-sm-4 col-xs-12" style:"">
       <div id="accordion3" class="" role="tablist">
         <div class="card pb-0" id="density_top">
           <div class="bg-info text-white card-header" id="" style="">
@@ -951,8 +951,8 @@ Highcharts.chart('box-plot', {
       floating:true,
       x:120,
       y:60,
-      backgroundColor:'rgb(255,255,255, .4)',
-      borderColor:'rgb(10, 46, 92, .5)',
+      backgroundColor:'rgba(255,255,255, .4)',
+      borderColor:'rgba(10, 46, 92, .5)',
       borderWidth:2,
       itemMarginTop:4,
       itemMarginBottom:4,
@@ -963,12 +963,12 @@ Highcharts.chart('box-plot', {
     },
     plotOptions:{
       boxplot:{
-        fillColor:'rgb(10, 46, 92, 1)',
-        lineColor: 'rgb(00, 00, 00, 1)',
-        stemColor:'rgb(10, 46, 92, 1)',
+        fillColor:'rgba(10, 46, 92, 1)',
+        lineColor: 'rgba(00, 00, 00, 1)',
+        stemColor:'rgba(10, 46, 92, 1)',
         stemDashStyle: 'dash',
         stemWidth:1,
-        whiskerColor: 'rgb(00, 00, 00, 1)',
+        whiskerColor: 'rgba(00, 00, 00, 1)',
         groupPadding:0,
       }
     },
@@ -976,10 +976,10 @@ Highcharts.chart('box-plot', {
     xAxis: [{
         categories:box_cats,
         type: 'category',
-        tickColor:'rgb(00, 00, 00, 1)',
+        tickColor:'rgba(00, 00, 00, 1)',
         labels: {
           rotation:270,
-          color:'rgb(00, 00, 00, 1)',
+          color:'rgba(00, 00, 00, 1)',
           fontSize:'10px'
         },
         opposite:false,
@@ -990,11 +990,11 @@ Highcharts.chart('box-plot', {
       visible:false,
       alignTicks:true,
       tickInterval:3600*1000*24*28,
-      tickColor:'rgb(00, 00, 00, 1)',
+      tickColor:'rgba(00, 00, 00, 1)',
       labels: {
         enabled: false,
         style: {
-          color:'rgb(00, 00, 00, 1)',
+          color:'rgba(00, 00, 00, 1)',
         }
       },
       dateTimeLabelFormats: {
@@ -1018,11 +1018,11 @@ Highcharts.chart('box-plot', {
             color:'#0A2E5C',
           },
       },
-      gridLineColor:'rgb(10, 46, 92, .1)',
+      gridLineColor:'rgba(10, 46, 92, .1)',
       minorTickInterval:2,
       labels:{
         style: {
-          color:'rgb(00, 00, 00, 1)',
+          color:'rgba(00, 00, 00, 1)',
           fontSize: '10px'
         }
       },
@@ -1049,8 +1049,8 @@ Highcharts.chart('box-plot', {
       marker: {
         symbol: 'circle',
         radius:3,
-        lineColor: 'rgb(10, 46, 92, .2)',
-        fillColor:  'rgb(22, 199, 158, .2)',
+        lineColor: 'rgba(10, 46, 92, .2)',
+        fillColor:  'rgba(22, 199, 158, .2)',
         lineWidth:1,
       },
       data:ts_plot,
@@ -1101,8 +1101,8 @@ Highcharts.chart('riv-lake', {
       verticalAlign: 'bottom',
       align: 'center',
       layout:'horizontal',
-      backgroundColor:'rgb(255,255,255, .4)',
-      borderColor:'rgb(10, 46, 92, .4)',
+      backgroundColor:'rgba(255,255,255, .4)',
+      borderColor:'rgba(10, 46, 92, .4)',
       borderWidth:1,
       padding:8,
       margin:12,
@@ -1118,20 +1118,20 @@ Highcharts.chart('riv-lake', {
     },
     plotOptions:{
       boxplot:{
-        stemColor:'rgb(10, 46, 92, 1)',
+        stemColor:'rgba(10, 46, 92, 1)',
         stemDashStyle: 'dash',
         stemWidth:1,
-        whiskerColor: 'rgb(00, 00, 00, 1)',
+        whiskerColor: 'rgba(00, 00, 00, 1)',
         groupPadding:0,
       }
     },
     xAxis: [{
         categories:box_cats,
         type: 'category',
-        tickColor:'rgb(00, 00, 00, 1)',
+        tickColor:'rgba(00, 00, 00, 1)',
         labels: {
           rotation:270,
-          color:'rgb(00, 00, 00, 1)',
+          color:'rgba(00, 00, 00, 1)',
           fontSize:'10px'
         },
         opposite:false,
@@ -1141,11 +1141,11 @@ Highcharts.chart('riv-lake', {
       visible:false,
       alignTicks:true,
       tickInterval:3600*1000*24*28,
-      tickColor:'rgb(00, 00, 00, 1)',
+      tickColor:'rgba(00, 00, 00, 1)',
       labels: {
         enabled: false,
         style: {
-          color:'rgb(00, 00, 00, 1)',
+          color:'rgba(00, 00, 00, 1)',
         }
       },
       dateTimeLabelFormats: {
@@ -1169,11 +1169,11 @@ Highcharts.chart('riv-lake', {
             color:'#0A2E5C',
           },
       },
-      gridLineColor:'rgb(10, 46, 92, .1)',
+      gridLineColor:'rgba(10, 46, 92, .1)',
       minorTickInterval:2,
       labels:{
         style: {
-          color:'rgb(00, 00, 00, 1)',
+          color:'rgba(00, 00, 00, 1)',
           fontSize: '10px'
         }
       },
@@ -1182,10 +1182,10 @@ Highcharts.chart('riv-lake', {
     series:
     [{
       zIndex:3,
-      fillColor:'rgb(215, 78, 9, 1)',
-      lineColor: 'rgb(00, 00, 00, 1)',
-      medianColor:'rgb(22, 199, 158, 1)',
-      color:'rgb(215, 78, 9, 1)',
+      fillColor:'rgba(215, 78, 9, 1)',
+      lineColor: 'rgba(00, 00, 00, 1)',
+      medianColor:'rgba(22, 199, 158, 1)',
+      color:'rgba(215, 78, 9, 1)',
       xAxis:0,
       type: 'boxplot',
       name: 'Lakes-monthly',
@@ -1196,10 +1196,10 @@ Highcharts.chart('riv-lake', {
     },
     {
       zIndex:3,
-      fillColor:'rgb(10, 46, 92, 1)',
-      lineColor: 'rgb(00, 00, 00, 1)',
-      medianColor:'rgb(22, 199, 158, 1)',
-      color:'rgb(10, 46, 92, 1)',
+      fillColor:'rgba(10, 46, 92, 1)',
+      lineColor: 'rgba(00, 00, 00, 1)',
+      medianColor:'rgba(22, 199, 158, 1)',
+      color:'rgba(10, 46, 92, 1)',
       xAxis:0,
       type: 'boxplot',
       name: 'Rivers-monthly',
@@ -1216,8 +1216,8 @@ Highcharts.chart('riv-lake', {
       marker: {
         symbol: 'circle',
         radius:3,
-        lineColor: 'rgb(00, 00, 00, .3)',
-        fillColor:  'rgb(215, 78, 9, .4)',
+        lineColor: 'rgba(00, 00, 00, .3)',
+        fillColor:  'rgba(215, 78, 9, .4)',
         lineWidth:1,
       },
       data:lak_dens,
@@ -1234,8 +1234,8 @@ Highcharts.chart('riv-lake', {
       marker: {
         symbol: 'circle',
         radius:3,
-        lineColor: 'rgb(00, 00, 00, .3)',
-        fillColor:  'rgb(10, 46, 92, .4)',
+        lineColor: 'rgba(00, 00, 00, .3)',
+        fillColor:  'rgba(10, 46, 92, .4)',
         lineWidth:1,
       },
       data:riv_dens,

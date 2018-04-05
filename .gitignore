@@ -22,3 +22,8 @@ csvs_for_db/
 dirt/migrations/
 static/
 beaches/settings.py
+how_much_trash.ipynb
+.ipynb_checkpoints/
+how_much_trash.ipynb
+
+

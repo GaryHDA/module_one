@@ -17,7 +17,7 @@ card, card-body, collpase, accordion {
 {% load humanize %}
 <div class="container-fluid">
   <div class="row">
-    <div class="col-4 m-0 p-2">
+    <div class="col-sm-4 col-xs-12 m-0 p-2">
       <div class="w-100" id="accordion" role="tablist">
         <div class="card pb-0 m-w-376 border-0">
           <div class="bg-info text-white card-header" id="" style="">
@@ -52,7 +52,7 @@ card, card-body, collpase, accordion {
         </div>
       </div>
     </div>
-    <div class="col-4 m-0 p-2">
+    <div class="col-sm-4 col-xs-12 m-0 p-2">
       <div class="w-100" id="accordion2" role="tablist">
         <div class="card pb-0 m-w-376 border-0">
           <div class="bg-info text-white card-header" id="" style="">
@@ -72,7 +72,7 @@ card, card-body, collpase, accordion {
         </div>
       </div>
     </div>
-    <div class="col-4 m-0 p-2">
+    <div class="col-sm-4 col-xs-12 m-0 p-2">
       <div class="w-100" id="addordion3" role="tablist">
         <div class="card pb-0 m-w-376 border-0">
           <div class="bg-info text-white card-header" id="" style="">
@@ -204,8 +204,8 @@ Highcharts.chart('scatterchart', {
       floating:true,
       x:-40,
       y:10,
-      backgroundColor:'rgb(255,255,255, .4)',
-      borderColor:'rgb(10, 46, 92, .5)',
+      backgroundColor:'rgba(255,255,255, .4)',
+      borderColor:'rgba(10, 46, 92, .5)',
       borderWidth:1,
       itemMarginTop:4,
       itemMarginBottom:4,
@@ -220,7 +220,7 @@ Highcharts.chart('scatterchart', {
       tickInterval:3600*1000*24*28*2,
       labels: {
         style: {
-          color:'rgb(00, 00, 00, 1)'
+          color:'rgba(00, 00, 00, 1)'
         }
       },
       dateTimeLabelFormats: {
@@ -237,10 +237,10 @@ Highcharts.chart('scatterchart', {
               color:'#000000',
             },
         },
-        gridLineColor:'rgb(10, 46, 92, .1)',
+        gridLineColor:'rgba(10, 46, 92, .1)',
         labels:{
           style: {
-            color:'rgb(00, 00, 00, 1)'
+            color:'rgba(00, 00, 00, 1)'
           }
         },
         tickInterval: 8,
@@ -259,8 +259,8 @@ Highcharts.chart('scatterchart', {
       marker: {
         symbol: 'circle',
         radius:6,
-        lineColor: 'rgb(10, 46, 92, .7)',
-        fillColor:  'rgb(22, 199, 158, .7)',
+        lineColor: 'rgba(10, 46, 92, .7)',
+        fillColor:  'rgba(22, 199, 158, .7)',
         lineWidth:2,
       },
       data:ts_plot,
@@ -328,13 +328,13 @@ Highcharts.chart('probchart', {
           text: 'Number of observations SLR-MCBP',
           style:{
             fontSize:'14px',
-            color:'rgb(22, 199, 158, 1)',
+            color:'rgba(22, 199, 158, 1)',
           },
 
         },
         labels:{
           style:{
-            color:'rgb(22, 199, 158, 1)',
+            color:'rgba(22, 199, 158, 1)',
           }
         }
     },
@@ -347,8 +347,8 @@ Highcharts.chart('probchart', {
       floating:true,
       x:-40,
       y:10,
-      backgroundColor:'rgb(255,255,255, .4)',
-      borderColor:'rgb(10, 46, 92, .5)',
+      backgroundColor:'rgba(255,255,255, .4)',
+      borderColor:'rgba(10, 46, 92, .5)',
       borderWidth:1,
       itemMarginTop:4,
       itemMarginBottom:4,
@@ -369,8 +369,8 @@ Highcharts.chart('probchart', {
         xAxis: 0,
         yAxis: 0,
         binsNumber:'sturges',
-        borderColor: 'rgb(10, 46, 92, .5)',
-        color:  'rgb(22, 199, 158, .6)',
+        borderColor: 'rgba(10, 46, 92, .5)',
+        color:  'rgba(22, 199, 158, .6)',
         lineWidth:2,
         baseSeries:  1,
         zIndex: -1

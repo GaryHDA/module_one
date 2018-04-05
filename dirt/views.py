@@ -361,7 +361,7 @@ def search_MCBP(request):
                 y = y.astype({'density':float}, copy=False)
             if 'date' in a:
                 y['date'] = pd.to_datetime(y['date'])
-                y = y[y.date < t_day]
+                y = y[y.date <= t_day]
             if 'sample' in a:
                 y = y.astype({'sample':float}, copy=False)
             if 'length' in a:
