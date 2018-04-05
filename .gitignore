@@ -21,3 +21,4 @@ beaches/.env
 csvs_for_db/
 dirt/migrations/
 static/
+how_much_trash.ipynb
