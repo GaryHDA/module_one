@@ -18,7 +18,7 @@ __This is a beta version:__ For me that means it works, but could be better. As 
 5. More efficient use of builtin methods
 6. Add an API
 
-This works is my own and I am sharing it with you. (but I wouldn't use it just yet)
+This work is my own and I am sharing it with you. (but I wouldn't use it just yet)
 
 ### Contributing
 All work contribtutions are well recieved, specifically:
