@@ -14,6 +14,8 @@ from scipy.stats import norm
 import scipy.stats
 from datetime import date
 
+# this is a comment to make sure the git branch is et up correctly
+
 def index(request):
     slr_data = SLR_Data.objects.all().values()
     slr_density = SLR_Density.objects.all().values()
