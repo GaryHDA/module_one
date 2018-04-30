@@ -60,7 +60,7 @@ li {
         <div class="card pb-0 m-w-376" id="">
           <div class="card-header bg-info text-white " id="" style="">
             <a class="bg-info text-white w-100 p-1 collapsed" data-toggle="modal"  data-target="#bl_30" aria-expanded="false" aria-controls="table-of-results">
-              Beach Litter density in 30 seconds
+              Measuring beach litter
             </a>
           </div>
         </div>
@@ -128,14 +128,14 @@ li {
                      <ul>
                        <li>Compares results from MCBP-2 to other OSPAR regions</li>
                        <li>Compares results fromt the EPFL stduy in 2014</li>
-                       <li>Expresses trash as a density value </li>
+                       <li>Expresses trash as a value of pcs/m </li>
                      </ul>
                      <li> <a href="https://drive.google.com/open?id=0BzPFamJgOYe1S2R4WC01cDBlQzg">Annex-B</a></li>
                      <ul>
                        <li>Comparative analysis of results</li>
-                       <li>Regression of density against river discharge rates</li>
+                       <li>Regression of pcs/m against river discharge rates</li>
                        <li>Identification of most common items found</li>
-                       <li>Expression of density as a probability mass function</li>
+                       <li>Expression of pcs/m as a probability mass function</li>
                      </ul>
                    </ul>
                    The results were presented to municipal, regional and national authorities.
@@ -189,7 +189,7 @@ li {
                 to aquatic litter monitoring in the area.
               </p>
               <p>
-                Litter density surveillance will continue. However, there are other projects that are of more interest to hammerdirt and could have a better cost to value ratio.
+                Litter surveillance will continue. However, there are other projects that are of more interest to hammerdirt and could have a better cost to value ratio.
               </p>
             </div>
           </div>
@@ -207,7 +207,7 @@ li {
                </p>
                <p>
                 The methods used by the SLR produce comparable data to the MCBP series and when both data sets are considered a national baseline
-                for shoreline litter density can be established.
+                for shoreline litter can be established.
                </p>
              </div>
            </div>
@@ -236,7 +236,7 @@ li {
         <div class="card pb-0 m-w-376" id="">
           <div class="card-header bg-info text-white " id="" style="">
             <a class="bg-info text-white w-100 p-1 collapsed" data-toggle="collapse"  data-target="#samples" aria-expanded="false" aria-controls="table-of-results">
-              How does repeated sampling effect density ?
+              How does repeated sampling effect litter quantity ?
             </a>
           </div>
            <div class="collapse " id="samples" data-parent="#accordion">
@@ -323,7 +323,7 @@ li {
               <div class="d-flex flex-row justify-content-end p-0 bg-red">
                <div class="d-sm-inline-flex flex-column p-1 w-50">
                  <div class="d-sm-inline-flex p-1 bg-black">
-                   <p class="text-white p-0 m-0 " >Average density</p>
+                   <p class="text-white p-0 m-0 " >Average pcs/m</p>
                  </div>
                  <div class="d-sm-inline-flex flex-column p-1 ">
                    <p class="text-white p-0 m-0" > {{ summary.ave_dense|floatformat:1 }} pcs/m <small> (not weighted) </small></p>
@@ -331,7 +331,7 @@ li {
                </div>
                <div class="d-sm-inline-flex flex-column p-1 w-50">
                 <div class="d-sm-inline-flex p-1 bg-black" >
-                  <p class="text-white p-0 m-0">Density range</p>
+                  <p class="text-white p-0 m-0">Range pcs/m</p>
                 </div>
                 <div class="d-sm-inline-flex flex-column p-1 m-0">
                   <p class="text-white p-0 m-0"> {{ summary.min_dense|floatformat:1 }} - {{ summary.max_dense|floatformat:1 }} pcs/m</p>
@@ -404,7 +404,7 @@ li {
                  The results from MCBP fall within the disribution of the SLR.
                </p>
                <p>
-                 This is expected and encouraging.  This means two independent groups came up with similar results.  When comapared to the density values for lakes in the
+                 This is expected and encouraging.  This means two independent groups came up with similar results.  When compared to the values for lakes in the
                  SLR project the MCBP results are within the limits of the SLR.
                </p>
              </div>
@@ -533,7 +533,7 @@ li {
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Beach-litter density in 30 seconds<br>
+        <h5 class="modal-title">Measuring beach litter<br>
           <small class="text-muted"> For a list of further reading on the subject see the bibliography section of the MCBP results.</small>
         </h5>
         <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
@@ -583,7 +583,7 @@ li {
     <div class="modal-content p-4">
       <div class="modal-header ">
         <h5 class="modal-title ">Combined litter densities 2015-2018 : SLR and MCBP<br>
-          <small class="text-muted ">Click on symbol for summary information, circle size relative to average density </small>
+          <small class="text-muted ">Click on symbol for summary information, circle size relative to average pcs/m </small>
         </h5>
         <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -721,7 +721,7 @@ Highcharts.chart('box-plot', {
         },
     },
     subtitle: {
-      text: 'Density values greater than 50 pcs/m not shown, ' + combined_sub_title,
+      text: 'Values greater than 50 pcs/m not shown, ' + combined_sub_title,
       style:{
         fontSize: '10px',
         color:'#0A2E5C',
@@ -1216,7 +1216,7 @@ Highcharts.chart('by_sample_no', {
     },
     tooltip: {
         headerFormat: '<b>{point.key}</b><br>',
-        pointFormat: 'sample no: {point.x}, density: {point.y:.2f}'
+        pointFormat: 'sample no: {point.x}, pcs/m: {point.y:.2f}'
     },
     series: [{
       zIndex:3,
@@ -1267,7 +1267,7 @@ Highcharts.chart('slr-hist', {
     },
     xAxis: [{
         title: {
-          text: 'ln(density)',
+          text: 'ln(pcs/m)',
           style:{
             fontSize:'14px',
             color:'#000000',
@@ -1327,11 +1327,11 @@ Highcharts.chart('slr-hist', {
     },
     tooltip: {
         headerFormat: '<b>{series.name}</b><br>',
-        pointFormat: 'min ln(density): {point.x: .2f}, # of samples: {point.y}'
+        pointFormat: 'min ln(pcs/m): {point.x: .2f}, # of samples: {point.y}'
     },
 
     series: [{
-        name: 'ln(density) -- SLR',
+        name: 'ln(pcs/m) -- SLR',
         type: 'histogram',
         xAxis: 0,
         yAxis: 0,
@@ -1348,7 +1348,7 @@ Highcharts.chart('slr-hist', {
         showInLegend:false,
 
     }, {
-        name: 'ln(density) -- MCBP',
+        name: 'ln(pcs/m) -- MCBP',
         type: 'histogram',
         xAxis: 0,
         yAxis: 1,
@@ -1544,7 +1544,7 @@ function initMap() {
 
     });
     var contentString = '<div><p style="margin-bottom:4px; font-size:14px;">' +  combined_map[i][6] + '</p>'+
-    '<ul><li>City: ' + combined_map[i][4] +'</li><li> Postal Code: ' + combined_map[i][3] + '</li><li>Average density: ' + combined_map[i][2] + '</li><li>N<sup>o</sup> of samples: ' +
+    '<ul><li>City: ' + combined_map[i][4] +'</li><li> Postal Code: ' + combined_map[i][3] + '</li><li>Average pcs/m: ' + combined_map[i][2] + '</li><li>N<sup>o</sup> of samples: ' +
     combined_map[i][5] + '</li><li>Lake or River: ' + combined_map[i][8] + '</li><li>Project : ' + combined_map[i][7] + '</li></ul></div>';
     marker.addListener('click', function(content){
       return function(){

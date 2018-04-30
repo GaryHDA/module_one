@@ -180,7 +180,7 @@
             <div class="d-flex flex-row justify-content-end p-0 bg-red">
              <div class="d-sm-inline-flex flex-column p-1 w-50">
                <div class="d-sm-inline-flex p-1 bg-black">
-                 <p class="text-white p-0 m-0 " >Average density</p>
+                 <p class="text-white p-0 m-0 " >Average pcs/m</p>
                </div>
                <div class="d-sm-inline-flex flex-column p-1 ">
                  <p class="text-white p-0 m-0" > {{ summary.ave_dense|floatformat:1 }} pcs/m <small> (not weighted) </small></p>
@@ -189,7 +189,7 @@
              </div>
              <div class="d-sm-inline-flex flex-column p-1 w-50">
               <div class="d-sm-inline-flex p-1 bg-black" >
-                <p class="text-white p-0 m-0">Density range</p>
+                <p class="text-white p-0 m-0">Range pcs/m range</p>
               </div>
               <div class="d-sm-inline-flex flex-column p-1 m-0">
                 <p class="text-white p-0 m-0"> {{ summary.min_dense|floatformat:1 }} - {{ summary.max_dense|floatformat:1 }} pcs/m</p>
@@ -410,14 +410,14 @@
         <div class="card pb-0" id="density_top">
           <div class="bg-info text-white card-header" id="" style="">
             <a class="bg-info text-white w-100 p-1" data-toggle="modal" data-parent="#accordion3" data-target="#top-density" aria-expanded="false" aria-controls="links">
-              <i class="fa fa-th-list fa-lg"></i>&nbsp; Locations, Av Density, N<sup>o</sup> samples
+              <i class="fa fa-th-list fa-lg"></i>&nbsp; Locations, Av pcs/m, N<sup>o</sup> samples
             </a>
           </div>
           <div class="modal fade" id="top-density">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Locations, average density, number of samples</h5>
+                  <h5 class="modal-title">Locations, average pcs/m, number of samples</h5>
                   <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -427,7 +427,7 @@
                     <thead class="txt-14">
                       <tr>
                         <th>Location</th>
-                        <th>Density</th>
+                        <th>pcs/m</th>
                         <th>N<sup>o</sup> of samples</th>
                       </tr>
                     </thead>
@@ -892,7 +892,7 @@ function initMap() {
 
     });
     var contentString = '<div><p style="margin-bottom:4px; font-size:14px;">' +  map_points[i][6] + '</p>'+
-    '<ul><li>City: ' + map_points[i][4] +'</li><li> Postal Code: ' + map_points[i][3] + '</li><li>Average density: ' + map_points[i][2] + '</li><li>N<sup>o</sup> of samples: ' +
+    '<ul><li>City: ' + map_points[i][4] +'</li><li> Postal Code: ' + map_points[i][3] + '</li><li>Average pcs/m: ' + map_points[i][2] + '</li><li>N<sup>o</sup> of samples: ' +
     map_points[i][5] + '</li></ul></div>';
     marker.addListener('click', function(content){
       return function(){
@@ -929,7 +929,7 @@ Highcharts.chart('box-plot', {
         },
     },
     subtitle: {
-      text: 'Density values greater than 50 pcs/m not shown',
+      text: 'Values greater than 50 pcs/m not shown',
       style:{
         fontSize: '10px',
         color:'#0A2E5C',
@@ -1082,7 +1082,7 @@ Highcharts.chart('riv-lake', {
         },
     },
     subtitle: {
-      text: 'Density values greater than 50 pcs/m not shown',
+      text: 'Values greater than 50 pcs/m not shown',
       style:{
         fontSize: '10px',
         color:'#0A2E5C',

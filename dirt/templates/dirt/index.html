@@ -40,7 +40,7 @@ card, card-body, collpase, accordion {
                 top ten items, time-series charts and a map of locations with a summary. From there you can filter results by city.
               </p>
               <p>
-                If you are unfamiliar with the subject in the first section there is a 30 second primer on "Beach-Litter-Density" as well as a brief
+                If you are unfamiliar with the subject in the first section there is a 30 second primer on "measuring beach ltter" as well as a brief
                 history of the evolution of this project in Switzerland.
               </p>
               <p class="pt-1">
@@ -66,7 +66,7 @@ card, card-body, collpase, accordion {
               <h6 class="card-subtitle text-muted text-center"> Validated observations MCBP-SLR </h6>
               <div id="scatterchart" class="w-100 bg-dark mt-2 mb-2 p-1" style="height: 360px;"></div>
               <p class="card-text">Each point represents a table of data containng an exhaustive list of items found, location(gps), quantity of each item, sample date, and username.
-                From this information we extract/calculate the postal code, city name, closest body of water and density(per item and per sample-day)</p>
+                From this information we extract/calculate the postal code, city name, closest body of water and pieces/per meter(per item and per sample-day)</p>
             </div>
           </div>
         </div>
@@ -85,8 +85,8 @@ card, card-body, collpase, accordion {
               <h5 class="card-title text-center">Distribution of reported litter densities </h5>
               <h6 class="card-subtitle text-muted text-center"> Validated observations MCBP-SLR </h6>
               <div id="probchart" class="w-100 bg-dark mt-2 mb-2 p-1" style="height: 360px;"></div>
-              <p class="card-text">Another way to look at these results is by grouping the results according to density value. We can use this to anticipate what we may find the next time we go to a beach,
-                or better understand how the litter density of one beach compares to the whole.<a href="" data-toggle="modal" data-target="#assume">See assumptions and notes </a>
+              <p class="card-text">Another way to look at these results is by grouping the results according to pcs/m value. We can use this to anticipate what we may find the next time we go to a beach,
+                or better understand how the litter quantity of one beach compares to the whole.<a href="" data-toggle="modal" data-target="#assume">See assumptions and notes </a>
               </p>
 
             </div>
@@ -113,7 +113,7 @@ card, card-body, collpase, accordion {
                 </ul>
                 <p class="font-weight-bold">Notes:</p>
                 <ul>
-                    <li>Density values are rounded to thousandths (.001)</li>
+                    <li>Pieces/meter (pcs/m) values are rounded to thousandths (.001)</li>
                     <li>This is the work of hammerdirt association, as of {{ t_day|date:"D d M Y" }} we have received no financial or technical assistance from the SLR or WWF.</li>
                     <li>Your comments or feedback are greatly appreciated, contac us.</li>
                 </ul>
@@ -313,7 +313,7 @@ Highcharts.chart('probchart', {
     },
     xAxis: [{
         title: {
-          text: 'ln(density)',
+          text: 'ln(pcs/m)',
           style:{
             fontSize:'14px',
             color:'#000000',
@@ -360,11 +360,11 @@ Highcharts.chart('probchart', {
     },
     tooltip: {
         headerFormat: '<b>{series.name}</b><br>',
-        pointFormat: 'min ln(density): {point.x: .2f}, # of samples: {point.y}'
+        pointFormat: 'min ln(pcs/m): {point.x: .2f}, # of samples: {point.y}'
     },
 
     series: [{
-        name: 'ln(density) -- all_results',
+        name: 'ln(pcs/m) -- all_results',
         type: 'histogram',
         xAxis: 0,
         yAxis: 0,
