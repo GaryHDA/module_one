@@ -51,7 +51,7 @@ def index(request):
             y = y.astype({'density':float}, copy=False)
         if 'date' in a:
             y['date'] = pd.to_datetime(y['date'])
-            y = y[y.date < t_day]
+            y = y[y.date <= t_day]
         if 'sample' in a:
             y = y.astype({'sample':float}, copy=False)
         if 'length' in a:
@@ -594,7 +594,7 @@ def beach_litter(request):
             y = y.astype({'density':float}, copy=False)
         if 'date' in a:
             y['date'] = pd.to_datetime(y['date'])
-            y = y[y.date < t_day]
+            y = y[y.date <= t_day]
         if 'sample' in a:
             y = y.astype({'sample':float}, copy=False)
         if 'length' in a:
@@ -778,7 +778,7 @@ def slr_home(request):
             y = y.astype({'density':float}, copy=False)
         if 'date' in a:
             y['date'] = pd.to_datetime(y['date'])
-            y = y[y.date < t_day]
+            y = y[y.date <= t_day]
         if 'sample' in a:
             y = y.astype({'sample':float}, copy=False)
         if 'length' in a:
@@ -956,7 +956,7 @@ def mcbp_home(request):
             y = y.astype({'density':float}, copy=False)
         if 'date' in a:
             y['date'] = pd.to_datetime(y['date'])
-            y = y[y.date < t_day]
+            y = y[y.date <= t_day]
         if 'sample' in a:
             y = y.astype({'sample':float}, copy=False)
         if 'length' in a:
