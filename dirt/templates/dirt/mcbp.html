@@ -1,6 +1,10 @@
 {% extends "dirt/temp_one.html" %}
 
 {% block style %}
+
+.charts {
+  width:400px;
+}
 .td_site-results {
  padding: 1px;
  font-size: 14px;
@@ -34,598 +38,267 @@
   min-width: 380px;
 }
 
-#time-series, #pie-chart, #normal-s, #mats_bar, #source_bar, #samps-dense{
-  min-width: 360px;
-  height: auto;
-  padding: 0;
-  margin: 0;
-
+html {
+  font-size: 1rem;
 }
 
+@include media-breakpoint-up(sm) {
+  html {
+    font-size: .5rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 1.4rem;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  html {
+    font-size: 1.6rem;
+  }
+}
 {% endblock %}
 {% block return_to %}
 {% endblock %}
 
-
-{% block content  %}
+{% block content %}
 {% load humanize %}
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-4 col-xs-12" style="">
-      <div id="accordion" class="w-100" role="tablist">
-       <div class="card pb-0 m-w-376" id="goals-objectives">
-         <div class="card-header bg-info text-white " id="" style="">
-           <a class="bg-info text-white w-100 p-1 collapsed" data-toggle="collapse"  data-target="#GBO" aria-expanded="false" aria-controls="table-of-results">
-             <i class="fa fa-plus-square fa-lg "></i>&nbsp; Goals, objectives and methods
-           </a>
-         </div>
-          <div class="collapse " id="GBO" data-parent="#accordion">
-            <div class="card-body p-1 w-100">
-             <div class="d-inline-block bg-black border-white rounded p-1 mb-1 w-100" id="" style="">
-               <a class="text-white p-1 " data-toggle="modal"  data-target="#goals" aria-expanded="false" aria-controls="">
-                 <i class="fa fa-th-list fa-lg "></i>&nbsp; Goals
-               </a>
-             </div>
-             <div class="d-inline-block bg-black border-white rounded p-1 mb-1 w-100" id="" style="">
-               <a class="text-white p-1 " data-toggle="modal"  data-target="#objectives" aria-expanded="false" aria-controls="">
-                 <i class="fa fa-th-list fa-lg "></i>&nbsp; objectives
-               </a>
-             </div>
-             <div class="d-inline-block bg-black border-white rounded p-1 mb-1 w-100" id="" style="">
-               <a class="text-white p-1 " data-toggle="modal"  data-target="#methods" aria-expanded="false" aria-controls="">
-                 <i class="fa fa-th-list fa-lg "></i>&nbsp; Methods
-               </a>
-             </div>
-             <div class="modal fade" style="" id="goals">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Goals</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  </div>
-                  <div class="modal-body ">
-                   <div class="border-bottom">
-                    <p class="">
-                      <ul>
-                         <li>Relate aquatic litter in our local environment to the global problem.</li>
-                         <li>Create a benchmark that clearly establishes the trash levels in our environment for a given time frame.</li>
-                         <li>Develop a platform that facilitates open research by all those curious about the world around them.</li>
-                      </ul>
-                    </p>
-                   </div>
-                  </div>
-                </div>
-              </div>
-             </div>
-             <div class="modal fade" style="" id="objectives">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Objectives</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  </div>
-                  <div class="modal-body ">
-                   <div class="border-bottom">
-                    <p class="">
-                        <ul>
-                            <li>Identify a common protocol for quantifying and cataloging beach-litter</li>
-                            <li>Develop an understanding of aquatic litter in relation to municipal waste sytems and urban planning</li>
-                            <li>Use technology to create an efficient method to catalog and document litter levels</li>
-                            <li>Create links/networks with others interested in the subject</li>
-                            <li>Apply current methods of data visualisation and analysis to sample results</li>
-                            <li>Accomplish all of the above with the least amount of financial burden</li>
-                        </ul>
-                    </p>
-                   </div>
-                  </div>
-                </div>
-              </div>
-             </div>
-             <div class="modal fade" style="" id="methods">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Methods</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  </div>
-                  <div class="modal-body ">
-                   <div class="border-bottom">
-                    <p class="">
-                        <ul>
-                            <li>Litterature review of all topics associated with the goals and objectives</li>
-                            <li>Sampling of litter at a variety of locations</li>
-                            <li>Documentation of results</li>
-                            <li>If possible engage local authorities and experts</li>
-                        </ul>
-                    </p>
-                   </div>
-                  </div>
-                </div>
-              </div>
-             </div>
+<div class="container-fluid p-0 m-0" style="height:100vh; overflow:auto">
+  <div class="row no-gutters border border-danger" style="height:100%">
+    <div class="col-sm-4" style="">
+      <div class="card pb-0" style="height:100%">
+        <div class="bg-info text-white card-header p-2 pl-3" id="" style="">
+          <i class="fa fa-th-list fa-lg"></i>&nbsp; Summary : {{ city }}
+        </div>
+        <div class="card-body p-0" style="height:100%">
+          <h6 class="card-title pt-1" style="">Summary data for the Montreux Clean Beach
+            <br><small class="text-muted">{{ summary.first|date:"M Y" }}-{{ summary.last|date:"M Y" }}
+            <br>units= pieces/meter (pcs/m)</small></h6>
+          <table class="table table-sm table-striped text-left pb-0"  style="height:62%">
+            <tbody>
+                <td class="ml-auto">N<sup>o</sup> of Samples:</td>
+                <td class="mr-auto">{{ summary.num_samps|floatformat:0|intcomma }}</td>
+              </tr>
+              <tr>
+                <td class="ml-auto">N<sup>o</sup> of locations:</td>
+                <td class="mr-auto">{{ num_locs|floatformat:0 }}</td>
+              </tr>
+              <tr>
+                <td class="ml-auto">N<sup>o</sup> of rivers - lakes:</td>
+                <td class="mr-auto">{{ num_rivers|floatformat:0 }} - {{ num_lakes|floatformat:0 }}</td>
+              </tr>
+              <tr>
+                <td class="ml-auto">First sample date:</td>
+                <td class="mr-auto">{{ summary.first|date:"M Y" }}</td>
+              </tr>
+              <tr>
+                <td class="ml-auto">Most recent sample:</td>
+                <td class="mr-auto">{{ summary.last|date:"M Y" }}</td>
+              </tr>
+              <tr>
+                <td class="ml-auto">N<sup>o</sup> of pieces of garbage:</td>
+                <td class="mr-auto">{{ summary.total|floatformat:0|intcomma }}</td>
+              </tr>
+              <tr>
+                <td class="ml-auto">Avg pcs/m:</td>
+                <td class="mr-auto">{{ summary.ave_dense|floatformat:2 }} pcs/m </td>
+              </tr>
+              <tr>
+                <td class="ml-auto">Standard deviation:</td>
+                <td class="mr-auto">{{ summary.stan_dev|floatformat:2 }}</td>
+              </tr>
+              <tr>
+                <td class="ml-auto">75<sup>th</sup> percentile:</td>
+                <td class="mr-auto"> {{ summary.seven_five|floatformat:2 }} pcs/m</td>
+              </tr>
+              <tr>
+                <td class="ml-auto">Min - Max pcs/m:</td>
+                <td class="mr-auto"> {{ summary.min_dense|floatformat:4 }} - {{ summary.max_dense|floatformat:2 }} pcs/m</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="btn-toolbar w-100 " style="">
+            <div class="btn-group w-100 " style="">
+              <button class="btn bg-info w-100 text-white p-2 pl-3 border-white" style="white-space:normal; height:100%" data-toggle="modal"  data-target="#library" aria-expanded="false" aria-controls="table-of-results">
+                Reading list
+              </button>
+              <button class="btn bg-info w-100 text-white p-2 pl-3 border-white" style="white-space:normal; height:100%" data-toggle="modal"  data-target="#goals" aria-expanded="false" aria-controls="table-of-results">
+                Objectives
+              </button>
+              <button class="btn bg-info w-100 text-white p-2 pl-3 border-white" style="white-space:normal; height:100%" data-toggle="modal" data-target="#finance" aria-expanded="false" aria-controls="table-of-results">
+                Finances
+              </button>
             </div>
           </div>
-        </div>
-       <div class="card pb-0 m-w-376" id="data-summary">
-         <div class="bg-info text-white card-header" id="" style="">
-           <a class="bg-info text-white" data-toggle="collapse" data-parent="#accordion" data-target="#summary" aria-expanded="false" aria-controls="links">
-             <i class="fa fa-th fa-lg"></i>&nbsp; Data summary : MCBP
-           </a>
-         </div>
-         <div class="collapse show container-fluid m-1 w-100" data-parent="#accordion" style="" id="summary">
-           <div class="card-body p-1 mb-1 mt-1 justify-content-end bg-red w-100">
-            <div class="d-flex flex-row justify-content-end p-0 bg-red w-100">
-              <div class="d-sm-inline-flex flex-column p-1 w-50">
-                <div class="d-sm-inline-flex p-1 bg-black">
-                  <p class="text-white p-0 m-0">N<sup>o</sup> of Samples</p>
-                </div>
-               <div class="d-sm-inline-flex flex-column p-1 " >
-                 <p class="text-white p-0 m-0" > {{ summary.num_samps|floatformat:0|intcomma }}</p>
-               </div>
-              </div>
-              <div class="d-sm-inline-flex flex-column p-1 w-50">
-                <div class="d-sm-inline-flex p-1 bg-black">
-                  <p class="text-white p-0 m-0">Total pieces </p>
-                </div>
-                <div class="d-sm-inline-flex flex-column p-1 m-0">
-                  <p class="text-white p-0 m-0"> {{ summary.total|floatformat:0|intcomma }}</p>
-                </div>
-
-              </div>
-            </div>
-            <div class="d-flex flex-row justify-content-end p-0 bg-red">
-              <div class="d-sm-inline-flex flex-column p-1 w-50">
-                <div class="d-sm-inline-flex p-1 bg-black">
-                  <p class="text-white p-0 m-0">First sample</p>
-                </div>
-                <div class="d-sm-inline-flex flex-column p-1 ">
-                 <p class="text-white p-0 m-0">{{ summary.first|date:"M Y" }}</p>
-                </div>
-              </div>
-              <div class="d-sm-inline-flex flex-column p-1 w-50">
-                <div class="d-sm-inline-flex p-1 bg-black">
-                  <p class="text-white p-0 m-0">Latest sample</p>
-                </div>
-                <div class="d-sm-inline-flex flex-column p-1 m-0">
-                  <p class="text-white p-0 m-0">{{ summary.last|date:"M Y" }}</p>
-                </div>
-              </div>
-            </div>
-            <div class="d-flex flex-row justify-content-end p-0 bg-red">
-             <div class="d-sm-inline-flex flex-column p-1 w-50">
-               <div class="d-sm-inline-flex p-1 bg-black">
-                 <p class="text-white p-0 m-0 " >Average pcs/m</p>
-               </div>
-               <div class="d-sm-inline-flex flex-column p-1 ">
-                 <p class="text-white p-0 m-0" > {{ summary.ave_dense|floatformat:1 }} pcs/m <small> (not weighted) </small></p>
-               </div>
-
-             </div>
-             <div class="d-sm-inline-flex flex-column p-1 w-50">
-              <div class="d-sm-inline-flex p-1 bg-black" >
-                <p class="text-white p-0 m-0">Range pcs/m</p>
-              </div>
-              <div class="d-sm-inline-flex flex-column p-1 m-0">
-                <p class="text-white p-0 m-0"> {{ summary.min_dense|floatformat:1 }} - {{ summary.max_dense|floatformat:1 }} pcs/m</p>
-              </div>
-             </div>
-
-            </div>
-            <div class="d-flex flex-row justify-content-end p-0 bg-red">
-              <div class="d-sm-inline-flex flex-column p-1 w-50">
-                <div class="d-sm-inline-flex p-1 bg-black">
-                 <p class="text-white p-0 m-0">Standard deviation</p>
-                </div>
-                <div class="d-sm-inline-flex flex-column p-1 m-0">
-                 <p class="text-white p-0 m-0"> {{ summary.stan_dev|floatformat:2 }} pcs/m</p>
-                </div>
-              </div>
-
-             <div class="d-sm-inline-flex flex-column p-1 w-50">
-              <div class="d-sm-inline-flex p-1 bg-black">
-                <p class="text-white p-0 m-0">Innerquartile</p>
-              </div>
-              <div class="d-sm-inline-flex flex-column p-1 m-0">
-                <p class="text-white p-0 m-0"> {{ summary.iqr|floatformat:1 }} pcs/m</p>
-              </div>
-             </div>
-            </div>
-            <div class="d-flex flex-row justify-content-end p-0 bg-red">
-              <div class="d-sm-inline-flex flex-column p-1 w-50">
-                <div class="d-sm-inline-flex p-1 bg-black">
-                 <p class="text-white p-0 m-0">25<sup>th</sup> percentile</p>
-                </div>
-                <div class="d-sm-inline-flex flex-column p-1 m-0">
-                 <p class="text-white p-0 m-0"> {{ summary.two_five|floatformat:1 }} pcs/m</p>
-                </div>
-              </div>
-
-             <div class="d-sm-inline-flex flex-column p-1 w-50">
-              <div class="d-sm-inline-flex p-1 bg-black">
-                <p class="text-white p-0 m-0">75<sup>th</sup> percentile</p>
-              </div>
-              <div class="d-sm-inline-flex flex-column p-1 m-0">
-                <p class="text-white p-0 m-0"> {{ summary.seven_five|floatformat:1 }} pcs/m</p>
-              </div>
-             </div>
-            </div>
-           </div>
-         </div>
-       </div>
-       <div class="card pb-0 m-w-376" id="biblio">
-        <div class="card-header bg-info text-white " id="" style="">
-          <a class="bg-info text-white w-100 p-1 colllapsed" data-toggle="collapse" data-parent="#accordion"  data-target="#library" aria-expanded="false" aria-controls="table-of-results">
-            <i class="fa fa-plus-square fa-lg "></i>&nbsp; Bibliography
-          </a>
-        </div>
-         <div class="collapse" id="library" data-parent="#accordion" >
-           <div class="card-body p-1 w-100">
-            {% for key, value in sub_key.items %}
-            <div class="d-inline-block bg-black border-white rounded p-1 mb-1" id="" style="width:49%">
-              <a class="text-white p-1 txt-12 " data-toggle="modal"  data-target="#{{ key }}" aria-expanded="false" aria-controls="">
-                <i class="fa fa-th-list fa-lg "></i>&nbsp; {{ value }}
-              </a>
-            </div>
-            {% endfor %}
-            {% for key, value in sub_key.items %}
-            <div class="modal fade" style="" id="{{ key }}">
-             <div class="modal-dialog" role="document">
-               <div class="modal-content">
-                 <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                 </div>
-                 <div class="modal-body ">
-                  {% for r in library %}
-                  {% if r.subject == key %}
-                  <div class="border-bottom">
-                   <p class="font-weight-bold txt-14">{{ r.title }}</p>
-                   <p class="font-italic txt-14">{{ r.author }}</p>
-                   <p class="txt-12">{{ r.abstract }}</p>
-                  </div>
-                  {% endif %}
-                  {% endfor %}
-                 </div>
-               </div>
-             </div>
-            </div>
-            {% endfor %}
-           </div>
-         </div>
-       </div>
-       <div class="card pb-0 m-w-376" id="money">
-         <div class="card-header bg-info text-white " id="" style="">
-           <a class="bg-info text-white w-100 p-1 collapsed" data-toggle="collapse" data-target="#finances" aria-expanded="false" aria-controls="table-of-results">
-             <i class="fa fa-plus-square fa-lg "></i>&nbsp; Finances
-           </a>
-         </div>
-          <div class="collapse " id="finances" data-parent="#accordion" >
-            <div class="card-body p-1 w-100">
-             <div class="d-inline-block bg-black border-white rounded p-1 mb-1 w-100" id="" style="">
-               <a class="text-white p-1 " data-toggle="modal"  data-target="#philosophy" aria-expanded="false" aria-controls="">
-                 <i class="fa fa-th-list fa-lg "></i>&nbsp; Philosophy
-               </a>
-             </div>
-             <div class="d-inline-block bg-black border-white rounded p-1 mb-1 w-100" id="" style="">
-               <a class="text-white p-1 " data-toggle="modal"  data-target="#overview" aria-expanded="false" aria-controls="">
-                 <i class="fa fa-line-chart fa-lg "></i>&nbsp; Overview
-               </a>
-             </div>
-             <div class="d-inline-block bg-black border-white rounded p-1 mb-1 w-100" id="" style="">
-               <a class="text-white p-1 " data-toggle="modal"  data-target="#support" aria-expanded="false" aria-controls="">
-                 <i class="fa fa-support fa-lg "></i>&nbsp; Support
-               </a>
-             </div>
-             <div class="modal fade" style="" id="philosophy">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Revenue sources</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  </div>
-                  <div class="modal-body ">
-                   <div class="border-bottom">
-                    <p class="font-weight-bold txt-14"></p>
-                    <p class="font-italic txt-14"></p>
-                    <p class="txt-12"></p>
-                   </div>
-                  </div>
-                </div>
-              </div>
-             </div>
-             <div class="modal fade" style="" id="overview">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Revenues and expenses 2015 to present</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  </div>
-                  <div class="modal-body ">
-                   <div class="border-bottom">
-                    <p class="font-weight-bold txt-14"></p>
-                    <p class="font-italic txt-14"></p>
-                    <p class="txt-12"></p>
-                   </div>
-                  </div>
-                </div>
-              </div>
-             </div>
-             <div class="modal fade" style="" id="support">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">How to support this project</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  </div>
-                  <div class="modal-body ">
-                   <div class="border-bottom">
-                    <p class="font-weight-bold txt-14"></p>
-                    <p class="font-italic txt-14"></p>
-                    <p class="txt-12"></p>
-                   </div>
-                  </div>
-                </div>
-              </div>
-             </div>
-            </div>
-          </div>
+          <button class="btn bg-info w-100 p-2 pl-3 text-white text-left border-white" style="height:8%" data-toggle="modal"  data-target="#list_o_lakes" aria-expanded="false" aria-controls="table-of-results">
+            List of rivers/lakes and locations
+          </button>
+          <button class="btn bg-info w-100 p-2 pl-3 text-white text-left border-white" style="height:8%" role="button" data-toggle="modal" data-target="#list_o_cities" aria-expanded="false" aria-controls="">
+            List of cities and locations
+          </button>
         </div>
       </div>
     </div>
-    <div class="col-sm-4 col-xs-12" style:"">
-      <div id="accordionTwo" class="" role="tablist">
-        <div class="card pb-0" id="map-of-locations">
-          <div class="card-header bg-info text-white" id="" style="">
-            <a class="bg-info text-white w-100 p-1 " data-toggle="collapse" data-parent="#accordionTwo"  data-target="#map_results" aria-expanded="false" aria-controls="table-of-results">
-              <i class="fa fa-map fa-lg "></i>&nbsp; Map of MCBP locations
-            </a>
+    <div class="col-sm-4" style="">
+      <div class="card pb-0" style="height:100%" id="map-of-locations">
+          <div class="bg-info text-white card-header p-2 pl-3" id="" style="">
+            <i class="fa fa-map fa-lg "></i>&nbsp;Map of MCBP locations
           </div>
-          <div class="collapse show" data-parent="#accordionTwo" id="map_results" >
-            <div class="card-body p-0">
-              <div id="maps" style="height:380px"></div>
+          <div class="card-body p-0 pt-1" style="height:100%; ">
+            <h6 class="card-title" style="">Locations of the MCBP samples
+              <br><small class="text-muted">{{ summary.first|date:"M Y" }}-{{ summary.last|date:"M Y" }}
+              <br>Circle size relative to avg pcs/m</small></h6>
+              <div id="maps" style="height:68%;min-height:390px"></div>
               <div class="bg-black text-white card-header" id="" style="">
-                  <form class="d-inline-block"action='search_MCBP/' method='get'>
+                  <form class="d-inline-block" action='search_MCBP/' method='get'>
                     <i class="fa fa-folder-open fa-lg mr-1 "></i>&nbsp;Details:&nbsp;&nbsp;
-                    <select class="form-control-sm d-inline-block mr-2"name='q'>
-                      {% for x in cities %}
-                      <option class="txt-14"value= "{{ x }}">{{ x }}</option>
+                    <select class="form-control-sm d-inline-block mr-2"style="width:180px" name='q'>
+                      {% for x in slr_cities %}
+                      <option class="txt-12" value= "{{ x }}">{{ x }}</option>
                       {% endfor %}
                     </select>
-                    <button class="d-inline-block btn btn-outline-light text-white txt-14 p-1" style="background-color:transparent; border-color:white; border-width:1px"type='submit' ><i class="fa fa-external-link fa-lg"></i></button>
+                    <button class="d-inline-block btn btn-outline-light text-white txt-14 p-1" style="background-color:transparent; border-color:white; border-width:1px" type='submit' ><i class="fa fa-external-link fa-lg"></i></button>
                   </form>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="card pb-0" id="time-series-chart">
-          <div class="card-header bg-info text-white" id="" style="">
-            <a class="bg-info text-white w-100 p-1 collpased" data-toggle="collapse" data-parent="#accordionTwo"  data-target="#date_results" aria-expanded="false" aria-controls="table-of-results">
-              <i class="fa fa-line-chart fa-lg "></i>&nbsp; Results by date
-            </a>
-          </div>
-          <div class="collapse " data-parent="#accordionTwo" id="date_results" >
-            <div class="card-body p-0">
-              <div class="align-self-center mb-4" id="time-series"></div>
-            </div>
-          </div>
-        </div>
-        <div class="card pb-0" id="distribution">
-          <div class="card-header bg-info text-white" id="" style="">
-            <a class="bg-info text-white w-100 p-1 collapsed" data-toggle="collapse" data-parent="#accordionTwo" data-target="#distro" aria-expanded="false" aria-controls="table-of-results">
-              <i class="fa fa-bar-chart fa-lg "></i>&nbsp; Probability Mass Function
-            </a>
-          </div>
-          <div class="collapse" data-parent="#accordionTwo" id="distro">
-            <div class="card-body p-0">
-              <div class="align-self-center" id="normal-s"></div>
-              <button class="btn bg-black text-white " id="density">PMF pcs/m</button>
-              <button class="btn bg-black text-white "id="ln-density">PMF ln(pcs/m)</button>
-
-            </div>
-          </div>
-        </div>
-      </div>
-     </div>
-    <div class="col-sm-4 col-xs-12" style:"">
-      <div id="accordion3" class="" role="tablist">
-        <div class="card pb-0" id="density_top">
-          <div class="bg-info text-white card-header" id="" style="">
-            <a class="bg-info text-white w-100 p-1" data-toggle="modal" data-parent="#accordion3" data-target="#top-density" aria-expanded="false" aria-controls="links">
-              <i class="fa fa-th-list fa-lg"></i>&nbsp; Locations, Av pcs/m, N<sup>o</sup> samples
-            </a>
-          </div>
-          <div class="modal fade" id="top-density">
-            <div class="modal-dialog modal-lg" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Locations, average pcs/m, number of samples</h5>
-                  <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <table class="table-striped table table-sm">
-                    <thead class="txt-14">
-                      <tr>
-                        <th>Location</th>
-                        <th>pcs/m</th>
-                        <th>N<sup>o</sup> of samples</th>
-                      </tr>
-                    </thead>
-                    {% for r in locs_samples %}
-                    <tr class="txt-12 ">
-                      <td>{{ r.location_id }}</td>
-                      <td>{{ r.density|floatformat:2 }}</td>
-                      <td> {{ r.sample }}</td>
-                    </tr>
-                    {% endfor %}
-                  </table>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+              <div class="btn-toolbar" >
+                <div class="btn-group" style="height:10%">
+                  <button class="btn bg-info text-white p-2 border-white"  style="white-space: normal;" data-toggle="modal" data-target="#sun_shine" aria-expanded="false" aria-controls="">
+                    All items identified</button>
+                  <button class="btn bg-info text-white p-2 border-white" style="white-space: normal;" data-toggle="modal"  data-target="#sum_data" aria-expanded="false" aria-controls="table-of-results">
+                    Top-ten items, materal comp</button>
+                  <button class="btn bg-info p-2 text-white border-white" style="white-space: normal;" role="button" data-toggle="modal" data-target="#cites_samples" aria-expanded="false" aria-controls="">
+                    List of locations, avg pcs/m</button>
                 </div>
               </div>
+
             </div>
           </div>
+
+
+    </div>
+    <div class="col-sm-4" style="">
+      <div class="card pb-0" id="time-series-chart" style="height:100%">
+        <div class="bg-info text-white card-header p-2 pl-3" id="" style="">
+          <i class="fa fa-line-chart fa-lg "></i>&nbsp; Inventory results by day
         </div>
-        <div class="card pb-0" id="top_ten">
-          <div class="bg-info text-white card-header" id="" style="">
-            <a class="bg-info text-white w-100 p-1" data-toggle="collapse" data-parent="#accordion3" data-target="#top-ten-items" aria-expanded="false" aria-controls="links">
-              <i class="fa fa-th-list fa-lg"></i>&nbsp; Top ten items found
-            </a>
-          </div>
-          <div class="collapse show" data-parent="#accordion3" style="" id="top-ten-items">
-            <div class="card-body p-0">
+        <div class="card-body p-0 pt-1 " style=""><h6 class="card-title" style="">All MCBP daily results
+          <br><small class="text-muted">{{ summary.first|date:"M Y" }}-{{ summary.last|date:"M Y" }}, toggle categories in legend
+          <br>Monthly summaries, click and drag in chart areaa to zoom date</small></h6>
+
+          <div class="align-self-center"  style="height:67%; min-height:400px" id="box-plot"></div>
+          <button class="btn bg-info w-100 p-2 pl-3 text-white text-left mt-1" style="height:10%" data-toggle="modal"  data-target="#box_rivs_lakes" aria-expanded="false" aria-controls="table-of-results">
+            <i class="fa fa-line-chart fa-lg "></i>&nbsp; Results sorted by river and lakes
+          </button>
+          <button class="btn bg-info w-100 p-2 pl-3 text-white text-left border-white" style="height:10%" role="button" data-toggle="modal" data-target="#water_search" aria-expanded="false" aria-controls="">
+            Search by city, body of water or project</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="modal fade w-100" id="sun_shine">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title">All items identified from the MCBP {{ summary.last|date:"M Y" }}</h6>
+        <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table-striped table table-sm">
+          <thead class="txt-14">
+            <tr>
+              <th class="text-left">Item</th>
+              <th class="text-left">Material</th>
+              <th class="text-center p-1">Code</th>
+              <th class="text-center p-1">Quantity</th>
+            </tr>
+          </thead>
+          {% for s in inventory %}
+          <tr class="txt-12">
+            <td class="text_left">{{ s.description }}</td>
+            <td class="text-left"> {{ s.material }}</td>
+            <td class= "text-center">{{ s.code }}</td>
+            <td class="text-right">{{ s.total|floatformat:0|intcomma }}</td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td colspan="3" class="bg-info text-white"> End of inventory
+              <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade w-100" id="sum_data">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title">The top-ten items indentified from all samples.<small class="text-mutted">
+        <br>REMEMBER: these are the reported observations of people in your community
+        <br>Units are "pieces", the description and code are Marine Litter Watch</small>
+        </h6>
+        <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card-group">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title"><h6>Table of results: sorted by material type
+                <br><small class="text-muted">Material class taken from MLW guide
+                <br>Material class is given with the item code</small></h6>
+              </div>
               <table class="table-striped table table-sm">
-                <thead>
-                  <tr>
-                    <th>Item</th>
-                    <th>Code</th>
-                    <th>Quantity</th>
+                <thead class="">
+                  <tr class="p-1 pl-2 text-left">
+                    <th class="">Material</th>
+                    <th class="">Quantity</th>
+                    <th class="">Percent of total</th>
                   </tr>
                 </thead>
-                {% for x in mc_top_ten %}
+                  {% for s, v in mk_pers.items %}
+                <tr class="p-1 pl-2 text-left">
+                  <td class="">{{ s }}</td>
+                  <td class="text-right"> {{ v.0|floatformat:0|intcomma }} </td>
+                  <td class="text-right"> {{ v.1|floatformat:0|intcomma }}% </td>
 
-                <tr class="txt-12 ">
-                  <td>{{ x.description }}</td>
-                  <td>{{ x.code }}</td>
-                  <td>{{ x.total|floatformat:0|intcomma }}</td>
                 </tr>
-
                 {% endfor %}
-
               </table>
             </div>
           </div>
-        </div>
-        <div class="card pb-2">
-          <div class="card-header bg-info text-white " id="" style="">
-            <a class="bg-info text-white w-100 p-1" data-toggle="collapse" data-parent="#accordion3"  data-target="#categories" aria-expanded="false" aria-controls="table-of-results">
-              <i class="fa fa-th fa-lg "></i>&nbsp; Results sorted by source or economic sector
-            </a>
-          </div>
-          <div class="collapse" id="categories" data-parent="#accordion3">
-            <div class="card-body p-1 " id="" >
-              <div class="mx-auto" id="">
-                {% for k in sources_as %}
-                {% if forloop.counter0|divisibleby:3 %}
-                <div class="d-flex flex-row">
-                  {% endif %}
-                  <div class="d-inline-flex p-1 " style="background-color: {{ k.color}}; width: 33%">
-                    <a class="text-white text-12" data-toggle="modal" data-target="#{{ k.color|lower }}" aria-expanded="false" aria-controls="table-of-results">
-                      {% if k.name == 'Water Treatment' %}
-                      <i class="d-inline-flex fa fa-th-list fa-lg"></i>&nbsp; Waste water:<div>{{ k.source|floatformat:2 }}%</div>
-                      {% endif %}
-                      {% if k.name == 'Personal effects' %}
-                      <i class="d-inline-flex fa fa-th-list fa-lg"></i>&nbsp; Personal:<div>{{ k.source|floatformat:2 }}%</div>
-                      {% endif %}
-
-                      {% if k.name != 'Water Treatment' %}
-                      {% if k.name != 'Personal effects' %}
-                      <i class="d-inline-flex fa fa-th-list fa-lg"></i>&nbsp; {{ k.name }}:<div>{{ k.source|floatformat:2 }}%</div>
-                      {% endif %}
-                      {% endif %}
-                    </a>
-                  </div>
-                  {% if forloop.counter|divisibleby:3 %}
-                </div>
-                {% endif %}
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title"><h6>Table of results: ten most indentified objects
+                <br><small class="text-muted">Object description sourced from MLW guide
+                  <br>Object description is provided with the item code</small></h6>
+              </div>
+              <table class="table-striped table table-sm">
+                <thead class="">
+                  <tr class="p-1 pl-2 text-left">
+                    <th><small class="font-weight-bold">Item</small></th>
+                    <th class=""><small class="">Material</small></th>
+                    <th class=""><small class="">Qty</small></th>
+                    <th class=""><small class="">% total</small></th>
+                  </tr>
+                </thead>
+                {% for s in top_ten %}
+                <tr class="p-1 pl-2 text-left">
+                  <td class=""><small>{{ s.description }}</small></td>
+                  <td class=""> <small>{{ s.material }}</small></td>
+                  <td class="text-right "><small>{{ s.total|floatformat:0|intcomma }}</small></td>
+                  <td class="text-right "><small>{{ s.per|floatformat:0|intcomma }}%</small></td>
+                </tr>
                 {% endfor %}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card-block row justify-content-center pb-0 pt-1">
-          <div class="btn ml-1 wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
-            <a class="text-white txt-14 " data-toggle="modal"  data-target="#print-it" aria-expanded="false">
-              Printable
-              <br>
-              <i class="fa fa-download fa-lg mt-2 mb-1"></i>
-              <br>Report
-            </a>
-          </div>
-          <div class="modal" id="print-it">
-            <div class="modal-dialog modal-sm" role="document">
-              <div class="modal-content">
-                <div class="modal-header bg-dark text-white">
-                  <div class="mx-auto text-center">
-                    <p class="">This is not a free service.</p>
-                  </div>
-                </div>
-                <div class="modal-body">
-                  <p class="txt-14">If you would like a detailed report, charts, or a summary contact us.</p>
-                  <p class="txt-14">Prices start at CHF/USD/EUR 350</p>
-                  <p class="txt-14">Other options:
-                    <ul>
-                      <li>Charts</li>
-                      <li>Summary data </li>
-                      <li>Analysis</li>
-                      <li>Compare with other data sets</li>
-                      <li>Integrate other independent variables</li>
-                      <li>Can be in any format</li>
-                      <li>Executable scripts</li>
-                      <li>Plus many more options </li>
-                    </ul>
-                  </p>
-                  <p> Contact us for more information.</p>
-                </div>
-                <div class="modal-footer bg-dark">
-                  <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="btn ml-1 wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
-            <a class="text-white txt-14" data-toggle="modal"  data-target="#get-it" aria-expanded="false">
-              Project
-              <br>
-              <i class="fa fa-download fa-lg mt-2 mb-1"></i>
-              <br>
-              data
-            </a>
-          </div>
-          <div class="modal" id="get-it">
-            <div class="modal-dialog modal-sm" role="document">
-              <div class="modal-content bg-dark">
-                <div class="modal-body text-white">
-                  <p class="mx-auto">All of the data used for this section is available in our public download folder:</p>
-                  <h3 class="text-center text-white"><a class="text-white" href="https://drive.google.com/drive/folders/1XL1-_rSHsX6nwPnUNVEQB76PkIvkGn--?usp=sharing">Right here</a></h3>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="btn ml-1 wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
-            <a class="text-white txt-14 " href="https://twitter.com/share?ref_src=twsrc%5Etfw"  data-via="hammerdirt" data-show-count="false" aria-expanded="false">
-              <i class="fa fa-share-alt fa-lg mb-1"></i><br> Tweet
-            </a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          </div>
-          <div class="btn ml-1 wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
-            <a class="text-white txt-14 "data-toggle="modal"  data-target="#get-us" aria-expanded="false">
-              <i class="fa fa-comment fa-lg mb-1"></i><br> Contact
-            </a>
-          </div>
-          <div class="modal" id="get-us">
-            <div class="modal-dialog modal-sm" role="document">
-              <div class="modal-content">
-                <div class="modal-body bg-dark">
-                  <div class="mx-auto text-center text-white">
-                    <p class="">Want to know more ?</p>
-                    <p class="">Send us an email:<br><br>info [at] hammerdirt.ch</p>
-                  </div>
-                <div class="modal-footer">
-                  <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-              </div>
+              </table>
             </div>
           </div>
         </div>
@@ -633,65 +306,256 @@
     </div>
   </div>
 </div>
-</div>
-<!-- {% for x in one_list %} -->
-<!-- <div class="modal fade" style="" id="{{ x|lower }}">
-  <div class="modal-dialog" role="document">
+<div class="modal fade w-100"id="cites_samples">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">"Location", "average pcs/m" and "number of samples"<br>
+          <small class="text-muted">For all locations included in this summary </small>
+        </h5>
+        <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <div class="modal-body">
-        <table id="{{ x }}" class="table-condensed table-striped table">
-          <thead>
+        <table class="table-striped table table-sm">
+          <thead class="txt-14">
             <tr>
-              <th colspan="2" class="bg-info text-white">
-                {{ x }}
-                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              </th>
-            </tr>
-            <tr class="">
-              <th>MLW code</th>
-              <th>Description </th>
+              <th>Location</th>
+              <th>pcs/m</th>
+              <th>N<sup>o</sup> of samples</th>
             </tr>
           </thead>
-          {% for type in dates_four %}
-          {% if type.source == x %}
-          <tr>
-            <td class="td_site-results">{{ type.code }}</td>
-            <td class="td_site-results">{{ type.description }}</td>
+          {% for r in locs_samples %}
+          <tr class="txt-12 ">
+            <td class="text-left" >{{ r.location_id }}</td>
+            <td class="text-right" >{{ r.density|floatformat:2}}</td>
+            <td class="text-right"> {{ r.sample|floatformat:0 }}</td>
           </tr>
-          {% endif %}
-          {% if x == 'Personal' %}
-          {% if type.source == 'Personal effects' %}
-          <tr>
-            <td class="td_site-results">{{ type.code }}</td>
-            <td class="td_site-results">{{ type.description }}</td>
-          </tr>
-          {% endif %}
-          {% endif %}
-          {% if x == 'Fragment' %}
-          {% if type.source == 'Fragmented' %}
-          <tr>
-            <td class="td_site-results">{{ type.code }}</td>
-            <td class="td_site-results">{{ type.description }}</td>
-          </tr>
-          {% endif %}
-          {% endif %}
-          {% if x == 'Water_treatment' %}
-          {% if type.source == 'Water Treatment' %}
-          <tr>
-            <td class="td_site-results">{{ type.code }}</td>
-            <td class="td_site-results">{{ type.description }}</td>
-          </tr>
-          {% endif %}
-          {% endif %}
           {% endfor %}
         </table>
       </div>
     </div>
   </div>
-</div> -->
-<!-- {% endfor %} -->
+</div>
+<div class="modal fade w-100"id="library">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">List of resources used for the planning of this project<br>
+          <small class="text-muted">This list is not comprehensive</small>
+        </h5>
+        <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-sm">
+          {% for a, b in books.items %}
+          <tr class="">
+            <td class="font-weight-bold">{{ a }}:</td>
+          </tr>
+          {% for tome in b %}
+          <tr class="txt-12">
+            <td>{{ tome.title }}</td>
+            <td> {{ tome.author }}</td>
+            <td> {{ tome.abstract }}</td>
+          </tr>
+          {% endfor %}
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" style="" id="goals">
+ <div class="modal-dialog modal-lg" role="document">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h5 class="modal-title">Objectives</h5>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+     </div>
+     <div class="modal-body">
+
+
+        <h5>Goals</h5>
+        <ul>
+           <li>Relate aquatic litter in our local environment to the global problem.</li>
+           <li>Create a benchmark that clearly establishes the trash levels in our environment for a given time frame.</li>
+           <li>Develop a platform that facilitates open research by all those curious about the world around them.</li>
+        </ul>
+        <h5>Objectives</h5>
+        <ul>
+            <li>Identify a common protocol for quantifying and cataloging beach-litter</li>
+            <li>Develop an understanding of aquatic litter in relation to municipal waste sytems and urban planning</li>
+            <li>Use technology to create an efficient method to catalog and document litter levels</li>
+            <li>Create links/networks with others interested in the subject</li>
+            <li>Apply current methods of data visualisation and analysis to sample results</li>
+            <li>Accomplish all of the above with the least amount of financial burden</li>
+        </ul>
+        <h5>Methods</h5>
+        <ul>
+            <li>Litterature review of all topics associated with the goals and objectives</li>
+            <li>Sampling of litter at a variety of locations</li>
+            <li>Documentation of results</li>
+            <li>If possible engage local authorities and experts</li>
+        </ul>
+
+
+     </div>
+   </div>
+ </div>
+</div>
+<div class="modal fade" style="" id="finance">
+ <div class="modal-dialog modal-lg" role="document">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h5 class="modal-title">Finances</h5>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+     </div>
+     <div class="modal-body ">
+
+       <p class="font-weight-bold txt-14">This data will be up soon</p>
+       <p class="font-italic txt-14"></p>
+       <p class="txt-12"></p>
+
+     </div>
+   </div>
+ </div>
+</div>
+<div class="modal fade" style="" id="list_o_lakes">
+ <div class="modal-dialog modal-lg" role="document">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h5 class="modal-title">List of rivers and lakes with SLR surveys</h5>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+     </div>
+     <div class="modal-body ">
+      <dl class="row">
+        <dt class="col-sm-3">City</dt>
+        <dd class="col-sm-9">List of survey locations</dd>
+      </dl>
+      <dl class="row">
+        {% for s, t in slr_river.items  %}
+        <dt class="col-sm-3">{{ s }}</dt>
+        <dd class="col-sm-9">{{ t|join:", " }} </dd>
+        {% endfor %}
+      </dl>
+     </div>
+   </div>
+ </div>
+</div>
+<div class="modal fade" style="" id="list_o_cities">
+ <div class="modal-dialog modal-lg" role="document">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h5 class="modal-title">Cities with surveys in the Swiss Litter Report</h5>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+     </div>
+     <div class="modal-body ">
+       <dl class="row">
+         <dt class="col-sm-3">City</dt>
+         <dd class="col-sm-9">List of survey locations</dd>
+       </dl>
+       <dl class="row">
+         {% for s, t in city_locs.items  %}
+         <dt class="col-sm-3">{{ s }}</dt>
+         <dd class="col-sm-9">{{ t|join:", " }} </dd>
+         {% endfor %}
+       </dl>
+     </div>
+   </div>
+ </div>
+</div>
+<div class="modal fade" style="" id="box_rivs_lakes">
+ <div class="modal-dialog modal-lg" role="document">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h6 class="card-title" style="">SLR results sorted by rivers and lakes
+         <br><small class="text-muted mb-2">April 2017 - April 2018, toggle categories in legend
+         <br>Monthly summaries, click and drag in chart areaa to zoom date</small></h6>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+     </div>
+     <div class="modal-body ">
+      <div class="align-self-center" style="height:100%;width:100%" id="riv-lake"></div>
+     </div>
+   </div>
+ </div>
+</div>
+<div class="modal fade" id="water_search">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <div class="container-fluid">
+          <h5 class="">The search is limted to cities and lakes/rivers that have registered surveys
+            <br><small class="text-white">Searching by city or body of water results in a mixed data set from all projects, units in pcs/m
+            <br>If you would like to have a project listed here, contact us.</small></h5>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="card-group">
+          <div class="card " style="">
+            <h5 class="card-title">Pick a city</h5>
+            <div class="card-body">
+              <form class="d-inline-block mb-1" action='/dirt/search_city/' method='get'>
+                <i class="fa fa-folder-open fa-lg mr-1 "></i>&nbsp;Details:&nbsp;&nbsp;
+                <select class="form-control-sm d-inline-block mr-2" style="width:160px" name='city'>
+                  {% for x in all_cities %}
+                  <option class="txt-12" value= "{{ x }}">{{ x }}</option>
+                  {% endfor %}
+                </select>
+                <button class="d-inline-block btn  txt-14 p-1" style="background-color:transparent; border-color:black; border-width:1px" type='submit' ><i class="fa fa-external-link fa-lg"></i></button>
+              </form>
+              <div class="card-text"><small>* Get all results from a city</small></div>
+            </div>
+          </div>
+          <div class="card " style="">
+            <h5 class="card-title">OR: Pick a  body of water</h5>
+            <div class="card-body">
+              <form class="d-inline-block mb-1" action='/dirt/search_water/' method='get'>
+                <i class="fa fa-folder-open fa-lg mr-1 "></i>&nbsp;Details:&nbsp;&nbsp;
+                <select class="form-control-sm d-inline-block mr-2"style="width:160px" name='water'>
+                  {% for x in all_water %}
+                  <option class="txt-12" value= "{{ x }}">{{ x }}</option>
+                  {% endfor %}
+                </select>
+                <button class="d-inline-block btn txt-14 p-1" style="background-color:transparent; border-color:black; border-width:1px" type='submit' ><i class="fa fa-external-link fa-lg"></i></button>
+              </form>
+              <div class="card-text"><small>* Get all results from a river or lake </small></div>
+            </div>
+          </div>
+          <div class="card " style="">
+            <h5 class="card-title">OR Pick a  project</h5>
+            <div class="card-body">
+              <div class="container-fluid p-0 m-0">
+                <div class="btn-toolbar mb-1">
+                  <div class="btn-group">
+                    <a class="btn bg-info text-white mt-1 p-2 border-white"  style="white-space: normal;" href="{% url 'slr_home' %}" aria-expanded="false" aria-controls="">
+                      SLR</a>
+                    <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'mcbp_home' %}" aria-expanded="false" aria-controls="table-of-results">
+                      MCBP</a>
+                  </div>
+                </div>
+              </div>
+              <div class="card-text"><small>* SLR results given in m<sup>2</sup></small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer bg-info">
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
 
 {% endblock %}
+
 
 {% block charts %}
 {% load static %}
@@ -700,22 +564,24 @@
 <script src="https://code.highcharts.com/modules/histogram-bellcurve.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
-
 <script type="text/javascript">
-var plot_mc = {{ plot_mc|safe }};
 var map_points = {{ map_points|safe }};
-var seven_fifth = {{ summary.seven_five|safe}};
-var two_fifth = {{ summary.two_five|safe }};
-var number_of_samples = {{ summary.num_samps|safe }};
-var boxer = {{ boxer|safe }};
 var box_cats = {{ box_cats|safe }};
-var pdf_den = {{ pdf_den|safe }};
-var the_norm = {{ the_norm|safe }};
+var boxer = {{ box_plot|safe }};
+var plot_data = {{ plot_density|safe }};
+var river = {{ rivers|safe }};
+var lake = {{ lakes|safe }};
+var box_lake = {{ box_lake|safe }};
+var box_river = {{ box_river|safe }};
+var box_cats = {{ box_cats|safe }};
+// var sources_as = {{ sources_as|safe }}
 
-var samps_sub_title = 'n=' + number_of_samples;
+console.log(box_cats)
+console.log(box_lake)
+console.log(box_river)
 
 var ts_plot = [];
-plot_mc.forEach(function(element){
+plot_data.forEach(function(element){
   element.date = Date.parse(element.date);
   element.density = parseFloat(element.density);
   var today = new Date();
@@ -724,17 +590,27 @@ plot_mc.forEach(function(element){
   }
 });
 
+var mc_box = [];
+boxer.forEach(function(element){
+  element[0] = Date.parse(element[0]);
+  mc_box.push([element[0], element[1], element[2], element[3], element[4], element[5]])
+});
+var riv_dens = []
+river.forEach(function(element){
+  element.date = Date.parse(element.date);
+  element.density = parseFloat(element.density);
+  riv_dens.push ({"name":element.location_id, "x":element.date, "y":element.density})
+});
 
-var dens_pdf = []
-pdf_den.forEach(function(element){
-  element.x = parseFloat(element.x);
-  element.y = parseFloat(element.y);
-  dens_pdf.push([element.x, element.y])
+var lak_dens = []
+lake.forEach(function(element){
+  element.date = Date.parse(element.date);
+  element.density = parseFloat(element.density);
+  lak_dens.push ({"name":element.location_id, "x":element.date, "y":element.density})
 });
 
 </script>
-
-<script>
+<script type="text/javascript">
 var map;
 var styledMapType;
 function initMap() {
@@ -870,91 +746,94 @@ function initMap() {
   }
 ],
 {name:'MCBP locations'});
-map = new google.maps.Map(document.getElementById('maps'), {
-  zoom:9,
-  center: {lat: 46.456, lng: 6.573},
-  minZoom:7,
-  mapTypeControlOptions: {
-    mapTypeIds: ['styled_map'],
-  },
-  streetViewControl:false,
-  fullscreenControl:false,
-
-});
-map.mapTypes.set('styled_map', styledMapType);
-map.setMapTypeId('styled_map');
-
-var infowindow = new google.maps.InfoWindow();
-var marker, i;
-var markers = [];
-
-for (i = 0; i < map_points.length; i++) {
-  marker = new google.maps.Marker({
-    position: new google.maps.LatLng(map_points[i][0], map_points[i][1]),
-    map: map,
-    label:{
-      fontFamily: 'Fontawesome',
-      text: '\uf1f8',
-      fontSize: '20px',
-      color: 'white'
+  map = new google.maps.Map(document.getElementById('maps'), {
+    zoom:7,
+    center: {lat: 46.83, lng: 8.23},
+    minZoom:7,
+    mapTypeControlOptions: {
+      mapTypeIds: ['styled_map'],
     },
-    icon: {
-      path: google.maps.SymbolPath.CIRCLE,
-      scale: 7,
-      fillColor: 'black',
-      fillOpacity:1,
-    },
-
+    streetViewControl:false,
+    fullscreenControl:false,
 
   });
-  var contentString = '<div><p style="margin-bottom:4px; font-size:14px;">' +  map_points[i][6] + '</p>'+
-  '<ul><li>City: ' + map_points[i][4] +'</li><li> Postal Code: ' + map_points[i][3] + '</li><li>Average pcs/m: ' + map_points[i][2] + '</li><li>N<sup>o</sup> of samples: ' +
-  map_points[i][5] + '</li></ul></div>';
-  marker.addListener('click', function(content){
-    return function(){
-      infowindow.setContent(content);
-      infowindow.open(map, this);
-    }
-  }(contentString));
-  markers.push(marker);
   map.mapTypes.set('styled_map', styledMapType);
   map.setMapTypeId('styled_map');
 
-};
+  var infowindow = new google.maps.InfoWindow();
+  var marker, i;
+  var markers = [];
+  bounds  = new google.maps.LatLngBounds();
 
+  for (i = 0; i < map_points.length; i++) {
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(map_points[i][0], map_points[i][1]),
+      map: map,
+      // label:{
+      //   fontFamily: 'Fontawesome',
+      //   text: '\uf1f8',
+      //   fontSize: '20px',
+      //   color: 'white'
+      // },
+      icon:  {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: Math.sqrt(map_points[i][2])*5,
+        fillColor: 'rgb(255, 65, 168)',
+        strokeColor: 'rgb(255, 00, 00)',
+        fillOpacity:0.6,
+        strokeOpacity:1,
+        strokeWeight:2,
+      },
+
+
+    });
+    loc = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
+    bounds.extend(loc);
+    var contentString = '<div><p style="margin-bottom:4px; font-size:14px;">' +  map_points[i][6] + '</p>'+
+    '<ul><li>City: ' + map_points[i][4] +'</li><li> Postal Code: ' + map_points[i][3] + '</li><li>Average pcs/m: ' + map_points[i][2] + '</li><li>N<sup>o</sup> of samples: ' +
+    map_points[i][5] + '</li></ul></div>';
+    marker.addListener('click', function(content){
+      return function(){
+        infowindow.setContent(content);
+        infowindow.open(map, this);
+      }
+    }(contentString));
+    markers.push(marker);
+    map.mapTypes.set('styled_map', styledMapType);
+    map.fitBounds(bounds);
+    map.panToBounds(bounds);
+    map.setMapTypeId('styled_map');
+
+  };
+  // var markerCluster = new MarkerClusterer(map, markers,
+  //     {imagePath: "{% static '/images/m' %}"});
    };
 </script>
-
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm40jm5y3TNXHeagBkulq-mS2A3ep4TWY&callback=initMap"  async defer> </script>
 
-
+</script>
 <script type="text/javascript">
-Highcharts.chart('time-series', {
-
+Highcharts.chart('box-plot', {
     chart: {
         type: 'boxplot',
         spacingBottom: 20,
     },
-
     title: {
-        text: 'SLR: monthly summaries and daily results',
+        text: '',
         style:{
           fontSize: '14px',
           color:'#0A2E5C',
-
         },
     },
-    subtitle: {
-      text: 'Values greater than 50 pcs/m not considered',
+    subtitle:{
+      text: '',
       style:{
         fontSize: '10px',
         color:'#0A2E5C',
       }
-
     },
     credits:{
       text:'hammerdirt 2018',
-
     },
     exporting: {
       enabled:false,
@@ -988,36 +867,19 @@ Highcharts.chart('time-series', {
         groupPadding:0,
       }
     },
-
     xAxis: [{
-        categories:box_cats,
-        type: 'category',
-        tickColor:'rgba(00, 00, 00, 1)',
-        labels: {
-          rotation:270,
-          color:'rgba(00, 00, 00, 1)',
-          fontSize:'10px'
-        },
-        opposite:false,
-
-    },{
       type: 'datetime',
-      opposite:true,
-      visible:false,
-      alignTicks:true,
+      min: Date.UTC(2015, 11, 01),
+      tickColor:'rgba(00, 00, 00, 1)',
       tickInterval:3600*1000*24*28,
       tickColor:'rgba(00, 00, 00, 1)',
       labels: {
-        enabled: false,
-        style: {
-          color:'rgba(00, 00, 00, 1)',
-        }
+        rotation:270,
+        color:'rgba(00, 00, 00, 1)',
+        fontSize:'10px'
       },
-      dateTimeLabelFormats: {
-        month: '%b - %y',
-      },
-    },
-  ],
+      opposite:false,
+    }],
     yAxis: {
       min:0,
       max:85,
@@ -1042,135 +904,220 @@ Highcharts.chart('time-series', {
           fontSize: '10px'
         }
       },
-
     },
-
-    series:
-    [{
+    series:[{
       zIndex:3,
       xAxis:0,
       type: 'boxplot',
       name: 'Monthly summary',
-      data: boxer,
+      data: mc_box,
       tooltip: {
           headerFormat: '<em>{point.key}</em><br/>'
       },
-
     },
     {
       zIndex:2,
-      xAxis:1,
+      xAxis:0,
       type: 'scatter',
       name:'Survey results',
       marker: {
         symbol: 'circle',
         radius:3,
-        lineColor: 'rgba(10, 46, 92, .4)',
-        fillColor:  'rgba(22, 199, 158, .4)',
+        lineColor: 'rgba(255, 0, 0, .4)',
+        fillColor:  'rgba(255, 65, 168, .4)',
         lineWidth:1,
       },
       data:ts_plot,
       tooltip: {
           headerFormat: '<b>{point.key}</b><br>',
-          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m'
+          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pcs/m'
       },
-    },
-
-    ]
-
-});
-</script>
-<script type='text/javascript'>
-
-var chart = Highcharts.chart('normal-s', {
-
-    chart:{
-      spacingBottom:20,
-    },
-    title: {
-        text: 'PMF of pcs/m :MCBP 2015-2017'
-    },
-    subtitle: {
-        text: samps_sub_title
-    },
-    credits:{
-      text:'hammerdirt 2018',
-      position:{
-        x: -15,
-        y: -15,
-      }
-    },
-    exporting: {
-      enabled:false,
-    },
-    xAxis: {
-      title: {
-        text:"Pieces per meter",
-      }
-     },
-     yAxis: {
-       title: {
-         text:"Frequency",
-       }
-     },
-    series: [{
-        type: 'area',
-        colorByPoint: false,
-        data: dens_pdf,
-        showInLegend: false
     }]
 });
-$('#density').click(function () {
-    chart.update({
-        chart: {
-            inverted: false,
-            polar: false
-        },
-        title: {
-            text: 'PMF of pcs/m: MCBP 2015-2017'
-        },
-        xAxis: {
-          title: {
-            text:"Pieces per meter",
-          }
-         },
-         yAxis: {
-           title: {
-             text:"Frequency",
-           }
-         },
-        series:[{
-          name:'PMF pcs/m',
-          data:dens_pdf,
-        }]
-    });
-});
-$('#ln-density').click(function () {
-    chart.update({
-        chart: {
-            inverted: false,
-            polar: false,
-
-        },
-        title: {
-            text: 'PMF of ln(pcs/m): MCBP 2015-2017'
-        },
-        xAxis: {
-          title: {
-            text:"ln(pcs/m)",
-          }
-         },
-         yAxis: {
-           title: {
-             text:"Frequency",
-           }
-         },
-        series:[{
-          name: 'PMF ln(pcs/m)',
-          data:the_norm,
-        }]
-    });
-});
 </script>
+<script type="text/javascript">
+// Highcharts.chart('riv-lake', {
+//
+//     chart: {
+//         type: 'boxplot',
+//         zoomType:'x',
+//         spacingBottom: 20,
+//     },
+//
+//     title: {
+//         text: '',
+//         style:{
+//           fontSize: '14px',
+//           color:'#0A2E5C',
+//
+//         },
+//     },
+//     subtitle: {
+//       text: '',
+//       style:{
+//         fontSize: '10px',
+//         color:'#0A2E5C',
+//       }
+//
+//     },
+//     credits:{
+//       text:'hammerdirt 2018',
+//
+//     },
+//     exporting: {
+//       enabled:false,
+//     },
+//     legend: {
+//       enabled: true,
+//       verticalAlign: 'bottom',
+//       align: 'center',
+//       layout:'horizontal',
+//       backgroundColor:'rgba(255,255,255, .4)',
+//       borderColor:'rgba(10, 46, 92, .4)',
+//       borderWidth:1,
+//       padding:8,
+//       margin:12,
+//       width:380,
+//       itemMarginBottom:2,
+//       itemDistance: 4,
+//       itemWidth:90,
+//       itemStyle:{
+//         color: 'black',
+//         fontSize: '10px',
+//
+//       },
+//     },
+//     plotOptions:{
+//       boxplot:{
+//         stemColor:'rgba(10, 46, 92, 1)',
+//         stemDashStyle: 'dash',
+//         stemWidth:1,
+//         whiskerColor: 'rgba(00, 00, 00, 1)',
+//         groupPadding:0,
+//       }
+//     },
+//     xAxis: [{
+//         categories:box_cats,
+//         type: 'category',
+//         tickColor:'rgba(00, 00, 00, 1)',
+//         labels: {
+//           rotation:270,
+//           color:'rgba(00, 00, 00, 1)',
+//           fontSize:'10px'
+//         },
+//         opposite:false,
+//     },{
+//       type: 'datetime',
+//       opposite:true,
+//       visible:false,
+//       alignTicks:true,
+//       tickInterval:3600*1000*24*28,
+//       tickColor:'rgba(00, 00, 00, 1)',
+//       labels: {
+//         enabled: false,
+//         style: {
+//           color:'rgba(00, 00, 00, 1)',
+//         }
+//       },
+//       dateTimeLabelFormats: {
+//         month: '%b - %y',
+//       },
+//     },
+//   ],
+//     yAxis: {
+//       min:0,
+//       max:85,
+//       ceiling:50,
+//       alignTicks:false,
+//       tickInterval:10,
+//       minPadding:0.1,
+//       title: {
+//           align: 'low',
+//           offset: 40,
+//           text: 'Pieces of trash per meter of shoreline',
+//           style:{
+//             fontSize: '12px',
+//             color:'#0A2E5C',
+//           },
+//       },
+//       gridLineColor:'rgba(10, 46, 92, .1)',
+//       minorTickInterval:2,
+//       labels:{
+//         style: {
+//           color:'rgba(00, 00, 00, 1)',
+//           fontSize: '10px'
+//         }
+//       },
+//
+//     },
+//     series:
+//     [{
+//       zIndex:3,
+//       fillColor:'rgba(215, 78, 9, 1)',
+//       lineColor: 'rgba(00, 00, 00, 1)',
+//       medianColor:'rgba(22, 199, 158, 1)',
+//       color:'rgba(215, 78, 9, 1)',
+//       xAxis:0,
+//       type: 'boxplot',
+//       name: 'Lakes-monthly',
+//       data: box_lake,
+//       tooltip: {
+//           headerFormat: '<em>{point.key}</em><br/>'
+//       },
+//     },
+//     {
+//       zIndex:3,
+//       fillColor:'rgba(10, 46, 92, 1)',
+//       lineColor: 'rgba(00, 00, 00, 1)',
+//       medianColor:'rgba(22, 199, 158, 1)',
+//       color:'rgba(10, 46, 92, 1)',
+//       xAxis:0,
+//       type: 'boxplot',
+//       name: 'Rivers-monthly',
+//       data: box_river,
+//       tooltip: {
+//           headerFormat: '<em>{point.key}</em><br/>'
+//       },
+//     },
+//     {
+//       zIndex:2,
+//       xAxis:1,
+//       type: 'scatter',
+//       name:'Lake-daily',
+//       marker: {
+//         symbol: 'circle',
+//         radius:3,
+//         lineColor: 'rgba(255, 00, 00, .4)',
+//         fillColor:  'rgba(255, 65, 168, .4)',
+//         lineWidth:1,
+//       },
+//       data:lak_dens,
+//       tooltip: {
+//           headerFormat: '<b>{point.key}</b><br>',
+//           pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m'
+//       },
+//     },
+//     {
+//       zIndex:2,
+//       xAxis:1,
+//       type: 'scatter',
+//       name:'River-daily',
+//       marker: {
+//         symbol: 'circle',
+//         radius:3,
+//         lineColor: 'rgba(255, 00, 00, .4)',
+//         fillColor:  'rgba(255, 65, 168, .4)',
+//         lineWidth:1,
+//       },
+//       data:riv_dens,
+//       tooltip: {
+//           headerFormat: '<b>{point.key}</b><br>',
+//           pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m'
+//       },
+//     },
+//   ]
+// });
+</script>
+
 
 {% endblock %}

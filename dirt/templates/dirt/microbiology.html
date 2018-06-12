@@ -70,55 +70,15 @@ html {
     <div class="col-sm-4" style="">
       <div class="card pb-0" style="height:100%">
         <div class="bg-info text-white card-header p-2 pl-3" id="" style="">
-          <i class="fa fa-th-list fa-lg"></i>&nbsp; Summary : {{ city }}
+          <button class="btn bg-info text-white w-100 p-0 m-0 text-left" data-toggle="" data-parent="" data-target="" aria-expanded="false" aria-controls="links">
+            <i class="fa fa-th-list fa-lg"></i>&nbsp; Summary : {{ city }}
+          </button>
         </div>
         <div class="card-body p-0" style="height:100%">
           <h6 class="card-title pt-1" style="">Summary data for the Swiss Litter Report
             <br><small class="text-muted">April 2017 - April 2018
             <br>units= m<sup>2</sup></small></h6>
-          <table class="table table-sm table-striped text-left pb-0"  style="height:62%">
-            <tbody>
-                <td class="ml-auto">N<sup>o</sup> of Samples:</td>
-                <td class="mr-auto">{{ summary.num_samps|floatformat:0|intcomma }}</td>
-              </tr>
-              <tr>
-                <td class="ml-auto">N<sup>o</sup> of locations:</td>
-                <td class="mr-auto">{{ num_locs|floatformat:0 }}</td>
-              </tr>
-              <tr>
-                <td class="ml-auto">N<sup>o</sup> of rivers - lakes:</td>
-                <td class="mr-auto">{{ num_rivers|floatformat:0 }} - {{ num_lakes|floatformat:0 }}</td>
-              </tr>
-              <tr>
-                <td class="ml-auto">First sample date:</td>
-                <td class="mr-auto">{{ summary.first|date:"M Y" }}</td>
-              </tr>
-              <tr>
-                <td class="ml-auto">Most recent sample:</td>
-                <td class="mr-auto">{{ summary.last|date:"M Y" }}</td>
-              </tr>
-              <tr>
-                <td class="ml-auto">N<sup>o</sup> of pieces of garbage:</td>
-                <td class="mr-auto">{{ summary.total|floatformat:0|intcomma }}</td>
-              </tr>
-              <tr>
-                <td class="ml-auto">Avg pieces/meter<sup>2</sup>:</td>
-                <td class="mr-auto">{{ summary.ave_dense|floatformat:2 }}pcs/m<sup>2</sup> </td>
-              </tr>
-              <tr>
-                <td class="ml-auto">Standard deviation:</td>
-                <td class="mr-auto">{{ summary.stan_dev|floatformat:2 }}</td>
-              </tr>
-              <tr>
-                <td class="ml-auto">75<sup>th</sup> percentile:</td>
-                <td class="mr-auto"> {{ summary.seven_five|floatformat:2 }} pcs/m<sup>2</sup></td>
-              </tr>
-              <tr>
-                <td class="ml-auto">Min - Max pcs/m<sup>2</sup>:</td>
-                <td class="mr-auto"> {{ summary.min_dense|floatformat:4 }} - {{ summary.max_dense|floatformat:2 }} pcs/m<sup>2</sup></td>
-              </tr>
-            </tbody>
-          </table>
+
           <div class="btn-toolbar w-100 " style="">
             <div class="btn-group w-100 " style="">
               <button class="btn bg-info w-100 text-white p-2 pl-3 border-white" style="white-space:normal; height:100%" data-toggle="modal"  data-target="#library" aria-expanded="false" aria-controls="table-of-results">
@@ -132,12 +92,7 @@ html {
               </button>
             </div>
           </div>
-          <button class="btn bg-info w-100 p-2 pl-3 text-white text-left border-white" style="height:8%" data-toggle="modal"  data-target="#list_o_lakes" aria-expanded="false" aria-controls="table-of-results">
-            List of rivers/lakes and locations
-          </button>
-          <button class="btn bg-info w-100 p-2 pl-3 text-white text-left border-white" style="height:8%" role="button" data-toggle="modal" data-target="#list_o_cities" aria-expanded="false" aria-controls="">
-            List of cities and locations
-          </button>
+
         </div>
       </div>
     </div>
@@ -150,28 +105,8 @@ html {
             <h6 class="card-title" style="">Locations of the SLR samples
               <br><small class="text-muted">April 2017 - April 2018
               <br>Circle size relative to avg pcs/m<sup>2</sup></small></h6>
-              <div id="maps" style="height:68%;min-height:390px"></div>
-              <div class="bg-black text-white card-header" id="" style="">
-                  <form class="d-inline-block" action='search_SLR/' method='get'>
-                    <i class="fa fa-folder-open fa-lg mr-1 "></i>&nbsp;Details:&nbsp;&nbsp;
-                    <select class="form-control-sm d-inline-block mr-2"style="width:180px" name='q'>
-                      {% for x in slr_cities %}
-                      <option class="txt-12" value= "{{ x }}">{{ x }}</option>
-                      {% endfor %}
-                    </select>
-                    <button class="d-inline-block btn btn-outline-light text-white txt-14 p-1" style="background-color:transparent; border-color:white; border-width:1px" type='submit' ><i class="fa fa-external-link fa-lg"></i></button>
-                  </form>
-              </div>
-              <div class="btn-toolbar" >
-                <div class="btn-group" style="height:10%">
-                  <button class="btn bg-info text-white p-2 border-white"  style="white-space: normal;" data-toggle="modal" data-target="#sun_shine" aria-expanded="false" aria-controls="">
-                    All items identified</button>
-                  <button class="btn bg-info text-white p-2 border-white" style="white-space: normal;" data-toggle="modal"  data-target="#sum_data" aria-expanded="false" aria-controls="table-of-results">
-                    Top-ten items, materal comp</button>
-                  <button class="btn bg-info p-2 text-white border-white" style="white-space: normal;" role="button" data-toggle="modal" data-target="#cites_samples" aria-expanded="false" aria-controls="">
-                    List of locations, avg pcs/m<sup>2</sup></button>
-                </div>
-              </div>
+
+
 
             </div>
           </div>
@@ -187,12 +122,8 @@ html {
           <br><small class="text-muted">April 2017 - April 2018, toggle categories in legend
           <br>Monthly summaries, click and drag in chart areaa to zoom date</small></h6>
 
-          <div class="align-self-center"  style="height:67%; min-height:400px" id="box-plot"></div>
-          <button class="btn bg-info w-100 p-2 pl-3 text-white text-left mt-1" style="height:10%" data-toggle="modal"  data-target="#box_rivs_lakes" aria-expanded="false" aria-controls="table-of-results">
-            <i class="fa fa-line-chart fa-lg "></i>&nbsp; Results sorted by river and lakes
-          </button>
-          <button class="btn bg-info w-100 p-2 pl-3 text-white text-left border-white" style="height:10%" role="button" data-toggle="modal" data-target="#water_search" aria-expanded="false" aria-controls="">
-            Search by city, body of water or project</button>
+
+
         </div>
       </div>
     </div>
@@ -212,8 +143,8 @@ html {
         <table class="table-striped table table-sm">
           <thead class="txt-14">
             <tr>
-              <th class="text-left">Item</th>
-              <th class="text-left">Material</th>
+              <th>Item</th>
+              <th class="text-left p-1">Material</th>
               <th class="text-center p-1">Code</th>
               <th class="text-center p-1">Quantity</th>
             </tr>
@@ -310,7 +241,7 @@ html {
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">"Location", "average pcs/m<sup>2</sup>" and "number of samples"<br>
+        <h5 class="modal-title">"Location", "average pcs/m" and "number of samples"<br>
           <small class="text-muted">For all locations included in this summary </small>
         </h5>
         <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
@@ -322,7 +253,7 @@ html {
           <thead class="txt-14">
             <tr>
               <th>Location</th>
-              <th>pcs/m<sup>2</sup></th>
+              <th>pcs/m</th>
               <th>N<sup>o</sup> of samples</th>
             </tr>
           </thead>
@@ -759,7 +690,7 @@ function initMap() {
 
     });
     var contentString = '<div><p style="margin-bottom:4px; font-size:14px;">' +  map_points[i][6] + '</p>'+
-    '<ul><li>City: ' + map_points[i][4] +'</li><li> Postal Code: ' + map_points[i][3] + '</li><li>Average pcs/m²: ' + map_points[i][2] + '</li><li>N<sup>o</sup> of samples: ' +
+    '<ul><li>City: ' + map_points[i][4] +'</li><li> Postal Code: ' + map_points[i][3] + '</li><li>Average pcs/m: ' + map_points[i][2] + '</li><li>N<sup>o</sup> of samples: ' +
     map_points[i][5] + '</li></ul></div>';
     marker.addListener('click', function(content){
       return function(){
@@ -879,7 +810,7 @@ Highcharts.chart('box-plot', {
       title: {
           align: 'low',
           offset: 40,
-          text: 'Pieces of trash per meter²',
+          text: 'Pieces of trash per meter of shoreline',
           style:{
             fontSize: '12px',
             color:'#0A2E5C',
@@ -923,7 +854,7 @@ Highcharts.chart('box-plot', {
       data:ts_plot,
       tooltip: {
           headerFormat: '<b>{point.key}</b><br>',
-          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m²'
+          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m'
       },
     },
 
@@ -1030,7 +961,7 @@ Highcharts.chart('riv-lake', {
       title: {
           align: 'low',
           offset: 40,
-          text: 'Pieces of trash per meter²',
+          text: 'Pieces of trash per meter of shoreline',
           style:{
             fontSize: '12px',
             color:'#0A2E5C',
@@ -1090,7 +1021,7 @@ Highcharts.chart('riv-lake', {
       data:lak_dens,
       tooltip: {
           headerFormat: '<b>{point.key}</b><br>',
-          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m²'
+          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m'
       },
     },
     {
@@ -1108,7 +1039,7 @@ Highcharts.chart('riv-lake', {
       data:riv_dens,
       tooltip: {
           headerFormat: '<b>{point.key}</b><br>',
-          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m²'
+          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m'
       },
     },
   ]

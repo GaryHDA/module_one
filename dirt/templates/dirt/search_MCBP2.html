@@ -49,7 +49,7 @@
 
 {% block return_to %}
 <li class="nav-item">
-  <a class="nav-link text-white" href="javascript:history.go(-1)">Back to SLR</a>
+  <a class="nav-link text-white" href="javascript:history.go(-1)">Back to MCBP</a>
 </li>
 {% endblock %}
 
@@ -60,203 +60,203 @@
 
 
 <div class="container-fluid">
-  <div class="row ">
+  <div class="row">
     <div class="col-sm-4 col-xs-12" style="">
       <div class="w-100" id="accordion" role="tablist">
-        <div class="card pb-0">
-          <div class="bg-info text-white card-header" id="" style="">
-            <a class="bg-info text-white w-100 p-1" data-toggle="collapse" data-parent="#accordion" data-target="#summary" aria-expanded="false" aria-controls="links">
-              <i class="fa fa-th-list fa-lg"></i>&nbsp; Summary : {{ city }}
-            </a>
-          </div>
-          <div class="collapse show container-fluid m-1 w-100" data-parent="#accordion" style="" id="summary">
-            <div class="card-body p-1 mb-1 mt-1 justify-content-end bg-red w-100">
-              <div class="row p-2 " style="">
-                <div class="col align-self-start">
-                  <p class="text-white text-left">The average pcs/m is greater than {{ city_rank|floatformat:0 }}% of the other cities in this survey</p>
-                </div>
-                <div class="col align-self-center justify-content-center">
-                  <h2 align="center" class="text-white display-3" style=""> {{ city_rank|floatformat:0|ordinal }}</h2>
-                  <div class="col align-self-end">
-                    <p align="right" class="text-white">percentile</p>
-                  </div>
-                </div>
-              </div>
-              <div class="d-flex flex-row justify-content-end p-0 bg-red w-100">
-                <div class="d-sm-inline-flex flex-column p-1 w-50">
-                  <div class="d-sm-inline-flex p-1 bg-black">
-                    <p class="text-white p-0 m-0">N<sup>o</sup> of Samples</p>
-                  </div>
-                 <div class="d-sm-inline-flex flex-column p-1 " >
-                   <p class="text-white p-0 m-0" > {{ summary.num_samps|floatformat:0 }}</p>
-                 </div>
-                </div>
-                <div class="d-sm-inline-flex flex-column p-1 w-50">
-                  <div class="d-sm-inline-flex p-1 bg-black">
-                    <p class="text-white p-0 m-0">Total pieces </p>
-                  </div>
-                  <div class="d-sm-inline-flex flex-column p-1 m-0">
-                    <p class="text-white p-0 m-0"> {{ summary.total|floatformat:0|intcomma }}</p>
-                  </div>
-                </div>
-              </div>
-              <div class="d-flex flex-row justify-content-end p-0 bg-red">
-                <div class="d-sm-inline-flex flex-column p-1 w-50">
-                  <div class="d-sm-inline-flex p-1 bg-black">
-                    <p class="text-white p-0 m-0">First sample</p>
-                  </div>
-                  <div class="d-sm-inline-flex flex-column p-1 ">
-                   <p class="text-white p-0 m-0">{{ summary.first|date:"M Y" }}</p>
-                  </div>
-                </div>
-                <div class="d-sm-inline-flex flex-column p-1 w-50">
-                  <div class="d-sm-inline-flex p-1 bg-black">
-                    <p class="text-white p-0 m-0">Latest sample</p>
-                  </div>
-                  <div class="d-sm-inline-flex flex-column p-1 m-0">
-                    <p class="text-white p-0 m-0">{{ summary.last|date:"M Y" }}</p>
-                  </div>
-                </div>
-              </div>
-              <div class="d-flex flex-row justify-content-end p-0 bg-red">
-               <div class="d-sm-inline-flex flex-column p-1 w-50">
-                 <div class="d-sm-inline-flex p-1 bg-black">
-                   <p class="text-white p-0 m-0 " >Average pcs/m</p>
-                 </div>
-                 <div class="d-sm-inline-flex flex-column p-1 ">
-                   <p class="text-white p-0 m-0" > {{ summary.ave_dense|floatformat:1 }} pcs/m <small> (not weighted) </small></p>
+       <div class="card pb-0">
+         <div class="bg-info text-white card-header" id="" style="">
+           <a class="bg-info text-white w-100 p-1" data-toggle="collapse" data-parent="#accordion" data-target="#summary" aria-expanded="false" aria-controls="links">
+             <i class="fa fa-th-list fa-lg"></i>&nbsp; Summary : {{ city }}
+           </a>
+         </div>
+         <div class="collapse show container-fluid m-1 w-100" data-parent="#accordion" style="" id="summary">
+           <div class="card-body p-1 mb-1 mt-1 justify-content-end bg-red w-100">
+             <div class="row p-2 " style="">
+               <div class="col align-self-start">
+                 <p class="text-white text-left">The average pcs/m is greater than {{ beach_rank|floatformat:0 }}% of the other cities in this survey</p>
+               </div>
+               <div class="col align-self-center justify-content-center">
+                 <h2 align="center" class="text-white display-3" style=""> {{ beach_rank|floatformat:0|ordinal }}</h2>
+                 <div class="col align-self-end">
+                   <p align="right" class="text-white">percentile</p>
                  </div>
                </div>
+             </div>
+             <div class="d-flex flex-row justify-content-end p-0 bg-red w-100">
                <div class="d-sm-inline-flex flex-column p-1 w-50">
-                <div class="d-sm-inline-flex p-1 bg-black" >
-                  <p class="text-white p-0 m-0">Range pcs/m</p>
-                </div>
-                <div class="d-sm-inline-flex flex-column p-1 m-0">
-                  <p class="text-white p-0 m-0"> {{ summary.min_dense|floatformat:1 }} - {{ summary.max_dense|floatformat:1 }} pcs/m</p>
+                 <div class="d-sm-inline-flex p-1 bg-black">
+                   <p class="text-white p-0 m-0">N<sup>o</sup> of Samples</p>
+                 </div>
+                <div class="d-sm-inline-flex flex-column p-1 " >
+                  <p class="text-white p-0 m-0" > {{ summary.num_samps|floatformat:0 }}</p>
                 </div>
                </div>
-              </div>
-              <div class="d-flex flex-row justify-content-end p-0 bg-red">
-                <div class="d-sm-inline-flex flex-column p-1 w-50">
-                  <div class="d-sm-inline-flex p-1 bg-black">
-                   <p class="text-white p-0 m-0">Standard deviation</p>
-                  </div>
-                  <div class="d-sm-inline-flex flex-column p-1 m-0">
-                   <p class="text-white p-0 m-0"> {{ summary.stan_dev|floatformat:2 }} pcs/m</p>
-                  </div>
-                </div>
-                <div class="d-sm-inline-flex flex-column p-1 w-50">
+               <div class="d-sm-inline-flex flex-column p-1 w-50">
                  <div class="d-sm-inline-flex p-1 bg-black">
-                   <p class="text-white p-0 m-0">Innerquartile</p>
+                   <p class="text-white p-0 m-0">Total pieces </p>
                  </div>
                  <div class="d-sm-inline-flex flex-column p-1 m-0">
-                   <p class="text-white p-0 m-0"> {{ summary.iqr|floatformat:1 }} pcs/m</p>
+                   <p class="text-white p-0 m-0"> {{ summary.total|floatformat:0|intcomma }}</p>
                  </div>
+               </div>
+             </div>
+             <div class="d-flex flex-row justify-content-end p-0 bg-red">
+               <div class="d-sm-inline-flex flex-column p-1 w-50">
+                 <div class="d-sm-inline-flex p-1 bg-black">
+                   <p class="text-white p-0 m-0">First sample</p>
+                 </div>
+                 <div class="d-sm-inline-flex flex-column p-1 ">
+                  <p class="text-white p-0 m-0">{{ summary.first|date:"M Y" }}</p>
+                 </div>
+               </div>
+               <div class="d-sm-inline-flex flex-column p-1 w-50">
+                 <div class="d-sm-inline-flex p-1 bg-black">
+                   <p class="text-white p-0 m-0">Latest sample</p>
+                 </div>
+                 <div class="d-sm-inline-flex flex-column p-1 m-0">
+                   <p class="text-white p-0 m-0">{{ summary.last|date:"M Y" }}</p>
+                 </div>
+               </div>
+             </div>
+             <div class="d-flex flex-row justify-content-end p-0 bg-red">
+              <div class="d-sm-inline-flex flex-column p-1 w-50">
+                <div class="d-sm-inline-flex p-1 bg-black">
+                  <p class="text-white p-0 m-0 " >Average pcs/m</p>
+                </div>
+                <div class="d-sm-inline-flex flex-column p-1 ">
+                  <p class="text-white p-0 m-0" > {{ summary.ave_dense|floatformat:1 }} pcs/m <small> (not weighted) </small></p>
                 </div>
               </div>
-              <div class="d-flex flex-row justify-content-end p-0 bg-red">
-                <div class="d-sm-inline-flex flex-column p-1 w-50">
-                  <div class="d-sm-inline-flex p-1 bg-black">
-                   <p class="text-white p-0 m-0">25<sup>th</sup> percentile</p>
-                  </div>
-                  <div class="d-sm-inline-flex flex-column p-1 m-0">
-                   <p class="text-white p-0 m-0"> {{ summary.two_five|floatformat:1 }} pcs/m</p>
-                  </div>
+              <div class="d-sm-inline-flex flex-column p-1 w-50">
+               <div class="d-sm-inline-flex p-1 bg-black" >
+                 <p class="text-white p-0 m-0">Range pcs/m</p>
+               </div>
+               <div class="d-sm-inline-flex flex-column p-1 m-0">
+                 <p class="text-white p-0 m-0"> {{ summary.min_dense|floatformat:1 }} - {{ summary.max_dense|floatformat:1 }} pcs/m</p>
+               </div>
+              </div>
+             </div>
+             <div class="d-flex flex-row justify-content-end p-0 bg-red">
+               <div class="d-sm-inline-flex flex-column p-1 w-50">
+                 <div class="d-sm-inline-flex p-1 bg-black">
+                  <p class="text-white p-0 m-0">Standard deviation</p>
+                 </div>
+                 <div class="d-sm-inline-flex flex-column p-1 m-0">
+                  <p class="text-white p-0 m-0"> {{ summary.stan_dev|floatformat:2 }} pcs/m</p>
+                 </div>
+               </div>
+               <div class="d-sm-inline-flex flex-column p-1 w-50">
+                <div class="d-sm-inline-flex p-1 bg-black">
+                  <p class="text-white p-0 m-0">Innerquartile</p>
                 </div>
-                <div class="d-sm-inline-flex flex-column p-1 w-50">
+                <div class="d-sm-inline-flex flex-column p-1 m-0">
+                  <p class="text-white p-0 m-0"> {{ summary.iqr|floatformat:1 }} pcs/m</p>
+                </div>
+               </div>
+             </div>
+             <div class="d-flex flex-row justify-content-end p-0 bg-red">
+               <div class="d-sm-inline-flex flex-column p-1 w-50">
+                 <div class="d-sm-inline-flex p-1 bg-black">
+                  <p class="text-white p-0 m-0">25<sup>th</sup> percentile</p>
+                 </div>
+                 <div class="d-sm-inline-flex flex-column p-1 m-0">
+                  <p class="text-white p-0 m-0"> {{ summary.two_five|floatformat:1 }} pcs/m</p>
+                 </div>
+               </div>
+               <div class="d-sm-inline-flex flex-column p-1 w-50">
                  <div class="d-sm-inline-flex p-1 bg-black">
                    <p class="text-white p-0 m-0">75<sup>th</sup> percentile</p>
                  </div>
                  <div class="d-sm-inline-flex flex-column p-1 m-0">
                    <p class="text-white p-0 m-0"> {{ summary.seven_five|floatformat:1 }} pcs/m</p>
                  </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+      </div>
+    </div>
+    <div class="col-sm-4 col-xs-12" style:"">
+      <div id="accordionTwo" class="" role="tablist">
+        <div class="card pb-0" id="map-of-locations">
+          <div class="card-header bg-info text-white" id="" style="">
+            <a class="bg-info text-white w-100 p-1 " data-toggle="collapse" data-parent="#accordionTwo"  data-target="#map_results" aria-expanded="false" aria-controls="table-of-results">
+              <i class="fa fa-map fa-lg "></i>&nbsp; Survey locations : {{ city }}
+            </a>
+          </div>
+          <div class="collapse show" data-parent="#accordionTwo" id="map_results" >
+            <div class="card-body p-0">
+              <div id="map" style="height:380px"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card pb-0" id="box-plot-chart">
+          <div class="card-header bg-info text-white" id="" style="">
+            <a class="bg-info text-white w-100 p-1 collpased" data-toggle="collapse" data-parent="#accordionTwo"  data-target="#box_results" aria-expanded="false" aria-controls="table-of-results">
+              <i class="fa fa-line-chart fa-lg "></i>&nbsp; Results by date and monthly summaries
+            </a>
+          </div>
+          <div class="collapse " data-parent="#accordionTwo" id="box_results" >
+            <div class="card-body p-0">
+              <div class="align-self-center mb-4" id="box-plot"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card pb-0" id="time-series-chart">
+          <div class="card-header bg-info text-white" id="" style="">
+            <a class="bg-info text-white w-100 p-1 collpased" data-toggle="collapse" data-parent="#accordionTwo"  data-target="#date_results" aria-expanded="false" aria-controls="table-of-results">
+              <i class="fa fa-line-chart fa-lg "></i>&nbsp; {{ city }} vs all other MCBP Results
+            </a>
+          </div>
+          <div class="collapse " data-parent="#accordionTwo" id="date_results" >
+            <div class="card-body p-0">
+              <div class="align-self-center mb-4" id="combined-ts"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card" id="inv">
+          <div class="card-header bg-info text-white " id="" style="">
+            <a class="bg-info text-white w-100 p-1" data-toggle="modal" data-target="#inventory" aria-expanded="false" aria-controls="table-of-results">
+              <i class="fa fa-th-list fa-lg"></i>&nbsp; Inventory of all items found
+            </a>
+          </div>
+          <div class="modal fade" id="inventory">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <table class="table-striped table table-sm">
+                    <thead class="txt-14">
+                      <tr>
+                        <td colspan="3" class="bg-info text-white"> All items included in this summary
+                          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Item</th>
+                        <th class="text-center p-1">Code</th>
+                        <th class="text-center p-1">Quantity</th>
+                      </tr>
+                    </thead>
+                    {% for s in inventory %}
+                    <tr class="txt-12">
+                      <td class="pl-2">{{ s.description }}</td>
+                      <td class= "text-center p-1">{{ s.code }}
+                      <td class="text-center p-1">{{ s.total|floatformat:0 }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                      <td colspan="3" class="bg-info text-white"> End of inventory
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      </td>
+                    </tr>
+                  </table>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-sm-4 col-xs-12" style:"">
-       <div id="accordionTwo" class="" role="tablist">
-         <div class="card pb-0" id="map-of-locations">
-           <div class="card-header bg-info text-white" id="" style="">
-             <a class="bg-info text-white w-100 p-1 " data-toggle="collapse" data-parent="#accordionTwo"  data-target="#map_results" aria-expanded="false" aria-controls="table-of-results">
-               <i class="fa fa-map fa-lg "></i>&nbsp; Survey locations : {{ city }}
-             </a>
-           </div>
-           <div class="collapse show" data-parent="#accordionTwo" id="map_results" >
-             <div class="card-body p-0">
-               <div id="map" style="height:380px"></div>
-             </div>
-           </div>
-         </div>
-         <div class="card pb-0" id="box-plot-chart">
-           <div class="card-header bg-info text-white" id="" style="">
-             <a class="bg-info text-white w-100 p-1 collpased" data-toggle="collapse" data-parent="#accordionTwo"  data-target="#box_results" aria-expanded="false" aria-controls="table-of-results">
-               <i class="fa fa-line-chart fa-lg "></i>&nbsp; Results by date and monthly summaries
-             </a>
-           </div>
-           <div class="collapse " data-parent="#accordionTwo" id="box_results" >
-             <div class="card-body p-0">
-               <div class="align-self-center mb-4" id="box-plot"></div>
-             </div>
-           </div>
-         </div>
-         <div class="card pb-0" id="time-series-chart">
-           <div class="card-header bg-info text-white" id="" style="">
-             <a class="bg-info text-white w-100 p-1 collpased" data-toggle="collapse" data-parent="#accordionTwo"  data-target="#date_results" aria-expanded="false" aria-controls="table-of-results">
-               <i class="fa fa-line-chart fa-lg "></i>&nbsp; {{ city }} vs all otther SLR Results
-             </a>
-           </div>
-           <div class="collapse " data-parent="#accordionTwo" id="date_results" >
-             <div class="card-body p-0">
-               <div class="align-self-center mb-4" id="combined-ts"></div>
-             </div>
-           </div>
-         </div>
-         <div class="card">
-           <div class="card-header bg-info text-white " id="" style="">
-             <a class="bg-info text-white w-100 p-1" data-toggle="modal" data-target="#inventory" aria-expanded="false" aria-controls="table-of-results">
-               <i class="fa fa-th-list fa-lg"></i>&nbsp; Inventory of all items found
-             </a>
-           </div>
-           <div class="modal fade" id="inventory">
-             <div class="modal-dialog" role="document">
-               <div class="modal-content">
-                 <div class="modal-body">
-                   <table class="table-striped table table-sm">
-                     <thead class="txt-14">
-                       <tr>
-                         <td colspan="3" class="bg-info text-white"> All items included in this summary
-                           <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                         </td>
-                       </tr>
-                       <tr>
-                         <th>Item</th>
-                         <th class="text-center p-1">Code</th>
-                         <th class="text-center p-1">Quantity</th>
-                       </tr>
-                     </thead>
-                     {% for s in inventory %}
-                     <tr class="txt-12">
-                       <td class="pl-2">{{ s.description }}</td>
-                       <td class= "text-center p-1">{{ s.code }}
-                       <td class="text-center p-1">{{ s.total|floatformat:0 }}</td>
-                     </tr>
-                     {% endfor %}
-                     <tr>
-                       <td colspan="3" class="bg-info text-white"> End of inventory
-                         <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                       </td>
-                     </tr>
-                   </table>
-                 </div>
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
     </div>
     <div class="col-sm-4 col-xs-12" style:"">
       <div id="accordion3" class="" role="tablist">
@@ -289,29 +289,29 @@
         </div>
         <div class="card pb-0" id="the_top_ten">
           <div class="bg-info text-white card-header" id="" style="">
-            <a class="bg-info text-white w-100 p-1" data-toggle="collapse" data-parent="#accordion3" data-target="#summary2" aria-expanded="false" aria-controls="links">
+            <a class="bg-info text-white w-100 p-1" data-toggle="collapse" data-parent="#accordion3" data-target="#top-ten" aria-expanded="false" aria-controls="links">
               <i class="fa fa-th-list fa-lg"></i>&nbsp; Top ten items found
             </a>
           </div>
-          <div class="collapse show" data-parent="#accordion3" id="summary2">
-            <div class="card-body p-0">
-              <table class="table-striped table table-sm">
-                <thead class="txt-14">
-                  <tr>
-                    <th>Item</th>
-                    <th  class= "text-center p-1">Code</th>
-                    <th  class= "text-center p-1">Quantity</th>
-                  </tr>
-                </thead>
-                {% for s in city_top_ten %}
-                <tr class="txt-12">
-                  <td class="pl-2">{{ s.description }}</td>
-                  <td class= "text-center p-1">{{ s.code }}
-                  <td class="text-center p-1">{{ s.total }}</td>
-                </tr>
-                {% endfor %}
-              </table>
-            </div>
+          <div class="collapse show" data-parent="#accordion3"style="" id="top-ten">
+           <div class="card-body p-0">
+             <table class="table-striped table table-sm">
+               <thead class="txt-14">
+                 <tr>
+                   <th>Item</th>
+                   <th  class= "text-center p-1">Code</th>
+                   <th  class= "text-center p-1">Quantity</th>
+                 </tr>
+               </thead>
+               {% for s in city_top_ten %}
+               <tr class="txt-12">
+                 <td class="pl-2">{{ s.description }}</td>
+                 <td class= "text-center p-1">{{ s.code }}
+                 <td class="text-center p-1">{{ s.total }}</td>
+               </tr>
+               {% endfor %}
+            </table>
+           </div>
           </div>
         </div>
         <div class="card pb-0">
@@ -319,37 +319,37 @@
              <a class="bg-info text-white w-100 p-1" data-toggle="collapse" data-parent="#accordion3"  data-target="#categories" aria-expanded="false" aria-controls="table-of-results">
                <i class="fa fa-th fa-lg "></i>&nbsp; Results sorted by source or economic sector
              </a>
-          </div>
-          <div class="collapse" data-parent="#accordion3" id="categories">
-            <div class="card-body p-1 " id="" >
-              <div class="mx-auto" id="">
-                {% for k in sources_as %}
-                {% if forloop.counter0|divisibleby:3 %}
-                <div class="d-flex flex-row">
-                  {% endif %}
-                  <div class="d-inline-flex p-1 " style="background-color: {{ k.color}}; width: 33%">
-                    <a class="text-white text-12" data-toggle="modal" data-target="#{{ k.color|lower }}" aria-expanded="false" aria-controls="table-of-results">
-                      {% if k.name == 'Water Treatment' %}
-                      <i class="d-inline-flex fa fa-th-list fa-lg"></i>&nbsp; Waste water:<div>{{ k.source|floatformat:2 }}%</div>
-                      {% endif %}
-                      {% if k.name == 'Personal effects' %}
-                      <i class="d-inline-flex fa fa-th-list fa-lg"></i>&nbsp; Personal:<div>{{ k.source|floatformat:2 }}%</div>
-                      {% endif %}
+           </div>
+           <div class="collapse"data-parent="#accordion3" id="categories">
+             <div class="card-body p-1 " id="" >
+               <div class="mx-auto" id="">
+                 {% for k in sources_as %}
+                 {% if forloop.counter0|divisibleby:3 %}
+                 <div class="d-flex flex-row">
+                   {% endif %}
+                   <div class="d-inline-flex p-1 " style="background-color: {{ k.color}}; width: 33%">
+                     <a class="text-white text-12" data-toggle="modal" data-target="#{{ k.color|lower }}" aria-expanded="false" aria-controls="table-of-results">
+                       {% if k.name == 'Water Treatment' %}
+                       <i class="d-inline-flex fa fa-th-list fa-lg"></i>&nbsp; Waste water:<div>{{ k.source|floatformat:2 }}%</div>
+                       {% endif %}
+                       {% if k.name == 'Personal effects' %}
+                       <i class="d-inline-flex fa fa-th-list fa-lg"></i>&nbsp; Personal:<div>{{ k.source|floatformat:2 }}%</div>
+                       {% endif %}
 
-                      {% if k.name != 'Water Treatment' %}
-                      {% if k.name != 'Personal effects' %}
-                      <i class="d-inline-flex fa fa-th-list fa-lg"></i>&nbsp; {{ k.name }}:<div>{{ k.source|floatformat:2 }}%</div>
-                      {% endif %}
-                      {% endif %}
-                    </a>
-                  </div>
-                  {% if forloop.counter|divisibleby:3 %}
-                </div>
-                {% endif %}
-                {% endfor %}
-              </div>
-            </div>
-          </div>
+                       {% if k.name != 'Water Treatment' %}
+                       {% if k.name != 'Personal effects' %}
+                       <i class="d-inline-flex fa fa-th-list fa-lg"></i>&nbsp; {{ k.name }}:<div>{{ k.source|floatformat:2 }}%</div>
+                       {% endif %}
+                       {% endif %}
+                     </a>
+                   </div>
+                   {% if forloop.counter|divisibleby:3 %}
+                 </div>
+                 {% endif %}
+                 {% endfor %}
+               </div>
+             </div>
+           </div>
         </div>
         <div class="card-block row justify-content-center pb-0 pt-1">
           <div class="btn ml-1 wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
@@ -435,7 +435,6 @@
                     <p class="">Want to know more ?</p>
                     <p class="">Send us an email:<br><br>info [at] hammerdirt.ch</p>
                   </div>
-                </div>
                 <div class="modal-footer">
                   <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
                     <span aria-hidden="true">&times;</span>
@@ -449,8 +448,101 @@
     </div>
   </div>
 </div>
+</div>
 
 
+
+
+
+
+<!-- <div class="card">
+    <div class="card-header bg-info text-white " id="" style="">
+      <a class="bg-info text-white w-100 p-1" data-toggle="collapse" data-parent="#accordionTwo" data-target="#categories" aria-expanded="false" aria-controls="table-of-results">
+        <i class="fa fa-bar-chart fa-lg "></i>&nbsp; Results sorted by activity or source
+      </a>
+    </div>
+    <div class="collapse" id="categories">
+      <div class="card-body p-1" id="" >
+        <div class="align-self-center m-0 p-0" id="source_bar" style=""></div>
+        <div class="w-100 mx-auto" id="">
+          {% for x in more_bars %}
+          {% if forloop.counter0|divisibleby:3 %}
+          <div class="d-flex flex-row">
+            {% endif %}
+            <div class="d-inline-flex align-content-center p-1 " style="background-color: {{ x.color}}; width: 33%">
+              <a class="text-white text-12" data-toggle="modal" data-target="#{{ x.name|lower }}" aria-expanded="false" aria-controls="table-of-results">
+                {% if x.name == 'Water_treatment' %}
+                <i class="d-inline-flex fa fa-th-list"></i>&nbsp; Waste water:<div>{{ x.data|floatformat:2 }}%</div>
+                {% endif %}
+                {% if x.name != 'Water_treatment' %}
+                <i class="d-inline-flex fa fa-th-list"></i>&nbsp; {{ x.name }}:<div>{{ x.data|floatformat:2 }}%</div>
+                {% endif %}
+              </a>
+            </div>
+            {% if forloop.counter|divisibleby:3 %}
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      {% for x in one_list %}
+      <div class="modal fade" style="" id="{{ x|lower }}">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <table id="{{ x }}" class="table-condensed table-striped table">
+                <thead>
+                  <tr>
+                    <th colspan="2" class="bg-info text-white">
+                      {{ x }}
+                      <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </th>
+                  </tr>
+                  <tr class="">
+                    <th>MLW code</th>
+                    <th>Description </th>
+                  </tr>
+                </thead>
+                {% for type in dates_four %}
+                {% if type.source == x %}
+                <tr>
+                  <td class="td_site-results">{{ type.code }}</td>
+                  <td class="td_site-results">{{ type.description }}</td>
+                </tr>
+                {% endif %}
+                {% if x == 'Personal' %}
+                {% if type.source == 'Personal effects' %}
+                <tr>
+                  <td class="td_site-results">{{ type.code }}</td>
+                  <td class="td_site-results">{{ type.description }}</td>
+                </tr>
+                {% endif %}
+                {% endif %}
+                {% if x == 'Fragment' %}
+                {% if type.source == 'Fragmented' %}
+                <tr>
+                  <td class="td_site-results">{{ type.code }}</td>
+                  <td class="td_site-results">{{ type.description }}</td>
+                </tr>
+                {% endif %}
+                {% endif %}
+                {% if x == 'Water_treatment' %}
+                {% if type.source == 'Water Treatment' %}
+                <tr>
+                  <td class="td_site-results">{{ type.code }}</td>
+                  <td class="td_site-results">{{ type.description }}</td>
+                </tr>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div> -->
 
 {% endblock %}
 
@@ -469,11 +561,9 @@ var box_plot = {{ box_plot|safe }};
 var box_cats = {{ box_cats|safe }};
 var plot_all = {{ plot_all|safe }}
 var locs_samples = {{ locs_samples|safe }};
-var city_rank = {{ city_rank|safe }};
 var beach_rank = {{ beach_rank|safe }};
 var plot_data = {{ plot_density|safe }}
 var ceiling = {{ ceiling|safe}}
-
 
 var ts_plot = [];
 plot_data.forEach(function(element){
@@ -760,7 +850,9 @@ Highcharts.chart('box-plot', {
           fontSize:'10px'
         },
         opposite:false,
-
+        // title: {
+        //     text: 'Quantiles by month'
+        // }
     },{
       type: 'datetime',
       opposite:true,
@@ -853,7 +945,7 @@ Highcharts.chart('combined-ts', {
         }
     },
     title: {
-        text: '{{ city }} compared to all other SLR results',
+        text: '{{ city }} compared to all other MCBP results',
         style:{
           fontSize: '16px',
           color:'#0A2E5C',
@@ -925,7 +1017,7 @@ Highcharts.chart('combined-ts', {
     series: [{
       zIndex:3,
       type: 'scatter',
-      name:'SLR results',
+      name:'MCBP results',
       marker: {
         symbol: 'circle',
         radius:6,
@@ -953,6 +1045,4 @@ Highcharts.chart('combined-ts', {
   }
 );
 </script>
-
-
 {% endblock %}

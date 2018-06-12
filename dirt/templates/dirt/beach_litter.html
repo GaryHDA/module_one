@@ -1,526 +1,845 @@
 {% extends "dirt/temp_one.html" %}
 
 {% block style %}
-.modal-lg {
-  width:80% !important;
-}
-p, ul {
-  font-size:0.875em;
-}
-li {
-  font-size:14px;
-}
+
+<!-- p, ul, li {
+  font-size: 14px;
+} -->
+
 .txt-12 {
   font-size: 12px;
-}
-.bg-black {
-  background-color: #000000;
-}
-
-.bg-red {
-  background-color: rgb(199, 31, 22);
-  background-color: rgba(199, 31, 22, 1);
-
 }
 
 .txt-14 {
   font-size: 14px;
 }
+.bg-red {
+  background-color: rgba(199, 31, 22, 1);
+
+}
+.col-sm{
+  min-width:380px;
+}
+
 .wide-88 {
   width:88px;
   height:88px;
 }
-.m-w-376{
-  min-width: 376px;
+.wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: all .3s linear;
 }
 
+.shutter {
+  position: relative;
+  display: block;
+  width: 33%;
 
-.col-sm, .col-sm-4 {
-  padding: 2px;
-  min-width: 380px;
+  height: 16%;
+  background: #fff;
+  box-sizing: border-box;
+  border-top: 1px solid #ffffff;
+  transition: all .3s linear;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 5;
+  box-sizing: border-box;
+  text-align: center;
+  color: #000;
+}
 
+#whynot{
+  width:80%
+}
+
+#why {
+  width:50%;
+}
+@media  (max-width: 767.98px) {
+  .shutter{
+    width: 100%;
+    height: 20%;
+  };
+  .col-sm {
+    width: 100%;
+    background-color:yellow;
+  };
+}
+@media  (max-width: 767.98px) {
+  #why, #whynot {
+    width:100%;
+
+  };
+}
+.shutterOpen .shutter {
+  height: 0;
+}
+
+.shutter.shutterExpanded {
+  height: 100%;
+  width:100%;
+  overflow:auto;
+  <!-- width:100%; -->
+}
 
 {% endblock %}
 
 
 {% block content  %}
 {% load humanize %}
+<div class="container-fluid p-0 m-0" style="height:100vh; width:100%">
+  <div class="wrapper p-0  mx-auto" style="height:100%">
+    <div class="shutter mx-auto" >
+      <div class="row bg-dark p-1"  style="height:100%" >
+        <h5 class="w-100 text-white">Welcome to the beach-litter section</h5>
+        <p class="text-white mx-auto">Click on a tab below to get started.<br> If you have any questions contact us.</p>
+      </div>
+    </div>
 
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-4 col-xs-12" style="">
-      <div class="p-2">
-        <h5 class="">hammerdirt beach-litter : background</h5>
+    <div class="shutter mx-auto" id="read_me">
+      <div class="row no-gutters bg-info shutterTitle"  style="height:100%" >
+        <h5 class=" p-0 w-100 text-white mb-0"> --> Read me first <-- </h5>
+        <p class="text-white ml-auto mb-0 txt-12">If you can't define "beach-litter-inventory", then this is a good place to start. Includes a brief history of the project and what we hope to measure.</p>
       </div>
-      <div class="p-2">
-        <p>If you don't know the story please read below</p>
-      </div>
-      <div id="accordion" class="w-100" role="tablist">
-        <div class="card pb-0 m-w-376" id="">
-          <div class="card-header bg-info text-white " id="" style="">
-            <a class="bg-info text-white w-100 p-1 collapsed" data-toggle="modal"  data-target="#bl_30" aria-expanded="false" aria-controls="table-of-results">
-              Measuring beach litter
-            </a>
+      <div class="row no-gutters" style="">
+        <div class="col-sm" id='bg' style="">
+          <div class="card pb-0 mx-auto" id="why" style="" >
+            <div class="card-header m-0 w-100 bg-dark text-left float-left" id="" style="">
+              <h4 class="text-white">Why is this important? <br><small class="text-white">Beach litter and trash in the water is a fact of life.</small> </h4>
+            </div>
+            <div class="card-body p-1 w-100 text-left" >
+              <div id="whynot" class="container mx-auto mb-2">
+                <div class="row no-gutters">
+                  <div class="col-sm-4">
+                    <button class="btn bg-info text-white mt-1 p-2 border-white w-100" style="white-space:normal; height:50%" data-toggle="modal"  data-target="#bl_30" aria-expanded="false" aria-controls="table-of-results">
+                       Measuring beach litter
+                    </button>
+                    <button class="btn bg-info text-white mt-1 p-2 border-white w-100" style="white-space:normal; height:50%" data-toggle="modal" data-target="#mcbp-1" aria-expanded="false" aria-controls="">
+                       MCBP-1: 2014-2015
+                    </button>
+                  </div>
+                  <div class="col-sm-4">
+                    <button class="btn bg-info text-white mt-1 p-2 border-white w-100" style="white-space:normal; height:50%" data-toggle="modal"  data-target="#mcbp-2" aria-expanded="false" aria-controls="">
+                       MCBP-2: 2015-2016
+                    </button>
+                    <button class="btn bg-info text-white mt-1 p-2 border-white w-100" style="white-space:normal; height:50%" data-toggle="modal"  data-target="#mcbp-3" aria-expanded="false" aria-controls="table-of-results">
+                       MCBP-3: 2016-2017
+                    </button>
+                  </div>
+                  <div class="col-sm-4">
+                    <button class="btn bg-info text-white mt-1 p-2 border-white w-100" style="white-space:normal; height:50%" data-toggle="modal"  data-target="#mcbp-4" aria-expanded="false" aria-controls="">
+                       MCBP-4: 2018-?
+                    </button>
+                    <button class="btn bg-info text-white mt-1 p-2 border-white w-100 " style="white-space:normal; height:50%" data-toggle="modal"  data-target="#slr" aria-expanded="false" aria-controls="table-of-results">
+                       Swiss Litter Report
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="list-group ">
+                <div class="list-group-item flex-column align-items-start mt-2">
+                <div class="d-flex w-100 justify-content-between ">
+                  <h6 class="mb-1"> Water is better without trash
+                    <br><small class="text-muted">A clean beach is good thing, it is a guaranteed value.
+                    <br>The most obvious benefits from projects  like this is the removal of trash from the environment. </small>
+                  </h6>
+                
+                </div>
+              </div>
+              <div class="list-group-item flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <h6 class="mb-1"> Pragmatic action
+                    <br><small class="text-muted">A sure way to limit the damage
+                    <br>The data we collect may lead to a solution tomorow, but removing trash now is for today.</small>
+                  </h6>
+
+                </div>
+              </div>
+              <div class="list-group-item flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <h6 class="mb-1"> Management tool
+                    <br><small class="text-muted">How else are you going to know whats out there ?
+                    <br>If you inntend on managing it, then you need to measure it.</small>
+                  </h6>
+
+                </div>
+              </div>
+
+            </div>
+
+
+              <div class="container-fluid pt-1 mt-1 align-items-center">
+                <div class="btn mx-auto wide-88 d-inline-flex  align-items-center justify-content-center rounded-circle bg-red">
+                  <a class="text-white txt-14" href="{% url 'mcbp_home' %}">All <br> Results </a>
+                </div>
+                <div class="btn mx-auto wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
+                  <a class="text-white txt-14" href="{% url 'slr_home' %}" aria-expanded="false"> SLR<br> Results </a>
+                </div>
+                <div class="btn mx-auto wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
+                  <a class="text-white txt-14" href="#" aria-expanded="false"> MCBP<br> Results </a>
+                </div>
+                <div class="btn mx-auto wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
+                  <a class="text-white txt-14" href="#" aria-expanded="false"> California<br> Results </a>
+                </div>
+              </div>
+
+
+
+            </div>
+
           </div>
         </div>
-        <div class="card pb-0 m-w-376" id="goals-objectives">
-          <div class="card-header bg-info text-white " id="" style="">
-            <a class="bg-info text-white w-100 p-1 collapsed" data-toggle="collapse"  data-target="#mcbp-1" aria-expanded="false" aria-controls="table-of-results">
-              MCBP-1 2014-2015
-            </a>
-          </div>
-          <div class="collapse " id="mcbp-1" data-parent="#accordion">
-            <div class="card-body p-1 w-100">
-              <h5> Introduction </h5>
-              <p>The first project "Montreux Clean Beach" or MCBP-1 was initiated by Shannon and Roger Erismann in 2014.  After one year of collecting trash in the region
-                 of Montreux, Switzerland our conclusion was that the shores of Lake Geneva were covered with a uniform mix of cigarette butts, broken plastics, crushed styrofoam and qtips.
-               </p>
-               <p>The results were documented and presented to municpal, regional and national authorities in the form of a report detailing location, quantity and frequency.</p>
-               <p>The document:<br>
-                 <a href="https://drive.google.com/open?id=0BzPFamJgOYe1ZXExVFJ0cFZnRmM"> Under our feet, at the waters edge</a><br>
-                 (link to document on GoogleDrive)
-               </p>
-               <p>Although not a scientific report, this document was a launchpad for the second MCBP, and guided (guides) research into topics such as:
-                 <ul>
-                   <li>Aquatic litter, >Citizen Science</li>
-                   <li>National and international legislaltion</li>
-                   <li>Water quality, Microbiology</li>
-                   <li>Data science, Data visualization</li>
-                   <li>Programing(python, js, react, java)</li>
-                   <li>Network communications</li>
-                 </ul>
-               </p>
+      </div>
+    </div>
+    <div class="shutter mx-auto" id="combined_data">
+      <div class="row no-gutters bg-info shutterTitle" style="height:100%" >
+        <h5 class="p-0 w-100 text-white mb-0">Combined data 2015 to {{ t_day|date:"Y" }}</h5>
+        <p class="text-white txt-12  ml-auto mb-0">Search all the aggregated survey results for Switzerland. Descriptive statistics, maps, time-series charts. Categorized by city, water-body, or project.</p>
+
+      </div>
+      <div class="row no-gutters" id='cd' style="height:100% ">
+        <div class="col-sm" id='cd_0' style="height:100%">
+          <div class="card pb-0" id="cd_1" style="height:100%">
+            <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
+              Summary:
+            </div>
+            <div class="card-body p-0 text-left" style="height:100%">
+              <h6 class="card-title"> Summary of all data for Switzerland on record
+                <br><small class="text-muted">Averages not weighted
+                <br>Units= pcs/m</small></h6>
+              <table class="table table-sm table-striped text-left mb-0 txt-12"  style="height:24%">
+                <tbody>
+                    <td class="ml-auto">N<sup>o</sup> of Samples:</td>
+                    <td class="mr-auto">{{ summary.num_samps|floatformat:0|intcomma }}</td>
+                  </tr>
+                  <tr>
+                    <td class="ml-auto">N<sup>o</sup> of locations:</td>
+                    <td class="mr-auto">{{ num_locs|floatformat:0 }}</td>
+                  </tr>
+                  <tr>
+                    <td class="ml-auto">N<sup>o</sup> of rivers - lakes:</td>
+                    <td class="mr-auto">{{ num_rivers|floatformat:0 }} - {{ num_lakes|floatformat:0 }}</td>
+                  </tr>
+                  <tr>
+                    <td class="ml-auto">First sample date:</td>
+                    <td class="mr-auto">{{ summary.first|date:"M Y" }}</td>
+                  </tr>
+                  <tr>
+                    <td class="ml-auto">Most recent sample:</td>
+                    <td class="mr-auto">{{ summary.last|date:"M Y" }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <button class="btn bg-info w-100 p-2 pl-3 text-white text-left border-white" style="height:8%"  role="button" data-toggle="modal" data-target="#water_search" aria-expanded="false" aria-controls="">
+                Search by city, body of water or project</button>
+
+              <table class="table table-sm table-striped text-left mb-0 txt-12"  style="height:24%">
+                <tbody>
+                  <tr>
+                    <td class="ml-auto">N<sup>o</sup> of pieces of garbage:</td>
+                    <td class="mr-auto">{{ summary.total|floatformat:0|intcomma }}</td>
+                  </tr>
+                  <tr>
+                    <td class="ml-auto">Avg pieces/meter (pcs/m):</td>
+                    <td class="mr-auto">{{ summary.ave_dense|floatformat:2 }} pcs/m</td>
+                  </tr>
+                  <tr>
+                    <td class="ml-auto">Standard deviation</td>
+                    <td class="mr-auto">{{ summary.stan_dev|floatformat:2 }}</td>
+                    </tr>
+                  <tr>
+                    <td class="ml-auto">25<sup>th</sup> percentile</td>
+                    <td class="mr-auto">{{ summary.two_five|floatformat:2 }} pcs/m</td>
+                  </tr>
+                  <tr>
+                    <td class="ml-auto">75<sup>th</sup> percentile</td>
+                    <td class="mr-auto"> {{ summary.seven_five|floatformat:2 }} pcs/m</td>
+                  </tr>
+                  <tr>
+                    <td class="ml-auto">Min - Max pcs/m :</td>
+                    <td class="mr-auto"> {{ summary.min_dense|floatformat:4 }} - {{ summary.max_dense|floatformat:2 }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- <div class="btn-toolbar">
+                <div class="btn-group" style="height:10%" > -->
+              <button class="btn bg-info w-100 p-2 pl-3 text-white text-left border-white" style="height:8%" role="button" data-toggle="modal" data-target="#lakes_rivers" aria-expanded="false" aria-controls="">
+                  See list of lakes and rivers</button>
+
+              <button class="btn bg-info p-2 pl-3 text-white text-left border-white w-100" style="height:8%" data-toggle="modal"  data-target="#sum_data" aria-expanded="false" aria-controls="table-of-results">
+                Top-ten, material type</button>
+              <button class="btn bg-info p-2 pl-3 text-white text-left border-white w-100"  style="height:8%" data-toggle="modal" data-target="#sun_shine" aria-expanded="false" aria-controls="">
+                  Inventory of all items</button>
+                <!-- </div>
+              </div> -->
+
             </div>
           </div>
         </div>
-        <div class="card pb-0 m-w-376" id="goals-objectives">
-          <div class="card-header bg-info text-white " id="" style="">
-            <a class="bg-info text-white w-100 p-1 collapsed" data-toggle="collapse"  data-target="#mcbp-2" aria-expanded="false" aria-controls="table-of-results">
-              MCBP-2: 2015-2016
-            </a>
+        <div class="col-sm" id="cd_01"  style="">
+          <div class="card pb-0" id="cd_9"  style="height:100%">
+            <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
+              Location of beach liiter surveys:
+            </div>
+            <div class="card-body p-0 text-left"  style="height:100%">
+              <h6 class="card-title">Map of all beach litter surveys reported
+                <br><small class="text-muted">Units= pcs/m, circle size relative to avg pcs/m
+                <br>Use buttons below to select major categories</small></h6>
+              <div id="combined_map_all" class="" style="height:76%; min-height:460px"></div>
+              <div class="btn-toolbar float-right">
+                <div class="btn-grp w-100" style="height:14%">
+                  <button id="lake" class="btn p-2 mt-1 bg-info text-white" style="" type="submit" value="lake">lake</button>
+                  <button id="SLR" class="btn p-2 mt-1 bg-info text-white" style="" type="submit" value="SLR">SLR</button>
+                  <button id="river" class="btn p-2 mt-1 bg-info text-white" style="" type="submit" value="rivers">Rivers</button>
+                  <button id="MCBP" class="btn p-2 mt-1 bg-info text-white" style="" type="submit" value="MCBP">MCBP</button>
+                  <button id="all" class="btn p-2 mt-1 bg-info text-white" style="" type="submit" value="all">See all locations</button>
+                </div>
+              </div>
+            </div>
           </div>
-           <div class="collapse " id="mcbp-2" data-parent="#accordion">
-             <div class="card-body p-1 w-100">
-               <p>
-                 MCBP-2 was started in November 2015, following the <a href="https://www.ospar.org/work-areas/eiha/marine-litter">OSPAR</a>
-                  and <a href="https://www.eea.europa.eu/themes/water/europes-seas-and-coasts/marine-litterwatch">Marine Litter Watch</a>(MLW)
-                  protocols. Centered in the region of Montreux, over 100 litter inventories were conducted in 12 months (52 inventories within the city limits of Montreux)
-                  each inventory detailed the following:
-                  <ul>
-                     <li>Object found</li>
-                     <ul>
-                       <li>Quantity</li>
-                       <li>MLW Classification</li>
-                       <ul>
-                         <li>Description</li>
-                         <li>Material composition</li>
-                       </ul>
-                     </ul>
-                     <li>GPS coordinates</li>
-                     <li>Length of shoreline</li>
-                   </ul>
-               </p>
-                 <p>The results were documented using the <a href="http://www.kobotoolbox.org/">Open-Data-Kit (Kobo-Collect)</a> and were made availbale to the public on our Google-Drive</p>
-                 <p>MCBP-2 produced two documents:
-                   <ul>
-                     <li> <a href="https://drive.google.com/open?id=0BzPFamJgOYe1RFJmR01qeWZtQWc">The ln(beach-litter-density)</a></li>
-                     <ul>
-                       <li>Compares results from MCBP-2 to other OSPAR regions</li>
-                       <li>Compares results fromt the EPFL stduy in 2014</li>
-                       <li>Expresses trash as a value of pcs/m </li>
-                     </ul>
-                     <li> <a href="https://drive.google.com/open?id=0BzPFamJgOYe1S2R4WC01cDBlQzg">Annex-B</a></li>
-                     <ul>
-                       <li>Comparative analysis of results</li>
-                       <li>Regression of pcs/m against river discharge rates</li>
-                       <li>Identification of most common items found</li>
-                       <li>Expression of pcs/m as a probability mass function</li>
-                     </ul>
-                   </ul>
-                   The results were presented to municipal, regional and national authorities.
-                 </p>
-             </div>
-           </div>
         </div>
-        <div class="card pb-0 m-w-376" id="goals-objectives">
-          <div class="card-header bg-info text-white " id="" style="">
-            <a class="bg-info text-white w-100 p-1 collapsed" data-toggle="collapse"  data-target="#mcbp-3" aria-expanded="false" aria-controls="table-of-results">
-              MCBP-3: 2017-2018
-            </a>
+        <div class="col-sm" id="cd_02"  style="height:100%" >
+          <div class="card pb-0" id="cd_10"  style="height:100%">
+            <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
+              <i class="fa fa-line-chart fa-lg"></i>&nbsp; Plot of all litter surveys 2015 to {{ t_day|date:"b-Y"}}:
+            </div>
+            <div class="card-body p-0 text-left"  style="height:100%">
+              <h6 class="card-title"> Combined results of all volunteer surveys <br><small class="text-muted">Units= pcs/m, Zoom date with click and drag in chart area<br> Activate/deactivate items in the legend</small></h6>
+              <div id="combined-ts" class="w-100" style="height: 76%; min-height: 460px;"></div>
+              <button class="btn bg-info w-100 p-2 pl-3 text-white text-left" role="button" data-toggle="modal" data-target="#box_one" aria-expanded="false" aria-controls="">
+                    This chart : subdued colors, more detail ++ bigger
+              </button>
+            </div>
+
           </div>
-           <div class="collapse " id="mcbp-3" data-parent="#accordion">
-             <div class="card-body p-1 w-100">
-              <p>MCBP-3 marks a departure from the hammerdirt role as volunteer trash collectors.  We decided to focus on one area of operations to increase efficiency,
-                reduce costs and develop B2B services that are in short supply:
+        </div>
+      </div>
+    </div>
+    <div class="shutter mx-auto" id="prob_garbage">
+      <div class="row no-gutters bg-info shutterTitle" style="height:100%">
+        <h5 class="p-0 w-100 text-white mb-0">The probability of garbage</h5>
+      <p class="text-white txt-12  ml-auto mb-0">Evaluating beach litter by testing the effects of independent variables on reported litter counts.</p>
+
+      </div>
+      <div class="row no-gutters" id='gb' style="height:100% ">
+        <div class="col-sm" id='gb_0' style="height:100%">
+          <div class="card pb-0" id="MEASURING">
+            <div class="bg-dark text-white card-header p-2 pl-3" id="" style="">
+              Beach litter as a probability
+            </div>
+            <div class="card-body text-left" style="height:100%">
+              <h6 class="card-title">How to determine if litter is increasing or decreasing?
+                <br><small class="text-muted">Quantify the user experience
+                <br>Take repeated samples at mutlitple locations</small></h6>
+            </div>
+
+          </div>
+          <div class="card-block align-items-center pb-0 pt-1">
+            <div class="btn mx-auto wide-88 d-inline-flex  align-items-center justify-content-center rounded-circle bg-red">
+              <a class="text-white txt-14" href="{% url 'mcbp_home' %}">All <br> Results </a>
+            </div>
+            <div class="btn mx-auto wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
+              <a class="text-white txt-14" href="{% url 'slr_home' %}" aria-expanded="false"> SLR<br> Results </a>
+            </div>
+            <div class="btn mx-auto wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
+              <a class="text-white txt-14" href="#" aria-expanded="false"> MCBP<br> Results </a>
+            </div>
+            <div class="btn mx-auto wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
+              <a class="text-white txt-14" href="#" aria-expanded="false"> California<br> Results </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm" id='gb_1' style="height:100%">
+          <div class="card pb-0">
+            <div class="bg-dark text-white card-header p-2 pl-3" id="" style="">
+              <i class="fa fa-line-chart fa-lg"></i>&nbsp; Lac Léman two consecutive years of data</button>
+            </div>
+            <div class="card-body text-left">
+              <h6 class="card-title "> {{ num_samps|floatformat:0|intcomma }} observations from 2015 -2017</br>
+                <small class="text-muted">28 different locations, multiple groups</small></h6>
+              <div id="scatterchart" class="" style="height:360px; width:360px; background-color:#ffffff"></div>
+              <h6 class="card-text"> Each point represents a liiter inventory.</h6>
+              <h6 class="card-text"> Was there was a change from 2016 to 2017 ?</h6>
+              <h6 class="card-text"> How is 2018 looking ? </h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm "  id='gb_2' style="height:100%">
+          <div class="card pb-0">
+            <div class="bg-dark text-white card-header p-2 pl-3"  id="" style="">
+              <i class="fa fa-line-chart fa-lg"></i>&nbsp; Year over year probability density function
+            </div>
+            <div class="card-body p-0 text-left">
+              <h6 class="card-title">Probability distribution of pcs/m <br>
+                <small class="text-muted"> year one n={{ y_one_s }}, year two n= {{ y_two_s }} </small></h6>
+              <div id="probchart" class="" style="height:360px; width:360px; background-color:#ffffff"> </div>
+              <p class="card-text">The probability of finding less than 1 piece of trash per meter in 2016 was 3.1%,
+                in 2017 it was 3%. Given the unacounted for variables this is no change at all.</p>
+              <p>
+                How is this calculated? -- <a href="https://github.com/hammerdirt/notes/blob/master/notes-hammerdirt.ch/Beach-Litter%20home.ipynb">check here</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="shutter mx-auto">
+      <div class="row no-gutters bg-info shutterTitle" style="height:100%" >
+        <h5 class="p-0 w-100 text-white mb-0">Current Jupyter notebooks</h5>
+          <p class="text-white txt-12 ml-auto mb-0">Works in progress and most of the "mathy stuff" is done in a notebook first.  This is a collection of those notebooks.</p>
+      </div>
+    </div>
+    <!-- <div class="shutter">
+      <div class="row bg-dark p-1" style="height:100%" >
+        <h5 class="w-100 text-white">Activeley looking for research parteners</h5>
+          <p class="text-white mx-auto">Let us bring our skills to your project (or see how you can help us!)</p>
+      </div>
+    </div> -->
+  </div>
+  <div class="modal fade" id="bl_30">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Measuring beach litter<br>
+            <small class="text-muted"> For a list of further reading on the subject see the bibliography section of the MCBP results.</small>
+          </h5>
+          <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Beach litter density is the measure of trash on a fixed length of beach or shoreline.
+          </p>
+          <p>
+            All visible trash is collected, the individual objects are identified and sorted using an international protocol.  This process is repeated multiple times per year
+            at the same location. In Europe the two most important protocols are OSPAR and Marine Litter Watch.
+          </p>
+           <p>
+             Research has connected 80% of marine debris to landbased activities.  However there has never been a national survey of aquatic litter in freshwater environements
+             that uses similar methods.  Untill now.
+           </p>
+           <p>
+             Combined, the SLR and MCBP have over 1000 samples from 135 locations across the country.  Establishing both a baseline and identifying the objects most frequently found
+             in the environment.
+           </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="mcbp-1">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">MCBP-1 2014-2015<br>
+            <small class="text-muted"> Everything has a begining</small>
+          </h5>
+          <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h5> Introduction </h5>
+          <p>
+            The first project "Montreux Clean Beach" or MCBP-1 was initiated by Shannon and Roger Erismann in 2014.  After one year of collecting trash in the region
+             of Montreux, Switzerland our conclusion was that the shores of Lake Geneva were covered with a uniform mix of cigarette butts, broken plastics, crushed styrofoam and qtips.
+           </p>
+          <p>The results were documented and presented to municpal, regional and national authorities in the form of a report detailing location, quantity and frequency.</p>
+          <p>The document:
+            <br><a href="https://drive.google.com/open?id=0BzPFamJgOYe1ZXExVFJ0cFZnRmM"> Under our feet, at the waters edge</a></p>
+          <p>Although not a scientific report, this document was a launchpad for the second MCBP, and guided (guides) research into topics such as:
+             <ul>
+               <li>Aquatic litter, Citizen Science</li>
+               <li>National and international legislaltion</li>
+               <li>Water quality, Microbiology</li>
+               <li>Data science, Data visualization</li>
+               <li>Programing(python, js)</li>
+               <li>Network communications</li>
+             </ul>
+           </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="mcbp-2">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">MCBP-2 2015-2016<br>
+            <small class="text-muted"> Getting serious</small>
+          </h5>
+          <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>
+            MCBP-2 was started in November 2015, following the <a href="https://www.ospar.org/work-areas/eiha/marine-litter">OSPAR</a>
+             and <a href="https://www.eea.europa.eu/themes/water/europes-seas-and-coasts/marine-litterwatch">Marine Litter Watch</a>(MLW)
+             protocols. Centered in the region of Montreux, over 100 litter inventories were conducted in 12 months (52 inventories within the city limits of Montreux)
+             each inventory detailed the following:</p>
+             <ul>
+                <li>Object found</li>
                 <ul>
-                  <li> Automation of data handling</li>
+                  <li>Quantity</li>
+                  <li>MLW Classification</li>
                   <ul>
-                    <li>Develop our own app for logging data</li>
-                    <li>Automate standard data analysis</li>
-                    <li>Automate standard data visualisations</li>
-                    <li>Automate the update procedures for web and app</li>
-                  </ul>
-                  <li>Specifically we focussed on the following programing languages/platforms:</li>
-                  <ul>
-                    <li> Python (django, pandas, scikit-learn, matplotlib, numpy, et all...)</li>
-                    <li> HTML5/CSS -- frameworks </li>
-                    <li> JavaScript (Highcharts, D3, jQuery, react, react-native, nodeJs)</li>
-                    <li> Java (android), MySQL, linux(shell) </li>
+                    <li>Description</li>
+                    <li>Material composition</li>
                   </ul>
                 </ul>
+                <li>GPS coordinates</li>
+                <li>Length of shoreline</li>
+              </ul>
 
-              </p>
-              <p>The time investment was offset by a reduction in software subscription costs, computer hardware investments, time spent generating reports and an overall improvement in reporting and analysing data.
-              </p>
-             </div>
-           </div>
-        </div>
-        <div class="card pb-0 m-w-376" id="goals-objectives">
-          <div class="card-header bg-info text-white " id="" style="">
-            <a class="bg-info text-white w-100 p-1 collapsed" data-toggle="collapse"  data-target="#mcbp-4" aria-expanded="false" aria-controls="table-of-results">
-              MCBP-4: NOT!!
-            </a>
-          </div>
-          <div class="collapse " id="mcbp-4" data-parent="#accordion">
-            <div class="card-body p-1 w-100">
-              <p>
-                There will be no furhter MCBP projects. The development of our platform elimnates the need for a project based approach
-                to aquatic litter monitoring in the area.
-              </p>
-              <p>
-                Litter surveillance will continue. However, there are other projects that are of more interest to hammerdirt and could have a better cost to value ratio.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="card pb-0 m-w-376" id="goals-objectives">
-          <div class="card-header bg-info text-white " id="" style="">
-            <a class="bg-info text-white w-100 p-1 collapsed" data-toggle="collapse"  data-target="#slr" aria-expanded="false" aria-controls="table-of-results">
-              The Swiss Litter Report
-            </a>
-          </div>
-           <div class="collapse " id="slr" data-parent="#accordion">
-             <div class="card-body p-1 w-100">
-               <p>
-                 The Swiss Litter Report(SLR) is a project by <a href="http://stoppp.org/swiss-litter-report">STOPPP</a> and <a href="https://www.wwf.ch/de">WWF Switzerland</a>. WWF and STOPPP volunteers monitor over 100 sites across Switzerland.
-               </p>
-               <p>
-                The methods used by the SLR produce comparable data to the MCBP series and when both data sets are considered a national baseline
-                for shoreline litter can be established.
-               </p>
-             </div>
-           </div>
-        </div>
-        <div class="card pb-0 m-w-376" id="">
-            <div class="card-header bg-info text-white " id="" style="">
-              <a class="bg-info text-white w-100 p-1 collapsed" data-toggle="collapse"  data-target="#why" aria-expanded="false" aria-controls="table-of-results">
-                SLR/MCBP whats the difference ?
-              </a>
-            </div>
-            <div class="collapse " id="why" data-parent="#accordion">
-              <div class="card-body p-1 w-100">
-                <p>
-                  There are a couple of differences:
-                  <ul>
-                    <li>Most of the samples from MCBP were collected by three people, the SLR has hundreds of volunteers</li>
-                    <li>MCBP was started by two people in response to repeated observations in their own community.  The SLR is a project iniated by
-                      a large organization and administered from the top down</li>
-                    <li>*MCBP counts every item found with no lower size limit(OSPAR), SLR has a lower size limit of 2.5cm(MLW)</li>
-                  </ul>
-                </p>
-                <p>*We believe that this accounts for the difference in the probability distribution of the two projects</p>
-              </div>
-            </div>
-        </div>
-        <div class="card pb-0 m-w-376" id="">
-          <div class="card-header bg-info text-white " id="" style="">
-            <a class="bg-info text-white w-100 p-1 collapsed" data-toggle="collapse"  data-target="#samples" aria-expanded="false" aria-controls="table-of-results">
-              How does repeated sampling effect litter quantity ?
-            </a>
-          </div>
-           <div class="collapse " id="samples" data-parent="#accordion">
-             <div class="card-body p-1 w-100">
-               <div id="by_sample_no" style="width:100%;"></div>
-               <p>
-                 It appears that repeated sampling has a positive effect on the environment: the more often you go the less you find.
-               </p>
-               <p>
-                 However there is some more work to do in this analysis, this could be do to the fact that people are more likely to repeat the process when
-                 the workload is lighter or the locations with the most samples are also maintained by municipal authorities.
-               </p>
-             </div>
-           </div>
-        </div>
-        <div class="card-block justify-content-center pb-0 pt-1">
-          <div class="btn mx-auto wide-88 d-inline-flex  align-items-center justify-content-center rounded-circle bg-red">
-            <a class="text-white txt-14" href="{% url 'mcbp_home' %}">
-              MCBP <br>
-              Results
-            </a>
-          </div>
-          <div class="btn mx-auto wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
-            <a class="text-white txt-14" href="{% url 'slr_home' %}" aria-expanded="false">
-              SLR<br>
-              Results
-            </a>
-          </div>
-          <div class="btn mx-auto wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
-            <a class="text-white txt-14" href="#" aria-expanded="false">
-              Your<br>
-              Research
-            </a>
-          </div>
+          <p>The results were documented using the <a href="http://www.kobotoolbox.org/">Open-Data-Kit (Kobo-Collect)</a> and were made availbale to the public on our Google-Drive</p>
+          <p>MCBP-2 produced two documents:</p>
+            <ul>
+              <li> <a href="https://drive.google.com/open?id=0BzPFamJgOYe1RFJmR01qeWZtQWc">The ln(beach-litter-density)</a></li>
+              <ul>
+                <li>Compares results from MCBP-2 to other OSPAR regions</li>
+                <li>Compares results fromt the EPFL stduy in 2014</li>
+                <li>Expresses trash as a value of pcs/m </li>
+              </ul>
+              <li> <a href="https://drive.google.com/open?id=0BzPFamJgOYe1S2R4WC01cDBlQzg">Annex-B</a></li>
+              <ul>
+                <li>Comparative analysis of results</li>
+                <li>Regression of pcs/m against river discharge rates</li>
+                <li>Identification of most common items found</li>
+                <li>Expression of pcs/m as a probability mass function</li>
+              </ul>
+            </ul>
+          <p>The results were presented to municipal, regional and national authorities.</p>
         </div>
       </div>
     </div>
-    <div class="col-sm-4 col-xs-12" style="">
-      <div id="accordion2" class="w-100" role="tablist">
-        <div class="card pb-0 m-w-376" id="data-summary">
-          <div class="bg-info text-white card-header" id="" style="">
-            <a class="bg-info text-white" data-toggle="collapse" data-parent="#accordion2" data-target="#summary" aria-expanded="false" aria-controls="links">
-              <i class="fa fa-th fa-lg"></i>&nbsp; Combined data summary SLR-MCBP :
-            </a>
-          </div>
-          <div class="collapse show container-fluid m-1 w-100" data-parent="#accordion2" style="" id="summary">
-            <div class="card-body p-1 mb-1 mt-1 justify-content-end bg-red w-100">
-              <div class="d-flex flex-row justify-content-end p-0 bg-red w-100">
-                <div class="d-sm-inline-flex flex-column p-1 w-50">
-                  <div class="d-sm-inline-flex p-1 bg-black">
-                    <p class="text-white p-0 m-0">N<sup>o</sup> of Samples</p>
-                  </div>
-                  <div class="d-sm-inline-flex flex-column p-1 " >
-                   <p class="text-white p-0 m-0" > {{ summary.num_samps|floatformat:0|intcomma }}</p>
-                  </div>
-                </div>
-                <div class="d-sm-inline-flex flex-column p-1 w-50">
-                  <div class="d-sm-inline-flex p-1 bg-black">
-                    <p class="text-white p-0 m-0">Total pieces </p>
-                  </div>
-                  <div class="d-sm-inline-flex flex-column p-1 m-0">
-                    <p class="text-white p-0 m-0"> {{ summary.total|floatformat:0|intcomma }}</p>
-                  </div>
-                </div>
-              </div>
-              <div class="d-flex flex-row justify-content-end p-0 bg-red">
-                <div class="d-sm-inline-flex flex-column p-1 w-50">
-                  <div class="d-sm-inline-flex p-1 bg-black">
-                    <p class="text-white p-0 m-0">First sample</p>
-                  </div>
-                  <div class="d-sm-inline-flex flex-column p-1 ">
-                   <p class="text-white p-0 m-0">{{ summary.first|date:"M Y" }}</p>
-                  </div>
-                </div>
-                <div class="d-sm-inline-flex flex-column p-1 w-50">
-                  <div class="d-sm-inline-flex p-1 bg-black">
-                    <p class="text-white p-0 m-0">Latest sample</p>
-                  </div>
-                  <div class="d-sm-inline-flex flex-column p-1 m-0">
-                    <p class="text-white p-0 m-0">{{ summary.last|date:"M Y" }}</p>
-                  </div>
-                </div>
-              </div>
-              <div class="d-flex flex-row justify-content-end p-0 bg-red">
-               <div class="d-sm-inline-flex flex-column p-1 w-50">
-                 <div class="d-sm-inline-flex p-1 bg-black">
-                   <p class="text-white p-0 m-0 " >Average pcs/m</p>
-                 </div>
-                 <div class="d-sm-inline-flex flex-column p-1 ">
-                   <p class="text-white p-0 m-0" > {{ summary.ave_dense|floatformat:1 }} pcs/m <small> (not weighted) </small></p>
-                 </div>
-               </div>
-               <div class="d-sm-inline-flex flex-column p-1 w-50">
-                <div class="d-sm-inline-flex p-1 bg-black" >
-                  <p class="text-white p-0 m-0">Range pcs/m</p>
-                </div>
-                <div class="d-sm-inline-flex flex-column p-1 m-0">
-                  <p class="text-white p-0 m-0"> {{ summary.min_dense|floatformat:1 }} - {{ summary.max_dense|floatformat:1 }} pcs/m</p>
-                </div>
-               </div>
-              </div>
-              <div class="d-flex flex-row justify-content-end p-0 bg-red">
-                <div class="d-sm-inline-flex flex-column p-1 w-50">
-                  <div class="d-sm-inline-flex p-1 bg-black">
-                   <p class="text-white p-0 m-0">Standard deviation</p>
-                  </div>
-                  <div class="d-sm-inline-flex flex-column p-1 m-0">
-                   <p class="text-white p-0 m-0"> {{ summary.stan_dev|floatformat:2 }} pcs/m</p>
-                  </div>
-                </div>
-                <div class="d-sm-inline-flex flex-column p-1 w-50">
-                  <div class="d-sm-inline-flex p-1 bg-black">
-                    <p class="text-white p-0 m-0">Innerquartile</p>
-                  </div>
-                  <div class="d-sm-inline-flex flex-column p-1 m-0">
-                    <p class="text-white p-0 m-0"> {{ summary.iqr|floatformat:1 }} pcs/m</p>
-                  </div>
-                </div>
-              </div>
-              <div class="d-flex flex-row justify-content-end p-0 bg-red">
-                <div class="d-sm-inline-flex flex-column p-1 w-50">
-                  <div class="d-sm-inline-flex p-1 bg-black">
-                   <p class="text-white p-0 m-0">25<sup>th</sup> percentile</p>
-                  </div>
-                  <div class="d-sm-inline-flex flex-column p-1 m-0">
-                   <p class="text-white p-0 m-0"> {{ summary.two_five|floatformat:1 }} pcs/m</p>
-                  </div>
-                </div>
-                <div class="d-sm-inline-flex flex-column p-1 w-50">
-                  <div class="d-sm-inline-flex p-1 bg-black">
-                    <p class="text-white p-0 m-0">75<sup>th</sup> percentile</p>
-                  </div>
-                  <div class="d-sm-inline-flex flex-column p-1 m-0">
-                    <p class="text-white p-0 m-0"> {{ summary.seven_five|floatformat:1 }} pcs/m</p>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer bg-black text-center text-white">
-                <a class="text-white" role="button" data-toggle="modal" data-target="#map-modal" aria-expanded="false" aria-controls="table-of-results">
-                  Show map of all results
-                </a>
-              </div>
-            </div>
-            <div>
-              <p>
-              SLR Data is downloaded from the <a href="http://discomap.eea.europa.eu/map/fme/MLWPivotExport.htm">Marine Litter Watch data service</a>,
-               using the community code "motdu".
-              </p>
-              <p>
-                MCBP Data can be downloaded <a href="https://drive.google.com/open?id=1XL1-_rSHsX6nwPnUNVEQB76PkIvkGn--">here</a>
-            </div>
-          </div>
+  </div>
+  <div class="modal fade" id="mcbp-3">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">MCBP-3 2016-2017<br>
+            <small class="text-muted">Making the efforts sustainable with automation and data-science </small>
+          </h5>
+          <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-       <div class="card pb-0 m-w-376" id="goals-objectives">
-         <div class="card-header bg-info text-white " data-parent="#accordion2" id="" style="">
-           <a class="bg-info text-white w-100 p-1 collapsed" data-toggle="collapse"  data-target="#histo" aria-expanded="false" aria-controls="table-of-results">
-             <i class="fa fa-bar-chart fa-lg "></i>&nbsp; Histogram of results
-           </a>
-         </div>
-         <div class="collapse " id="histo" data-parent="#accordion2">
-           <div class="card-body p-1 w-100">
-             <div id="slr-hist" style="width:100%;"></div>
-             <div>
-               <p>
-                 The results from MCBP fall within the disribution of the SLR.
-               </p>
-               <p>
-                 This is expected and encouraging.  This means two independent groups came up with similar results.  When compared to the values for lakes in the
-                 SLR project the MCBP results are within the limits of the SLR.
-               </p>
-             </div>
-           </div>
-         </div>
-       </div>
+        <div class="modal-body">
+          <p>MCBP-3 is a departure from the hammerdirt role as volunteer trash collectors.  It became obvious that no official institutions
+            were interested in analyzing or using the collected data. Therefore we decided to create te infrastructure necesary to
+            automate the basic analysis and visualization of the results.</p>
+            <ul>
+              <li> Automation of data handling</li>
+              <ul>
+                <li>Develop our own app for logging data</li>
+                <li>Automate presentation of results and descriptive statistics</li>
+                <li>Automate standard data visualisations</li>
+              </ul>
+              <li>Specifically we focussed on the following programing languages/platforms:</li>
+              <ul>
+                <li> Python (django, pandas, scikit-learn, matplotlib, numpy, et all...)</li>
+                <li> HTML5/CSS -- Bootstrap 4 </li>
+                <li> JavaScript (Highcharts, D3, jQuery, react, react-native, nodeJs)</li>
+                <li> Java (android), MySQL, linux(shell) </li>
+              </ul>
+            </ul>
+          <p>As a result we did fewer litter inventories. However this led to several operations improvements:</p>
+          <ul>
+            <li>Software fees were reduced to zero (not including server costs)</li>
+            <li>This allowed for possible IT hardware investments </li>
+            <li>Reduced time spent generating reports</li>
+            <li>Increased access to results and data</li>
+            <li>Reduced overall time spent on adminstrative tasks</li>
+          </ul>
+
+        </div>
       </div>
     </div>
-    <div class="col-sm-4 col-xs-12">
-      <div id="accordion3" class="w-100" role="tablist">
-        <div class="card pb-0 m-w-376" id="goals-objectives">
-          <div class="card-header bg-info text-white " data-parent="#accordion3" id="" style="">
-            <a class="bg-info text-white w-100 p-1 collapsed" data-toggle="collapse"  data-target="#bplot" aria-expanded="false" aria-controls="">
-              <i class="fa fa-line-chart fa-lg"></i>&nbsp; Survey results lakes v/s rivers
-            </a>
-          </div>
-          <div class="collapse show " id="bplot" data-parent="#accordion3">
-            <div class="card-body p-1 w-100">
-              <div class="w-100" id="box-plot"></div>
-              <div class="card-footer bg-info text-center">
-                <a class="bg-info text-white" role="button" data-toggle="modal" data-target="#inventory" aria-expanded="false" aria-controls="">
-                  Make this chart bigger
-                </a>
-              </div>
-            </div>
-          </div>
+  </div>
+  <div class="modal fade" id="mcbp-4">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">MCBP-4 2017-<br>
+            <small class="text-muted">Beach litter surveillance made easy</small>
+          </h5>
+          <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>
+            There will be no further MCBP projects. The development of our platform elimnates the need for a project based approach
+            to aquatic litter monitoring in the area.
+          </p>
+          <p>
+            Litter surveillance will continue throughout the year at various locations in the region. However, efforts in this domain will be focussed on data analysis and visualisation.
+          </p>
+          <p>
+            We can do that now that the easy stuff has been automated !
+          </p>
         </div>
       </div>
-      <div class="card-block row justify-content-center pb-0 pt-1">
-        <div class="btn ml-1 wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
-          <a class="text-white txt-14 " data-toggle="modal"  data-target="#print-it" aria-expanded="false">
-            Printable
-            <br>
-            <i class="fa fa-download fa-lg mt-2 mb-1"></i>
-            <br>Report
-          </a>
+    </div>
+  </div>
+  <div class="modal fade" id="slr">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">The Swiss Litter Report<br>
+            <small class="text-muted">Litter surveillance on a national scale</small>
+          </h5>
+          <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <div class="modal" id="print-it">
-          <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-              <div class="modal-header bg-dark text-white">
-                <div class="mx-auto text-center">
-                  <p class="">This is not a free service.</p>
+        <div class="modal-body">
+          <p>
+            The Swiss Litter Report(SLR) is a project by <a href="http://stoppp.org/swiss-litter-report">STOPPP</a> and <a href="https://www.wwf.ch/de">WWF Switzerland</a>. WWF and STOPPP volunteers monitor over 100 sites across Switzerland.
+          </p>
+          <p>
+           The methods used by the SLR produce comparable data to the MCBP series and when both data sets are considered a national baseline
+           for shoreline litter can be established.</p>
+           <p>
+             There are a couple of differences:
+             <ul>
+               <li>Most of the samples from MCBP were collected by three people, the SLR has hundreds of volunteers</li>
+               <li>MCBP was started by two people in response to repeated observations in their own community.  The SLR is a project iniated by
+                 a large organization and administered from the top down</li>
+               <li>*MCBP counts every item found with no lower size limit(OSPAR), SLR has a lower size limit of 2.5cm(MLW)</li>
+             </ul>
+           </p>
+           <p>*We believe that this accounts for the difference in the probability distribution of the two projects</p>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade w-100" id="water_search">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-info text-white">
+          <div class="container-fluid">
+            <h5 class="">The search is limted to cities and lakes/rivers that have registered surveys<br>
+            <small class="text-white">If you would like to have a project listed here, contact us.</small></h5>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="card-group">
+            <div class="card " style="">
+              <h5 class="card-title">Pick a city</h5>
+              <div class="card-body">
+                <form class="d-inline-block mb-1" action='/dirt/search_city/' method='get'>
+                <i class="fa fa-folder-open fa-lg mr-1 "></i>&nbsp;Details:&nbsp;&nbsp;
+                <select class="form-control-sm d-inline-block mr-2" style="width:160px" name='city'>
+                  {% for x in all_cities %}
+                  <option class="txt-12" value= "{{ x }}">{{ x }}</option>
+                  {% endfor %}
+                </select>
+                <button class="d-inline-block btn  txt-14 p-1" style="background-color:transparent; border-color:black; border-width:1px" type='submit' ><i class="fa fa-external-link fa-lg"></i></button>
+              </form>
+                <div class="card-text"><small>* Get all results from a city</small></div>
+              </div>
+            </div>
+            <div class="card " style="">
+              <h5 class="card-title">Pick a  body of water</h5>
+              <div class="card-body">
+                <form class="d-inline-block mb-1" action='/dirt/search_water/' method='get'>
+                <i class="fa fa-folder-open fa-lg mr-1 "></i>&nbsp;Details:&nbsp;&nbsp;
+                <select class="form-control-sm d-inline-block mr-2"style="width:160px" name='water'>
+                  {% for x in all_water %}
+                  <option class="txt-12" value= "{{ x }}">{{ x }}</option>
+                  {% endfor %}
+                </select>
+                <button class="d-inline-block btn txt-14 p-1" style="background-color:transparent; border-color:black; border-width:1px" type='submit' ><i class="fa fa-external-link fa-lg"></i></button>
+              </form>
+                <div class="card-text"><small>* Get all results from a river or lake </small></div>
+              </div>
+            </div>
+            <div class="card " style="">
+              <h5 class="card-title">Pick a  project</h5>
+              <div class="card-body">
+                <div class="container-fluid p-0 m-0">
+                  <div class="btn-toolbar mb-1">
+                  <div class="btn-group">
+                    <a class="btn bg-info text-white mt-1 p-2 border-white"  style="white-space: normal;" href="{% url 'slr_home' %}" aria-expanded="false" aria-controls="">
+                      SLR</a>
+                    <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'mcbp_home' %}" aria-expanded="false" aria-controls="table-of-results">
+                        MCBP</a>
+                  </div>
                 </div>
-              </div>
-              <div class="modal-body">
-                <p class="txt-14">If you would like a detailed report, charts, or a summary contact us.</p>
-                <p class="txt-14">Prices start at CHF/USD/EUR 350</p>
-                <p class="txt-14">Other options:
-                  <ul>
-                    <li>Charts</li>
-                    <li>Summary data </li>
-                    <li>Analysis</li>
-                    <li>Compare with other data sets</li>
-                    <li>Integrate other independent variables</li>
-                    <li>Can be in any format</li>
-                    <li>Executable scripts</li>
-                    <li>Plus many more options </li>
-                  </ul>
-                </p>
-                <p> See the services section for more information.</p>
-              </div>
-              <div class="modal-footer bg-dark">
-                <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                </div>
+                <div class="card-text"><small>* SLR results given in m<sup>2</sup></small></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="btn ml-1 wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
-          <a class="text-white txt-14" data-toggle="modal"  data-target="#get-it" aria-expanded="false">
-            Project
-            <br>
-            <i class="fa fa-download fa-lg mt-2 mb-1"></i>
-            <br>
-            data
-          </a>
+        <div class="modal-footer bg-info">
+          <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span></button>
         </div>
-        <div class="modal" id="get-it">
-          <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content bg-dark">
-              <div class="modal-body text-white">
-                <p class="mx-auto">All of the data used for this section is available in our public download folder:</p>
-                <h3 class="text-center text-white"><a class="text-white" href="https://drive.google.com/drive/folders/1XL1-_rSHsX6nwPnUNVEQB76PkIvkGn--?usp=sharing">Right here</a></h3>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="assume">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title">Assumptions and notes</h6>
+          <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="font-weight-bold">Assumptions:</p>
+          <ul>
+            <li>You know what a probability distribution is.</li>
+            <li>In general the probability of finding any amount of trash on the shoreline is related to the total amount of trash in the environment.</li>
+            <li>That the variety of locations are sufficient to develop a representative model.</li>
+            <li>These are minimums. There is actually alot more trash out there. It was just not identified or counted.</li>
+            <li>There are many variables that are unacounted for in this model (lake-levels, pop-density, weather patterns).</li>
+            <li>That the samples were gathered according to the protocols provided to the particpants.</li>
+          </ul>
+          <p class="font-weight-bold">Notes:</p>
+          <ul>
+              <li>Pieces/meter (pcs/m) values are rounded to thousandths (.001)</li>
+              <li>This is the work of hammerdirt association, as of {{ t_day|date:"D d M Y" }} we have received no financial or technical assistance from the SLR or WWF -- or anybody act.</li>
+              <li>Your comments or feedback are greatly appreciated, contact us.</li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="sun_shine">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title">All items identified since Nov 2015, last inventory date {{ summary.last|date:"M Y" }}</h6>
+          <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table-striped table table-sm">
+            <thead class="txt-14">
+              <tr>
+                <th class="text-left">Item</th>
+                <th class="text-left">Material</th>
+                <th class="text-center p-1">Code</th>
+                <th class="text-center p-1">Quantity</th>
+              </tr>
+            </thead>
+            {% for s in inventory %}
+            <tr class="txt-12">
+              <td class="text-left">{{ s.description }}</td>
+              <td class="text-left"> {{ s.material }}</td>
+              <td class= "text-center">{{ s.code }}</td>
+              <td class="text-right ">{{ s.total|floatformat:0|intcomma }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+              <td colspan="3" class="bg-info text-white"> End of inventory
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="lakes_rivers">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title">Lakes and rivers surveyed,  last inventory date {{ summary.last|date:"M Y" }}</h6>
+          <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <dl class="row">
+            <dt class="col-sm-3">Lake or river</dt>
+            <dd class="col-sm-9">List of survey locations</dd>
+          </dl>
+          <dl class="row">
+            {% for s, t in bodies_dict.items  %}
+            <dt class="col-sm-3">{{ s }}</dt>
+            <dd class="col-sm-9">{{ t|join:", " }} </dd>
+            {% endfor %}
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="sum_data">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title">The top-ten items indentified from all samples.<small class="text-mutted">
+          <br>REMEMBER: these are the reported observations of people in your community
+          <br>Units are "pieces", the description and code are Marine Litter Watch</small>
+          </h6>
+          <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="card-group">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title"><h6>Table of results: sorted by material type
+                  <br><small class="text-muted">Material class taken from MLW guide
+                  <br>Material class is given with the item code</small></h6>
+                </div>
+                <table class="table-striped table table-sm">
+                  <thead class="">
+                    <tr class="p-1 pl-2 text-left">
+                      <th class="">Material</th>
+                      <th class="">Quantity</th>
+                      <th class="">Percent of total</th>
+                    </tr>
+                  </thead>
+                    {% for s, v in mk_pers.items %}
+                  <tr class="p-1 pl-2 text-left">
+                    <td class="">{{ s }}</td>
+                    <td class="text-right"> {{ v.0|floatformat:0|intcomma }} </td>
+                    <td class="text-right"> {{ v.1|floatformat:0|intcomma }}% </td>
+
+                  </tr>
+                  {% endfor %}
+                </table>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="btn ml-1 wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
-          <a class="text-white txt-14 " href="https://twitter.com/share?ref_src=twsrc%5Etfw"  data-via="hammerdirt" data-show-count="false" aria-expanded="false">
-            <i class="fa fa-share-alt fa-lg mb-1"></i><br> Tweet
-          </a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </div>
-        <div class="btn ml-1 wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
-          <a class="text-white txt-14 "data-toggle="modal"  data-target="#get-us" aria-expanded="false">
-            <i class="fa fa-comment fa-lg mb-1"></i><br> Contact
-          </a>
-        </div>
-        <div class="modal" id="get-us">
-          <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-              <div class="modal-body bg-dark">
-                <div class="mx-auto text-center text-white">
-                  <p class="">Want to know more ?</p>
-                  <p class="">Send us an email:<br><br>info [at] hammerdirt.ch</p>
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title"><h6>Table of results: ten most indentified objects
+                  <br><small class="text-muted">Object description sourced from MLW guide
+                    <br>Object description is provided with the item code</small></h6>
                 </div>
-              <div class="modal-footer">
-                <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                <table class="table-striped table table-sm">
+                  <thead class="">
+                    <tr class="p-1 pl-2 text-left">
+                      <th><small class="font-weight-bold">Item</small></th>
+                      <th class=""><small class="">Material</small></th>
+                      <th class=""><small class="">Qty</small></th>
+                      <th class=""><small class="">% total</small></th>
+                    </tr>
+                  </thead>
+                  {% for s in top_ten %}
+                  <tr class="p-1 pl-2 text-left">
+                    <td class=""><small>{{ s.description }}</small></td>
+                    <td class=""> <small>{{ s.material }}</small></td>
+                    <td class="text-right "><small>{{ s.total|floatformat:0|intcomma }}</small></td>
+                    <td class="text-right "><small>{{ s.per|floatformat:0|intcomma }}%</small></td>
+                  </tr>
+                  {% endfor %}
+                </table>
               </div>
             </div>
           </div>
@@ -528,40 +847,7 @@ li {
       </div>
     </div>
   </div>
-</div>
-<div class="modal fade" id="bl_30">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Measuring beach litter<br>
-          <small class="text-muted"> For a list of further reading on the subject see the bibliography section of the MCBP results.</small>
-        </h5>
-        <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>
-          Beach litter density is the measure of trash on a fixed length of beach or shoreline.
-        </p>
-        <p>
-          All visible trash is collected, the individual objects are identified and sorted using an international protocol.  This process is repeated multiple times per year
-          at the same location. In Europe the two most important protocols are OSPAR and Marine Litter Watch.
-        </p>
-         <p>
-           Research has connected 80% of marine debris to landbased activities.  However there has never been a national survey of aquatic litter in freshwater environements
-           that uses similar methods.  Untill now.
-         </p>
-         <p>
-           Combined, the SLR and MCBP have over 1000 samples from 135 locations across the country.  Establishing both a baseline and identifying the objects most frequently found
-           in the environment.
-         </p>
-
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade w-100" id="inventory">
+<div class="modal fade" id="box_one">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -573,24 +859,7 @@ li {
         </button>
       </div>
       <div class="modal-body">
-      <div id="box-plot2" style="width:100%;"></div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="map-modal">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content p-4">
-      <div class="modal-header ">
-        <h5 class="modal-title ">Combined litter densities 2015-2018 : SLR and MCBP<br>
-          <small class="text-muted ">Click on symbol for summary information, circle size relative to average pcs/m </small>
-        </h5>
-        <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div id="map" class="mx-auto p-2"style="height:540px;"></div>
+        <div id="box_plot_one" style="width:100%; min-width:500px"></div>
       </div>
     </div>
   </div>
@@ -601,35 +870,54 @@ li {
 {% endblock %}
 
 {% block charts %}
+
+
+
+
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="https://code.highcharts.com/modules/histogram-bellcurve.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
 
-
-
-
 <script type="text/javascript">
-
-var plot_data = {{ plot_density|safe }};
-var mc_plot = {{ plot_mc|safe }};
-var slr_hist = {{ slr_hist|safe }};
-var mc_hist = {{ mc_hist|safe }};
-var river = {{ rivers|safe }}
-var lake = {{ lakes|safe }}
-var box_lake = {{ box_lake|safe }}
-var box_river = {{ box_river|safe }}
-var box_cats = {{ box_cats|safe }}
-var box_mc = {{ box_mc|safe }}
+var year_onex = {{ year_one|safe }};
+var year_twox = {{ year_two|safe }}
+var dist_2016 = {{ dist_2016|safe }}
+var dist_2017 = {{ dist_2017|safe }}
 var combined_map = {{ combined_map|safe}}
+var plot_all = {{ plot_all|safe }}
+var top_ten = {{ top_ten|safe }}
+var mc_plot = {{ plot_mc|safe }};
+var river = {{ rivers|safe }};
+var lake = {{ lakes|safe }};
+var box_lakes = {{ box_lake|safe }};
+var box_rivers = {{ box_river|safe }};
+var box_mcs = {{ box_mc|safe }};
 
 
+var year_one = [];
+year_onex.forEach(function(element){
+  element.date = Date.parse(element.date);
+  element.density = parseFloat(element.density);
+  var today = new Date();
+  if (element.date < today){
+    year_one.push({"name":element.location_id, "x":element.date, "y":element.density});
+  }
+});
 
+var year_two = [];
+year_twox.forEach(function(element){
+  element.date = Date.parse(element.date);
+  element.density = parseFloat(element.density);
+  var today = new Date();
+  if (element.date < today){
+    year_two.push({"name":element.location_id, "x":element.date, "y":element.density});
+  }
+});
 
 var ts_plot = [];
-plot_data.forEach(function(element){
+plot_all.forEach(function(element){
   element.date = Date.parse(element.date);
   element.density = parseFloat(element.density);
   var today = new Date();
@@ -637,562 +925,107 @@ plot_data.forEach(function(element){
     ts_plot.push({"name":element.location_id, "x":element.date, "y":element.density});
   }
 });
-
-var slr_plot_len = ts_plot.length;
-var slr_plot_sub = 'N = '+slr_plot_len +' samples, as reported by volunteers.'
-
 var plot_mc = [];
 mc_plot.forEach(function(element){
   element.date = Date.parse(element.date);
   element.density = parseFloat(element.density);
   plot_mc.push ({"name":element.location_id, "x":element.date, "y":element.density})
 });
-var mc_plot_len = plot_mc.length;
-var total_samps = mc_plot_len + slr_plot_len
-var combined_title = 'Litter densities 2015-2018: MCBP and SLR, n= '+ total_samps
-var combined_sub_title = 'SLR samples: '+ slr_plot_len + ', MCBP samples: '+mc_plot_len
-
-var sample_plot = [];
-
-plot_data.forEach(function(element){
-  element.sample = parseFloat(element.sample);
-  element.density = parseFloat(element.density);
-  if (element.sample < 17) {
-    sample_plot.push({"name":element.location_id, "x":element.sample, "y":element.density});
-
-  }
-});
-
-var mcbp_sample = [];
-
-mc_plot.forEach(function(element){
-  element.sample = parseFloat(element.sample);
-  element.density = parseFloat(element.density);
-  mcbp_sample.push({"name":element.location_id, "x":element.sample, "y":element.density});
-
-});
-
-var riv_dens = []
+var riv_dens = [];
 river.forEach(function(element){
   element.date = Date.parse(element.date);
   element.density = parseFloat(element.density);
   riv_dens.push ({"name":element.location_id, "x":element.date, "y":element.density})
 });
-
-var lak_dens = []
+//
+var lak_dens = [];
 lake.forEach(function(element){
   element.date = Date.parse(element.date);
   element.density = parseFloat(element.density);
   lak_dens.push ({"name":element.location_id, "x":element.date, "y":element.density})
 });
-
-function compare(a,b) {
-  let comparison = 0;
-  if (a.sample > b.sample) {
-    comparison =1;
-  }else if (a.sample < b.sample) {
-    comparison = -1;
-  }
-  return comparison;
-};
-
-sample_plot.sort(compare);
-mcbp_sample.sort(compare);
-</script>
-
-<script type="text/javascript">
-Highcharts.chart('box-plot', {
-
-    chart: {
-        type: 'boxplot',
-        zoomType:'x',
-        spacingBottom: 20,
-    },
-    exporting: {
-      enabled:false,
-    },
-
-    title: {
-        text: 'Reported beach-litter densities 2015-2018 sorted by rivers and lakes : SLR & MCBP',
-        style:{
-          fontSize: '14px',
-          color:'#0A2E5C',
-
-        },
-    },
-    subtitle: {
-      text: 'Values greater than 50 pcs/m not shown, ' + combined_sub_title,
-      style:{
-        fontSize: '10px',
-        color:'#0A2E5C',
-      }
-
-    },
-    credits:{
-      text:'hammerdirt 2018',
-
-    },
-
-    legend: {
-      enabled: true,
-      verticalAlign: 'bottom',
-      align: 'center',
-      layout:'horizontal',
-      backgroundColor:'rgba(255,255,255, .4)',
-      borderColor:'rgba(10, 46, 92, .4)',
-      borderWidth:1,
-      padding:8,
-      margin:12,
-      itemMarginBottom:2,
-      itemDistance: 4,
-      itemWidth:99,
-      itemStyle:{
-        color: 'black',
-        fontSize: '10px',
-
-      },
-    },
-    plotOptions:{
-      boxplot:{
-
-        stemColor:'rgb(10, 46, 92, 1)',
-        stemDashStyle: 'dash',
-        stemWidth:1,
-        whiskerColor: 'rgba(00, 00, 00, 1)',
-        groupPadding:0,
-      }
-    },
-
-    xAxis: [{
-        categories:box_cats,
-        type: 'category',
-        tickColor:'rgba(00, 00, 00, 1)',
-        labels: {
-          rotation:270,
-          color:'rgba(00, 00, 00, 1)',
-          fontSize:'10px'
-        },
-        opposite:false,
-
-    },{
-      type: 'datetime',
-      opposite:true,
-      visible:false,
-      alignTicks:true,
-      tickInterval:3600*1000*24*28,
-      tickColor:'rgba(00, 00, 00, 1)',
-      labels: {
-        enabled: false,
-        style: {
-          color:'rgba(00, 00, 00, 1)',
-        }
-      },
-      dateTimeLabelFormats: {
-        month: '%b - %y',
-      },
-    },
-  ],
-    yAxis: {
-      min:0,
-      max:85,
-      ceiling:50,
-      alignTicks:false,
-      tickInterval:10,
-      minPadding:0.1,
-      title: {
-          align: 'low',
-          offset: 40,
-          text: 'Pieces of trash per meter',
-          style:{
-            fontSize: '12px',
-            color:'#0A2E5C',
-          },
-      },
-      gridLineColor:'rgba(10, 46, 92, .1)',
-      minorTickInterval:2,
-      labels:{
-        style: {
-          color:'rgba(00, 00, 00, 1)',
-          fontSize: '10px'
-        }
-      },
-
-    },
-
-    series:
-    [{
-      zIndex:3,
-      fillColor:'rgba(215, 78, 9, 1)',
-      lineColor: 'rgba(00, 00, 00, 1)',
-      medianColor:'rgba(22, 199, 158, 1)',
-      color:'rgba(215, 78, 9, 1)',
-      xAxis:0,
-      type: 'boxplot',
-      name: 'SLR lakes - monthly',
-      data: box_lake,
-      tooltip: {
-          headerFormat: '<em>{point.key}</em><br/>'
-      },
-
-    },
-    {
-      zIndex:3,
-      fillColor:'rgba(10, 46, 92, 1)',
-      lineColor: 'rgba(00, 00, 00, 1)',
-      medianColor:'rgba(22, 199, 158, 1)',
-      color:'rgba(10, 46, 92, 1)',
-      xAxis:0,
-      type: 'boxplot',
-      name: 'SLR rivers - monthly',
-      data: box_river,
-      tooltip: {
-          headerFormat: '<em>{point.key}</em><br/>'
-      },
-
-    },
-    {
-      zIndex:3,
-       fillColor:'rgba(215, 78, 9, 1)',
-      lineColor: 'rgba(00, 00, 00, 1)',
-      medianColor:'rgba(22, 199, 158, 1)',
-      color:'rgba(215, 78, 9, 1)',
-      squareSymbol: true,
-      xAxis:0,
-      type: 'boxplot',
-      name: 'MCBP - monthly',
-      data: box_mc,
-      tooltip: {
-          headerFormat: '<em>{point.key}</em><br/>'
-      },
-
-    },
-    {
-      zIndex:2,
-      xAxis:1,
-      type: 'scatter',
-      name:'SLR - lake',
-      marker: {
-        symbol: 'circle',
-        radius:3,
-        lineColor: 'rgba(00, 00, 00, .3)',
-        fillColor:  'rgba(215, 78, 9, .4)',
-        lineWidth:1,
-      },
-      data:lak_dens,
-      tooltip: {
-          headerFormat: '<b>{point.key}</b><br>',
-          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m'
-      },
-    },
-    {
-      zIndex:2,
-      xAxis:1,
-      type: 'scatter',
-      name:'SLR - river',
-      marker: {
-        symbol: 'circle',
-        radius:3,
-        lineColor: 'rgba(00, 00, 00, .3)',
-        fillColor:  'rgba(10, 46, 92, .4)',
-        lineWidth:1,
-      },
-      data:riv_dens,
-      tooltip: {
-          headerFormat: '<b>{point.key}</b><br>',
-          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m'
-      },
-    },
-    {
-      zIndex:2,
-      xAxis:1,
-      type: 'scatter',
-      name:'MCBP - lake',
-      marker: {
-         symbol: 'circle',
-        radius:3,
-        lineColor: 'rgba(00, 00, 00, .3)',
-        fillColor:  'rgba(215, 78, 9, .4)',
-        lineWidth:1,
-      },
-      data:plot_mc,
-      tooltip: {
-          headerFormat: '<b>{point.key}</b><br>',
-          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m'
-      },
-
-    }
-
-    ]
-
+//
+var lake_box = [];
+box_lakes.forEach(function(element){
+  element[0] = Date.parse(element[0]);
+  lake_box.push([element[0], element[1], element[2], element[3], element[4], element[5]])
 });
-</script>
-<script type="text/javascript">
-Highcharts.chart('box-plot2', {
 
-    chart: {
-        type: 'boxplot',
-        zoomType:'x',
-        spacingBottom:20
-    },
-    title: {
-      text: null,
-    },
-    exporting:{
-      enabled: false,
-    },
-    credits:{
-      text:'hammerdirt 2018',
-
-    },
-
-    legend: {
-      enabled: true,
-      verticalAlign: 'bottom',
-      align: 'center',
-      layout:'horizontal',
-
-      backgroundColor:'rgb(255,255,255, .4)',
-      borderColor:'rgba(10, 46, 92, .4)',
-      borderWidth:1,
-
-      padding:8,
-      margin:12,
-
-      itemMarginBottom:2,
-      itemDistance: 4,
-      itemWidth:99,
-      itemStyle:{
-        color: 'black',
-        fontSize: '10px',
-
-      },
-    },
-    plotOptions:{
-      boxplot:{
-
-        stemColor:'rgba(10, 46, 92, 1)',
-        stemDashStyle: 'dash',
-        stemWidth:1,
-        whiskerColor: 'rgba(00, 00, 00, 1)',
-        groupPadding:0,
-      }
-    },
-
-    xAxis: [{
-        categories:box_cats,
-        type: 'category',
-        tickColor:'rgba(00, 00, 00, 1)',
-        labels: {
-          rotation:270,
-          color:'rgba(00, 00, 00, 1)',
-          fontSize:'10px'
-        },
-        opposite:false,
-
-    },{
-      type: 'datetime',
-      opposite:true,
-      visible:false,
-      alignTicks:true,
-      tickInterval:3600*1000*24*28,
-      tickColor:'rgba(00, 00, 00, 1)',
-      labels: {
-        enabled: false,
-        style: {
-          color:'rgb(00, 00, 00, 1)',
-        }
-      },
-      dateTimeLabelFormats: {
-        month: '%b - %y',
-      },
-    },
-  ],
-    yAxis: {
-      min:0,
-      max:85,
-      ceiling:50,
-      alignTicks:false,
-      tickInterval:10,
-      minPadding:0.1,
-      title: {
-          align: 'low',
-          offset: 40,
-          text: 'Pieces of trash per meter of shoreline',
-          style:{
-            fontSize: '12px',
-            color:'#0A2E5C',
-          },
-      },
-      gridLineColor:'rgba(10, 46, 92, .1)',
-      minorTickInterval:2,
-      labels:{
-        style: {
-          color:'rgba(00, 00, 00, 1)',
-          fontSize: '10px'
-        }
-      },
-
-    },
-
-    series:
-    [{
-      zIndex:3,
-      fillColor:'rgba(215, 78, 9, 1)',
-      lineColor: 'rgba(00, 00, 00, 1)',
-      medianColor:'rgba(22, 199, 158, 1)',
-      color:'rgba(215, 78, 9, 1)',
-      xAxis:0,
-      type: 'boxplot',
-      name: 'SLR lakes - monthly',
-      data: box_lake,
-      tooltip: {
-          headerFormat: '<em>{point.key}</em><br/>'
-      },
-
-    },
-    {
-      zIndex:3,
-      fillColor:'rgba(10, 46, 92, 1)',
-      lineColor: 'rgba(00, 00, 00, 1)',
-      medianColor:'rgba(22, 199, 158, 1)',
-      color:'rgba(10, 46, 92, 1)',
-      xAxis:0,
-      type: 'boxplot',
-      name: 'SLR rivers - monthly',
-      data: box_river,
-      tooltip: {
-          headerFormat: '<em>{point.key}</em><br/>'
-      },
-
-    },
-    {
-      zIndex:3,
-      fillColor:'rgba(215, 78, 9, 1)',
-      lineColor: 'rgba(00, 00, 00, 1)',
-      medianColor:'rgba(22, 199, 158, 1)',
-      color:'rgba(215, 78, 9, 1)',
-      squareSymbol: true,
-      xAxis:0,
-      type: 'boxplot',
-      name: 'MCBP - monthly',
-      data: box_mc,
-      tooltip: {
-          headerFormat: '<em>{point.key}</em><br/>'
-      },
-
-    },
-    {
-      zIndex:2,
-      xAxis:1,
-      type: 'scatter',
-      name:'SLR - lake',
-      marker: {
-        symbol: 'circle',
-        radius:3,
-        lineColor: 'rgba(00, 00, 00, .3)',
-        fillColor:  'rgba(215, 78, 9, .4)',
-        lineWidth:1,
-      },
-      data:lak_dens,
-      tooltip: {
-          headerFormat: '<b>{point.key}</b><br>',
-          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m'
-      },
-    },
-    {
-      zIndex:2,
-      xAxis:1,
-      type: 'scatter',
-      name:'SLR - river',
-      marker: {
-        symbol: 'circle',
-        radius:3,
-        lineColor: 'rgba(00, 00, 00, .3)',
-        fillColor:  'rgba(10, 46, 92, .4)',
-        lineWidth:1,
-      },
-      data:riv_dens,
-      tooltip: {
-          headerFormat: '<b>{point.key}</b><br>',
-          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m'
-      },
-    },
-    {
-      zIndex:2,
-      xAxis:1,
-      type: 'scatter',
-      name:'MCBP - lake',
-      marker: {
-        symbol: 'circle',
-        radius:3,
-        lineColor: 'rgba(00, 00, 00, .3)',
-        fillColor:  'rgba(215, 78, 9, .4)',
-        lineWidth:1,
-      },
-      data:plot_mc,
-      tooltip: {
-          headerFormat: '<b>{point.key}</b><br>',
-          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m'
-      },
-
-    }
-
-    ]
-
+var river_box = [];
+box_rivers.forEach(function(element){
+  element[0] = Date.parse(element[0]);
+  river_box.push([element[0], element[1], element[2], element[3], element[4], element[5]])
 });
+//
+var mc_box = [];
+box_mcs.forEach(function(element){
+  element[0] = Date.parse(element[0]);
+  mc_box.push([element[0], element[1], element[2], element[3], element[4], element[5]])
+});
+
 </script>
+
 <script type="text/javascript">
-Highcharts.chart('by_sample_no', {
+Highcharts.chart('scatterchart', {
     chart: {
-        type: 'area',
-        spacingBottom:20,
+        type: 'scatter',
         plotBorderWidth:0,
+        spacingBottom: 20,
         zoomType: 'x',
         style: {
           fontFamily: 'sans-serif',
         }
     },
     title: {
-        text: 'Litter densities v/s Number of samples',
-        style:{
-          fontSize: '16px',
-          color:'#0A2E5C',
-
-        },
-    },
-    exporting: {
-      enabled:false,
+        text: '',
+        style: {
+            display: 'none'
+        }
     },
     subtitle: {
-        text:combined_sub_title,
-        style:{
-          fontSize: '12px',
-          color:'#0A2E5C',
-
-        },
+        text: '',
+        style: {
+            display: 'none'
+        }
     },
     credits:{
       text:'hammerdirt 2018',
 
     },
+    exporting: {
+      enabled:false,
+    },
     legend: {
-      enabled: false
+      enabled: true,
+      align: 'right',
+      verticalAlign: 'top',
+      horizontalAlign: 'right',
+      layout:'vertical',
+      floating:true,
+      x:0,
+      y:10,
+      backgroundColor:'rgba(255,255,255, .4)',
+      borderColor:'rgba(10, 46, 92, .5)',
+      borderWidth:1,
+      itemMarginTop:4,
+      itemMarginBottom:4,
+      itemStyle:{
+        color: 'black',
+        fontSize: 14,
+        fontWeight: 'bold',
+      }
     },
     xAxis: {
-      tickInterval:1,
-      title: {
-        text: 'Number of samples',
-        style:{
-          fontSize:'14px',
-          color:'#000000',
-        },
-      },
+      type: 'datetime',
+      tickInterval:3600*1000*24*28*2,
       labels: {
         style: {
           color:'rgba(00, 00, 00, 1)'
         }
       },
-
+      dateTimeLabelFormats: {
+        month: '%b - %Y',
+      },
     },
     yAxis: {
         title: {
@@ -1212,51 +1045,65 @@ Highcharts.chart('by_sample_no', {
         },
         tickInterval: 8,
         min: 0,
-        max: 52,
+
     },
     tooltip: {
         headerFormat: '<b>{point.key}</b><br>',
-        pointFormat: 'sample no: {point.x}, pcs/m: {point.y:.2f}'
+        pointFormat: '{point.x:%e-%b}: {point.y:.2f} pcs/m'
     },
-    series: [{
+    series: [
+      {
       zIndex:3,
       type: 'scatter',
-      name:'mcbp',
+      name:'Year one',
       marker: {
         symbol: 'circle',
         radius:6,
-        fillColor: 'rgba(159, 183, 159, 1)',
-        lineColor: 'rgba(00, 00, 00, 1)',
-        lineWidth:2,
+        lineColor: 'rgb(255, 255, 255, 1)',
+        fillColor:  'rgb(255, 0, 0, .6)',
+        lineWidth:1,
       },
-      data:mcbp_sample,
+      data:year_one,
 
-    },{
+    },
+    {
       zIndex:3,
       type: 'scatter',
-      name:'slr',
+      name:'Year two',
       marker: {
         symbol: 'circle',
         radius:6,
-        lineColor: 'rgba(10, 46, 92, 1)',
-        fillColor:  'rgba(22, 199, 158, 1)',
+        lineColor: 'rgb(255, 255, 255, 1)',
+        fillColor:  'rgb(0, 0, 255, .6)',
         lineWidth:2,
       },
-      data:sample_plot,
+      data:year_two,
 
-    }
+    },
+
   ],
   }
 );
 </script>
 
 <script type="text/javascript">
-Highcharts.chart('slr-hist', {
-    chart:{
-      spacingBottom:20
+Highcharts.chart('combined-ts', {
+    chart: {
+        type: 'area',
+        plotBorderWidth:0,
+        spacingBottom: 20,
+        zoomType: 'x',
+        style: {
+          fontFamily: 'sans-serif',
+        }
     },
     title: {
-        text: 'Histogram of results MCBP/SLR'
+        text: null,
+        style:{
+          fontSize: '16px',
+          color:'#0A2E5C',
+
+        },
     },
     credits:{
       text:'hammerdirt 2018',
@@ -1265,56 +1112,15 @@ Highcharts.chart('slr-hist', {
     exporting: {
       enabled:false,
     },
-    xAxis: [{
-        title: {
-          text: 'ln(pcs/m)',
-          style:{
-            fontSize:'14px',
-            color:'#000000',
-          },
-         },
-        alignTicks: false,
-    },
-  ],
-
-    yAxis: [{
-        title: {
-          text: 'Number of observations SLR',
-          style:{
-            fontSize:'14px',
-            color:'rgba(22, 199, 158, 1)',
-          },
-
-        },
-        labels:{
-          style:{
-            color:'rgba(22, 199, 158, 1)',
-          }
-        }
-    }, {
-        title: {
-          text: 'Number of observations MCBP',
-          style:{
-            fontSize:'14px',
-            color:'rgba(159, 183, 159, 1)',
-          },
-         },
-        labels:{
-           style:{
-             color:'rgba(159, 183, 159, 1)',
-           },
-         },
-        opposite: true
-    }],
     legend: {
       enabled: true,
-      verticalAlign: 'bottom',
-      horizontalAlign: 'center',
-      layout:'horizontal',
-      floating:false,
-      // x:-100,
-      // y:60,
-      backgroundColor:'rgb(255,255,255, .4)',
+      verticalAlign: 'top',
+      horizontalAlign: 'right',
+      layout:'vertical',
+      floating:true,
+      x:140,
+      y:80,
+      backgroundColor:'rgba(255,255,255, .4)',
       borderColor:'rgba(10, 46, 92, .5)',
       borderWidth:1,
       itemMarginTop:4,
@@ -1325,47 +1131,149 @@ Highcharts.chart('slr-hist', {
         fontWeight: 'bold',
       }
     },
+    xAxis: {
+      type: 'datetime',
+      tickInterval:3600*1000*24*28*2,
+      labels: {
+        style: {
+          color:'rgba(00, 00, 00, 1)'
+        }
+      },
+      dateTimeLabelFormats: {
+        month: '%b - %Y',
+      },
+    },
+    yAxis: {
+        title: {
+            align: 'low',
+            offset: 40,
+            text: 'Pieces of trash per meter of shoreline',
+            style:{
+              fontSize: '12px',
+              color:'#000000',
+            },
+        },
+        gridLineColor:'rgba(10, 46, 92, .1)',
+        labels:{
+          style: {
+            color:'rgba(00, 00, 00, 1)'
+          }
+        },
+        tickInterval: 8,
+        min: 0,
+
+    },
     tooltip: {
-        headerFormat: '<b>{series.name}</b><br>',
-        pointFormat: 'min ln(pcs/m): {point.x: .2f}, # of samples: {point.y}'
+        headerFormat: '<b>{point.key}</b><br>',
+        pointFormat: '{point.x:%e-%b}: {point.y:.2f} pcs/m'
+    },
+    plotOptions:{
+      series: {
+        turboThreshold: 2000
+      }
+    },
+    series: [
+      {
+      zIndex:3,
+      type: 'scatter',
+      name:' results',
+      marker: {
+        symbol: 'circle',
+        radius:6,
+        lineColor: 'rgba(255, 255, 255, .8)',
+        fillColor:  'rgba(10, 46, 92, .8)',
+        lineWidth:1,
+      },
+      data:ts_plot,
+
+    }
+  ],
+  }
+);
+</script>
+
+<script type="text/javascript">
+
+Highcharts.chart('probchart', {
+
+    chart: {
+
+    },
+    credits:{
+      text:'hammerdirt 2018',
+
+    },
+    title: {
+         text: ''
+    },
+    exporting: {
+      enabled:false,
+    },
+
+
+    xAxis: {
+        labels: {
+            format: 'e^{value}'
+        },
+        minRange: 5,
+        title: {
+            text: 'log(pcs/m)'
+        }
+    },
+
+    yAxis: {
+        // startOnTick: true,
+        // endOnTick: false,
+        // maxPadding: 0.35,
+        title: {
+            text: 'frequency'
+        },
+        labels: {
+            format: '{value}'
+        }
+    },
+
+    // tooltip: {
+    //     headerFormat: 'Distance: {point.x:.1f} km<br>',
+    //     pointFormat: '{point.y} m a. s. l.',
+    //     shared: true
+    // },
+
+    legend: {
+        enabled: false
     },
 
     series: [{
-        name: 'ln(pcs/m) -- SLR',
-        type: 'histogram',
-        xAxis: 0,
-        yAxis: 0,
-        binsNumber:'rice',
-        borderColor: 'rgba(10, 46, 92, .5)',
-        color:  'rgba(22, 199, 158, .6)',
-        lineWidth:2,
-        baseSeries:  1,
-        zIndex: -1
-    },
-    {
-        data: slr_hist,
-        visible:false,
-        showInLegend:false,
-
-    }, {
-        name: 'ln(pcs/m) -- MCBP',
-        type: 'histogram',
-        xAxis: 0,
-        yAxis: 1,
-        binsNumber:'sturges',
-        borderColor:'rgba(00, 00, 00, .5)',
-        color:  'rgba(159, 183, 159, .6)',
-        lineWidth:2,
-        baseSeries:  3,
-        zIndex: -1
+        data: dist_2016,
+        lineColor: 'rgb(255, 0, 0, .6)',
+        // lineColor: Highcharts.getOptions().colors[2],
+        // color: Highcharts.getOptions().colors[2],
+        // fillOpacity: 0.5,
+        name: 'Year one',
+        // dashStyle: 'shortdot',
+        marker: {
+            enabled: false
+        },
+        threshold: null
     },{
-        data: mc_hist,
-        visible:false,
-        showInLegend:false,
-
-    },
+        data: dist_2017,
+        lineColor: 'rgb(0, 0, 255, .6)',
+        // color: Highcharts.getOptions().colors[2],
+        // fillOpacity: 0.5,
+        name: 'Year two',
+        // dashStyle: 'longdash',
+        marker: {
+            enabled: false
+        },
+        threshold: null
+    }
   ]
+
 });
+
+</script>
+
+<script type="text/javascript">
 
 </script>
 
@@ -1506,11 +1414,11 @@ function initMap() {
       ]
     }
   ],
-{name:'Litter densities : Switzerland'});
-  map = new google.maps.Map(document.getElementById('map'), {
-    zoom:8,
+{name:'Litter surveys : Switzerland'});
+  map = new google.maps.Map(document.getElementById('combined_map_all'), {
+    zoom:7,
     center: {lat: 47.207, lng: 8.058},
-    minZoom:8,
+    minZoom:6,
     mapTypeControlOptions: {
       mapTypeIds: ['styled_map'],
     },
@@ -1525,24 +1433,29 @@ function initMap() {
   var markers = []
 
   for (i = 0; i < combined_map.length; i++) {
+    // console.log(combined_map[i])
     marker = new google.maps.Marker({
       position: new google.maps.LatLng(combined_map[i][0], combined_map[i][1]),
       map: map,
       type: combined_map[i][7],
       water: combined_map[i][8],
-
+      // console.log(water),
+      fillColor: 'rgba(255, 65, 168, .8)',
+      lineColor: 'rgb(255, 00, 00)',
 
       icon: {
         path: google.maps.SymbolPath.CIRCLE,
         scale: Math.sqrt(combined_map[i][2])*5,
-        fillColor: '#000000',
-        strokeColor: '#ffff00',
-        fillOpacity:0.7,
-        strokeOpacity:0,
+        fillColor:  'rgba(10, 46, 92, .8)',
+        strokeColor:'rgba(255, 255, 255, 1)',
+        fillOpacity:1,
+        strokeOpacity:1,
+        strokeWeight:2,
       },
 
-
     });
+
+    // markers[combined_map[3]] = marker;
     var contentString = '<div><p style="margin-bottom:4px; font-size:14px;">' +  combined_map[i][6] + '</p>'+
     '<ul><li>City: ' + combined_map[i][4] +'</li><li> Postal Code: ' + combined_map[i][3] + '</li><li>Average pcs/m: ' + combined_map[i][2] + '</li><li>N<sup>o</sup> of samples: ' +
     combined_map[i][5] + '</li><li>Lake or River: ' + combined_map[i][8] + '</li><li>Project : ' + combined_map[i][7] + '</li></ul></div>';
@@ -1556,6 +1469,33 @@ function initMap() {
 
     markers.push(marker);
   };
+  // console.log(markers[8].water);
+  // console.log(markers[8].type);
+  $('button[type=submit]').on('click', function(){
+    var input_id = $(this).attr('id');
+    // console.log(this);
+    console.log(input_id)
+    // console.log(markers[11].water);
+    for (i = 0; i < markers.length; i++){
+      if (input_id == 'all'){
+          markers[i].setVisible(true);
+      }else if (markers[i].type == input_id){
+        markers[i].setVisible(true);
+      } else if (markers[i].water == input_id){
+        // console.log('true');
+        // console.log(markers[i].water);
+        markers[i].setVisible(true);
+      }else {
+        // console.log('false');
+        // console.log(markers[i].water);
+        markers[i].setVisible(false);
+      }
+    }
+  }),
+
+
+
+
   map.mapTypes.set('styled_map', styledMapType);
   map.setMapTypeId('styled_map');
 
@@ -1564,5 +1504,266 @@ function initMap() {
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm40jm5y3TNXHeagBkulq-mS2A3ep4TWY&libraries=visualization&callback=initMap"  async defer> </script>
 
+<script type="text/javascript">
+Highcharts.chart('box_plot_one', {
+
+    chart: {
+        type: 'boxplot',
+        zoomType:'x',
+        spacingBottom: 20,
+    },
+    exporting: {
+      enabled:false,
+    },
+
+    title: {
+        text: null,
+        style:{
+          fontSize: '14px',
+          color:'#0A2E5C',
+
+        },
+    },
+    subtitle: {
+      text: null,
+      style:{
+        fontSize: '10px',
+        color:'#0A2E5C',
+      }
+
+    },
+    credits:{
+      text:'hammerdirt 2018',
+
+    },
+
+    legend: {
+      enabled: true,
+      verticalAlign: 'bottom',
+      align: 'center',
+      layout:'horizontal',
+      backgroundColor:'rgba(255,255,255, .4)',
+      borderColor:'rgba(10, 46, 92, .4)',
+      borderWidth:1,
+      padding:8,
+      margin:12,
+      itemMarginBottom:2,
+      itemDistance: 4,
+      itemWidth:99,
+      itemStyle:{
+        color: 'black',
+        fontSize: '10px',
+
+      },
+    },
+    plotOptions:{
+      boxplot:{
+        stemColor:'rgb(10, 46, 92, 1)',
+        stemDashStyle: 'dash',
+        stemWidth:1,
+        whiskerColor: 'rgba(00, 00, 00, 1)',
+        groupPadding:0,
+      }
+    },
+
+    xAxis: [{
+        // categories:box_cats,
+        type: 'datetime',
+        min: Date.UTC(2015, 11, 01),
+        tickColor:'rgba(00, 00, 00, 1)',
+        tickInterval:3600*1000*24*28,
+        tickColor:'rgba(00, 00, 00, 1)',
+        labels: {
+          rotation:270,
+          color:'rgba(00, 00, 00, 1)',
+          fontSize:'10px'
+        },
+        opposite:false,
+
+    },
+
+  ],
+    yAxis: {
+      min:0,
+      max:85,
+      ceiling:50,
+      alignTicks:false,
+      tickInterval:10,
+      minPadding:0.1,
+      title: {
+          align: 'low',
+          offset: 40,
+          text: 'Pieces of trash per meter',
+          style:{
+            fontSize: '12px',
+            color:'#0A2E5C',
+          },
+      },
+      gridLineColor:'rgba(10, 46, 92, .1)',
+      minorTickInterval:2,
+      labels:{
+        style: {
+          color:'rgba(00, 00, 00, 1)',
+          fontSize: '10px'
+        }
+      },
+
+    },
+
+    series:
+    [
+      {
+      zIndex:3,
+      fillColor:'rgba(255, 65, 168, .6)',
+      lineColor: 'rgba(00, 00, 00, 1)',
+      medianColor:'rgba(22, 199, 158, 1)',
+      color:'rgba(255, 65, 168, .6)',
+      xAxis:0,
+      type: 'boxplot',
+      name: 'SLR lakes - monthly',
+      data: lake_box,
+      tooltip: {
+          headerFormat: '<em>{point.key}</em><br/>'
+      },
+
+    },
+    {
+      zIndex:3,
+      fillColor:'rgba(10, 46, 92, 1)',
+      lineColor: 'rgba(00, 00, 00, 1)',
+      medianColor:'rgba(22, 199, 158, 1)',
+      color:'rgba(10, 46, 92, 1)',
+      xAxis:0,
+      type: 'boxplot',
+      name: 'SLR rivers - monthly',
+      data: river_box,
+      tooltip: {
+          headerFormat: '<em>{point.key}</em><br/>'
+      },
+
+    },
+    {
+      zIndex:3,
+      fillColor:'rgba(255, 65, 168, .6)',
+      lineColor: 'rgba(00, 00, 00, 1)',
+      medianColor:'rgba(22, 199, 158, 1)',
+      color:'rgba(255, 65, 168, .6)',
+      squareSymbol: true,
+      xAxis:0,
+      type: 'boxplot',
+      name: 'MCBP - monthly',
+      data: mc_box,
+      tooltip: {
+          headerFormat: '<em>{point.key}</em><br/>'
+      },
+
+    },
+    {
+      zIndex:2,
+      xAxis:0,
+      type: 'scatter',
+      name:'SLR - lake',
+      marker: {
+        symbol: 'circle',
+        radius:3,
+        lineColor: 'rgba(00, 00, 00, .3)',
+        fillColor:  'rgba(255, 65, 168, .5)',
+        lineWidth:1,
+      },
+      data:lak_dens,
+      tooltip: {
+          headerFormat: '<b>{point.key}</b><br>',
+          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pcs/m'
+      },
+    },
+    {
+      zIndex:2,
+      xAxis:0,
+      type: 'scatter',
+      name:'SLR - river',
+      marker: {
+        symbol: 'circle',
+        radius:3,
+        lineColor: 'rgba(00, 00, 00, .3)',
+        fillColor:  'rgba(10, 46, 92, .4)',
+        lineWidth:1,
+      },
+      data:riv_dens,
+      tooltip: {
+          headerFormat: '<b>{point.key}</b><br>',
+          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pcs/m'
+      },
+    },
+    {
+      zIndex:2,
+      xAxis:0,
+      type: 'scatter',
+      name:'MCBP - lake',
+      marker: {
+         symbol: 'circle',
+        radius:3,
+        lineColor: 'rgba(00, 00, 00, .3)',
+        fillColor:  'rgba(255, 65, 168, .5)',
+        lineWidth:1,
+      },
+      data:plot_mc,
+      tooltip: {
+          headerFormat: '<b>{point.key}</b><br>',
+          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pcs/m'
+      },
+
+    }
+
+    ]
+
+});
+
+</script>
+
+<script type="text/javascript">
+
+
+$(document).ready(function() {
+
+  $('.shutterTitle').click(function() {
+    var parentTag = $( this ).parent();
+    var this_height = $(this);
+    var this_child = $(this).children()[1];
+    console.log(this_child);
+
+    // if($(this).height() <= 100 ){
+    // console.log('true');
+    // $(this).removeClass('bg-info').addClass('bg-dark');
+    // };
+
+
+    $( parentTag ).each(function(i){
+      if ($(parentTag).hasClass('close-animate') || !$(parentTag).hasClass('shutterExpanded')) {
+      console.log(this);
+      $(this_height ).css("height", "auto");
+      $(this_height).addClass('text-right');
+      $(this_height).addClass('pr-3');
+      $(this_height).removeClass('p-1');
+      // $(this_child).addClass('text-right');
+      $(parentTag).removeClass('close-animate').addClass('shutterExpanded');
+      $('.wrapper').addClass('shutterOpen');
+      console.log(this_child)
+
+    } else {
+      console.log("Else");
+      $(this).removeClass('shutterExpanded').addClass('close-animate');
+      $(this_height).removeClass('text-right');
+      $(this_height).removeClass('pr-3');
+      $(this_height).addClass('p-1');
+      // $(this_height).children(".p").css("display", "visible");
+      $(this_height ).css("height", "100%");
+      $('.wrapper').removeClass('shutterOpen');
+      console.log(this);
+    }
+    // console.log(this)
+  });
+})}
+);
+</script>
 
 {% endblock %}

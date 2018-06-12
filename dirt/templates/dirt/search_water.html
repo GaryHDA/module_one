@@ -60,15 +60,15 @@
 
 
 <div class="container-fluid p-0 m-0" style="height:100vh; overflow:auto">
-  <div class="row no-gutters border border-danger" style="height: 100%">
+  <div class="row no-gutters border border-danger" style="height:100%">
     <div class="col-sm-4 " style="">
       <div class="card pb-0" style="height:100%">
         <div class="bg-info text-white card-header p-2 pl-3" id="" style="">
           <i class="fa fa-th-list fa-lg"></i>&nbsp; Search results: {{ city }}
         </div>
-        <div class="card-body p-0" style="height:100%">
+        <div class="card-body p-0 " style="height:100%">
           <h6 class="card-title" style=""> Summary of all beach litter surveys for: {{ city }}
-            <br><small class="text-muted"> MCBP only
+            <br><small class="text-muted"> All projects inlcuded
             <br> Units= pcs/m</small></h6>
           <table class="table table-sm table-striped text-left txt-12" style="height:60%">
             <tbody>
@@ -94,10 +94,10 @@
               </tr>
               <tr>
                 <td class="ml-auto">N<sup>o</sup> of pieces of garbage:</td>
-                <td class="mr-auto">{{ summary.total|floatformat:0|intcomma }}</td>
+                <td class="mr-auto">{{ summary.total|floatformat:0|intcomma }} pcs</td>
               </tr>
               <tr>
-                <td class="ml-auto">Avg pieces/meter: </td>
+                <td class="ml-auto">Avg pieces/meter:</td>
                 <td class="mr-auto">{{ summary.ave_dense|floatformat:2 }} pcs/m</td>
               </tr>
               <tr>
@@ -128,15 +128,13 @@
                   List of locations, avg pcs/m</button>
               </div>
             </div>
-
           <button class="btn bg-info w-100 p-2 pl-3 text-white text-left border-white" style="height:10%" role="button" data-toggle="modal" data-target="#water_search" aria-expanded="false" aria-controls="">
             Search by city, body of water or project</button>
         </div>
+        </div>
 
-
-      </div>
     </div>
-    <div class="col-sm-4 " style:"height:100%">
+    <div class="col-sm-4" style="height:100%">
       <div class="card pb-0" id="map-of-locations" style="height:100%; min-height:440px;">
          <div class="bg-info text-white card-header p-2 pl-3" id="" style="">
            <i class="fa fa-map fa-lg "></i>&nbsp; Survey locations : {{ city }}
@@ -150,12 +148,12 @@
       </div>
     </div>
     <div class="col-sm-4 " style="height:100%">
-      <div class="card pb-0" id="time-series-chart" style="height:98%">
+      <div class="card pb-0" id="time-series-chart" style="height:90%">
         <div class="bg-info text-white card-header p-2 pl-3" id="" style="">
-          <i class="fa fa-line-chart fa-lg "></i>&nbsp; {{ city }} Results by day and location
+          <i class="fa fa-line-chart fa-lg "></i>&nbsp; {{ city }} results by day and location
         </div>
         <div class="card-body p-0" style="height:100%">
-          <h6 class="card-title" style="">{{ city }} vs all other SLR surveys surveys
+          <h6 class="card-title" style="">{{ city }} vs all recorded beach litter surveys since 2015
             <br><small class="text-muted">Click and drag in chart area to zoom date
             <br>Surveys greater than 10 pcs/m of this locations max value not shown</small></h6>
           <div class="" style="height:88%;width:100%" id="combined-ts"></div>
@@ -184,16 +182,19 @@
               </td>
             </tr>
             <tr>
-              <th>Item</th>
-              <th class="text-center p-1">Code</th>
-              <th class="text-center p-1">Quantity</th>
-            </tr>
+              <tr>
+                <th class="text-left">Item</th>
+                <th class="text-left">Material</th>
+                <th class="text-center p-1">Code</th>
+                <th class="text-center p-1">Quantity</th>
+              </tr>
           </thead>
           {% for s in inventory %}
           <tr class="txt-12">
-            <td class="pl-2">{{ s.description }}</td>
-            <td class= "text-center p-1">{{ s.code }}
-            <td class="text-center p-1">{{ s.total|floatformat:0 }}</td>
+            <td class="text-left">{{ s.description }}</td>
+            <td class="text-left"> {{ s.material }}</td>
+            <td class= "text-center">{{ s.code }}</td>
+            <td class="text-right ">{{ s.total|floatformat:0|intcomma }}</td>
           </tr>
           {% endfor %}
           <tr>
@@ -229,7 +230,7 @@
           {% for r in locs_samples %}
           <tr class="txt-12 ">
             <td>{{ r.location_id }}</td>
-            <td class="text-right">{{ r.density|floatformat:2 }} pcs/m</td>
+            <td class="text-right">{{ r.density|floatformat:2 }}</td>
             <td class="text-right"> {{ r.sample|floatformat:0 }}</td>
           </tr>
           {% endfor %}
@@ -361,10 +362,10 @@
           </thead>
           {% for s in inventory %}
           <tr class="txt-12">
-            <td class="text_left">{{ s.description }}</td>
-            <td class="text-left"> {{ s.material }}</td>
-            <td class= "text-center">{{ s.code }}</td>
-            <td class="text-right">{{ s.total|floatformat:0|intcomma }}</td>
+            <td class="pl-2">{{ s.description }}</td>
+            <td class="pl-2"> {{ s.material }}</td>
+            <td class= "text-center p-1">{{ s.code }}</td>
+            <td class="text-center p-1">{{ s.total|floatformat:0 }}</td>
           </tr>
           {% endfor %}
           <tr>
@@ -443,8 +444,6 @@
     </div>
   </div>
 </div>
-
-
 
 
 {% endblock %}
@@ -672,11 +671,7 @@ function initMap() {
     map.mapTypes.set('styled_map', styledMapType);
     map.fitBounds(bounds);
     map.panToBounds(bounds);
-
-
     map.setMapTypeId('styled_map');
-    map.setMapTypeId('styled_map');
-
 
   };
 
@@ -733,11 +728,12 @@ Highcharts.chart('combined-ts', {
       tickInterval:3600*1000*24*28*2,
       labels: {
         style: {
-          color:'rgba(00, 00, 00, 1)'
+          color:'rgba(00, 00, 00, 1)',
+          // fontSize: '10px',
         }
       },
       dateTimeLabelFormats: {
-        month: '%b - %Y',
+        month: '%b-%y',
       },
     },
     yAxis: {
@@ -746,14 +742,15 @@ Highcharts.chart('combined-ts', {
             offset: 40,
             text: 'Pieces of trash per meter of shoreline',
             style:{
-              fontSize: '12px',
+              fontSize: '14px',
               color:'#000000',
             },
         },
-        // gridLineColor:'rgba(10, 46, 92, .1)',
+        // gridLineColor:'rgba(00, 00, 00, .2)',
         labels:{
           style: {
-            color:'rgba(00, 00, 00, 1)'
+            color:'rgba(00, 00, 00, 1)',
+
           }
         },
         minorTickInterval: 2,

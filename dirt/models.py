@@ -8,7 +8,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.db.models import Sum, Avg, Max, Min
+from django.db.models import Sum, Avg, Max, Min, F
 from django.contrib.auth.models import UserManager
 
 
@@ -16,6 +16,27 @@ WATER_CHOICES = (
     ('r', 'river'),
     ('l', 'lake')
     )
+class Projects(models.Model):
+    """
+    Projects using the platform
+    """
+    project = models.CharField(db_column='project', max_length=100, blank=True, null=False, primary_key=True)
+    org = models.CharField(db_column='org', max_length=100, blank=True, null=True, )
+
+    def projectList():
+        d = []
+        for a in Projects.objects.values('project'):
+            for b, c in a.items():
+                d.append(c)
+        return d
+
+    def __str__(self):
+        return u'project:%s, org:%s'%(self.project, self.org)
+
+    class Meta:
+        managed = True
+        db_table = 'projects'
+        ordering = ['project']
 
 class Beaches(models.Model):
     """
@@ -27,6 +48,7 @@ class Beaches(models.Model):
     city = models.CharField(db_column='city', max_length=100, blank=True, null=True)
     post = models.CharField(db_column='post', max_length=12, blank=True, null=True)
     water = models.CharField(db_column='water', max_length=12, blank=True, null=True, choices=WATER_CHOICES)
+    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
 
     def beachList():
         nameList = []
@@ -37,7 +59,7 @@ class Beaches(models.Model):
 
 
     def __str__(self):
-        return u'location:%s, lat:%s, lon:%s, city:%s, water:%s, post:%s'%(self.location, self.latitude, self.longitude, self.city, self.water, self.post)
+        return u'location:%s, lat:%s, lon:%s, city:%s, water:%s, post:%s, project:%s'%(self.location, self.latitude, self.longitude, self.city, self.water, self.post, self.project)
 
     class Meta:
         managed = True
@@ -54,6 +76,7 @@ class SLR_Beaches(models.Model):
     city = models.CharField(db_column='city', max_length=100, blank=True, null=True)
     post = models.CharField(db_column='post', max_length=12, blank=True, null=True)
     water = models.CharField(db_column='water', max_length=12, blank=True, null=True, choices=WATER_CHOICES)
+    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
 
     def beachList():
         nameList = []
@@ -63,8 +86,10 @@ class SLR_Beaches(models.Model):
         return nameList
 
 
+    # def __str__(self):
+    #     return u'location:%s, lat:%s, lon:%s'%(self.location, self.latitude, self.longitude)
     def __str__(self):
-        return u'location:%s, lat:%s, lon:%s'%(self.location, self.latitude, self.longitude)
+        return u'location:%s, lat:%s, lon:%s, city:%s, water:%s, post:%s, project:%s'%(self.location, self.latitude, self.longitude, self.city, self.water, self.post, self.project)
 
     class Meta:
         managed = True
@@ -119,28 +144,38 @@ class Codes(models.Model):
         db_table = 'codes'
         ordering = ['material']
 
+
+
 class All_Data(models.Model):
-    location = models.ForeignKey(Beaches, db_column='location', on_delete=models.DO_NOTHING)  # Field name made lowercase.
+    location = models.ForeignKey(Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)  # Field name made lowercase.
     date = models.DateField(db_column='date', blank=True, null=True)  # Field name made lowercase.
     length = models.DecimalField(db_column='length', decimal_places=2, max_digits= 7, blank=True, null=True)
     quantity = models.DecimalField(db_column='quantity',decimal_places=2, max_digits= 7, blank=True, null=True)
-    # key = models.IntegerField(db_column='id',blank=True, null=False, primary_key=True)
-    code = models.ForeignKey(Codes, db_column='code', on_delete=models.DO_NOTHING)
+    code = models.ForeignKey(Codes, db_column='code', null=True,  on_delete=models.DO_NOTHING)
+    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
 
+    # def pcs_meter():
+    #     a = All_Data.quantity/All_Data.length
+    #     return "pcs_m:%s"%(a)
+    # pcs_m = property(_pcs_meter)
+    # these_pieces = Pcs_m.as_manager()
+    # objects = models.Manager()
+    # pcs = Pcs_m()
 
     class Meta:
         managed = True
         db_table = 'all_items'
     def __str__(self):
-        return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s" %(self.date, self.code.source, self.location, self.length, self.quantity, self.code, )
+        return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location, self.length, self.quantity, self.code  )
 
 class SLR_Data(models.Model):
-    location = models.ForeignKey(SLR_Beaches, db_column='location', on_delete=models.DO_NOTHING)  # Field name made lowercase.
+    location = models.ForeignKey(SLR_Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)  # Field name made lowercase.
     date = models.DateField(db_column='date', blank=True, null=True)  # Field name made lowercase.
     length = models.DecimalField(db_column='length', decimal_places=2, max_digits= 7, blank=True, null=True)
     quantity = models.DecimalField(db_column='quantity',decimal_places=2, max_digits= 7, blank=True, null=True)
     density = models.DecimalField(db_column='density', decimal_places=3, max_digits=8, blank=True, null=False,)
-    code = models.ForeignKey(Codes, db_column='code', on_delete=models.DO_NOTHING)
+    code = models.ForeignKey(Codes, db_column='code', null=True, on_delete=models.DO_NOTHING)
+    #project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
 
 
     class Meta:
@@ -150,7 +185,7 @@ class SLR_Data(models.Model):
         return u"date:%s,location:%s, length:%s, code:%s, quantity:%s, density:%s" %(self.date, self.location, self.length, self.code, self.quantity, self.density,)
 
 class SLR_Density(models.Model):
-    location = models.ForeignKey(SLR_Beaches, db_column='location', on_delete=models.DO_NOTHING)
+    location = models.ForeignKey(SLR_Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)
     date = models.DateField(db_column='date', blank=True, null=True)
     sample = models.IntegerField(db_column='sample', blank=True, null=True)
     density = models.DecimalField(db_column='density', decimal_places=3, max_digits=8, blank=True, null=False)
@@ -224,6 +259,7 @@ class References(models.Model):
     author = models.CharField(db_column='author', max_length=120, blank=True, null=True)
     abstract = models.CharField(db_column='abstract', max_length=300, blank=True, null=True)
     subject = models.CharField(db_column='subject', max_length=30, choices=SUBJECT_CHOICES)
+    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return u"title:%s, author:%s, abstract:%s, subject:%s" %(self.title, self.author, self.abstract, self.subject)
