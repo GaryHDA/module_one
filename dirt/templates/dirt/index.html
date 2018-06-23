@@ -42,9 +42,9 @@
   </script>
   <style>
 
-  p, ul, li {
+  /*p, ul, li {
     font-size: 14px;
-  }
+  }*/
 
   .txt-12 {
     font-size: 12px;
@@ -53,26 +53,26 @@
   .txt-14 {
     font-size: 14px;
   }
-  .bg-red {
+  /*.bg-red {
     background-color: rgb(199, 31, 22);
     background-color: rgba(199, 31, 22, 1);
 
-  }
+  }*/
 
-  .wide-88 {
+  /*.wide-88 {
     width:88px;
     height:88px;
-  }
-  .wrapper {
+  }*/
+  /*.wrapper {
     position: relative;
     display: block;
     width: 100%;
     height: 100%;
     overflow: hidden;
     transition: all .3s linear;
-  }
+  }*/
 
-  .shutter {
+  /*.shutter {
     position: relative;
     display: block;
     width: 33%;
@@ -88,22 +88,22 @@
     box-sizing: border-box;
     text-align: center;
     color: #000;
-  }
-  @media  (max-width: 767.98px) {
-    .shutter{
+  }*/
+  /*@media  (max-width: 767.98px) {
+    /*.h1{
       width: 100%;
       height: 20%;
-    };
+    };*/
     .col-sm {
       width: 100%;
     }
 
-  }
-  .shutterOpen .shutter {
+  }*/
+  /*.shutterOpen .shutter {
     height: 0;
-  }
+  }*/
 
-  .shutter.shutterExpanded {
+  /*.shutter.shutterExpanded {
     height: 100%;
     width:100%;
     overflow:auto;
@@ -113,43 +113,136 @@
     padding: 2px;
     min-width: 380px;
   }
+  #make_me{
+
+
+  }
+  #dips{
+    font-size:10px;
+    transition: all .6s linear;
+
+  }*/
+.bttn{
+  width:100%;
+  height:100%;
+}
+
+.col-sm{
+  width:25%
+}
+a {
+  font-size: 2rem;
+
+}
+li{
+  padding:2;
+  margin:2;
+}
 
   </style>
 </head>
 
+<body>
 {% load humanize %}
-<div class="container-fluid p-0 m-0" style="height:100vh; width:100%">
-  <div class="wrapper p-0  mx-auto" style="height:100%">
+<div class="container-fluid p-0 m-0" style="height:100vh; width:100%; background-color:#464646">
+  <div class="w-100 p-1 pl-3 text-left" style="height:20%">
+    <h1 class="display-3" style="color:#008080"> HAMMER</h1>
+  </div>
 
-    <a class="" id="litter_home" style="display:none" href={% url 'litter_home' %}>Beach litter</a>
-    <a class="" href={% url 'microbiology' %}>Microbiology</a>
-    <a class="" href={% url 'in_the_works' %}>In the works</a>
-    <a class="" href={% url 'services' %}>Services</a>
 
-    <div id="make_me" class="text-white" style="width:300px; height:300px; background-color:#000000; transition: all .8s linear;">
-      Home
+
+  <div class="fixed-bottom w-100 ml-auto pr-3 text-right">
+    <h1 class="display-2" style="color:#008080; opacity:0.6">dirt</h1>
+  </div>
+
+  <nav class="navbar navbar-expand-md navbar-dark text-white">
+    <!-- <span class="navbar-brand" >hammerdirt</span>
+    <button class="navbar-toggler navbar-toggler-right text-white" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fa fa-bars fa-lg "></i>
+    </button> -->
+    <div class="collapse navbar-collapse show" id="navbarNavDropdown">
+      <ul class="navbar-nav text-white">
+        <li class="nav-item p-2">
+          <a class="nav-link text-white"  href={% url 'litter_home' %}>Beach litter</a>
+        </li>
+        <li class="nav-item p-2">
+          <a class="nav-link text-white"  href={% url 'microbiology' %}>Microbiology</a>
+        </li>
+        <li class="nav-item p-2">
+          <a class="nav-link text-white"  href={% url 'in_the_works' %}>In the works</a>
+        </li>
+        <li class="nav-item p-2">
+          <a class="nav-link text-white" href={% url 'services' %}>Services</a>
+        </li>
+      </ul>
+      <span class="navbar-text ml-auto text-white">
+        Believe what you see and take good notes.
+      </span>
     </div>
-
+  </nav>
 </div>
 
 
 
 
 
+<script type="text/javascript">
 
 
-<!-- <script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="https://code.highcharts.com/modules/series-label.js"></script>
-<script src="http://code.highcharts.com/modules/exporting.js"></script> -->
+$(document).ready(function() {
+
+  $('.shutterTitle').click(function() {
+    var parentTag = $( this ).parent();
+    var this_height = $(this);
+    var this_child = $(this).children()[1];
+    console.log(this_child);
+
+    // if($(this).height() <= 100 ){
+    // console.log('true');
+    // $(this).removeClass('bg-info').addClass('bg-dark');
+    // };
+
+
+    $( parentTag ).each(function(i){
+      if ($(parentTag).hasClass('close-animate') || !$(parentTag).hasClass('shutterExpanded')) {
+      console.log(this);
+      $(this_height ).css("height", "auto");
+      $(this_height).addClass('text-right');
+      $(this_height).addClass('pr-3');
+      $(this_height).removeClass('p-1');
+      // $(this_child).addClass('text-right');
+      $(parentTag).removeClass('close-animate').addClass('shutterExpanded');
+      $('.wrapper').addClass('shutterOpen');
+      console.log(this_child)
+
+    } else {
+      console.log("Else");
+      $(this).removeClass('shutterExpanded').addClass('close-animate');
+      $(this_height).removeClass('text-right');
+      $(this_height).removeClass('pr-3');
+      $(this_height).addClass('p-1');
+      // $(this_height).children(".p").css("display", "visible");
+      $(this_height ).css("height", "100%");
+      $('.wrapper').removeClass('shutterOpen');
+      console.log(this);
+    }
+    // console.log(this)
+  });
+})}
+);
+</script>
 
 
 <script type="text/javascript">
-$(function(){
-  $("a").addClass("m-3");
-  $("#make_me").css({"height":"600px", "width":"600px", "margin-left":"60px", "font-size":20, "writing-mode":"vertical-lr", "text-orientation":"upright"})
-  $("#litter_home").fadeIn(600, function(){
-    })
-})
+// $(function(){
+//   $("a").addClass("m-3");
+//   $("#dips").css({"font-size":"80px"});
+//
+//   $("#make_me").css({"height":"600px", "width":"600px", "margin-left":"60px",})
+//   $("#dips2").fadeIn(1000, function(){
+//     })
+// })
 
 </script>
+</body>
+</html>

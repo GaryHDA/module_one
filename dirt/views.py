@@ -582,7 +582,25 @@ def services_home(request):
 def in_the_works(request):
     return render(request, 'dirt/intheworks.html')
 def microbiology(request):
-    return render(request, 'dirt/microbiology.html')
+    my_jsons = '/home/mw-shovel/web/notes/micro/data/json/'
+    def get_jsons_x(file_name):
+        with open(my_jsons + file_name, 'r') as f:
+            a = json.load(f)
+            return a
+    mrd_map = get_jsons_x('summ_mrd_map.json')
+    t_cfu_17 = get_jsons_x('t_cfu_17.json')
+    t_uv_17 = get_jsons_x('total_uv17.json')
+    rain_17 = get_jsons_x('rain_17.json')
+    rain_16 = get_jsons_x('rain_16.json')
+    big_blue17 = get_jsons_x('big_blue17.json')
+    big_blue16 = get_jsons_x('big_blue16.json')
+    t_cfu_16 = get_jsons_x('t_cfu_16.json')
+    books = Make_library.books
+    return render(request, 'dirt/microbiology.html', {'b_blue17_svt':big_blue17[2], 'b_blue17_vnx':big_blue17[1], 'b_blue17_mrd':big_blue17[0],
+                'rain_17':rain_17, 'map_points':mrd_map, 'books':books, 't_cfu_17_mrd':t_cfu_17[0], 't_cfu_17_vnx': t_cfu_17[1],
+                't_cfu_17_svt': t_cfu_17[2], 't_uv_17_svt':t_uv_17[2], 't_uv_17_mrd':t_uv_17[0], 't_uv_17_vnx':t_uv_17[1],
+                'b_blue16_svt':big_blue16[2], 'b_blue16_vnx':big_blue16[1], 'b_blue16_mrd':big_blue16[0], 't_cfu_16_mrd':t_cfu_16[0], 't_cfu_16_vnx': t_cfu_16[1],
+                't_cfu_16_svt': t_cfu_16[2], 'rain_16':rain_16})
 def index(request):
     return render(request, 'dirt/index.html')
 

@@ -2,318 +2,1117 @@
 
 {% block style %}
 
-.charts {
-  width:400px;
-}
-.td_site-results {
- padding: 1px;
- font-size: 14px;
-}
+
 .txt-12 {
   font-size: 12px;
-}
-.bg-black {
-  background-color: #000000;
-}
-
-.bg-red {
-  background-color: rgba(199, 31, 22, 1);
-
 }
 
 .txt-14 {
   font-size: 14px;
 }
+.bg-red {
+  background-color: rgba(199, 31, 22, 1);
+
+}
+.col-sm{
+  min-width:380px;
+}
+
 .wide-88 {
   width:88px;
   height:88px;
 }
-.m-w-376{
-  min-width: 376px;
+.wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: all .3s linear;
 }
 
+.shutter {
+  position: relative;
+  display: block;
+  width: 33%;
 
-.col-sm, .col-sm-4 {
-  padding: 2px;
-  min-width: 380px;
+  height: 16%;
+  background: #fff;
+  box-sizing: border-box;
+  border-top: 1px solid #ffffff;
+  transition: all .3s linear;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 5;
+  box-sizing: border-box;
+  text-align: center;
+  color: #000;
 }
 
-html {
-  font-size: 1rem;
+#whynot{
+  width:80%;
+  height:20%;
 }
-
-@include media-breakpoint-up(sm) {
-  html {
-    font-size: .5rem;
+.bttn{
+  width:100%;
+  height:100%;
+}
+#why {
+  width:50%;
+  height:100%;
+}
+@media  (max-width: 767.98px) {
+  .shutter{
+    width: 100%;
+    height: 20%;
   }
+
+}
+@media  (max-width: 767.98px) {
+  #whynot {
+    width:100%;
+    height:30%;
+
+  };
 }
 
-@include media-breakpoint-up(md) {
-  html {
-    font-size: 1.4rem;
-  }
+@media  (max-width: 767.98px) {
+  #why {
+    width:100%;
+    height:100%;
+
+  };
 }
 
-@include media-breakpoint-up(lg) {
-  html {
-    font-size: 1.6rem;
-  }
+
+.shutterOpen .shutter {
+  height: 0;
 }
+
+.shutter.shutterExpanded {
+  height: 100%;
+  width:100%;
+  overflow:auto;
+  <!-- width:100%; -->
+}
+
 {% endblock %}
 {% block return_to %}
 {% endblock %}
 
 {% block content %}
-{% load humanize %}
-<div class="container-fluid p-0 m-0" style="height:100vh; overflow:auto">
-  <div class="row no-gutters border border-danger" style="height:100%">
-    <div class="col-sm-4" style="">
-      <div class="card pb-0" style="height:100%">
-        <div class="bg-info text-white card-header p-2 pl-3" id="" style="">
-          <button class="btn bg-info text-white w-100 p-0 m-0 text-left" data-toggle="" data-parent="" data-target="" aria-expanded="false" aria-controls="links">
-            <i class="fa fa-th-list fa-lg"></i>&nbsp; Summary : {{ city }}
-          </button>
-        </div>
-        <div class="card-body p-0" style="height:100%">
-          <h6 class="card-title pt-1" style="">Summary data for the Swiss Litter Report
-            <br><small class="text-muted">April 2017 - April 2018
-            <br>units= m<sup>2</sup></small></h6>
+{% load humanize %}{% load static %}
 
-          <div class="btn-toolbar w-100 " style="">
-            <div class="btn-group w-100 " style="">
-              <button class="btn bg-info w-100 text-white p-2 pl-3 border-white" style="white-space:normal; height:100%" data-toggle="modal"  data-target="#library" aria-expanded="false" aria-controls="table-of-results">
-                Reading list
-              </button>
-              <button class="btn bg-info w-100 text-white p-2 pl-3 border-white" style="white-space:normal; height:100%" data-toggle="modal"  data-target="#goals" aria-expanded="false" aria-controls="table-of-results">
-                Objectives
-              </button>
-              <button class="btn bg-info w-100 text-white p-2 pl-3 border-white" style="white-space:normal; height:100%" data-toggle="modal" data-target="#finance" aria-expanded="false" aria-controls="table-of-results">
-                Finances
-              </button>
-            </div>
-          </div>
 
+  <div class="container-fluid p-0 m-0" style="height:100vh; width:100%">
+    <div class="wrapper p-0  mx-auto" style="height:100%">
+      <div class="shutter mx-auto" >
+        <div class="row bg-dark p-1"  style="height:100%" >
+          <h5 class="w-100 text-white">Welcome to the Microbiology section</h5>
+          <p class="text-white mx-auto">Click on a tab below to get started.<br> If you have any questions contact us.</p>
         </div>
       </div>
-    </div>
-    <div class="col-sm-4" style="">
-      <div class="card pb-0" style="height:100%" id="map-of-locations">
-          <div class="bg-info text-white card-header p-2 pl-3" id="" style="">
-            <i class="fa fa-map fa-lg "></i>&nbsp;Map of SLR locations
-          </div>
-          <div class="card-body p-0 pt-1" style="height:100%; ">
-            <h6 class="card-title" style="">Locations of the SLR samples
-              <br><small class="text-muted">April 2017 - April 2018
-              <br>Circle size relative to avg pcs/m<sup>2</sup></small></h6>
-
-
-
-            </div>
-          </div>
-
-
-    </div>
-    <div class="col-sm-4" style="">
-      <div class="card pb-0" id="time-series-chart" style="height:100%">
-        <div class="bg-info text-white card-header p-2 pl-3" id="" style="">
-          <i class="fa fa-line-chart fa-lg "></i>&nbsp; Inventory results by day
+      <div class="shutter mx-auto" id="read_me">
+        <div class="row no-gutters bg-info shutterTitle p-2" style="height:100%">
+          <h5 class="w-100 text-white"> --> Read me first <-- <br>
+          <small class="text-left">Why did we do this project? Includes a brief history of the project and what we hope to achieve.</small></h5>
         </div>
-        <div class="card-body p-0 pt-1 " style=""><h6 class="card-title" style="">All SLR daily results
-          <br><small class="text-muted">April 2017 - April 2018, toggle categories in legend
-          <br>Monthly summaries, click and drag in chart areaa to zoom date</small></h6>
-
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-<div class="modal fade w-100" id="sun_shine">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h6 class="modal-title">All items identified from the Swiss Litter Report {{ summary.last|date:"M Y" }}</h6>
-        <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <table class="table-striped table table-sm">
-          <thead class="txt-14">
-            <tr>
-              <th>Item</th>
-              <th class="text-left p-1">Material</th>
-              <th class="text-center p-1">Code</th>
-              <th class="text-center p-1">Quantity</th>
-            </tr>
-          </thead>
-          {% for s in inventory %}
-          <tr class="txt-12">
-            <td class="text_left">{{ s.description }}</td>
-            <td class="text-left"> {{ s.material }}</td>
-            <td class= "text-center">{{ s.code }}</td>
-            <td class="text-right">{{ s.total|floatformat:0|intcomma }}</td>
-          </tr>
-          {% endfor %}
-          <tr>
-            <td colspan="3" class="bg-info text-white"> End of inventory
-              <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade w-100" id="sum_data">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h6 class="modal-title">The top-ten items indentified from all samples.<small class="text-mutted">
-        <br>REMEMBER: these are the reported observations of people in your community
-        <br>Units are "pieces", the description and code are Marine Litter Watch</small>
-        </h6>
-        <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="card-group">
-          <div class="card">
-            <div class="card-body">
-              <div class="card-title"><h6>Table of results: sorted by material type
-                <br><small class="text-muted">Material class taken from MLW guide
-                <br>Material class is given with the item code</small></h6>
+        <div class="row no-gutters" style="height:100%">
+          <div class="col-sm" id='bg' style="">
+            <div class="card pb-0 mx-auto" id="why" style="" >
+              <div class="card-header m-0 w-100 bg-dark text-left" id="" style="">
+                <h4 class="text-white">Why is this important? <br><small class="text-white">empty</small> </h4>
               </div>
-              <table class="table-striped table table-sm">
-                <thead class="">
-                  <tr class="p-1 pl-2 text-left">
-                    <th class="">Material</th>
-                    <th class="">Quantity</th>
-                    <th class="">Percent of total</th>
+              <div class="card-body p-1 w-100 text-left" >
+                <div id="whynot" class="container mx-auto mb-2">
+                  <div class="row no-gutters" style="height:50%">
+                    <div class="col-sm-4 p-0 m-0">
+                      <a class="btn bttn bg-info text-white p-1 m-0 border-white" style="white-space:normal;" data-toggle="modal"  data-target="#bl_30" aria-expanded="false" aria-controls="table-of-results">
+                         bl_30
+                      </a>
+                    </div>
+                    <div class="col-sm-4 p-0 m-0">
+                      <a class="btn bttn bg-info text-white p-1 m-0 border-white" style="white-space:normal;" data-toggle="modal" data-target="#mcbp-1" aria-expanded="false" aria-controls="">
+                         MCBP-1
+                      </a>
+                    </div>
+                    <div class="col-sm-4 p-0 m-0" >
+                      <a class="btn bttn bg-info text-white m-0 p-1 border-white" style="white-space:normal;" data-toggle="modal"  data-target="#mcbp-2" aria-expanded="false" aria-controls="">
+                         MCBP-2
+                      </a>
+                    </div>
+                  </div>
+                  <div class="row no-gutters" style="height:50%">
+                    <div class="col-sm-4 p-0 m-0">
+                      <a class="btn bttn bg-info text-white m-0 p-1 border-white" style="white-space:normal;" data-toggle="modal"  data-target="#mcbp-3" aria-expanded="false" aria-controls="table-of-results">
+                         MCBP-3
+                      </a>
+                    </div>
+                    <div class="col-sm-4 p-0 m-0">
+                      <a class="btn bttn bg-info text-white m-0 p-1 border-white" style="white-space:normal;" data-toggle="modal"  data-target="#mcbp-4" aria-expanded="false" aria-controls="">
+                         MCBP-4
+                      </a>
+                    </div>
+                    <div class="col-sm-4 p-0 m-0">
+                      <a class="btn bttn bg-info text-white m-0 p-1 border-white" style="white-space:normal;" data-toggle="modal"  data-target="#slr" aria-expanded="false" aria-controls="table-of-results">
+                         slr
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="list-group ">
+                  <div class="list-group-item flex-column align-items-start mt-2">
+                    <div class="d-flex w-100 justify-content-between ">
+                      <h6 class="mb-1">Empty
+                        <br><small class="text-muted">
+                          <br>.</small></h6>
+                    </div>
+                  </div>
+                  <div class="list-group-item flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h6 class="mb-1"> Empty
+                        <br><small class="text-muted">A
+                        <br></small></h6>
+                    </div>
+                  </div>
+                  <div class="list-group-item flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h6 class="mb-1"> Management tool
+                        <br><small class="text-muted">A
+                        <br></small></h6>
+                    </div>
+                  </div>
+                  <div class="d-flex w-100 align-items-center justify-content-center">
+                    <div class="btn m-1 wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
+                      <a class="text-white txt-14" href="{% url 'slr_home' %}" aria-expanded="false"> SLR<br> Results </a>
+                    </div>
+                    <div class="btn m-1 wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
+                      <a class="text-white  txt-14" href="{% url 'mcbp_home' %}" aria-expanded="false"> MCBP<br> Results </a>
+                    </div>
+                    <div class="btn m-1 wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
+                      <a class="text-white txt-14" href="ca_home" aria-expanded="false"> California<br> Results </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="shutter mx-auto" id="combined_data">
+        <div class="row no-gutters bg-info shutterTitle p-2" style="height:100%">
+          <h5 class="w-100 text-white">Results year one and two<br>
+          <small> The sampling was repeated two years consecutiveley at the same locations, during the same time frame</small></h5>
+        </div>
+        <div class="row no-gutters" id='cd' style="height:100% ">
+          <div class="col-sm" id='cd_0' style="height:100%">
+            <div class="card pb-0" id="cd_1" style="height:100%">
+              <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
+                Summary:
+              </div>
+              <div class="card-body p-0 text-left" style="height:100%">
+                <h6 class="card-title"> Project summary "Microbiological survey"
+                  <br><small class="text-muted">
+                    In partnership with the <a href="http://wiki.hackuarium.ch/w/Micro_to_Macro_Water_Pollution"> hackuarium </a> and <a href="https://biodesign.cc/"> biodesign.cc</a></small>
+                  </h6>
+                  <table class="table table-striped table-sm" style="height:30%">
+                    <thead>
+                      <tr>
+                        <th colspan="2" class="text-center">Survey 2016 </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>N<sup>o</sup> of samples:</td>
+                        <td>216</td>
+                      </tr>
+                      <tr>
+                        <td>N<sup>o</sup> of locations:</td>
+                        <td>3</td>
+                      </tr>
+                      <tr>
+                        <td>First sample:</td>
+                        <td>2016-06-21</td>
+                      </tr>
+                      <tr>
+                        <td>Last sample:</td>
+                        <td>2016-08-09</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                <button class="btn bg-info w-100 p-2 pl-3 text-white text-left border-white" style="height:8%"  role="button" data-toggle="modal" data-target="#medium" aria-expanded="false" aria-controls="">
+                  Culture medium specifications</button>
+                <table class="table table-striped table-sm" style="height:30%">
+                  <thead>
+                    <tr>
+                      <th colspan="2" class="text-center">Survey 2017 </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>N<sup>o</sup> of samples:</td>
+                      <td>213</td>
+                    </tr>
+                    <tr>
+                      <td>N<sup>o</sup> of locations:</td>
+                      <td>3</td>
+                    </tr>
+                    <tr>
+                      <td>First sample:</td>
+                      <td>2016-06-12</td>
+                    </tr>
+                    <tr>
+                      <td>Last sample:</td>
+                      <td>2016-07-31</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <button class="btn bg-info p-2 pl-3 text-white text-left border-white w-100" style="height:8%" data-toggle="modal"  data-target="#assume" aria-expanded="false" aria-controls="table-of-results">
+                  Reading list</button>
+                <button class="btn bg-info p-2 pl-3 text-white text-left border-white w-100"  style="height:8%" data-toggle="modal" data-target="#arrays" aria-expanded="false" aria-controls="">
+                  <i class="fa fa-line-chart fa-lg"></i>&nbsp;Colony counts per week, per location</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm" id="cd_01"  style="">
+            <div class="card pb-0" id="cd_9"  style="height:100%">
+              <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
+                Location of samples:
+              </div>
+              <div class="card-body p-0 text-left"  style="height:100%">
+                <h6 class="card-title">Map of sampling sites
+                  <br><small class="text-muted">The same sites were surveyed in 2016 and 2017</small></h6>
+                <div id="maps" class="" style="height:76%; min-height:460px"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm" id="cd_02"  style="height:100%" >
+            <div class="card pb-0" id="cd_10"  style="height:100%">
+              <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
+                <i class="fa fa-line-chart fa-lg"></i>&nbsp; Results by year and location
+              </div>
+              <div class="card-body p-0 text-left"  style="height:100%">
+                <h6 class="card-title">Aggregated results by year, location and colony-colors</h6>
+                  <figure class="figure w-100 mb-1" style="height:40%">
+
+                    <img src="{% static 'images/cfu_week.png' %}" class="img-fluid btn" style="" role="button" data-toggle="modal" data-target="#results_2017" >
+                    <figcaption class="figure-caption text-right pr-2">Click on image above to see results for 2017</figcaption>
+
+
+                  </figure>
+                  <figure class="figure w-100 mb-1" style="height:40%">
+                    <img src="{% static 'images/cfu_week_16.png' %}" class="img-fluid btn" style="" role="button" data-toggle="modal" data-target="#results_2016">
+                    <figcaption class="figure-caption text-right pr-2">Click on image above to see results for 2016</figcaption>
+
+                  </figure>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="shutter mx-auto" id="prob_bugs">
+        <div class="row no-gutters bg-info shutterTitle p-2" style="height:100%">
+          <h5 class="w-100 text-white">Economic and environmental influences<br>
+          <small>What are some of the factors that can cause an increase in E.coli in lakewater?</small></h5>
+        </div>
+        <div class="row no-gutters" id='gb' style="height:100% ">
+          <div class="col-sm" id='gb_0' style="height:100%">
+            <div class="card pb-0" id="">
+              <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
+                Large Events
+              </div>
+              <div class="card-body text-left" style="height:100%">
+                <h6 class="card-title ">The Montreux Jazz Festival
+                  <br><small class="text-muted">Second largest jazz festival in the world
+                  <br>Most of the events happen within 100 meters of the lake shore</small></h6>
+                <p> The Montreux Jazz festival draws between 200K and 250K people per year. The organizers install temporary toilets that hook up to the local water treatment facility. As opposed to using cheimcal toilets.</p>
+                <p> The samples for this study were taken before, during and after the jazz festival.</p>
+                <figure class="figure w-100 mb-1" style="height:40%">
+                  <img src="{% static 'images/jazz_dif.svg' %}" class="img-fluid btn" style="" role="button" data-toggle="modal" data-target="#jazz_diff">
+                  <figcaption class="figure-caption text-right pr-2">Click on image for lager scale</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm" id='gb_1' style="height:100%">
+            <div class="card pb-0" id="">
+              <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
+                Population
+              </div>
+              <div class="card-body text-left" style="height:100%">
+                <h6 class="card-title ">Hotel nights sold per month
+                  <br><small class="text-muted">The number of hotel nights sold increases by 50% in one month
+                  <br>Source: <a href="https://www.bfs.admin.ch/bfs/en/home/statistics/tourism.html>">Swiss federal office of statistics</a></small></h6>
+                <p>Montreux is a tourist town, with a population of ~25'000.  When this project was conceived, the annual report by the <a href="http://www.cipel.org/en/">CIPEL</a> showed that, sewage overflows were under estimated. See the <a href="http://www.cipel.org/wp-content/uploads/2016/10/12_controle_STEP_camp_2015.pdf"> report</a> (in french)</p>
+                <p>The hotel nights effectiveley double (almost triple the population)</p>
+                <figure class="figure w-100 mb-1" style="height:40%">
+                  <img src="{% static 'images/hotel_dif.svg' %}" class="img-fluid btn" style="" role="button" data-toggle="modal" data-target="#hotel_diff">
+                  <figcaption class="figure-caption text-right pr-2">Click on image for lager scale</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm" id='gb_2' style="height:100%">
+            <div class="card pb-0" id="">
+              <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
+                Precipitation
+              </div>
+              <div class="card-body text-left" style="height:100%">
+                <h6 class="card-title ">72 hour rainfall totals
+                  <br><small class="text-muted">Coliforms tend to increase in lake water during and after rain events
+                  <br>Increases in E.coli suggest a bypass of the water treatment system</small></h6>
+                <p> If changes in the bacterial fauna are due to rainfall then we should see an increase in colony counts as rainfall increases.</p>
+                <p>However, the change would only be relfected if the capacity of the water treatment facility was surpassed. This would produce a spike in the graph above a certain amount of rainfall</p>
+                <figure class="figure w-100 mb-1" style="height:40%">
+                  <img src="{% static 'images/rain_dif.svg' %}" class="img-fluid btn" style="" role="button" data-toggle="modal" data-target="#rain_diff">
+                  <figcaption class="figure-caption text-right pr-2">Click on image for lager scale</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="shutter mx-auto" id="in_progress">
+        <div class="row no-gutters bg-info shutterTitle" style="height:100%" >
+            <h5 class="w-100 text-white">Notebooks and code samples<br>
+            <small>Work in progress, analysis of results is done in a notebook first. This is a collection of those notebooks, can be difficult to follow</small></h5>
+
+        </div>
+        <div class="row no-gutters" id='ap' style="height:100% ">
+          <div class="col-sm" id='ap_0' style="height:100%">
+            <div class="card pb-0" id="">
+              <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
+                Data wrangling and cat herding
+              </div>
+              <div class="card-body text-left" style="height:100%">
+                <h6 class="card-title">Putting the data together
+                  <br><small class="text-muted">The project was spread out over two years
+                  <br>Methods used to record the data changed from one year to the next</small></h6>
+                <p class="card-text">This is the initital notebook used to communicate interim results between team members</p>
+                <p class="card-text">Here we decide on analysis methods, how to deal with results that are "Too numerous to count" or "Below detecable limit"</p>
+                <p class="card-text"> Links to a <a href="https://github.com/hammerdirt/notes/blob/master/micro/Initial%20sorting%20and%20cat%20herding%20micro.ipynb"> repository on Github </a></p>
+                <img src="{% static 'images/screenshot.png' %}" class="img-fluid">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm" id='ap_1' style="height:100%">
+            <div class="card pb-0" id="">
+              <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
+                Aggregating the results
+              </div>
+              <div class="card-body text-left" style="height:100%">
+                <h6 class="card-title">Developing the arrays of results
+                  <br><small class="text-muted">How to visualize all the weekly results from one year, by location and colony color.
+                  <br>Changes in the culture medium from one year to the next complicate the task just a smidge.</small></h6>
+                <p class="card-text">Results arrays are common when the data is generated by a machine, it is a whole different story when you need to code the array from scratch and account for non-numerical results.</p>
+                <p class="card-text">Links to a <a href="https://github.com/hammerdirt/notes/blob/master/micro/24_hr_arrays.ipynb"> repository on Github </a></p>
+                <img src="{% static 'images/screenshot2.png' %}" class="img-fluid">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm "  id='ap_2' style="height:100%">
+            <div class="card pb-0" id="">
+              <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
+                Creating useable output
+              </div>
+              <div class="card-body text-left" style="height:100%">
+                <h6 class="card-title">Creating charts and data for app and publications
+                  <br><small class="text-muted">Incorporating independent variables (hotel nights, rainfall)
+                  <br>Ensuring that print and application output are the same(not including color scheme)</small></h6>
+                <p class="card-text">Here we generate output for our webapp. That means creating dictionaries of values that can be exploited by a variety of platforms. We chose JSON as the format.</p>
+                <p class="card-text">Links to a <a href="https://github.com/hammerdirt/notes/blob/master/micro/output_for_hdch.ipynb"> repository on Github </a></p>
+
+                <img src="{% static 'images/rain_dif.svg' %}" class="img-fluid">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal fade" id="bl_30">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Measuring beach litter<br>
+              <small class="text-muted"> For a list of further reading on the subject see the bibliography section of the MCBP results.</small>
+            </h5>
+            <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Beach litter density is the measure of trash on a fixed length of beach or shoreline.
+            </p>
+            <p>
+              All visible trash is collected, the individual objects are identified and sorted using an international protocol.  This process is repeated multiple times per year
+              at the same location. In Europe the two most important protocols are OSPAR and Marine Litter Watch.
+            </p>
+             <p>
+               Research has connected 80% of marine debris to landbased activities.  However there has never been a national survey of aquatic litter in freshwater environements
+               that uses similar methods.  Untill now.
+             </p>
+             <p>
+               Combined, the SLR and MCBP have over 1000 samples from 135 locations across the country.  Establishing both a baseline and identifying the objects most frequently found
+               in the environment.
+             </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="mcbp-1">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">MCBP-1 2014-2015<br>
+              <small class="text-muted"> Everything has a begining</small>
+            </h5>
+            <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h5> Introduction </h5>
+            <p>
+              The first project "Montreux Clean Beach" or MCBP-1 was initiated by Shannon and Roger Erismann in 2014.  After one year of collecting trash in the region
+               of Montreux, Switzerland our conclusion was that the shores of Lake Geneva were covered with a uniform mix of cigarette butts, broken plastics, crushed styrofoam and qtips.
+             </p>
+            <p>The results were documented and presented to municpal, regional and national authorities in the form of a report detailing location, quantity and frequency.</p>
+            <p>The document:
+              <br><a href="https://drive.google.com/open?id=0BzPFamJgOYe1ZXExVFJ0cFZnRmM"> Under our feet, at the waters edge</a></p>
+            <p>Although not a scientific report, this document was a launchpad for the second MCBP, and guided (guides) research into topics such as:
+               <ul>
+                 <li>Aquatic litter, Citizen Science</li>
+                 <li>National and international legislaltion</li>
+                 <li>Water quality, Microbiology</li>
+                 <li>Data science, Data visualization</li>
+                 <li>Programing(python, js)</li>
+                 <li>Network communications</li>
+               </ul>
+             </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="mcbp-2">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">MCBP-2 2015-2016<br>
+              <small class="text-muted"> Getting serious</small>
+            </h5>
+            <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              MCBP-2 was started in November 2015, following the <a href="https://www.ospar.org/work-areas/eiha/marine-litter">OSPAR</a>
+               and <a href="https://www.eea.europa.eu/themes/water/europes-seas-and-coasts/marine-litterwatch">Marine Litter Watch</a>(MLW)
+               protocols. Centered in the region of Montreux, over 100 litter inventories were conducted in 12 months (52 inventories within the city limits of Montreux)
+               each inventory detailed the following:</p>
+               <ul>
+                  <li>Object found</li>
+                  <ul>
+                    <li>Quantity</li>
+                    <li>MLW Classification</li>
+                    <ul>
+                      <li>Description</li>
+                      <li>Material composition</li>
+                    </ul>
+                  </ul>
+                  <li>GPS coordinates</li>
+                  <li>Length of shoreline</li>
+                </ul>
+
+            <p>The results were documented using the <a href="http://www.kobotoolbox.org/">Open-Data-Kit (Kobo-Collect)</a> and were made availbale to the public on our Google-Drive</p>
+            <p>MCBP-2 produced two documents:</p>
+              <ul>
+                <li> <a href="https://drive.google.com/open?id=0BzPFamJgOYe1RFJmR01qeWZtQWc">The ln(beach-litter-density)</a></li>
+                <ul>
+                  <li>Compares results from MCBP-2 to other OSPAR regions</li>
+                  <li>Compares results fromt the EPFL stduy in 2014</li>
+                  <li>Expresses trash as a value of pcs/m </li>
+                </ul>
+                <li> <a href="https://drive.google.com/open?id=0BzPFamJgOYe1S2R4WC01cDBlQzg">Annex-B</a></li>
+                <ul>
+                  <li>Comparative analysis of results</li>
+                  <li>Regression of pcs/m against river discharge rates</li>
+                  <li>Identification of most common items found</li>
+                  <li>Expression of pcs/m as a probability mass function</li>
+                </ul>
+              </ul>
+            <p>The results were presented to municipal, regional and national authorities.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="mcbp-3">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">MCBP-3 2016-2017<br>
+              <small class="text-muted">Making the efforts sustainable with automation and data-science </small>
+            </h5>
+            <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>MCBP-3 is a departure from the hammerdirt role as volunteer trash collectors.  It became obvious that no official institutions
+              were interested in analyzing or using the collected data. Therefore we decided to create te infrastructure necesary to
+              automate the basic analysis and visualization of the results.</p>
+              <ul>
+                <li> Automation of data handling</li>
+                <ul>
+                  <li>Develop our own app for logging data</li>
+                  <li>Automate presentation of results and descriptive statistics</li>
+                  <li>Automate standard data visualisations</li>
+                </ul>
+                <li>Specifically we focussed on the following programing languages/platforms:</li>
+                <ul>
+                  <li> Python (django, pandas, scikit-learn, matplotlib, numpy, et all...)</li>
+                  <li> HTML5/CSS -- Bootstrap 4 </li>
+                  <li> JavaScript (Highcharts, D3, jQuery, react, react-native, nodeJs)</li>
+                  <li> Java (android), MySQL, linux(shell) </li>
+                </ul>
+              </ul>
+            <p>As a result we did fewer litter inventories. However this led to several operations improvements:</p>
+            <ul>
+              <li>Software fees were reduced to zero (not including server costs)</li>
+              <li>This allowed for possible IT hardware investments </li>
+              <li>Reduced time spent generating reports</li>
+              <li>Increased access to results and data</li>
+              <li>Reduced overall time spent on adminstrative tasks</li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="mcbp-4">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">MCBP-4 2017-<br>
+              <small class="text-muted">Beach litter surveillance made easy</small>
+            </h5>
+            <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              There will be no further MCBP projects. The development of our platform elimnates the need for a project based approach
+              to aquatic litter monitoring in the area.
+            </p>
+            <p>
+              Litter surveillance will continue throughout the year at various locations in the region. However, efforts in this domain will be focussed on data analysis and visualisation.
+            </p>
+            <p>
+              We can do that now that the easy stuff has been automated !
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="slr">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">The Swiss Litter Report<br>
+              <small class="text-muted">Litter surveillance on a national scale</small>
+            </h5>
+            <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              The Swiss Litter Report(SLR) is a project by <a href="http://stoppp.org/swiss-litter-report">STOPPP</a> and <a href="https://www.wwf.ch/de">WWF Switzerland</a>. WWF and STOPPP volunteers monitor over 100 sites across Switzerland.
+            </p>
+            <p>
+             The methods used by the SLR produce comparable data to the MCBP series and when both data sets are considered a national baseline
+             for shoreline litter can be established.</p>
+             <p>
+               There are a couple of differences:
+               <ul>
+                 <li>Most of the samples from MCBP were collected by three people, the SLR has hundreds of volunteers</li>
+                 <li>MCBP was started by two people in response to repeated observations in their own community.  The SLR is a project iniated by
+                   a large organization and administered from the top down</li>
+                 <li>*MCBP counts every item found with no lower size limit(OSPAR), SLR has a lower size limit of 2.5cm(MLW)</li>
+               </ul>
+             </p>
+             <p>*We believe that this accounts for the difference in the probability distribution of the two projects</p>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade w-100" id="medium">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h6 class="modal-title">ECA Check Easygel Specification guide<small class="text-muted">
+            <br>Source: Micrology laboratories, <a href="https://www.micrologylabs.com/index"> Micrology labs</a></small></h6>
+            <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card-group">
+              <div class="card " style="">
+                <div class="card-body">
+                  <dl class="row">
+                    <dt class="col-sm-3">Selectvie for:</dt>
+                    <dd class="col-sm-9">E. coli, total coliforms, Salmonells spp and Aeromonas spp.</dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-3">Description:</dt>
+                    <dd class="col-sm-9">
+                      ECA Check® is a clear medium containing a chromogenic substrate mixture.
+                      Enzymes specific to each of the four bacterial groups react with their specific
+                      chromogenic substrates to produce the colors that differentiate each bacterial type.
+                    </dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-3">Composition:</dt>
+                    <dd class="col-sm-9">
+                      Contains nutrients and chromogenic substrates. pH 7.2 ± 0.2
+                    </dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-3">Incubation time</dt>
+                    <dd class="col-sm-9">
+                      24-48 hrs at 35ºC. It is possible to take accurate readings at 24 hours incubation time.
+                      Colors will intensify and colony size will be larger at 36-48 hours.
+                    </dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-3">Interpretation of results</dt>
+                    <dd class="col-sm-9">
+                      <ul>
+                        <li>
+                          E. coli* colonies will have a dark blue/purple overall colony color.
+                        </li>
+                        <li>
+                          Non-fecal coliforms (Enterobacter, Citrobacter and Klebsiella spp. & others) are lighter blue/grey to purplish in color.
+                        </li>
+                        <li>
+                          Salmonella spp. appear as green/teal colonies.
+                        </li>
+                        <li>
+                          Aeromonas spp. are pink to very light pink.
+                        </li>
+                        <li>
+                          Gram-positive organisms are generally inhibited
+                        </li>
+                      </ul>
+
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+              <!-- <div class="card " style="">
+                <h5 class="card-title">Pick a  body of water</h5>
+                <div class="card-body">
+                  <form class="d-inline-block mb-1" action='/dirt/search_water/' method='get'>
+                  <i class="fa fa-folder-open fa-lg mr-1 "></i>&nbsp;Details:&nbsp;&nbsp;
+                  <select class="form-control-sm d-inline-block mr-2"style="width:160px" name='water'>
+                    {% for x in all_water %}
+                    <option class="txt-12" value= "{{ x }}">{{ x }}</option>
+                    {% endfor %}
+                  </select>
+                  <button class="d-inline-block btn txt-14 p-1" style="background-color:transparent; border-color:black; border-width:1px" type='submit' ><i class="fa fa-external-link fa-lg"></i></button>
+                </form>
+                  <div class="card-text"><small>* Get all results from a river or lake </small></div>
+                </div>
+              </div>
+              <div class="card " style="">
+                <h5 class="card-title">Pick a  project</h5>
+                <div class="card-body">
+                  <div class="container-fluid p-0 m-0">
+                    <div class="btn-toolbar mb-1">
+                    <div class="btn-group">
+                      <a class="btn bg-info text-white mt-1 p-2 border-white"  style="white-space: normal;" href="{% url 'slr_home' %}" aria-expanded="false" aria-controls="">
+                        SLR</a>
+                      <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'mcbp_home' %}" aria-expanded="false" aria-controls="table-of-results">
+                          MCBP</a>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="card-text"><small>* SLR results given in m<sup>2</sup></small></div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+          <div class="modal-footer bg-info">
+            <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="true">&times;</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="assume">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">List of resources used for the planning of this project<br>
+              <small class="text-muted">This list is not comprehensive</small>
+            </h5>
+            <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <table class="table table-sm">
+              {% for a, b in books.items %}
+              <tr class="">
+                <td class="font-weight-bold">{{ a }}:</td>
+              </tr>
+              {% for tome in b %}
+              <tr class="">
+                <td>{{ tome.title }}</td>
+                <td> {{ tome.author }}</td>
+                <td> {{ tome.abstract }}</td>
+              </tr>
+              {% endfor %}
+              {% endfor %}
+            </table>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="results_2016">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h6 class="modal-title mx-auto">Microbiological survey results summer 2016</h6>
+            <button type="button" class="close align" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <h6 class="modal-title mb-1 pl-2">Average total colony forming units June - July -Aug 2016<small class="text-muted">
+              <br>Medium: ECA Easygel, incubation time: 24hrs
+              <br>Three samples per location, per day. Tuesdays between 10am and 12noon</small></h6>
+            <div id="box-plot4" style="min-height:360px; min-width:380px"></div>
+            <div class="container-fluid ">
+              <div class="w-100 pt-3 pb-1">
+                <dl class="row">
+                  <dt class="col-sm-3">Interpretation of results</dt>
+                  <dd class="col-sm-9">
+                    <ul>
+                      <li>
+                        Big Blue: E. coli colonies
+                      </li>
+                      <li>
+                        Med Blue: Non-fecal coliforms (Enterobacter, Citrobacter and Klebsiella species.
+                      </li>
+                      <li>
+                        Turquoise: Salmonella species.
+                      </li>
+                      <li>
+                        Pink: Aeromonas species.
+                      </li>
+                      <li>
+                        Gray: Unknown species
+                      </li>
+                    </ul>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+            <h6 class="modal-title mb-1 pl-2">Average total Big blue colony forming units June - July - Aug 2016<small class="text-muted">
+              <br>Medium: ECA Easygel, incubation time: 24hrs
+              <br>Three samples per location, per day. Tuesdays between 10am and 12noon</small></h6>
+            <div id="box-plot5" style="min-height:360px; min-width:380px"></div>
+            <div class="container-fluid mt-2">
+              <h6 class="card-title">2016 Easygel AVERAGE 24hr total colony counts, by week, location, species
+                <br><small class="text-muted">Day of the week : Tuesdays, time between 10h-12h.
+                <br>BDL = 'Below detectable limit', TMTC = 'Too many to count', if the box is empty there was no sample
+                <br>Week one/day-one: 2016-06-21; Week eight/day-eight: 2016-08-09</small></h6>
+              <table class="table table-sm m-0, p-0">
+                <thead>
+                  <tr>
+                    <!-- <th>UV - E.coli</th> -->
+                    <th>E.coli</th>
+                    <th>Other coliform</th>
+                    <!-- <th>Unknown</th> -->
+                    <th>Salmonella</th>
+                    <th>Aeromonas</th>
+                    <th>Unknown
                   </tr>
                 </thead>
-                  {% for s, v in mk_pers.items %}
-                <tr class="p-1 pl-2 text-left">
-                  <td class="">{{ s }}</td>
-                  <td class="text-right"> {{ v.0|floatformat:0|intcomma }} </td>
-                  <td class="text-right"> {{ v.1|floatformat:0|intcomma }}% </td>
-
-                </tr>
-                {% endfor %}
-              </table>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <div class="card-title"><h6>Table of results: ten most indentified objects
-                <br><small class="text-muted">Object description sourced from MLW guide
-                  <br>Object description is provided with the item code</small></h6>
-              </div>
-              <table class="table-striped table table-sm">
-                <thead class="">
-                  <tr class="p-1 pl-2 text-left">
-                    <th><small class="font-weight-bold">Item</small></th>
-                    <th class=""><small class="">Material</small></th>
-                    <th class=""><small class="">Qty</small></th>
-                    <th class=""><small class="">% total</small></th>
+                <tbody>
+                  <tr>
+                    <!-- <td style="background-color:#7f1ae5; height:40px; width:16%"></td> -->
+                    <td style="background-color:#00008b; height:40px; width:20%"></td>
+                    <td style="background-color:#1e90ff; height:40px; width:20%"></td>
+                    <!-- <td style="background-color:#008000; height:40px; width:16%"></td> -->
+                    <td style="background-color:#40e0d0; height:40px; width:20%"></td>
+                    <td style="background-color:#FFC0CB; height:40px; width:20%"></td>
+                    <td style="background-color:#778899; height:40px; width:20%"></td>
                   </tr>
-                </thead>
-                {% for s in top_ten %}
-                <tr class="p-1 pl-2 text-left">
-                  <td class=""><small>{{ s.description }}</small></td>
-                  <td class=""> <small>{{ s.material }}</small></td>
-                  <td class="text-right "><small>{{ s.total|floatformat:0|intcomma }}</small></td>
-                  <td class="text-right "><small>{{ s.per|floatformat:0|intcomma }}%</small></td>
-                </tr>
-                {% endfor %}
+                </tbody>
               </table>
+              <img src="{% static 'images/array_2016_av.png' %}" class="img-fluid" style="min-width:400px">
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-<div class="modal fade w-100"id="cites_samples">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">"Location", "average pcs/m" and "number of samples"<br>
-          <small class="text-muted">For all locations included in this summary </small>
-        </h5>
-        <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <table class="table-striped table table-sm">
-          <thead class="txt-14">
-            <tr>
-              <th>Location</th>
-              <th>pcs/m</th>
-              <th>N<sup>o</sup> of samples</th>
-            </tr>
-          </thead>
-          {% for r in locs_samples %}
-          <tr class="txt-12 ">
-            <td class="text-left" >{{ r.location_id }}</td>
-            <td class="text-right" >{{ r.density|floatformat:2}}</td>
-            <td class="text-right"> {{ r.sample|floatformat:0 }}</td>
-          </tr>
-          {% endfor %}
-        </table>
+    <div class="modal fade" id="results_2017">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h6 class="modal-title mx-auto">Microbiological survey results summer 2017</h6>
+            <button type="button" class="close align" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <h6 class="modal-title mb-1 pl-2">Average total colony forming units June - July 2017<small class="text-muted">
+              <br>Medium: ECA Easygel+ UV, incubation time: 24hrs
+              <br>Three samples per location, per day. Tuesdays between 10am and 12noon</small></h6>
+            <div id="box-plot" style="min-height:360px; min-width:380px"></div>
+            <div class="container-fluid ">
+              <div class="w-100 pt-3 pb-1">
+                <dl class="row">
+                  <dt class="col-sm-3">Interpretation of results</dt>
+                  <dd class="col-sm-9">
+                    <ul>
+                      <li>
+                        UV & Big Blue: E. coli colonies
+                      </li>
+                      <li>
+                        Med Blue: Non-fecal coliforms (Enterobacter, Citrobacter and Klebsiella species.
+                      </li>
+                      <li>
+                        Turquoise: Salmonella species.
+                      </li>
+                      <li>
+                        Pink: Aeromonas species.
+                      </li>
+                      <li>
+                        Gray, Green : Unknown species
+                      </li>
+                    </ul>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+            <h6 class="modal-title mb-1 pl-2">Average total Ultraviolet colony forming units June - July 2017<small class="text-muted">
+              <br>Medium: ECA Easygel+ UV, incubation time: 24hrs<br>Three samples per location, per day. Tuesdays between 10am and 12noon</small></h6>
+            <div id="box-plot2" style="min-height:360px; min-width:380px"></div>
+            <h6 class="modal-title mb-1 pl-2">Average total Big blue colony forming units June - July 2017<small class="text-muted">
+              <br>Medium: ECA Easygel+ UV, incubation time: 24hrs
+              <br>Three samples per location, per day. Tuesdays between 10am and 12noon</small></h6>
+            <div id="box-plot3" style="min-height:360px; min-width:380px"></div>
+            <div class="container-fluid mt-2">
+              <h6 class="card-title">2017 Easygel+ UV AVERAGE 24hr Total colony counts, by week, location, species
+                <br><small class="text-muted">Day of the week : Tuesdays, time between 10h-12h.
+                <br>BDL = 'Below detectable limit', TMTC = 'Too many to count', if the box is empty there was no sample
+                <br>Week one/day-one: 2017-06-12; Week eight/day-eight: 2017-07-31</small></h6>
+              <table class="table table-sm m-0, p-0">
+                <thead>
+                  <tr>
+                    <th>UV - E.coli</th>
+                    <th>E.coli</th>
+                    <th>Other coliform</th>
+                    <th>Unknown</th>
+                    <th>Salmonella</th>
+                    <th>Aeromonas</th>
+                    <th>Unknown
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="background-color:#7f1ae5; height:40px; width:14%"></td>
+                    <td style="background-color:#00008b; height:40px; width:14%"></td>
+                    <td style="background-color:#1e90ff; height:40px; width:14%"></td>
+                    <td style="background-color:#008000; height:40px; width:14%"></td>
+                    <td style="background-color:#40e0d0; height:40px; width:14%"></td>
+                    <td style="background-color:#FFC0CB; height:40px; width:14%"></td>
+                    <td style="background-color:#778899; height:40px; width:14%"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <img src="{% static 'images/array_2017.png' %}" class="img-fluid" style="min-width:400px">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<div class="modal fade w-100"id="library">
+    <div class="modal fade w-100" id="arrays">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h6 class="card-title">2016 & 2017 EZ Gel AVERAGE 24hr colony counts, including UV fluo(2017)
+            </h6>
+            <button type="button" class="close align" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <div class="container-fluid">
+              <h6 class="card-title">2016 Easygel AVERAGE 24hr Total colony counts
+                <br><small class="text-muted">Day of the week : Tuesdays, time between 10h-12h.
+                <br>BDL = 'Below detectable limit', TMTC = 'Too many to count', if the box is empty there was no sample
+                <br>Week one/day-one: 2016-06-21; Week eight/day-eight: 2016-08-09</small></h6>
+              <table class="table table-sm m-0, p-0">
+                <thead>
+                  <tr>
+                    <th>E.coli</th>
+                    <th>Other coliform</th>
+                    <th>Salmonella</th>
+                    <th>Aeromonas</th>
+                    <th>Unknown
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="background-color:#00008b; height:40px; width:20%"></td>
+                    <td style="background-color:#1e90ff; height:40px; width:20%"></td>
+                    <td style="background-color:#40e0d0; height:40px; width:20%"></td>
+                    <td style="background-color:#FFC0CB; height:40px; width:20%"></td>
+                    <td style="background-color:#778899; height:40px; width:20%"></td>
+                  </tr>
+                </tbody>
+              </table>
+                <img src="{% static 'images/array_2016_av.png' %}" class="img-fluid" style="min-width:400px">
+              <h6 class="card-title">2017 Easygel+ UV AVERAGE 24hr Total colony counts
+                <br><small class="text-muted">Day of the week : Tuesdays, time between 10h-12h.
+                <br>BDL = 'Below detectable limit', TMTC = 'Too many to count', if the box is empty there was no sample
+                <br>Week one/day-one: 2017-06-12; Week eight/day-eight: 2017-07-31</small></h6>
+            <table class="table table-sm m-0, p-0">
+              <thead>
+                <tr>
+                  <th>UV - E.coli</th>
+                  <th>E.coli</th>
+                  <th>Other coliform</th>
+                  <th>Unknown</th>
+                  <th>Salmonella</th>
+                  <th>Aeromonas</th>
+                  <th>Unknown
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="background-color:#7f1ae5; height:40px; width:14%"></td>
+                  <td style="background-color:#00008b; height:40px; width:14%"></td>
+                  <td style="background-color:#1e90ff; height:40px; width:14%"></td>
+                  <td style="background-color:#008000; height:40px; width:14%"></td>
+                  <td style="background-color:#40e0d0; height:40px; width:14%"></td>
+                  <td style="background-color:#FFC0CB; height:40px; width:14%"></td>
+                  <td style="background-color:#778899; height:40px; width:14%"></td>
+                </tr>
+              </tbody>
+            </table>
+                <img src="{% static 'images/array_2017.png' %}" class="img-fluid" style="min-width:400px">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal fade w-100" id="jazz_diff">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Total coliform colony counts 2016-2017 Baye de Montreux </h5>
+            <button type="button" class="close align" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <img src="{% static 'images/jazz_dif.svg' %}" class="img-fluid" style="">
+            <dl class="row mt-1">
+              <dt class="col-sm-3">Interpretation of results</dt>
+              <dd class="col-sm-9">
+                <ul>
+                  <li>
+                    UV (2017 only): E.coli colonies will fluoresce under longwave UV light.
+                  </li>
+                  <li>
+                    Big Blue: E. coli colonies will have a dark blue/purple overall colony color.
+                  </li>
+                  <li>
+                    Med Blue: Non-fecal coliforms (Enterobacter, Citrobacter and Klebsiella spp. & others) are lighter blue/grey to purplish in color.
+                  </li>
+                  <li>
+                    Gram-positive organisms are generally inhibited.
+                  </li>
+                </ul>
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+<div class="modal fade w-100" id="rain_diff">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">List of resources used for the planning of this project<br>
-          <small class="text-muted">This list is not comprehensive</small>
-        </h5>
+        <h5 class="modal-title">Total coliform colony counts 2016-2017 Baye de Montreux </h5>
         <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+          <span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
-        <table class="table table-sm">
-          {% for a, b in books.items %}
-          <tr class="">
-            <td class="font-weight-bold">{{ a }}:</td>
-          </tr>
-          {% for tome in b %}
-          <tr class="txt-12">
-            <td>{{ tome.title }}</td>
-            <td> {{ tome.author }}</td>
-            <td> {{ tome.abstract }}</td>
-          </tr>
-          {% endfor %}
-          {% endfor %}
-        </table>
+        <img src="{% static 'images/rain_dif.svg' %}" class="img-fluid" style="">
+        <dl class="row mt-1">
+          <dt class="col-sm-3">Interpretation of results</dt>
+          <dd class="col-sm-9">
+            <ul>
+              <li>
+                UV (2017 only): E.coli colonies will fluoresce under longwave UV light.
+              </li>
+              <li>
+                Big Blue: E. coli colonies will have a dark blue/purple overall colony color.
+              </li>
+              <li>
+                Med Blue: Non-fecal coliforms (Enterobacter, Citrobacter and Klebsiella spp. & others) are lighter blue/grey to purplish in color.
+              </li>
+              <li>
+                Gram-positive organisms are generally inhibited
+              </li>
+            </ul>
+          </dd>
+        </dl>
       </div>
     </div>
   </div>
 </div>
 
 
-<div class="modal fade" style="" id="goals">
+<div class="modal fade w-100" style="" id="hotel_diff">
  <div class="modal-dialog modal-lg" role="document">
    <div class="modal-content">
      <div class="modal-header">
-       <h5 class="modal-title">Objectives</h5>
+       <h5 class="modal-title">Changes in population and coliform bacteria in lake water</h5>
        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
      </div>
-     <div class="modal-body ">
-      <div class="border-bottom">
-       <p class="font-weight-bold txt-14"></p>
-       <p class="font-italic txt-14"></p>
-       <p class="txt-12"></p>
-      </div>
+     <div class="modal-body">
+       <img src="{% static 'images/hotel_dif.svg' %}" class="img-fluid" style="">
+       <dl class="row mt-1">
+         <dt class="col-sm-3">Interpretation of results</dt>
+         <dd class="col-sm-9">
+           <ul>
+             <li>
+               UV (2017 only): E.coli colonies will fluoresce under longwave UV light.
+             </li>
+             <li>
+               Big Blue: E. coli colonies will have a dark blue/purple overall colony color.
+             </li>
+             <li>
+               Med Blue: Non-fecal coliforms (Enterobacter, Citrobacter and Klebsiella spp. & others) are lighter blue/grey to purplish in color.
+             </li>
+             <li>
+               Gram-positive organisms are generally inhibited
+             </li>
+           </ul>
+
+         </dd>
+       </dl>
      </div>
    </div>
  </div>
@@ -394,72 +1193,7 @@ html {
    </div>
  </div>
 </div>
-<div class="modal fade" id="water_search">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-info text-white">
-        <div class="container-fluid">
-          <h5 class="">The search is limted to cities and lakes/rivers that have registered surveys<br>
-          <small class="text-white">If you would like to have a project listed here, contact us.</small></h5>
-        </div>
-      </div>
-      <div class="modal-body">
-        <div class="card-group">
-          <div class="card " style="">
-            <h5 class="card-title">Pick a city</h5>
-            <div class="card-body">
-              <form class="d-inline-block mb-1" action='/dirt/search_city/' method='get'>
-                <i class="fa fa-folder-open fa-lg mr-1 "></i>&nbsp;Details:&nbsp;&nbsp;
-                <select class="form-control-sm d-inline-block mr-2" style="width:160px" name='city'>
-                  {% for x in all_cities %}
-                  <option class="txt-12" value= "{{ x }}">{{ x }}</option>
-                  {% endfor %}
-                </select>
-                <button class="d-inline-block btn  txt-14 p-1" style="background-color:transparent; border-color:black; border-width:1px" type='submit' ><i class="fa fa-external-link fa-lg"></i></button>
-              </form>
-              <div class="card-text"><small>* Get all results from a city</small></div>
-            </div>
-          </div>
-          <div class="card " style="">
-            <h5 class="card-title">Pick a  body of water</h5>
-            <div class="card-body">
-              <form class="d-inline-block mb-1" action='/dirt/search_water/' method='get'>
-                <i class="fa fa-folder-open fa-lg mr-1 "></i>&nbsp;Details:&nbsp;&nbsp;
-                <select class="form-control-sm d-inline-block mr-2"style="width:160px" name='water'>
-                  {% for x in all_water %}
-                  <option class="txt-12" value= "{{ x }}">{{ x }}</option>
-                  {% endfor %}
-                </select>
-                <button class="d-inline-block btn txt-14 p-1" style="background-color:transparent; border-color:black; border-width:1px" type='submit' ><i class="fa fa-external-link fa-lg"></i></button>
-              </form>
-              <div class="card-text"><small>* Get all results from a river or lake </small></div>
-            </div>
-          </div>
-          <div class="card " style="">
-            <h5 class="card-title">Pick a  project</h5>
-            <div class="card-body">
-              <div class="container-fluid p-0 m-0">
-                <div class="btn-toolbar mb-1">
-                  <div class="btn-group">
-                    <a class="btn bg-info text-white mt-1 p-2 border-white"  style="white-space: normal;" href="{% url 'slr_home' %}" aria-expanded="false" aria-controls="">
-                      SLR</a>
-                    <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'mcbp_home' %}" aria-expanded="false" aria-controls="table-of-results">
-                      MCBP</a>
-                  </div>
-                </div>
-              </div>
-              <div class="card-text"><small>* SLR results given in m<sup>2</sup></small></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer bg-info">
-        <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
-          <span aria-hidden="true">&times;</span></button>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 </div>
 
@@ -475,43 +1209,168 @@ html {
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 <script type="text/javascript">
 var map_points = {{ map_points|safe }};
-var box_cats = {{ box_cats|safe }};
-var boxer = {{ box_plot|safe }};
-var plot_data = {{ plot_density|safe }};
-var river = {{ rivers|safe }};
-var lake = {{ lakes|safe }};
-var box_lake = {{ box_lake|safe }};
-var box_river = {{ box_river|safe }};
-var box_cats = {{ box_cats|safe }};
-// var sources_as = {{ sources_as|safe }}
+var t_cfu_17_mrd = {{ t_cfu_17_mrd|safe }};
+var t_cfu_17_svt = {{ t_cfu_17_svt|safe }};
+var t_cfu_17_vnx = {{ t_cfu_17_vnx|safe }};
+var t_uv_17_svt = {{ t_uv_17_svt|safe }}
+var t_uv_17_mrd = {{ t_uv_17_mrd|safe }}
+var t_uv_17_vnx = {{ t_uv_17_vnx|safe }}
+var rain_17 = {{ rain_17|safe }}
+var rain_16 = {{ rain_16|safe }}
+var b_blue17_svt = {{ b_blue17_svt|safe }}
+var b_blue17_mrd = {{ b_blue17_mrd|safe }}
+var b_blue17_vnx = {{ b_blue17_vnx|safe }}
+var b_blue16_svt = {{ b_blue16_svt|safe }}
+var b_blue16_mrd = {{ b_blue16_mrd|safe }}
+var b_blue16_vnx = {{ b_blue16_vnx|safe }}
+var t_cfu_16_mrd = {{ t_cfu_16_mrd|safe }};
+var t_cfu_16_svt = {{ t_cfu_16_svt|safe }};
+var t_cfu_16_vnx = {{ t_cfu_16_vnx|safe }};
 
-console.log(box_cats)
-console.log(box_lake)
-console.log(box_river)
 
-var ts_plot = [];
-plot_data.forEach(function(element){
-  element.date = Date.parse(element.date);
-  element.density = parseFloat(element.density);
-  var today = new Date();
-  if (element.date < today){
-    ts_plot.push({"name":element.location_id, "x":element.date, "y":element.density});
-  }
+var ts_plot_svt = [];
+t_cfu_17_svt.forEach(function(element){
+  element.x = Date.parse(element.x);
+  element.y = parseFloat(element.y);
+  ts_plot_svt.push({"name":element.location, "x":element.x, "y":element.y});
 });
-var riv_dens = []
-river.forEach(function(element){
-  element.date = Date.parse(element.date);
-  element.density = parseFloat(element.density);
-  riv_dens.push ({"name":element.location_id, "x":element.date, "y":element.density})
+var ts_plot_mrd = [];
+t_cfu_17_mrd.forEach(function(element){
+  element.x = Date.parse(element.x);
+  element.y = parseFloat(element.y);
+  ts_plot_mrd.push({"name":element.location, "x":element.x, "y":element.y});
+});
+var ts_plot_vnx = [];
+t_cfu_17_vnx.forEach(function(element){
+  element.x = Date.parse(element.x);
+  element.y = parseFloat(element.y);
+  ts_plot_vnx.push({"name":element.location, "x":element.x, "y":element.y});
+});
+var uv_plot_svt = [];
+t_uv_17_svt.forEach(function(element){
+  element.x = Date.parse(element.x);
+  element.y = parseFloat(element.y);
+  uv_plot_svt.push({"name":element.location, "x":element.x, "y":element.y});
+});
+var uv_plot_mrd = [];
+t_uv_17_mrd.forEach(function(element){
+  element.x = Date.parse(element.x);
+  element.y = parseFloat(element.y);
+  uv_plot_mrd.push({"name":element.location, "x":element.x, "y":element.y});
+});
+var uv_plot_vnx = [];
+t_uv_17_vnx.forEach(function(element){
+  element.x = Date.parse(element.x);
+  element.y = parseFloat(element.y);
+  uv_plot_vnx.push({"name":element.location, "x":element.x, "y":element.y});
+});
+var rain17 = [];
+rain_17.forEach(function(element){
+  element[0] = Date.parse(element[0]);
+  element[1] = parseFloat(element[1]);
+  rain17.push([element[0], element[1]]);
+});
+var rain16 = [];
+rain_16.forEach(function(element){
+  element[0] = Date.parse(element[0]);
+  element[1] = parseFloat(element[1]);
+  rain16.push([element[0], element[1]]);
 });
 
-var lak_dens = []
-lake.forEach(function(element){
-  element.date = Date.parse(element.date);
-  element.density = parseFloat(element.density);
-  lak_dens.push ({"name":element.location_id, "x":element.date, "y":element.density})
+var b_b17_mrd = [];
+b_blue17_mrd.forEach(function(element){
+  element.x = Date.parse(element.x);
+  element.y = parseFloat(element.y);
+  b_b17_mrd.push({"name":element.location, "x":element.x, "y":element.y});
+});
+var b_b17_svt = [];
+b_blue17_svt.forEach(function(element){
+  element.x = Date.parse(element.x);
+  element.y = parseFloat(element.y);
+  b_b17_svt.push({"name":element.location, "x":element.x, "y":element.y});
+});
+var b_b17_vnx = [];
+b_blue17_vnx.forEach(function(element){
+  element.x = Date.parse(element.x);
+  element.y = parseFloat(element.y);
+  b_b17_vnx.push({"name":element.location, "x":element.x, "y":element.y});
+});
+var b_b16_mrd = [];
+b_blue16_mrd.forEach(function(element){
+  element.x = Date.parse(element.x);
+  element.y = parseFloat(element.y);
+  b_b16_mrd.push({"name":element.location, "x":element.x, "y":element.y});
+});
+var b_b16_svt = [];
+b_blue16_svt.forEach(function(element){
+  element.x = Date.parse(element.x);
+  element.y = parseFloat(element.y);
+  b_b16_svt.push({"name":element.location, "x":element.x, "y":element.y});
+});
+var b_b16_vnx = [];
+b_blue16_vnx.forEach(function(element){
+  element.x = Date.parse(element.x);
+  element.y = parseFloat(element.y);
+  b_b16_vnx.push({"name":element.location, "x":element.x, "y":element.y});
+});
+var t_16_svt = [];
+t_cfu_16_svt.forEach(function(element){
+  element.x = Date.parse(element.x);
+  element.y = parseFloat(element.y);
+  t_16_svt.push({"name":element.location, "x":element.x, "y":element.y});
+});
+var t_16_mrd = [];
+t_cfu_16_mrd.forEach(function(element){
+  element.x = Date.parse(element.x);
+  element.y = parseFloat(element.y);
+  t_16_mrd.push({"name":element.location, "x":element.x, "y":element.y});
+});
+var t_16_vnx = [];
+t_cfu_16_vnx.forEach(function(element){
+  element.x = Date.parse(element.x);
+  element.y = parseFloat(element.y);
+  t_16_vnx.push({"name":element.location, "x":element.x, "y":element.y});
 });
 
+
+
+</script>
+<script type="text/javascript">
+
+
+$(document).ready(function() {
+
+  $('.shutterTitle').click(function() {
+    var parentTag = $( this ).parent();
+    var this_height = $(this);
+    var this_child = $(this).children()[1];
+    console.log(this_child);
+
+    $( parentTag ).each(function(i){
+      if ($(parentTag).hasClass('close-animate') || !$(parentTag).hasClass('shutterExpanded')) {
+      console.log(this);
+      $(this_height ).css("height", "auto");
+      $(this_height).addClass('text-right');
+      $(this_height).addClass('pr-3');
+      $(this_height).removeClass('p-1');
+      // $(this_child).addClass('text-right');
+      $(parentTag).removeClass('close-animate').addClass('shutterExpanded');
+      $('.wrapper').addClass('shutterOpen');
+      console.log(this_child)
+
+    } else {
+      console.log("Else");
+      $(this).removeClass('shutterExpanded').addClass('close-animate');
+      $(this_height).removeClass('text-right');
+      $(this_height).removeClass('pr-3');
+      $(this_height).addClass('p-1');
+      $(this_height ).css("height", "100%");
+      $('.wrapper').removeClass('shutterOpen');
+      console.log(this);
+    }
+  });
+})}
+);
 </script>
 <script type="text/javascript">
 var map;
@@ -648,11 +1507,11 @@ function initMap() {
     ]
   }
 ],
-{name:'SLR locations'});
+{name:'Location of microbiological surveys 2016 - 2017'});
   map = new google.maps.Map(document.getElementById('maps'), {
-    zoom:7,
-    center: {lat: 46.83, lng: 8.23},
-    minZoom:7,
+    zoom:12,
+    center: {lat: 46.438233, lng: 6.905199},
+    minZoom:8,
     mapTypeControlOptions: {
       mapTypeIds: ['styled_map'],
     },
@@ -667,19 +1526,16 @@ function initMap() {
   var marker, i;
   var markers = [];
 
+
   for (i = 0; i < map_points.length; i++) {
     marker = new google.maps.Marker({
-      position: new google.maps.LatLng(map_points[i][0], map_points[i][1]),
+      position: new google.maps.LatLng(map_points[i].latitude, map_points[i].longitude),
+      // console.log()
       map: map,
-      // label:{
-      //   fontFamily: 'Fontawesome',
-      //   text: '\uf1f8',
-      //   fontSize: '20px',
-      //   color: 'white'
-      // },
+
       icon:  {
         path: google.maps.SymbolPath.CIRCLE,
-        scale: Math.sqrt(map_points[i][2])*5,
+        scale: 10,
         fillColor: 'rgb(255, 65, 168)',
         strokeColor: 'rgb(255, 00, 00)',
         fillOpacity:0.6,
@@ -688,10 +1544,11 @@ function initMap() {
       },
 
 
+
     });
-    var contentString = '<div><p style="margin-bottom:4px; font-size:14px;">' +  map_points[i][6] + '</p>'+
-    '<ul><li>City: ' + map_points[i][4] +'</li><li> Postal Code: ' + map_points[i][3] + '</li><li>Average pcs/m: ' + map_points[i][2] + '</li><li>N<sup>o</sup> of samples: ' +
-    map_points[i][5] + '</li></ul></div>';
+
+    var contentString = '<div><p style="margin-bottom:4px; font-size:14px;">' + map_points[i].location +  '</p><ul><li>City: ' + map_points[i].city + '</li><li> N<sup>o</sup> of samples: ' + map_points[i].num_samps + '</li><li> First sample: ' + map_points[i].first_samp + '</li</ul></div>';
+
     marker.addListener('click', function(content){
       return function(){
         infowindow.setContent(content);
@@ -699,12 +1556,13 @@ function initMap() {
       }
     }(contentString));
     markers.push(marker);
+
     map.mapTypes.set('styled_map', styledMapType);
+
     map.setMapTypeId('styled_map');
 
   };
-  // var markerCluster = new MarkerClusterer(map, markers,
-  //     {imagePath: "{% static '/images/m' %}"});
+
    };
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm40jm5y3TNXHeagBkulq-mS2A3ep4TWY&callback=initMap"  async defer> </script>
@@ -714,7 +1572,7 @@ function initMap() {
 Highcharts.chart('box-plot', {
 
     chart: {
-        type: 'boxplot',
+        type: 'line',
         spacingBottom: 20,
     },
 
@@ -747,8 +1605,8 @@ Highcharts.chart('box-plot', {
       horizontalAlign: 'left',
       layout:'vertical',
       floating:true,
-      x:120,
-      y:60,
+      x:-80,
+      y:30,
       backgroundColor:'rgba(255,255,255, .4)',
       borderColor:'rgba(10, 46, 92, .5)',
       borderWidth:2,
@@ -760,64 +1618,49 @@ Highcharts.chart('box-plot', {
       },
     },
     plotOptions:{
-      boxplot:{
-        fillColor:'rgba(10, 46, 92, 1)',
-        lineColor: 'rgba(00, 00, 00, 1)',
-        stemColor:'rgba(10, 46, 92, 1)',
-        stemDashStyle: 'dash',
-        stemWidth:1,
-        whiskerColor: 'rgba(00, 00, 00, 1)',
-        groupPadding:0,
-      }
+      series:{
+        marker: {
+          enabled: false
+        },
+        label:{
+          enabled: false
+        },
+      },
+
+
     },
 
     xAxis: [{
-        categories:box_cats,
-        type: 'category',
-        tickColor:'rgba(00, 00, 00, 1)',
-        labels: {
-          rotation:270,
-          color:'rgba(00, 00, 00, 1)',
-          fontSize:'10px'
-        },
-        opposite:false,
-
-    },{
       type: 'datetime',
-      opposite:true,
-      visible:false,
-      alignTicks:true,
-      tickInterval:3600*1000*24*28,
+
+      tickInterval:null,
       tickColor:'rgba(00, 00, 00, 1)',
       labels: {
-        enabled: false,
+        enabled: true,
         style: {
           color:'rgba(00, 00, 00, 1)',
         }
       },
       dateTimeLabelFormats: {
-        month: '%b - %y',
+        month: '%b-%d',
       },
     },
   ],
-    yAxis: {
+    yAxis: [{
       min:0,
-      max:85,
-      ceiling:50,
-      alignTicks:false,
-      tickInterval:10,
-      minPadding:0.1,
+      tickInterval:400,
+      minPadding:0.2,
       title: {
           align: 'low',
-          offset: 40,
-          text: 'Pieces of trash per meter of shoreline',
+          offset: 50,
+          text: 'Average total CFU per 100mL',
           style:{
-            fontSize: '12px',
-            color:'#0A2E5C',
+            fontSize: '14px',
+            color:'#000000',
           },
       },
       gridLineColor:'rgba(10, 46, 92, .1)',
-      minorTickInterval:2,
+      minorTickInterval:100,
       labels:{
         style: {
           color:'rgba(00, 00, 00, 1)',
@@ -825,49 +1668,103 @@ Highcharts.chart('box-plot', {
         }
       },
 
-    },
+      },
+      {
+      min:0,
+      // tickInterval:100,
+      minPadding:0.2,
+      title: {
+          align: 'middle',
+          rotation: 270,
+          offset: 50,
+          text: 'Daily rainfall in centimeters',
+          style:{
+            fontSize: '14px',
+            color:'#000000',
+          },
+      },
+      // gridLineColor:'rgba(10, 46, 92, 0.2)',
+      // minorTickInterval:20,
+      // minorGridLineColor:'rgba(10, 46, 92, .2)',
+      // minorGridLineDashStyle:'longdash',
+      // minorGridLineWidth:1,
+      // minorTickWidth: 1,
+      opposite:true,
+    }
+  ],
 
     series:
     [{
       zIndex:3,
       xAxis:0,
-      type: 'boxplot',
-      name: 'Monthly summary',
-      data: boxer,
+      yAxis:0,
+      type: 'line',
+      name: 'Quai de Vernex',
+      color:'#18c4d8',
+      lineWidth:2,
+      marker:{
+        enabled:false
+      },
+      data: ts_plot_svt,
       tooltip: {
           headerFormat: '<em>{point.key}</em><br/>'
-      },
-
-    },
-    {
-      zIndex:2,
-      xAxis:1,
-      type: 'scatter',
-      name:'Survey results',
-      marker: {
-        symbol: 'circle',
-        radius:3,
-        lineColor: 'rgba(255, 0, 0, .4)',
-        fillColor:  'rgba(255, 65, 168, .4)',
-        lineWidth:1,
-      },
-      data:ts_plot,
-      tooltip: {
-          headerFormat: '<b>{point.key}</b><br>',
-          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m'
-      },
-    },
-
-    ]
+      }},
+      {
+        zIndex:3,
+        xAxis:0,
+        yAxis:0,
+        type: 'line',
+        name: 'Montreux - marché',
+        color:'#1bb35e',
+        lineWidth:2,
+        marker:{
+          enabled:false
+        },
+        data: ts_plot_mrd,
+        tooltip: {
+            headerFormat: '<em>{point.key}</em><br/>'
+        }},
+        {
+          zIndex:3,
+          xAxis:0,
+          yAxis:0,
+          type: 'line',
+          name: 'Parc de Vernex',
+          color:'#ffb100',
+          lineWidth:2,
+          marker:{
+            enabled:false
+          },
+          data: ts_plot_vnx,
+          tooltip: {
+              headerFormat: '<em>{point.key}</em><br/>'
+          }},
+          {
+            zIndex:3,
+            xAxis:0,
+            yAxis:1,
+            type: 'area',
+            name: 'Rainfall',
+            color:'rgba(00, 00, 00, .2)',
+            fillColor:'rgba(00, 00, 00, .2)',
+            lineColor:'rgba(00, 00, 00, .2)',
+            lineWidth:0,
+            marker:{
+              enabled:false
+            },
+            data: rain17,
+            tooltip: {
+                headerFormat: '<em>{point.key}</em><br/>'
+            }},
+          ]
 
 });
 </script>
 <script type="text/javascript">
-Highcharts.chart('riv-lake', {
+Highcharts.chart('box-plot2', {
 
     chart: {
-        type: 'boxplot',
-        zoomType:'x',
+        type: 'line',
         spacingBottom: 20,
     },
 
@@ -896,153 +1793,707 @@ Highcharts.chart('riv-lake', {
     },
     legend: {
       enabled: true,
-      verticalAlign: 'bottom',
-      align: 'center',
-      layout:'horizontal',
+      verticalAlign: 'top',
+      horizontalAlign: 'right',
+      layout:'vertical',
+      floating:true,
+      x:200,
+      y:30,
       backgroundColor:'rgba(255,255,255, .4)',
-      borderColor:'rgba(10, 46, 92, .4)',
-      borderWidth:1,
-      padding:8,
-      margin:12,
-      width:380,
-      itemMarginBottom:2,
-      itemDistance: 4,
-      itemWidth:90,
+      borderColor:'rgba(10, 46, 92, .5)',
+      borderWidth:2,
+      itemMarginTop:4,
+      itemMarginBottom:4,
       itemStyle:{
         color: 'black',
         fontSize: '10px',
-
       },
     },
     plotOptions:{
-      boxplot:{
-        stemColor:'rgba(10, 46, 92, 1)',
-        stemDashStyle: 'dash',
-        stemWidth:1,
-        whiskerColor: 'rgba(00, 00, 00, 1)',
-        groupPadding:0,
-      }
-    },
-    xAxis: [{
-        categories:box_cats,
-        type: 'category',
-        tickColor:'rgba(00, 00, 00, 1)',
-        labels: {
-          rotation:270,
-          color:'rgba(00, 00, 00, 1)',
-          fontSize:'10px'
+      series:{
+        marker: {
+          enabled: false
         },
-        opposite:false,
-    },{
+        label:{
+          enabled: false
+        },
+      },
+
+
+    },
+
+    xAxis: [{
       type: 'datetime',
-      opposite:true,
-      visible:false,
-      alignTicks:true,
-      tickInterval:3600*1000*24*28,
+      tickInterval:null,
       tickColor:'rgba(00, 00, 00, 1)',
       labels: {
-        enabled: false,
+        enabled: true,
         style: {
           color:'rgba(00, 00, 00, 1)',
         }
       },
       dateTimeLabelFormats: {
-        month: '%b - %y',
+        month: '%b-%d',
       },
     },
   ],
-    yAxis: {
+    yAxis: [{
       min:0,
-      max:85,
-      ceiling:50,
-      alignTicks:false,
-      tickInterval:10,
-      minPadding:0.1,
+      tickInterval:100,
+      minPadding:0.2,
       title: {
           align: 'low',
-          offset: 40,
-          text: 'Pieces of trash per meter of shoreline',
+          offset: 50,
+          text: 'Average total Ultraviolet CFU per 100mL',
           style:{
-            fontSize: '12px',
-            color:'#0A2E5C',
+            fontSize: '14px',
+            color:'#000000',
           },
       },
-      gridLineColor:'rgba(10, 46, 92, .1)',
-      minorTickInterval:2,
-      labels:{
-        style: {
-          color:'rgba(00, 00, 00, 1)',
-          fontSize: '10px'
-        }
+      gridLineColor:'rgba(10, 46, 92, .2)',
+      minorTickInterval:20,
+      minorGridLineColor:'rgba(10, 46, 92, .1)',
+      minorGridLineDashStyle:'longdash',
+      minorGridLineWidth:1,
+      minorTickWidth: 1,
+    },{
+      min:0,
+      minPadding:0.2,
+      title: {
+          align: 'middle',
+          rotation: 270,
+          offset: 50,
+          text: 'Daily rainfall in centimeters',
+          style:{
+            fontSize: '14px',
+            color:'#000000',
+          },
       },
+    opposite:true,
+    }
 
-    },
+
+
+  ],
+
     series:
     [{
       zIndex:3,
-      fillColor:'rgba(215, 78, 9, 1)',
-      lineColor: 'rgba(00, 00, 00, 1)',
-      medianColor:'rgba(22, 199, 158, 1)',
-      color:'rgba(215, 78, 9, 1)',
       xAxis:0,
-      type: 'boxplot',
-      name: 'Lakes-monthly',
-      data: box_lake,
+      yAxis:0,
+      type: 'line',
+      name: 'Quai de Vernex',
+      color:'#18c4d8',
+      lineWidth:2,
+      marker:{
+        enabled:false
+      },
+      data: uv_plot_svt,
       tooltip: {
           headerFormat: '<em>{point.key}</em><br/>'
+      }},
+      {
+        zIndex:3,
+        xAxis:0,
+        yAxis:0,
+        type: 'line',
+        name: 'Montreux - marché',
+        color:'#1bb35e',
+        lineWidth:2,
+        marker:{
+          enabled:false
+        },
+        data: uv_plot_mrd,
+        tooltip: {
+            headerFormat: '<em>{point.key}</em><br/>'
+        }},
+        {
+          zIndex:3,
+          xAxis:0,
+          yAxis:0,
+          type: 'line',
+          name: 'Parc de Vernex',
+          color:'#ffb100',
+          lineWidth:2,
+          marker:{
+            enabled:false
+          },
+          data: uv_plot_vnx,
+          tooltip: {
+              headerFormat: '<em>{point.key}</em><br/>'
+          }},
+          {
+            zIndex:3,
+            xAxis:0,
+            yAxis:1,
+            type: 'area',
+            name: 'Rainfall',
+            color:'rgba(00, 00, 00, .2)',
+            fillColor:'rgba(00, 00, 00, .2)',
+            lineColor:'rgba(00, 00, 00, .2)',
+            lineWidth:0,
+            marker:{
+              enabled:false
+            },
+            data: rain17,
+            tooltip: {
+                headerFormat: '<em>{point.key}</em><br/>'
+            }}
+
+    ]
+
+});
+</script>
+<script type="text/javascript">
+Highcharts.chart('box-plot3', {
+
+    chart: {
+        type: 'line',
+        spacingBottom: 20,
+    },
+
+    title: {
+        text: '',
+        style:{
+          fontSize: '14px',
+          color:'#0A2E5C',
+
+        },
+    },
+    subtitle: {
+      text: '',
+      style:{
+        fontSize: '10px',
+        color:'#0A2E5C',
+      }
+
+    },
+    credits:{
+      text:'hammerdirt 2018',
+
+    },
+    exporting: {
+      enabled:false,
+    },
+    legend: {
+      enabled: true,
+      verticalAlign: 'top',
+      horizontalAlign: 'right',
+      layout:'vertical',
+      floating:true,
+      x:200,
+      y:30,
+      backgroundColor:'rgba(255,255,255, .4)',
+      borderColor:'rgba(10, 46, 92, .5)',
+      borderWidth:2,
+      itemMarginTop:4,
+      itemMarginBottom:4,
+      itemStyle:{
+        color: 'black',
+        fontSize: '10px',
       },
     },
-    {
+    plotOptions:{
+      series:{
+        marker: {
+          enabled: false
+        },
+        label:{
+          enabled: false
+        },
+      },
+
+
+    },
+
+    xAxis: [{
+      type: 'datetime',
+      tickInterval:null,
+      tickColor:'rgba(00, 00, 00, 1)',
+      labels: {
+        enabled: true,
+        style: {
+          color:'rgba(00, 00, 00, 1)',
+        }
+      },
+      dateTimeLabelFormats: {
+        month: '%b-%d',
+      },
+    },
+  ],
+    yAxis: [{
+      min:0,
+      tickInterval:100,
+      minPadding:0.2,
+      title: {
+          align: 'low',
+          offset: 50,
+          text: 'Average total Big Blue CFU per 100mL',
+          style:{
+            fontSize: '14px',
+            color:'#000000',
+          },
+      },
+      gridLineColor:'rgba(10, 46, 92, .2)',
+      minorTickInterval:20,
+      minorGridLineColor:'rgba(10, 46, 92, .1)',
+      minorGridLineDashStyle:'longdash',
+      minorGridLineWidth:1,
+      minorTickWidth: 1,
+    },{
+      min:0,
+      minPadding:0.2,
+      title: {
+          align: 'middle',
+          rotation: 270,
+          offset: 50,
+          text: 'Daily rainfall in centimeters',
+          style:{
+            fontSize: '14px',
+            color:'#000000',
+          },
+      },
+    opposite:true,
+    }
+
+
+
+  ],
+
+    series:
+    [{
       zIndex:3,
-      fillColor:'rgba(10, 46, 92, 1)',
-      lineColor: 'rgba(00, 00, 00, 1)',
-      medianColor:'rgba(22, 199, 158, 1)',
-      color:'rgba(10, 46, 92, 1)',
       xAxis:0,
-      type: 'boxplot',
-      name: 'Rivers-monthly',
-      data: box_river,
+      yAxis:0,
+      type: 'line',
+      name: 'Quai de Vernex',
+      color:'#18c4d8',
+      lineWidth:2,
+      marker:{
+        enabled:false
+      },
+      data: b_b17_svt,
       tooltip: {
           headerFormat: '<em>{point.key}</em><br/>'
+      }},
+      {
+        zIndex:3,
+        xAxis:0,
+        yAxis:0,
+        type: 'line',
+        name: 'Montreux - marché',
+        color:'#1bb35e',
+        lineWidth:2,
+        marker:{
+          enabled:false
+        },
+        data: b_b17_mrd,
+        tooltip: {
+            headerFormat: '<em>{point.key}</em><br/>'
+        }},
+        {
+          zIndex:3,
+          xAxis:0,
+          yAxis:0,
+          type: 'line',
+          name: 'Parc de Vernex',
+          color:'#ffb100',
+          lineWidth:2,
+          marker:{
+            enabled:false
+          },
+          data: b_b17_vnx,
+          tooltip: {
+              headerFormat: '<em>{point.key}</em><br/>'
+          }},
+          {
+            zIndex:3,
+            xAxis:0,
+            yAxis:1,
+            type: 'area',
+            name: 'Rainfall',
+            color:'rgba(00, 00, 00, .2)',
+            fillColor:'rgba(00, 00, 00, .2)',
+            lineColor:'rgba(00, 00, 00, .2)',
+            lineWidth:0,
+            marker:{
+              enabled:false
+            },
+            data: rain17,
+            tooltip: {
+                headerFormat: '<em>{point.key}</em><br/>'
+            }}
+
+    ]
+
+});
+</script>
+<script type="text/javascript">
+Highcharts.chart('box-plot4', {
+
+    chart: {
+        type: 'line',
+        spacingBottom: 20,
+    },
+
+    title: {
+        text: '',
+        style:{
+          fontSize: '14px',
+          color:'#0A2E5C',
+
+        },
+    },
+    subtitle: {
+      text: '',
+      style:{
+        fontSize: '10px',
+        color:'#0A2E5C',
+      }
+
+    },
+    credits:{
+      text:'hammerdirt 2018',
+
+    },
+    exporting: {
+      enabled:false,
+    },
+    legend: {
+      enabled: true,
+      verticalAlign: 'top',
+      horizontalAlign: 'right',
+      layout:'vertical',
+      floating:true,
+      x:200,
+      y:30,
+      backgroundColor:'rgba(255,255,255, .4)',
+      borderColor:'rgba(10, 46, 92, .5)',
+      borderWidth:2,
+      itemMarginTop:4,
+      itemMarginBottom:4,
+      itemStyle:{
+        color: 'black',
+        fontSize: '10px',
       },
     },
-    {
-      zIndex:2,
-      xAxis:1,
-      type: 'scatter',
-      name:'Lake-daily',
-      marker: {
-        symbol: 'circle',
-        radius:3,
-        lineColor: 'rgba(255, 00, 00, .4)',
-        fillColor:  'rgba(255, 65, 168, .4)',
-        lineWidth:1,
+    plotOptions:{
+      series:{
+        marker: {
+          enabled: false
+        },
+        label:{
+          enabled: false
+        },
       },
-      data:lak_dens,
+
+
+    },
+
+    xAxis: [{
+      type: 'datetime',
+      tickInterval:null,
+      tickColor:'rgba(00, 00, 00, 1)',
+      labels: {
+        enabled: true,
+        style: {
+          color:'rgba(00, 00, 00, 1)',
+        }
+      },
+      dateTimeLabelFormats: {
+        month: '%b-%d',
+      },
+    },
+  ],
+    yAxis: [{
+      min:0,
+      tickInterval:100,
+      minPadding:0.2,
+      title: {
+          align: 'low',
+          offset: 50,
+          text: 'Average total CFU per 100mL',
+          style:{
+            fontSize: '14px',
+            color:'#000000',
+          },
+      },
+      gridLineColor:'rgba(10, 46, 92, .2)',
+      minorTickInterval:20,
+      minorGridLineColor:'rgba(10, 46, 92, .1)',
+      minorGridLineDashStyle:'longdash',
+      minorGridLineWidth:1,
+      minorTickWidth: 1,
+    },{
+      min:0,
+      minPadding:0.2,
+      title: {
+          align: 'middle',
+          rotation: 270,
+          offset: 50,
+          text: 'Daily rainfall in centimeters',
+          style:{
+            fontSize: '14px',
+            color:'#000000',
+          },
+      },
+    opposite:true,
+    }
+
+
+
+  ],
+
+    series:
+    [{
+      zIndex:3,
+      xAxis:0,
+      yAxis:0,
+      type: 'line',
+      name: 'Quai de Vernex',
+      color:'#18c4d8',
+      lineWidth:2,
+      marker:{
+        enabled:false
+      },
+      data: t_16_svt,
       tooltip: {
-          headerFormat: '<b>{point.key}</b><br>',
-          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m'
+          headerFormat: '<em>{point.key}</em><br/>'
+      }},
+      {
+        zIndex:3,
+        xAxis:0,
+        yAxis:0,
+        type: 'line',
+        name: 'Montreux - marché',
+        color:'#1bb35e',
+        lineWidth:2,
+        marker:{
+          enabled:false
+        },
+        data: t_16_mrd,
+        tooltip: {
+            headerFormat: '<em>{point.key}</em><br/>'
+        }},
+        {
+          zIndex:3,
+          xAxis:0,
+          yAxis:0,
+          type: 'line',
+          name: 'Parc de Vernex',
+          color:'#ffb100',
+          lineWidth:2,
+          marker:{
+            enabled:false
+          },
+          data: t_16_vnx,
+          tooltip: {
+              headerFormat: '<em>{point.key}</em><br/>'
+          }},
+          {
+            zIndex:3,
+            xAxis:0,
+            yAxis:1,
+            type: 'area',
+            name: 'Rainfall',
+            color:'rgba(00, 00, 00, .2)',
+            fillColor:'rgba(00, 00, 00, .2)',
+            lineColor:'rgba(00, 00, 00, .2)',
+            lineWidth:0,
+            marker:{
+              enabled:false
+            },
+            data: rain16,
+            tooltip: {
+                headerFormat: '<em>{point.key}</em><br/>'
+            }}
+
+    ]
+
+});
+</script>
+<script type="text/javascript">
+Highcharts.chart('box-plot5', {
+
+    chart: {
+        type: 'line',
+        spacingBottom: 20,
+    },
+
+    title: {
+        text: '',
+        style:{
+          fontSize: '14px',
+          color:'#0A2E5C',
+
+        },
+    },
+    subtitle: {
+      text: '',
+      style:{
+        fontSize: '10px',
+        color:'#0A2E5C',
+      }
+
+    },
+    credits:{
+      text:'hammerdirt 2018',
+
+    },
+    exporting: {
+      enabled:false,
+    },
+    legend: {
+      enabled: true,
+      verticalAlign: 'top',
+      horizontalAlign: 'right',
+      layout:'vertical',
+      floating:true,
+      x:200,
+      y:30,
+      backgroundColor:'rgba(255,255,255, .4)',
+      borderColor:'rgba(10, 46, 92, .5)',
+      borderWidth:2,
+      itemMarginTop:4,
+      itemMarginBottom:4,
+      itemStyle:{
+        color: 'black',
+        fontSize: '10px',
       },
     },
-    {
-      zIndex:2,
-      xAxis:1,
-      type: 'scatter',
-      name:'River-daily',
-      marker: {
-        symbol: 'circle',
-        radius:3,
-        lineColor: 'rgba(255, 00, 00, .4)',
-        fillColor:  'rgba(255, 65, 168, .4)',
-        lineWidth:1,
+    plotOptions:{
+      series:{
+        marker: {
+          enabled: false
+        },
+        label:{
+          enabled: false
+        },
       },
-      data:riv_dens,
+
+
+    },
+
+    xAxis: [{
+      type: 'datetime',
+      tickInterval:null,
+      tickColor:'rgba(00, 00, 00, 1)',
+      labels: {
+        enabled: true,
+        style: {
+          color:'rgba(00, 00, 00, 1)',
+        }
+      },
+      dateTimeLabelFormats: {
+        month: '%b-%d',
+      },
+    },
+  ],
+    yAxis: [{
+      min:0,
+      tickInterval:200,
+      minPadding:0.2,
+      title: {
+          align: 'low',
+          offset: 50,
+          text: 'Average total Big Blue CFU per 100mL',
+          style:{
+            fontSize: '14px',
+            color:'#000000',
+          },
+      },
+      gridLineColor:'rgba(10, 46, 92, .2)',
+      minorTickInterval:50,
+      minorGridLineColor:'rgba(10, 46, 92, .1)',
+      minorGridLineDashStyle:'longdash',
+      minorGridLineWidth:1,
+      minorTickWidth: 1,
+    },{
+      min:0,
+      minPadding:0.2,
+      title: {
+          align: 'middle',
+          rotation: 270,
+          offset: 50,
+          text: 'Daily rainfall in centimeters',
+          style:{
+            fontSize: '14px',
+            color:'#000000',
+          },
+      },
+    opposite:true,
+    }
+
+
+
+  ],
+
+    series:
+    [{
+      zIndex:3,
+      xAxis:0,
+      yAxis:0,
+      type: 'line',
+      name: 'Quai de Vernex',
+      color:'#18c4d8',
+      lineWidth:2,
+      marker:{
+        enabled:false
+      },
+      data: b_b16_svt,
       tooltip: {
-          headerFormat: '<b>{point.key}</b><br>',
-          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m'
-      },
-    },
-  ]
+          headerFormat: '<em>{point.key}</em><br/>'
+      }},
+      {
+        zIndex:3,
+        xAxis:0,
+        yAxis:0,
+        type: 'line',
+        name: 'Montreux - marché',
+        color:'#1bb35e',
+        lineWidth:2,
+        marker:{
+          enabled:false
+        },
+        data: b_b16_mrd,
+        tooltip: {
+            headerFormat: '<em>{point.key}</em><br/>'
+        }},
+        {
+          zIndex:3,
+          xAxis:0,
+          yAxis:0,
+          type: 'line',
+          name: 'Parc de Vernex',
+          color:'#ffb100',
+          lineWidth:2,
+          marker:{
+            enabled:false
+          },
+          data: b_b16_vnx,
+          tooltip: {
+              headerFormat: '<em>{point.key}</em><br/>'
+          }},
+          {
+            zIndex:3,
+            xAxis:0,
+            yAxis:1,
+            type: 'area',
+            name: 'Rainfall',
+            color:'rgba(00, 00, 00, .2)',
+            fillColor:'rgba(00, 00, 00, .2)',
+            lineColor:'rgba(00, 00, 00, .2)',
+            lineWidth:0,
+            marker:{
+              enabled:false
+            },
+            data: rain16,
+            tooltip: {
+                headerFormat: '<em>{point.key}</em><br/>'
+            }}
+
+    ]
+
 });
 </script>
 

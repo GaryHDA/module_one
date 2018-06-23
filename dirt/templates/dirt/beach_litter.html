@@ -53,28 +53,56 @@
 }
 
 #whynot{
-  width:80%
+  width:80%;
+  height:20%;
 }
-
+.bttn{
+  width:100%;
+  height:100%;
+}
 #why {
   width:50%;
+  height:100%;
 }
 @media  (max-width: 767.98px) {
   .shutter{
     width: 100%;
     height: 20%;
-  };
-  .col-sm {
+  }
+  <!-- .col-sm-4 {
     width: 100%;
-    background-color:yellow;
-  };
+
+  }; -->
 }
 @media  (max-width: 767.98px) {
-  #why, #whynot {
+  #whynot {
     width:100%;
+    height:30%;
 
   };
+  <!-- .bttn{
+    width:33%;
+  } -->
 }
+
+@media  (max-width: 767.98px) {
+  #why {
+    width:100%;
+    height:100%;
+
+  };
+  <!-- .bttn{
+    width:33%;
+  } -->
+}
+
+<!-- @media  (max-width: 767.98px) {
+  .bttn{
+    width:100%;
+
+  } -->
+
+  }
 .shutterOpen .shutter {
   height: 0;
 }
@@ -91,6 +119,7 @@
 
 {% block content  %}
 {% load humanize %}
+{% load static %}
 <div class="container-fluid p-0 m-0" style="height:100vh; width:100%">
   <div class="wrapper p-0  mx-auto" style="height:100%">
     <div class="shutter mx-auto" >
@@ -106,92 +135,84 @@
         <h5 class=" p-0 w-100 text-white mb-0"> --> Read me first <-- </h5>
         <p class="text-white ml-auto mb-0 txt-12">If you can't define "beach-litter-inventory", then this is a good place to start. Includes a brief history of the project and what we hope to measure.</p>
       </div>
-      <div class="row no-gutters" style="">
+      <div class="row no-gutters" style="height:100%">
         <div class="col-sm" id='bg' style="">
           <div class="card pb-0 mx-auto" id="why" style="" >
-            <div class="card-header m-0 w-100 bg-dark text-left float-left" id="" style="">
+            <div class="card-header m-0 w-100 bg-dark text-left" id="" style="">
               <h4 class="text-white">Why is this important? <br><small class="text-white">Beach litter and trash in the water is a fact of life.</small> </h4>
             </div>
             <div class="card-body p-1 w-100 text-left" >
               <div id="whynot" class="container mx-auto mb-2">
-                <div class="row no-gutters">
-                  <div class="col-sm-4">
-                    <button class="btn bg-info text-white mt-1 p-2 border-white w-100" style="white-space:normal; height:50%" data-toggle="modal"  data-target="#bl_30" aria-expanded="false" aria-controls="table-of-results">
+                <div class="row no-gutters" style="height:50%">
+                  <div class="col-sm-4 p-0 m-0">
+                    <a class="btn bttn bg-info text-white p-1 m-0 border-white" style="white-space:normal;" data-toggle="modal"  data-target="#bl_30" aria-expanded="false" aria-controls="table-of-results">
                        Measuring beach litter
-                    </button>
-                    <button class="btn bg-info text-white mt-1 p-2 border-white w-100" style="white-space:normal; height:50%" data-toggle="modal" data-target="#mcbp-1" aria-expanded="false" aria-controls="">
+                    </a>
+                  </div>
+                  <div class="col-sm-4 p-0 m-0">
+                    <a class="btn bttn bg-info text-white p-1 m-0 border-white" style="white-space:normal;" data-toggle="modal" data-target="#mcbp-1" aria-expanded="false" aria-controls="">
                        MCBP-1: 2014-2015
-                    </button>
+                    </a>
                   </div>
-                  <div class="col-sm-4">
-                    <button class="btn bg-info text-white mt-1 p-2 border-white w-100" style="white-space:normal; height:50%" data-toggle="modal"  data-target="#mcbp-2" aria-expanded="false" aria-controls="">
+                  <div class="col-sm-4 p-0 m-0" >
+                    <a class="btn bttn bg-info text-white m-0 p-1 border-white" style="white-space:normal;" data-toggle="modal"  data-target="#mcbp-2" aria-expanded="false" aria-controls="">
                        MCBP-2: 2015-2016
-                    </button>
-                    <button class="btn bg-info text-white mt-1 p-2 border-white w-100" style="white-space:normal; height:50%" data-toggle="modal"  data-target="#mcbp-3" aria-expanded="false" aria-controls="table-of-results">
-                       MCBP-3: 2016-2017
-                    </button>
+                    </a>
                   </div>
-                  <div class="col-sm-4">
-                    <button class="btn bg-info text-white mt-1 p-2 border-white w-100" style="white-space:normal; height:50%" data-toggle="modal"  data-target="#mcbp-4" aria-expanded="false" aria-controls="">
+                </div>
+                <div class="row no-gutters" style="height:50%">
+                  <div class="col-sm-4 p-0 m-0">
+                    <a class="btn bttn bg-info text-white m-0 p-1 border-white" style="white-space:normal;" data-toggle="modal"  data-target="#mcbp-3" aria-expanded="false" aria-controls="table-of-results">
+                       MCBP-3: 2016-2017
+                    </a>
+                  </div>
+                  <div class="col-sm-4 p-0 m-0">
+                    <a class="btn bttn bg-info text-white m-0 p-1 border-white" style="white-space:normal;" data-toggle="modal"  data-target="#mcbp-4" aria-expanded="false" aria-controls="">
                        MCBP-4: 2018-?
-                    </button>
-                    <button class="btn bg-info text-white mt-1 p-2 border-white w-100 " style="white-space:normal; height:50%" data-toggle="modal"  data-target="#slr" aria-expanded="false" aria-controls="table-of-results">
+                    </a>
+                  </div>
+                  <div class="col-sm-4 p-0 m-0">
+                    <a class="btn bttn bg-info text-white m-0 p-1 border-white" style="white-space:normal;" data-toggle="modal"  data-target="#slr" aria-expanded="false" aria-controls="table-of-results">
                        Swiss Litter Report
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
               <div class="list-group ">
                 <div class="list-group-item flex-column align-items-start mt-2">
-                <div class="d-flex w-100 justify-content-between ">
-                  <h6 class="mb-1"> Water is better without trash
-                    <br><small class="text-muted">A clean beach is good thing, it is a guaranteed value.
-                    <br>The most obvious benefits from projects  like this is the removal of trash from the environment. </small>
-                  </h6>
-                
+                  <div class="d-flex w-100 justify-content-between ">
+                    <h6 class="mb-1"> Water is better without trash
+                      <br><small class="text-muted">A clean beach is a good thing, it is a guaranteed value.
+                        <br>The most obvious benefits from projects like this is the removal of trash from the environment.</small></h6>
+                  </div>
+                </div>
+                <div class="list-group-item flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h6 class="mb-1"> Pragmatic action
+                      <br><small class="text-muted">A sure way to limit the damage
+                      <br>The data we collect may lead to a solution tomorow, but removing trash now is for today.</small></h6>
+                  </div>
+                </div>
+                <div class="list-group-item flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h6 class="mb-1"> Management tool
+                      <br><small class="text-muted">How else are you going to know what is out there ?
+                      <br>If you intend on managing it, then you need to measure it.</small></h6>
+                  </div>
+                </div>
+                <div class="d-flex w-100 align-items-center justify-content-center">
+                  <div class="btn m-1 wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
+                    <a class="text-white txt-14" href="{% url 'slr_home' %}" aria-expanded="false"> SLR<br> Results </a>
+                  </div>
+                  <div class="btn m-1 wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
+                    <a class="text-white  txt-14" href="{% url 'mcbp_home' %}" aria-expanded="false"> MCBP<br> Results </a>
+                  </div>
+                  <div class="btn m-1 wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
+                    <a class="text-white txt-14" href="ca_home" aria-expanded="false"> California<br> Results </a>
+                  </div>
                 </div>
               </div>
-              <div class="list-group-item flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                  <h6 class="mb-1"> Pragmatic action
-                    <br><small class="text-muted">A sure way to limit the damage
-                    <br>The data we collect may lead to a solution tomorow, but removing trash now is for today.</small>
-                  </h6>
-
-                </div>
-              </div>
-              <div class="list-group-item flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                  <h6 class="mb-1"> Management tool
-                    <br><small class="text-muted">How else are you going to know whats out there ?
-                    <br>If you inntend on managing it, then you need to measure it.</small>
-                  </h6>
-
-                </div>
-              </div>
-
             </div>
-
-
-              <div class="container-fluid pt-1 mt-1 align-items-center">
-                <div class="btn mx-auto wide-88 d-inline-flex  align-items-center justify-content-center rounded-circle bg-red">
-                  <a class="text-white txt-14" href="{% url 'mcbp_home' %}">All <br> Results </a>
-                </div>
-                <div class="btn mx-auto wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
-                  <a class="text-white txt-14" href="{% url 'slr_home' %}" aria-expanded="false"> SLR<br> Results </a>
-                </div>
-                <div class="btn mx-auto wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
-                  <a class="text-white txt-14" href="#" aria-expanded="false"> MCBP<br> Results </a>
-                </div>
-                <div class="btn mx-auto wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
-                  <a class="text-white txt-14" href="#" aria-expanded="false"> California<br> Results </a>
-                </div>
-              </div>
-
-
-
-            </div>
-
           </div>
         </div>
       </div>
@@ -387,18 +408,80 @@
         </div>
       </div>
     </div>
-    <div class="shutter mx-auto">
+    <div class="shutter mx-auto" id="in_progress">
       <div class="row no-gutters bg-info shutterTitle" style="height:100%" >
-        <h5 class="p-0 w-100 text-white mb-0">Current Jupyter notebooks</h5>
-          <p class="text-white txt-12 ml-auto mb-0">Works in progress and most of the "mathy stuff" is done in a notebook first.  This is a collection of those notebooks.</p>
+        <h5 class="p-0 w-100 text-white mb-0">In the oven</h5>
+          <p class="text-white txt-12 ml-auto mb-0">Works in progress and most of the "mathy stuff" is done in a notebook first.  This is a collection of those notebooks, can be difficult to follow</p>
+      </div>
+      <div class="row no-gutters" id='ap' style="height:100% ">
+        <div class="col-sm" id='ap_0' style="height:100%">
+          <div class="card pb-0" id="">
+            <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
+              Automated reporting
+            </div>
+            <div class="card-body text-left" style="height:100%">
+              <h6 class="card-title">Communicating results in an objective manner
+                <br><small class="text-muted">Standard format for all operations
+                <br>Automated, exploitable at the time the record is created</small></h6>
+              <p class="card-text">This is the initial code used to generate standardized, automated reports for the SLR.  Python (Pandas, Matplotlib, Jupyter) are the main tools.  Output is PDF or any image file (see below)</p>
+              <p class="card-text">This work will be revived and the function offered to participating organisations. However there is still alot of work that needs to be done.</p>
+              <p class="card-text"> Links to a <a href="https://github.com/hammerdirt/beachLitterSurveys"> repository on Github </a></p>
+              <img src="{% static 'images/report.png' %}" class="img-fluid">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm" id='ap_1' style="height:100%">
+          <div class="card pb-0" id="">
+            <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
+              How much trash is out there?
+            </div>
+            <div class="card-body text-left" style="height:100%">
+              <h6 class="card-title">Using results from the surveys to estimate quantity
+                <br><small class="text-muted">Random sampling from a truncated gaussian distribution
+                <br>Random sampling from actual results (with replacement)</small></h6>
+              <p class="card-text">Somebody asked, so I did it.  How many pieces of trash are on the shores of Swiss water ways?</p>
+              <p class="card-text">Links to a <a href="https://github.com/hammerdirt/notes/blob/master/how_much_trash.ipynb"> repository on Github </a></p>
+              <img src="{% static 'images/how_much.svg' %}" class="img-fluid">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm "  id='ap_2' style="height:100%">
+          <div class="card pb-0" id="">
+            <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
+              Comparing probability distributions
+            </div>
+            <div class="card-body text-left" style="height:100%">
+              <h6 class="card-title">Answering the question: "What will you find at the beach?"
+                <br><small class="text-muted">Comparing the PDF for pcs/m across categories and items
+                <br>Hotel nights sold as a proxy for changes in pop density --- Montreux</small>              </h6>
+              <p class="card-text">There are regional differences that can be identified by comparing the distributions of specific items. Even with a lower population density, Montreux still has an elevated pcs/m rating. Hotel nights sold per month can account for some of that.</p>
+              <p class="card-text">Links to a <a href="https://github.com/hammerdirt/notes/blob/master/basel/Integrate%20hydro%2C%20pop-Copy1.ipynb"> repository on Github </a></p>
+              <h6 class="card-title mt-2">Image: pcs/m results, lake vs rivers SLR
+                <br><small class="text-muted">Logarithmic scale (np.log())
+                <br>Only results  greater than zero</small></h6>
+              <img src="{% static 'images/ln_rivers_lakes.svg' %}" class="img-fluid">
+            </div>
+          </div>
+          <div class="card pb-0" id="">
+            <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
+              A rating scheme for beach litter based on probability
+            </div>
+            <div class="card-body text-left" style="height:100%">
+              <h6 class="card-title">Using the probaility distribution of litter to rate beaches
+                <br><small class="text-muted">Based on the Log normal distribution
+                <br>A beaches average pcs/m result is comapred to the distribution</small></h6>
+              <p class="card-text">It is impossible to determine how much trash is really out there. However we can determine how likeley you are to find a quantity of trash at a beach. We use that to rate beach litter at sites in the SLR.</p>
+              <p class="card-text">Links to a <a href="https://github.com/hammerdirt/stopLight"> repository on Github </a></p>
+              <h6 class="card-title mt-2">Image: Rating of SLR beaches
+                <br><small class="text-muted">Rating based on beaches avg pcs/m quantile ranking.
+                <br>Four classifications</small></h6>
+              <img src="{% static 'images/stopLights.jpg' %}" class="img-fluid">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <!-- <div class="shutter">
-      <div class="row bg-dark p-1" style="height:100%" >
-        <h5 class="w-100 text-white">Activeley looking for research parteners</h5>
-          <p class="text-white mx-auto">Let us bring our skills to your project (or see how you can help us!)</p>
-      </div>
-    </div> -->
+
   </div>
   <div class="modal fade" id="bl_30">
     <div class="modal-dialog modal-lg" role="document">
