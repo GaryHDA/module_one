@@ -4,7 +4,7 @@ from django.db import models
 from django.db.models import Sum, Avg, Max, Min
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from dirt.models import SLR_Data, SLR_Density, SLR_Beaches, Beaches, Codes, All_Data, References, SUBJECT_CHOICES
+from dirt.models import SLR_Data, SLR_Density, SLR_Beaches, Beaches, Codes, All_Data, References, SUBJECT_CHOICES, SLR_Area
 from django.contrib.auth.models import User
 import json
 
@@ -27,6 +27,7 @@ class Water_bodies():
     f = open(dirt_static + "/water_bodies.json", 'r')
     a = json.load(f)
     b = list(a.keys())
+    print(a)
 
 
 class Make_cites():
@@ -84,6 +85,7 @@ class Make_cites():
     all_site_list, cities =cite_dict(a_b_all)
     key_list = list(all_site_list.keys())
 
+
     def river_dict(w_d, key_w, a):
         b = {}
         for x in key_w:
@@ -122,6 +124,9 @@ class Make_data():
     e = pd.DataFrame(list(SLR_Density.objects.all().values()))
     f = pd.DataFrame(list(SLR_Density.objects.filter(location__water = 'river').values()))
     g = pd.DataFrame(list(SLR_Density.objects.filter(location__water = 'lake').values()))
+    i = pd.DataFrame(list(SLR_Area.objects.all().values()))
+    k = pd.DataFrame(list(SLR_Area.objects.filter(location__water = 'river').values()))
+    l = pd.DataFrame(list(SLR_Area.objects.filter(location__water = 'lake').values()))
 
     def format_data(y):
         t_day = pd.to_datetime('today')
@@ -130,6 +135,8 @@ class Make_data():
             y = y.astype({'quantity':float}, copy=False)
         if 'density' in a:
             y = y.astype({'density':float}, copy=False)
+        if 'density2' in a:
+            y = y.astype({'density2':float}, copy=False)
         if 'date' in a:
             y['date'] = pd.to_datetime(y['date'])
             y = y[y.date <= t_day]
@@ -143,6 +150,9 @@ class Make_data():
     c = format_data(a)
     d = format_data(b)
     h = format_data(e)
+    j = format_data(i)
+    m = format_data(k)
+    n = format_data(l)
     river = format_data(f)
     lake = format_data(g)
     all_data = pd.concat([c,d])
@@ -177,6 +187,19 @@ class Make_daily():
     e, e1, e2, e3 = daily_density(c)
     r, r1, r2, r3 = daily_density(Make_data.river)
     l, l1, l2, l3 = daily_density(Make_data.lake)
+    def daily_density2(df):
+        a = df[['date', 'location_id', 'density2','quantity', 'sample']].copy()
+        bb = a[['date', 'location_id', 'density2']].copy()
+        a['date'] = a['date'].dt.strftime("%Y-%m-%d")
+        x = a.to_dict(orient='records')
+        b = list(a['density2'])
+        c = sorted(b)
+        d = [x for x in c if x > 0]
+        e = [math.log(x) for x in d]
+        return [x, e, bb, a]
+    ar, ar1, ar2, ar3 = daily_density2(Make_data.j)
+    arl, arl1, arl2, arl3 = daily_density2(Make_data.n)
+    arr, arr1, arr2, arr3 = daily_density2(Make_data.m)
     def all_samples(e):
         a = []
         c = e
@@ -186,6 +209,7 @@ class Make_daily():
         b = pd.DataFrame(a)
         return b, a
     all_daily_df, all_daily_list = all_samples([e,d])
+    slr_area_daily, slr_area_list = all_samples([ar])
 
 class Make_codes():
     """
@@ -287,6 +311,16 @@ class Make_coordinates():
             e = [float(g['latitude']), float(g['longitude']), float(a[c]), g['post'], g['city'], plot[plot.location_id == c]['date'].count(), c, proj, water]
             a_map.append(e)
         return a_map
+    def map_coords2(plot, names, proj, water ):
+        a_map = []
+        a = plot['density2'].groupby(plot['location_id']).mean().round(6)
+        b = names
+        f = list(a.index)
+        for c in f:
+            g = names[c]
+            e = [float(g['latitude']), float(g['longitude']), float(a[c]), g['post'], g['city'], plot[plot.location_id == c]['date'].count(), c, proj, water]
+            a_map.append(e)
+        return a_map
 
     def coord_list(b):
         a = []
@@ -299,8 +333,8 @@ class Make_coordinates():
     map_coords(Make_daily.e3, Make_cites.all_site_list, 'MCBP', 'lake')])
     mc_map = coord_list([map_coords(Make_daily.e3, Make_cites.all_site_list, 'MCBP', 'lake')])
 
-    slr_map = coord_list([map_coords(Make_daily.l3,  Make_cites.all_site_list, 'SLR', 'lake'),
-    map_coords(Make_daily.r3, Make_cites.all_site_list, 'SLR', 'river')])
+    slr_map = coord_list([map_coords2(Make_daily.arl3,  Make_cites.all_site_list, 'SLR', 'lake'),
+    map_coords2(Make_daily.arr3, Make_cites.all_site_list, 'SLR', 'river')])
 class Make_totals():
     def get_total():
         # aggregates the totals from the various Projects
@@ -388,6 +422,27 @@ class Make_totals():
         'max_dense':dens_max, 'two_five':two_five, 'seven_five':seven_five, 'stan_dev':stan_dev, 'total':total, 'iqr':iqr}
         return q, num_location
     all_summary, number_location = make_summary(Make_daily.all_daily_df)
+    def make_summary2(x):
+        # running a df through pd.describe and assigning varaible names to
+        # results, putting those in a dict to be passed on
+        x['date'] = pd.to_datetime(x['date'])
+        f = x.describe()['density2']
+        num_samps = f['count']
+        stan_dev = f['std'].round(2)
+        dens_min = f['min'].round(4)
+        dens_max = f['max'].round(2)
+        two_five = f['25%'].round(2)
+        seven_five = f['75%'].round(2)
+        average = f['mean'].round(2)
+        first_sample = min(x['date'])
+        last_sample = max(x['date'])
+        total = x['quantity'].sum()
+        iqr = seven_five - two_five
+        locs = x['location_id'].unique()
+        num_location = len(locs)
+        q = {'first':first_sample, 'last':last_sample, 'num_samps':num_samps, 'ave_dense':average, 'min_dense':dens_min,
+        'max_dense':dens_max, 'two_five':two_five, 'seven_five':seven_five, 'stan_dev':stan_dev, 'total':total, 'iqr':iqr}
+        return q, num_location
 class make_months():
     first_day = datetime.date(2015,11,15)
     t_day = datetime.date.today()
@@ -414,10 +469,34 @@ class Make_boxes():
         #print(i)
         return i
 
+
     river_box = box_plots(Make_daily.r2)
     lake_box = box_plots(Make_daily.l2)
     mc_box = box_plots(Make_daily.e2)
     s_box = box_plots(Make_daily.d2)
+    def box_plots2(a):
+        #mon_dict = {1:'jan', 2:'Feb', 3:'Mar', 4:'Apr', 5:'May', 6:'Jun', 7:'July', 8:'Aug', 9:'Sep', 10:'Oct', 11:'Nov', 12:'Dec'}
+        i = []
+        c = a['density2'].groupby([a.date.dt.year, a.date.dt.month]).describe()
+        c.index.rename(['year', 'month',], inplace=True)
+        c.reset_index(inplace=True)
+        c['year'] = c['year'].astype(int)
+        c['month'] = c['month'].astype(int)
+        c['m_y'] = list(zip(c.month, c.year))
+        want = ['m_y', 'min', '25%', '50%', '75%', 'max']
+        f = len(c['m_y'])
+        g = list(range(0, f))
+        for d in g:
+            h = c.loc[d]
+            b_date = datetime.date(year=h.m_y[1], month=h.m_y[0], day=27)
+            b_date = b_date.strftime("%Y-%m-%d")
+            bx_ix = [b_date, h[want[1]], h[want[2]].round(3), h[want[3]].round(3), h[want[4]].round(3), h[want[5]].round(3)]
+            i.append(bx_ix)
+        #print(i)
+        return i
+    river_box2 = box_plots2(Make_daily.arr2)
+    lake_box2 = box_plots2(Make_daily.arl2)
+    s_box2 = box_plots2(Make_daily.ar2)
 
     def box_cats(x):
         if x == 'SLR':
@@ -770,10 +849,10 @@ def search_SLR(request):
             # gets the values associated with the user choice
             # sets the date and time stamp
             # calls Make_daily to sort and make different lists\
-            a = Make_daily.all_daily_df
+            a = Make_daily.slr_area_daily
             a['date'] = pd.to_datetime(a['date'])
             a = a.loc[a.location_id.isin(water_bodies[criteria])]
-            c_1, c_2, c_3, c_4 = Make_daily.daily_density(a)
+            c_1, c_2, c_3, c_4 = Make_daily.daily_density2(a)
 
             return c_1, c_2, c_3, c_4
         # c_1 = a list of dicts in form df-record per dict
@@ -784,9 +863,9 @@ def search_SLR(request):
         c_1, c_2, c_3, c_4 = get_daily_values(q)
 
 
-        summary, num_locs= Make_totals.make_summary(c_4)
+        summary, num_locs= Make_totals.make_summary2(c_4)
 
-        map_data = Make_coordinates.coord_list([Make_coordinates.map_coords(c_3, Make_cites.all_site_list, 'Combined', q)])
+        map_data = Make_coordinates.coord_list([Make_coordinates.map_coords2(c_3, Make_cites.all_site_list, 'Combined', q)])
         code_data = Make_data.all_data.loc[Make_data.all_data.location_id.isin(water_bodies[q])].copy()
 
         # data for table 'locations, samples and avgerages'
@@ -795,7 +874,7 @@ def search_SLR(request):
 
         def locs_and_samples():
             a = c_4.groupby('location_id')
-            b = a.agg({'density':np.mean, 'sample':max})
+            b = a.agg({'density2':np.mean, 'sample':max})
             b.reset_index(inplace=True)
             c = b.to_dict('records')
             return c
@@ -828,222 +907,13 @@ def search_SLR(request):
         color = ['rgb(10, 46, 92, 1)', 'rgb(71, 142, 235, 1)', 'rgb(163, 199, 245, 1)', 'rgb(115, 18, 13, 1)', 'rgb(199, 31, 22, 1)', 'rgb(13, 115, 91, 1)', 'rgb(22, 199, 158, 1)', 'rgb(121, 70, 40, 1)', 'rgb(159, 183, 159, 1)', 'rgb(102,102, 0, 1)', 'rgb(215, 78, 9, 1)', 'rgb(255, 191, 0, 1)']
 
         return render(request, 'dirt/search_slr.html', {'city':q, 'city_top_ten':t_ten, 'summary':summary,  'num_locs':num_locs, 'mk_pers':mk_pers,
-        'plot_density':c_1,'plot_all': Make_daily.d,'map_points':map_data, 'locs_samples':locs_and_samples(), 'ceiling':max(c_4['density']) + 10, 'inventory':total_inventory,
+        'plot_density':c_1,'plot_all': Make_daily.ar,'map_points':map_data, 'locs_samples':locs_and_samples(), 'ceiling':max(c_4['density2']) + 10, 'inventory':total_inventory,
         'all_water':Water_bodies.b, 'all_cities':Make_cites.cities,})
 
     else:
         return HttpResponse('Please submit a search term')
 
-    # if 'q' in request.GET and request.GET['q']:
-    #     q = request.GET['q']
-    #     city_values = SLR_Data.objects.filter(location__city = q).values()
-    #     city_densities = SLR_Density.objects.filter(location__city = q).values()
-    #     codes = Codes.objects.all().values()
-    #     beaches = SLR_Beaches.objects.all().values()
-    #     all_densities = SLR_Density.objects.all().values()
-    #
-    #     t_day = pd.to_datetime('today')
-    #
-    #     def make_df(y):
-    #         a = list(y)
-    #         b = pd.DataFrame(a)
-    #         return [a, b]
-    #     dfX = make_df(city_values)
-    #     dfY = make_df(city_densities)
-    #     dfZ = make_df(all_densities)
-    #     dfTrial = Make_data.a
-    #     dTrial2 = Make_data.b
-    #
-    #
-    #
-    #     def format_data(x):
-    #         x = x.astype({'density':float, 'quantity':float}, copy=False)
-    #         x['date'] = pd.to_datetime(x['date'])
-    #         r = x[x.date < t_day]
-    #         return r
-    #     df = format_data(dfX[1])
-    #     df0 = format_data(dfY[1])
-    #     df1 = format_data(dfZ[1])
-    #
-    #     # get the location names of the beaches in the city
-    #     def get_beaches(y):
-    #         a = []
-    #         b = list(y)
-    #         for x in b:
-    #             if x['location_id'] not in a:
-    #                 a.append(x['location_id'])
-    #         return a
-    #     beaches_x = get_beaches(city_densities)
-    #
-    #     def city_list(city_query):
-    #         b = []
-    #         a = list(city_query)
-    #         for x in a:
-    #             if x['city'] not in b:
-    #                 b.append(x['city'])
-    #         return b
-    #     cities = city_list(beaches)
-    #
-    #     def make_summary():
-    #         f = df0.describe()['density']
-    #         num_samps = f['count']
-    #         stan_dev = f['std'].round(2)
-    #         dens_min = f['min'].round(4)
-    #         dens_max = f['max'].round(2)
-    #         two_five = f['25%'].round(2)
-    #         seven_five = f['75%'].round(2)
-    #         average = f['mean'].round(2)
-    #         first_sample = min(df0['date'])
-    #         last_sample = max(df0['date'])
-    #         total = df0['quantity'].sum()
-    #         iqr = seven_five - two_five
-    #         x = {'first':first_sample, 'last':last_sample, 'num_samps':num_samps, 'ave_dense':average, 'min_dense':dens_min,
-    #         'max_dense':dens_max, 'two_five':two_five, 'seven_five':seven_five, 'stan_dev':stan_dev, 'total':total, 'iqr':iqr}
-    #         return x
-    #     summary = make_summary()
-    #
-    #     def daily_density(df):
-    #         a = df[['date', 'location_id', 'density', 'sample']].copy()
-    #         bb = a[['date', 'location_id', 'density']].copy()
-    #         a['date'] = a['date'].dt.strftime("%Y-%m-%d")
-    #         x = a.to_dict(orient='records')
-    #         z = max(df['density']) + 1
-    #
-    #         return [x, bb, a, z]
-    #
-    #     densities = daily_density(df0)
-    #     all_values = daily_density(df1)
-    #     # pass to response
-    #     plot_density = densities[0]
-    #     plot_all = all_values[0]
-    #     b_plot = densities[1]
-    #
-    #     def box_plots(a):
-    #         b = a.copy()
-    #         b.set_index('date', inplace=True)
-    #         c = b.groupby([b.index.year, b.index.month])
-    #         d = list(c)
-    #         f = []
-    #         for g,h in enumerate(d):
-    #             f.append(d[g][1])
-    #         return f
-    #     bx_plot = box_plots(b_plot)
-    #
-    #     def boxes(a):
-    #         f = []
-    #         months = ['Apr- 2017', 'May- 2017', 'Jun- 2017', 'Jul- 2017', 'Aug- 2017', 'Sep- 2017', 'Oct- 2017', 'Nov- 2017', 'Dec- 2017', 'Jan- 2018', 'Feb- 2018']
-    #         for b, c in enumerate(a):
-    #             d = a[b]
-    #             d['density'] = d['density'].astype(float)
-    #             e = list(d['density'])
-    #             g = sorted(e)
-    #             h = [min(g), np.percentile(g, 25, interpolation='lower'), np.median(g), np.percentile(g, 75, interpolation='lower'), g[-1]]
-    #             f.append(h)
-    #         return [f, months]
-    #
-    #     box_plot_s = boxes(bx_plot)
-    #
-    #     # pass to response
-    #     box_plot = box_plot_s[0]
-    #     box_cats = box_plot_s[1]
-    #
-    #     def map_coords(plot, names ):
-    #         a_map = []
-    #         a = plot['density'].groupby(plot['location_id']).mean().round(6)
-    #         a = a.astype(float)
-    #         b = list(names)
-    #         for c in b:
-    #             if c['location'] in a.index:
-    #                 c['density'] = a[c['location']]
-    #                 if 'density' in c:
-    #                         e = [float(c['latitude']), float(c['longitude']), float(c['density']), c['post'], c['city'], plot[plot.location_id == c['location']]['sample'].max(), c['location']]
-    #                         a_map.append(e)
-    #         return [a_map, b]
-    #
-    #     map_data = map_coords(densities[2], beaches)
-    #     map_points = map_data[0]
-    #
-    #     def top_ten_codes():
-    #         a = df['quantity'].groupby(df['code_id']).sum()
-    #         b = a.sort_values(ascending=False)
-    #         c = b[:10]
-    #         d = list(c.index)
-    #         f = []
-    #         for g in d:
-    #             for h in codes:
-    #                 if h['code'] == g:
-    #                     f.append({'code':g, 'description':h['description'], 'total':c[g]})
-    #         return [a, f]
-    #     city_top_ten = top_ten_codes()[1]
-    #
-    #
-    #     color = ['rgb(10, 46, 92, 1)', 'rgb(71, 142, 235, 1)', 'rgb(163, 199, 245, 1)', 'rgb(115, 18, 13, 1)', 'rgb(199, 31, 22, 1)', 'rgb(13, 115, 91, 1)', 'rgb(22, 199, 158, 1)', 'rgb(121, 70, 40, 1)', 'rgb(159, 183, 159, 1)', 'rgb(102,102, 0, 1)', 'rgb(215, 78, 9, 1)', 'rgb(255, 191, 0, 1)']
-    #     def sources():
-    #         a = top_ten_codes()[0]
-    #         b = a.to_dict()
-    #         c = b.keys()
-    #         d = []
-    #         for g in codes:
-    #             if g['code'] in c:
-    #                 d.append({'code':g['code'], 'source':g['source'], 'total':b[g['code']]})
-    #         h = pd.DataFrame(d)
-    #         i = h['total'].groupby(h['source']).sum()
-    #         l = sum(i)
-    #         j = []
-    #         for n, r in enumerate(i.index):
-    #             f = (i[n]/l)*100
-    #             k = {'source':f, 'name':r, 'color':color[n]}
-    #             j.append(k)
-    #         return j
-    #     sources_as = sources()
-    #
-    #     def locs_and_samples():
-    #         a = df0.groupby('location_id')
-    #         b = a.agg({'density':np.mean, 'sample':max})
-    #         b.reset_index(inplace=True)
-    #         c = b.to_dict('records')
-    #         return c
-    #     def percentile_ranking_locations():
-    #         a = df0['density'].mean()
-    #         b = list(df1['density'])
-    #         b.sort()
-    #         c = scipy.stats.percentileofscore(b, a)
-    #         return [c, a]
-    #     beach_rank = percentile_ranking_locations()
-    #
-    #     def percentile_ranking_cities():
-    #         city_aves = []
-    #         for s in cities:
-    #             v = SLR_Density.objects.filter(location__city = s).aggregate(ave = Avg('density'))
-    #             u = v['ave']
-    #             if u != None:
-    #                 city_aves.append(u)
-    #         city_aves.sort()
-    #         t = scipy.stats.percentileofscore(city_aves, beach_rank[1])
-    #         return [city_aves, t]
-    #     city_rank = percentile_ranking_cities()[1]
-    #
-    #     def inventory(a):
-    #         b =pd.DataFrame(a['quantity'].groupby([a['code_id'], a['location_id']]).sum())
-    #         bindex = []
-    #         for c in b.index.get_level_values(0):
-    #             if c not in bindex:
-    #                 bindex.append(c)
-    #         inv = []
-    #         for x in bindex:
-    #             f = codes.filter(code=x).values()[0]['description']
-    #             g = b.loc[x]
-    #             h = {'code':x, 'description':f, 'total':g['quantity'].sum()}
-    #             inv.append(h)
-    #         return inv
-    #     total_inventory = inventory(df)
-    #
-    #     return render(request, 'dirt/search_SLR.html', {'city':q, 'beaches_x':beaches_x, 'sources_as':sources_as, 'city_top_ten':city_top_ten, 'summary':summary,
-    #     'plot_density':plot_density,'plot_all':plot_all,'map_points':map_data[0], 'box_plot': box_plot, 'box_cats':box_cats, 'bx_plot':bx_plot,
-    #     'locs_samples':locs_and_samples(), 'city_rank':city_rank, 'beach_rank':beach_rank[0], 'ceiling':densities[3], 'inventory':total_inventory})
-    #
-    # else:
-    #     return HttpResponse('Please submit a search term')
+
 
 def search_MCBP(request):
         if 'q' in request.GET and request.GET['q']:
@@ -1343,26 +1213,6 @@ def search_MCBP(request):
     # else:
     #     return HttpResponse('Please submit a search term')
 
-# def beach_litter(request):
-#     slr_beaches = SLR_Beaches.objects.all().values()
-#     mc_locs = Beaches.objects.all().values()
-#     body_names = Water_bodies.b
-#
-#     box_lake = Make_boxes.lake_box
-#     box_river = Make_boxes.river_box
-#     box_mc = Make_boxes.mc_box
-#
-#     combined_map = Make_coordinates.combined_map
-#
-#     # summary_df = Make_daily.all_daily_df
-#
-#     summary, num_location = Make_totals.all_summary, Make_totals.number_location
-#
-#     return render(request, 'dirt/beach_litter.html', {'all_water':Water_bodies.b, 'all_cities':Make_cites.cities,
-#         'body_number':len(body_names), 'num_lakes':Make_totals.lake_locs, 'river_locs_t':Make_totals.riv_num,
-#         'num_locs':num_location, 'len_rivs': Make_totals.len_rivs, 'lake_len':Make_totals.lake_locs_t, 'plot_density':Make_daily.d,
-#         'plot_mc':Make_daily.e, 'slr_hist':Make_daily.d1, 'mc_hist':Make_daily.e1, 'lakes':Make_daily.l, 'rivers':Make_daily.r,
-#         'box_lake':box_lake, 'box_river':box_river,'box_mc':box_mc, 'combined_map': combined_map, 'summary':summary})
 
 def slr_home(request):
 
@@ -1370,7 +1220,7 @@ def slr_home(request):
     slr_beaches = SLR_Beaches.objects.all().values()
     # codes = Codes.objects.all()
 
-    summary, number_locations = Make_totals.make_summary(Make_data.h)
+    summary, number_locations = Make_totals.make_summary2(Make_data.j)
     map_points = Make_coordinates.slr_map
     inventory = Make_codes.slr_inventory
     mk_pers = Make_percents(Make_codes.inv_series, Make_codes.codes_material).get_percents()
@@ -1379,13 +1229,15 @@ def slr_home(request):
 
     def city_list(city_query):
         b = []
-        a = list(city_query)
-        for x in a:
-            if x['city'] not in b:
-                b.append(x['city'])
+        a = list(city_query['location_id'].unique())
+        for c in a :
+            d = Make_cites.slr_cite_info[c]['city']
+            if d not in b:
+                b.append(d)
+        
         b=sorted(b)
         return b
-    cities = city_list(slr_beaches)
+    cities = city_list(Make_daily.ar3)
 
     def top_ten_percents(e):
         a = summary['total']
@@ -1421,9 +1273,9 @@ def slr_home(request):
         return c
 
     return render(request, 'dirt/slr.html', {'books':books, 'num_lakes':Make_totals.no_of_lake, 'num_rivers':Make_totals.no_of_river,
-    'num_locs':number_locations, 'top_ten':top_ten_table, 'summary':summary, 'mk_pers':mk_pers, 'plot_density': Make_daily.d,
-    'map_points':map_points, 'slr_cities': cities,'box_plot': Make_boxes.s_box, 'box_cats':Make_boxes.box_cats('SLR'),
-    'lakes':Make_daily.l, 'rivers':Make_daily.r, 'box_lake':Make_boxes.lake_box, 'box_river':Make_boxes.river_box,
+    'num_locs':number_locations, 'top_ten':top_ten_table, 'summary':summary, 'mk_pers':mk_pers, 'plot_density': Make_daily.ar,
+    'map_points':map_points, 'slr_cities': cities,'box_plot': Make_boxes.s_box2, 'box_cats':Make_boxes.box_cats('SLR'),
+    'lakes':Make_daily.arl, 'rivers':Make_daily.arr, 'box_lake':Make_boxes.lake_box2, 'box_river':Make_boxes.river_box2,
     'inventory':inventory, 'locs_samples':locs_and_samples(), 'city_locs':Make_cites.all_slr_cities, 'slr_river':Make_cites.slr_rivers,
     'all_water':Water_bodies.b, 'all_cities':Make_cites.cities})
 

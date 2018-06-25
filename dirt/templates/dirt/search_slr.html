@@ -467,20 +467,20 @@ var ceiling = {{ ceiling|safe}}
 var ts_plot = [];
 plot_data.forEach(function(element){
   element.date = Date.parse(element.date);
-  element.density = parseFloat(element.density);
+  element.density2 = parseFloat(element.density2);
   var today = new Date();
   if (element.date < today){
-    ts_plot.push({"name":element.location_id, "x":element.date, "y":element.density});
+    ts_plot.push({"name":element.location_id, "x":element.date, "y":element.density2});
   }
 });
 
 var slr_plot = [];
 plot_all.forEach(function(element){
   element.date = Date.parse(element.date);
-  element.density = parseFloat(element.density);
+  element.density2 = parseFloat(element.density2);
   var today = new Date();
   if (element.date < today){
-    slr_plot.push({"name":element.location_id, "x":element.date, "y":element.density});
+    slr_plot.push({"name":element.location_id, "x":element.date, "y":element.density2});
   }
 });
 

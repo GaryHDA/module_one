@@ -86,8 +86,6 @@ class SLR_Beaches(models.Model):
         return nameList
 
 
-    # def __str__(self):
-    #     return u'location:%s, lat:%s, lon:%s'%(self.location, self.latitude, self.longitude)
     def __str__(self):
         return u'location:%s, lat:%s, lon:%s, city:%s, water:%s, post:%s, project:%s'%(self.location, self.latitude, self.longitude, self.city, self.water, self.post, self.project)
 
@@ -154,13 +152,6 @@ class All_Data(models.Model):
     code = models.ForeignKey(Codes, db_column='code', null=True,  on_delete=models.DO_NOTHING)
     project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
 
-    # def pcs_meter():
-    #     a = All_Data.quantity/All_Data.length
-    #     return "pcs_m:%s"%(a)
-    # pcs_m = property(_pcs_meter)
-    # these_pieces = Pcs_m.as_manager()
-    # objects = models.Manager()
-    # pcs = Pcs_m()
 
     class Meta:
         managed = True
@@ -175,8 +166,6 @@ class SLR_Data(models.Model):
     quantity = models.DecimalField(db_column='quantity',decimal_places=2, max_digits= 7, blank=True, null=True)
     density = models.DecimalField(db_column='density', decimal_places=3, max_digits=8, blank=True, null=False,)
     code = models.ForeignKey(Codes, db_column='code', null=True, on_delete=models.DO_NOTHING)
-    #project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
-
 
     class Meta:
         managed = True
@@ -194,6 +183,19 @@ class SLR_Density(models.Model):
     class Meta:
         managed = True
         db_table = 'slr_dens_date'
+    def __str__(self):
+        return u"date:%s, location:%s, density:%s, sample:%s, quantity:%s" %(self.date, self.location, self.density, self.sample, self.quantity)
+
+class SLR_Area(models.Model):
+    location = models.ForeignKey(SLR_Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)
+    date = models.DateField(db_column='date', blank=True, null=True)
+    sample = models.IntegerField(db_column='sample', blank=True, null=True)
+    density2 = models.DecimalField(db_column='density2', decimal_places=3, max_digits=8, blank=True, null=False)
+    quantity = models.IntegerField(db_column='quantity', blank=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'slr_area'
     def __str__(self):
         return u"date:%s, location:%s, density:%s, sample:%s, quantity:%s" %(self.date, self.location, self.density, self.sample, self.quantity)
 FINANCE_CHOICES = (

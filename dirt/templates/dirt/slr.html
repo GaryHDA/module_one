@@ -185,9 +185,10 @@ html {
         </div>
         <div class="card-body p-0 pt-1 " style=""><h6 class="card-title" style="">All SLR daily results
           <br><small class="text-muted">April 2017 - April 2018, toggle categories in legend
-          <br>Monthly summaries, click and drag in chart areaa to zoom date</small></h6>
+          <br>Monthly summaries, click and drag in chart area to zoom date
+          <br>Results over 20 pieces m<sup>2</sup> not shown</small></h6>
 
-          <div class="align-self-center"  style="height:67%; min-height:400px" id="box-plot"></div>
+          <div class="align-self-center"  style="height:63%; min-height:400px" id="box-plot"></div>
           <button class="btn bg-info w-100 p-2 pl-3 text-white text-left mt-1" style="height:10%" data-toggle="modal"  data-target="#box_rivs_lakes" aria-expanded="false" aria-controls="table-of-results">
             <i class="fa fa-line-chart fa-lg "></i>&nbsp; Results sorted by river and lakes
           </button>
@@ -448,17 +449,18 @@ html {
    </div>
  </div>
 </div>
-<div class="modal fade" style="" id="box_rivs_lakes">
+<div class="modal fade w-100" style="" id="box_rivs_lakes">
  <div class="modal-dialog modal-lg" role="document">
    <div class="modal-content">
      <div class="modal-header">
        <h6 class="card-title" style="">SLR results sorted by rivers and lakes
          <br><small class="text-muted mb-2">April 2017 - April 2018, toggle categories in legend
-         <br>Monthly summaries, click and drag in chart areaa to zoom date</small></h6>
+         <br>Monthly summaries, click and drag in chart area to zoom date
+         <br>Results greater than 20 pieces m<sup>2</sup> not shown</small></h6>
        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
      </div>
      <div class="modal-body ">
-      <div class="align-self-center" style="height:100%;width:100%" id="riv-lake"></div>
+      <div class="align-self-center" style="height:100%; width:100%" id="riv-lake"></div>
      </div>
    </div>
  </div>
@@ -551,35 +553,48 @@ var river = {{ rivers|safe }};
 var lake = {{ lakes|safe }};
 var box_lake = {{ box_lake|safe }};
 var box_river = {{ box_river|safe }};
-var box_cats = {{ box_cats|safe }};
-// var sources_as = {{ sources_as|safe }}
-
-console.log(box_cats)
-console.log(box_lake)
-console.log(box_river)
 
 var ts_plot = [];
 plot_data.forEach(function(element){
   element.date = Date.parse(element.date);
-  element.density = parseFloat(element.density);
+  element.density2 = parseFloat(element.density2);
   var today = new Date();
   if (element.date < today){
-    ts_plot.push({"name":element.location_id, "x":element.date, "y":element.density});
+    ts_plot.push({"name":element.location_id, "x":element.date, "y":element.density2});
   }
 });
 var riv_dens = []
 river.forEach(function(element){
   element.date = Date.parse(element.date);
-  element.density = parseFloat(element.density);
-  riv_dens.push ({"name":element.location_id, "x":element.date, "y":element.density})
+  element.density2 = parseFloat(element.density2);
+  riv_dens.push ({"name":element.location_id, "x":element.date, "y":element.density2})
 });
 
 var lak_dens = []
 lake.forEach(function(element){
   element.date = Date.parse(element.date);
-  element.density = parseFloat(element.density);
-  lak_dens.push ({"name":element.location_id, "x":element.date, "y":element.density})
+  element.density = parseFloat(element.density2);
+  lak_dens.push ({"name":element.location_id, "x":element.date, "y":element.density2})
 });
+
+var river_box = [];
+box_river.forEach(function(element){
+  element[0] = Date.parse(element[0]);
+  river_box.push([element[0], element[1], element[2], element[3], element[4], element[5]])
+});
+
+var lake_box = [];
+box_lake.forEach(function(element){
+  element[0] = Date.parse(element[0]);
+  lake_box.push([element[0], element[1], element[2], element[3], element[4], element[5]])
+});
+
+var all_box = [];
+boxer.forEach(function(element){
+  element[0] = Date.parse(element[0]);
+  all_box.push([element[0], element[1], element[2], element[3], element[4], element[5]])
+});
+
 
 </script>
 <script type="text/javascript">
@@ -784,6 +799,7 @@ Highcharts.chart('box-plot', {
 
     chart: {
         type: 'boxplot',
+        zoomType:'x',
         spacingBottom: 20,
     },
 
@@ -841,8 +857,11 @@ Highcharts.chart('box-plot', {
     },
 
     xAxis: [{
-        categories:box_cats,
-        type: 'category',
+        // categories:box_cats,
+        type: 'datetime',
+        min: Date.UTC(2017, 03, 21),
+        tickColor:'rgba(00, 00, 00, 1)',
+        tickInterval:3600*1000*24*28,
         tickColor:'rgba(00, 00, 00, 1)',
         labels: {
           rotation:270,
@@ -851,28 +870,13 @@ Highcharts.chart('box-plot', {
         },
         opposite:false,
 
-    },{
-      type: 'datetime',
-      opposite:true,
-      visible:false,
-      alignTicks:true,
-      tickInterval:3600*1000*24*28,
-      tickColor:'rgba(00, 00, 00, 1)',
-      labels: {
-        enabled: false,
-        style: {
-          color:'rgba(00, 00, 00, 1)',
-        }
-      },
-      dateTimeLabelFormats: {
-        month: '%b - %y',
-      },
     },
+
   ],
     yAxis: {
       min:0,
-      max:85,
-      ceiling:50,
+      max:50,
+      ceiling:20,
       alignTicks:false,
       tickInterval:10,
       minPadding:0.1,
@@ -902,7 +906,7 @@ Highcharts.chart('box-plot', {
       xAxis:0,
       type: 'boxplot',
       name: 'Monthly summary',
-      data: boxer,
+      data: all_box,
       tooltip: {
           headerFormat: '<em>{point.key}</em><br/>'
       },
@@ -910,7 +914,7 @@ Highcharts.chart('box-plot', {
     },
     {
       zIndex:2,
-      xAxis:1,
+      xAxis:0,
       type: 'scatter',
       name:'Survey results',
       marker: {
@@ -993,8 +997,10 @@ Highcharts.chart('riv-lake', {
       }
     },
     xAxis: [{
-        categories:box_cats,
-        type: 'category',
+        type: 'datetime',
+        min: Date.UTC(2017, 03, 21),
+        tickColor:'rgba(00, 00, 00, 1)',
+        tickInterval:3600*1000*24*28,
         tickColor:'rgba(00, 00, 00, 1)',
         labels: {
           rotation:270,
@@ -1002,28 +1008,13 @@ Highcharts.chart('riv-lake', {
           fontSize:'10px'
         },
         opposite:false,
-    },{
-      type: 'datetime',
-      opposite:true,
-      visible:false,
-      alignTicks:true,
-      tickInterval:3600*1000*24*28,
-      tickColor:'rgba(00, 00, 00, 1)',
-      labels: {
-        enabled: false,
-        style: {
-          color:'rgba(00, 00, 00, 1)',
-        }
-      },
-      dateTimeLabelFormats: {
-        month: '%b - %y',
-      },
+
     },
-  ],
+    ],
     yAxis: {
       min:0,
       max:85,
-      ceiling:50,
+      ceiling:20,
       alignTicks:false,
       tickInterval:10,
       minPadding:0.1,
@@ -1056,7 +1047,7 @@ Highcharts.chart('riv-lake', {
       xAxis:0,
       type: 'boxplot',
       name: 'Lakes-monthly',
-      data: box_lake,
+      data: lake_box,
       tooltip: {
           headerFormat: '<em>{point.key}</em><br/>'
       },
@@ -1070,14 +1061,14 @@ Highcharts.chart('riv-lake', {
       xAxis:0,
       type: 'boxplot',
       name: 'Rivers-monthly',
-      data: box_river,
+      data: river_box,
       tooltip: {
           headerFormat: '<em>{point.key}</em><br/>'
       },
     },
     {
       zIndex:2,
-      xAxis:1,
+      xAxis:0,
       type: 'scatter',
       name:'Lake-daily',
       marker: {
@@ -1095,7 +1086,7 @@ Highcharts.chart('riv-lake', {
     },
     {
       zIndex:2,
-      xAxis:1,
+      xAxis:0,
       type: 'scatter',
       name:'River-daily',
       marker: {

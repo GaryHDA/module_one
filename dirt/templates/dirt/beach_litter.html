@@ -1198,11 +1198,11 @@ Highcharts.chart('combined-ts', {
     legend: {
       enabled: true,
       verticalAlign: 'top',
-      horizontalAlign: 'right',
+      horizontalAlign: 'left',
       layout:'vertical',
       floating:true,
-      x:140,
-      y:80,
+      x:-30,
+      y:20,
       backgroundColor:'rgba(255,255,255, .4)',
       borderColor:'rgba(10, 46, 92, .5)',
       borderWidth:1,
@@ -1259,12 +1259,12 @@ Highcharts.chart('combined-ts', {
       {
       zIndex:3,
       type: 'scatter',
-      name:' results',
+      name:'Results per inventory',
       marker: {
         symbol: 'circle',
         radius:6,
-        lineColor: 'rgba(255, 255, 255, .8)',
-        fillColor:  'rgba(10, 46, 92, .8)',
+        lineColor: 'rgba(255, 00, 00, .8)',
+        fillColor:  'rgba(255, 65, 168, .6)',
         lineWidth:1,
       },
       data:ts_plot,
@@ -1522,15 +1522,16 @@ function initMap() {
       map: map,
       type: combined_map[i][7],
       water: combined_map[i][8],
-      // console.log(water),
-      fillColor: 'rgba(255, 65, 168, .8)',
-      lineColor: 'rgb(255, 00, 00)',
-
+      // // console.log(water),
+      // fillColor: 'rgba(255, 65, 168, .8)',
+      // lineColor: 'rgb(255, 00, 00)',
+      // lineColor: 'rgba(255, 00, 00, .8)',
+      // fillColor:  'rgba(255, 65, 168, .6)',
       icon: {
         path: google.maps.SymbolPath.CIRCLE,
         scale: Math.sqrt(combined_map[i][2])*5,
-        fillColor:  'rgba(10, 46, 92, .8)',
-        strokeColor:'rgba(255, 255, 255, 1)',
+        fillColor:  'rgba(255, 65, 168, .6)',
+        strokeColor:'rgba(255, 00, 00, .8)',
         fillOpacity:1,
         strokeOpacity:1,
         strokeWeight:2,
@@ -1814,12 +1815,6 @@ $(document).ready(function() {
     var this_child = $(this).children()[1];
     console.log(this_child);
 
-    // if($(this).height() <= 100 ){
-    // console.log('true');
-    // $(this).removeClass('bg-info').addClass('bg-dark');
-    // };
-
-
     $( parentTag ).each(function(i){
       if ($(parentTag).hasClass('close-animate') || !$(parentTag).hasClass('shutterExpanded')) {
       console.log(this);
@@ -1827,7 +1822,7 @@ $(document).ready(function() {
       $(this_height).addClass('text-right');
       $(this_height).addClass('pr-3');
       $(this_height).removeClass('p-1');
-      // $(this_child).addClass('text-right');
+
       $(parentTag).removeClass('close-animate').addClass('shutterExpanded');
       $('.wrapper').addClass('shutterOpen');
       console.log(this_child)
@@ -1843,7 +1838,7 @@ $(document).ready(function() {
       $('.wrapper').removeClass('shutterOpen');
       console.log(this);
     }
-    // console.log(this)
+
   });
 })}
 );
