@@ -330,7 +330,7 @@ html {
           {% for r in locs_samples %}
           <tr class="txt-12 ">
             <td class="text-left" >{{ r.location_id }}</td>
-            <td class="text-right" >{{ r.density|floatformat:2}}</td>
+            <td class="text-right" >{{ r.density2|floatformat:2}}</td>
             <td class="text-right"> {{ r.sample|floatformat:0 }}</td>
           </tr>
           {% endfor %}

@@ -6,7 +6,11 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from dirt.models import SLR_Data, SLR_Density, SLR_Beaches, Beaches, Codes, All_Data, References, SUBJECT_CHOICES, SLR_Area
 from django.contrib.auth.models import User
+#from django.contrib.staticfiles.storage import staticfiles_storage
+from django.templatetags.static import static
+from django.conf import settings
 import json
+import os
 
 import pandas as pd
 import math
@@ -23,8 +27,10 @@ class Water_bodies():
     """
     Manualy generated json file.  Dictionary that assigns location_id to name of the water body.
     """
-    dirt_static = '/home/mw-shovel/web/module_one/dirt/static'
-    f = open(dirt_static + "/water_bodies.json", 'r')
+    #dirt_static = '/home/mw-shovel/web/module_one/dirt/static'
+    f=os.path.join( settings.BASE_DIR, 'dirt/static/water_bodies.json' )
+    #f = open(dirt_static + "/water_bodies.json", 'r')
+    f = open(f, 'r')
     a = json.load(f)
     b = list(a.keys())
     print(a)
@@ -661,11 +667,13 @@ def services_home(request):
 def in_the_works(request):
     return render(request, 'dirt/intheworks.html')
 def microbiology(request):
-    my_jsons = '/home/mw-shovel/web/notes/micro/data/json/'
+    # url = staticfiles_storage.url('data/foobar.csv')
+    # my_jsons = '/statihome/mw-shovel/web/notes/micro/data/json/'
     def get_jsons_x(file_name):
-        with open(my_jsons + file_name, 'r') as f:
+        with open(os.path.join( settings.BASE_DIR, 'dirt/static/jsons/' + file_name ), 'r') as f:
             a = json.load(f)
             return a
+    #f=os.path.join( settings.BASE_DIR, 'dirt/static/jsons/' + file_name )
     mrd_map = get_jsons_x('summ_mrd_map.json')
     t_cfu_17 = get_jsons_x('t_cfu_17.json')
     t_uv_17 = get_jsons_x('total_uv17.json')
@@ -1234,7 +1242,7 @@ def slr_home(request):
             d = Make_cites.slr_cite_info[c]['city']
             if d not in b:
                 b.append(d)
-        
+
         b=sorted(b)
         return b
     cities = city_list(Make_daily.ar3)
@@ -1266,8 +1274,8 @@ def slr_home(request):
     color = ['rgb(10, 46, 92, 1)', 'rgb(71, 142, 235, 1)', 'rgb(163, 199, 245, 1)', 'rgb(115, 18, 13, 1)', 'rgb(199, 31, 22, 1)', 'rgb(13, 115, 91, 1)', 'rgb(22, 199, 158, 1)', 'rgb(121, 70, 40, 1)', 'rgb(159, 183, 159, 1)', 'rgb(102,102, 0, 1)', 'rgb(215, 78, 9, 1)', 'rgb(255, 191, 0, 1)']
 
     def locs_and_samples():
-        a =  Make_data.h.groupby('location_id')
-        b = a.agg({'density':np.mean, 'sample':max})
+        a =  Make_data.j.groupby('location_id')
+        b = a.agg({'density2':np.mean, 'sample':max})
         b.reset_index(inplace=True)
         c = b.to_dict('records')
         return c

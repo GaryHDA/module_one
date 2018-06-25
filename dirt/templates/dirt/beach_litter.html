@@ -124,16 +124,16 @@
   <div class="wrapper p-0  mx-auto" style="height:100%">
     <div class="shutter mx-auto" >
       <div class="row bg-dark p-1"  style="height:100%" >
-        <h5 class="w-100 text-white">Welcome to the beach-litter section</h5>
-        <p class="text-white mx-auto">Click on a tab below to get started.<br> If you have any questions contact us.</p>
+        <h5 class="w-100 text-white">Welcome to the beach-litter section<br>
+        <small class="text-left">Click on a tab below to get started.<br> If you have any questions contact us.</small></h5>
       </div>
     </div>
 
 
     <div class="shutter mx-auto" id="read_me">
       <div class="row no-gutters bg-info shutterTitle"  style="height:100%" >
-        <h5 class=" p-0 w-100 text-white mb-0"> --> Read me first <-- </h5>
-        <p class="text-white ml-auto mb-0 txt-12">If you can't define "beach-litter-inventory", then this is a good place to start. Includes a brief history of the project and what we hope to measure.</p>
+        <h5 class=" p-0 w-100 text-white mb-0"> --> Read me first <-- <br>
+          <small class="text-left">If you can't define "beach-litter-inventory", then this is a good place to start.</small></h5>
       </div>
       <div class="row no-gutters" style="height:100%">
         <div class="col-sm" id='bg' style="">
@@ -219,9 +219,9 @@
     </div>
     <div class="shutter mx-auto" id="combined_data">
       <div class="row no-gutters bg-info shutterTitle" style="height:100%" >
-        <h5 class="p-0 w-100 text-white mb-0">Combined data 2015 to {{ t_day|date:"Y" }}</h5>
-        <p class="text-white txt-12  ml-auto mb-0">Search all the aggregated survey results for Switzerland. Descriptive statistics, maps, time-series charts. Categorized by city, water-body, or project.</p>
-
+        <h5 class="w-100 text-white">Combined data 2015 to {{ t_day|date:"Y" }}<br>
+        <small class="text-left p-1">Descriptive statistics, maps, time-series charts.
+          Categorized by city, water-body, or project.</small></h5>
       </div>
       <div class="row no-gutters" id='cd' style="height:100% ">
         <div class="col-sm" id='cd_0' style="height:100%">
@@ -343,24 +343,34 @@
     </div>
     <div class="shutter mx-auto" id="prob_garbage">
       <div class="row no-gutters bg-info shutterTitle" style="height:100%">
-        <h5 class="p-0 w-100 text-white mb-0">The probability of garbage</h5>
-      <p class="text-white txt-12  ml-auto mb-0">Evaluating beach litter by testing the effects of independent variables on reported litter counts.</p>
-
+        <h5 class="w-100 text-white">The probability of garbage<br>
+        <small class="text-left p-1">Comparing year over year probability distributions of trash survey results on Lac Léman</small></h5>
       </div>
       <div class="row no-gutters" id='gb' style="height:100% ">
         <div class="col-sm" id='gb_0' style="height:100%">
-          <div class="card pb-0" id="MEASURING">
-            <div class="bg-dark text-white card-header p-2 pl-3" id="" style="">
-              Beach litter as a probability
+          <div class="card pb-0" id="">
+            <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
+              Beach litter is a probability
             </div>
             <div class="card-body text-left" style="height:100%">
-              <h6 class="card-title">How to determine if litter is increasing or decreasing?
-                <br><small class="text-muted">Quantify the user experience
-                <br>Take repeated samples at mutlitple locations</small></h6>
+              <h6 class="card-title">Understanding how trash gets in the water
+                <br><small class="text-muted">Log normal distribution
+                <br>Allows for the application of standard analysis techniques</small></h6>
+              <p>The scatter plot for Lac Léman 2015 - 2017 displays the results, grouped by year (Nov - Nov). There are a couple of differnces between the two sample groups</p>
+              <ul>
+                <li> The samples for 2015 were collected by three - four people (hammerdirt staff)</li>
+                <li> The samples for 2017 were collected by many people from four distinct groups </li>
+                <li> The samples gathered by hammerdirt staff counted all trash with no lower size limit</li>
+                <li> The samples gathered by SLR volunteers did not count objects less than 2.5cm</li>
+              </ul>
+              <p>Despite these differences the results vary only in maximum and minumum values. The criteria for counting (limiting the lower size limit) does not really effect the mid range of the results.
+                 Most of the results fall within 1.2 and 13 pcs/m.</p>
+              <p>It is safe to say that these numbers are minimum values. Furthermore we round the results to no less than 0.0001 pcs/m (we figure that anything beyond that is not signifigant)</p>
+              <p>The cutoff date for each year is November 15, thats the week the project started in 2015.</p>
             </div>
 
           </div>
-          <div class="card-block align-items-center pb-0 pt-1">
+          <!-- <div class="card-block align-items-center pb-0 pt-1">
             <div class="btn mx-auto wide-88 d-inline-flex  align-items-center justify-content-center rounded-circle bg-red">
               <a class="text-white txt-14" href="{% url 'mcbp_home' %}">All <br> Results </a>
             </div>
@@ -373,36 +383,36 @@
             <div class="btn mx-auto wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
               <a class="text-white txt-14" href="#" aria-expanded="false"> California<br> Results </a>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="col-sm" id='gb_1' style="height:100%">
           <div class="card pb-0">
-            <div class="bg-dark text-white card-header p-2 pl-3" id="" style="">
+            <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
               <i class="fa fa-line-chart fa-lg"></i>&nbsp; Lac Léman two consecutive years of data</button>
             </div>
             <div class="card-body text-left">
-              <h6 class="card-title "> {{ num_samps|floatformat:0|intcomma }} observations from 2015 -2017</br>
-                <small class="text-muted">28 different locations, multiple groups</small></h6>
+              <h6 class="card-title "> {{ y_one_s|add:y_two_s }} observations from 2015 - 2017</br>
+                <small class="text-muted">28 different locations, multiple individuals</small></h6>
               <div id="scatterchart" class="" style="height:360px; width:360px; background-color:#ffffff"></div>
-              <h6 class="card-text"> Each point represents a liiter inventory.</h6>
+              <h6 class="card-text"></h6>
               <h6 class="card-text"> Was there was a change from 2016 to 2017 ?</h6>
-              <h6 class="card-text"> How is 2018 looking ? </h6>
+              <p>The distribution of the natural log (np.log()) of the results tells the same story. The 95th percentile for year one is a little further to the right and the 5th percentile for year two is a little further to the left. </p>
+
             </div>
           </div>
         </div>
         <div class="col-sm "  id='gb_2' style="height:100%">
           <div class="card pb-0">
-            <div class="bg-dark text-white card-header p-2 pl-3"  id="" style="">
+            <div class="bg-dark text-white card-header p-2 pl-3 text-left"  id="" style="">
               <i class="fa fa-line-chart fa-lg"></i>&nbsp; Year over year probability density function
             </div>
-            <div class="card-body p-0 text-left">
+            <div class="card-body text-left">
               <h6 class="card-title">Probability distribution of pcs/m <br>
                 <small class="text-muted"> year one n={{ y_one_s }}, year two n= {{ y_two_s }} </small></h6>
               <div id="probchart" class="" style="height:360px; width:360px; background-color:#ffffff"> </div>
-              <p class="card-text">The probability of finding less than 1 piece of trash per meter in 2016 was 3.1%,
-                in 2017 it was 3%. Given the unacounted for variables this is no change at all.</p>
-              <p>
-                How is this calculated? -- <a href="https://github.com/hammerdirt/notes/blob/master/notes-hammerdirt.ch/Beach-Litter%20home.ipynb">check here</a></p>
+              <h6 class="card-text"> What does this mean?</h6>
+              <p class="card-text">If you went down to the lake shore and collected and counted the garabgae, there was high probability that you would find the same amount year over year.
+                Specifically the probability of finding less than 1 piece of trash per meter in 2016 was 3.1% and in 2017 it was 3%. So really no change at all. How is this calculated? -- <a href="https://github.com/hammerdirt/notes/blob/master/notes-hammerdirt.ch/Beach-Litter%20home.ipynb">check here</a></p>
             </div>
           </div>
         </div>
@@ -410,8 +420,8 @@
     </div>
     <div class="shutter mx-auto" id="in_progress">
       <div class="row no-gutters bg-info shutterTitle" style="height:100%" >
-        <h5 class="p-0 w-100 text-white mb-0">In the oven</h5>
-          <p class="text-white txt-12 ml-auto mb-0">Works in progress and most of the "mathy stuff" is done in a notebook first.  This is a collection of those notebooks, can be difficult to follow</p>
+        <h5 class="w-100 text-white">In the oven<br>
+          <small class="text-left p-1">Works in progress and most of the "mathy stuff" is done in a notebook. This is a collection of those notebooks.</small></h5>
       </div>
       <div class="row no-gutters" id='ap' style="height:100% ">
         <div class="col-sm" id='ap_0' style="height:100%">
