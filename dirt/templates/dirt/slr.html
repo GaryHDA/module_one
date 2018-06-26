@@ -66,7 +66,7 @@ html {
 {% block content %}
 {% load humanize %}
 <div class="container-fluid p-0 m-0" style="height:100vh; overflow:auto">
-  <div class="row no-gutters border border-danger" style="height:100%">
+  <div class="row no-gutters border" style="height:100%">
     <div class="col-sm-4" style="">
       <div class="card pb-0" style="height:100%">
         <div class="bg-info text-white card-header p-2 pl-3" id="" style="">
@@ -75,7 +75,7 @@ html {
         <div class="card-body p-0" style="height:100%">
           <h6 class="card-title pt-1" style="">Summary data for the Swiss Litter Report
             <br><small class="text-muted">April 2017 - April 2018
-            <br>units= m<sup>2</sup></small></h6>
+            <br>units= m<sup>2</sup>, why are we reporting less than the SLR? <a href="https://github.com/hammerdirt/notes/blob/master/notes-hammerdirt.ch/slr_final.ipynb">check</a></small></h6>
           <table class="table table-sm table-striped text-left pb-0"  style="height:62%">
             <tbody>
                 <td class="ml-auto">N<sup>o</sup> of Samples:</td>
@@ -188,7 +188,7 @@ html {
           <br>Monthly summaries, click and drag in chart area to zoom date
           <br>Results over 20 pieces m<sup>2</sup> not shown</small></h6>
 
-          <div class="align-self-center"  style="height:63%; min-height:400px" id="box-plot"></div>
+          <div class="align-self-center"  style="height:61%; min-height:380px" id="box-plot"></div>
           <button class="btn bg-info w-100 p-2 pl-3 text-white text-left mt-1" style="height:10%" data-toggle="modal"  data-target="#box_rivs_lakes" aria-expanded="false" aria-controls="table-of-results">
             <i class="fa fa-line-chart fa-lg "></i>&nbsp; Results sorted by river and lakes
           </button>
@@ -371,7 +371,7 @@ html {
 </div>
 
 
-<div class="modal fade" style="" id="goals">
+<div class="modal fade w-100" style="" id="goals">
  <div class="modal-dialog modal-lg" role="document">
    <div class="modal-content">
      <div class="modal-header">
@@ -379,37 +379,43 @@ html {
        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
      </div>
      <div class="modal-body ">
-      <div class="border-bottom">
-       <p class="font-weight-bold txt-14"></p>
-       <p class="font-italic txt-14"></p>
-       <p class="txt-12"></p>
-      </div>
+       <p> Goals: Quantify the littering amount in the natural environment near waterbodies and promote solutions to avoid it.</p>
+       <p> Objectives: </p>
+       <ul>
+         <li>Demonstrate the occurrence of litter along shorelines</li>
+         <li>Identify distribution patterns of litter along shorelines</li>
+         <li>Raise public awareness</li>
+         <li>Use data for policy work/lobbying for appropriate regulations to avoid litter in the natural environment near water-bodies</li>
+       </ul>
+       <p>Methods:</p>
+       <ul>
+         <li>Litter collections took place from April 2017 to March 2018 all over Switzerland.</li>
+         <li>Collections follow a protocols designed by European Environment Agency (EEA); United Nations Environmental Program (UNEP) and OSPAR commission</li>
+         <li>Individual litter items were classified by litter categories and material using the Marine Litter Watch App</li>
+         <li>Only litter items above 2.5cm are considered</li>
+       </ul>
      </div>
    </div>
  </div>
 </div>
-<div class="modal fade" style="" id="finance">
+<div class="modal fade w-100" style="" id="finance">
  <div class="modal-dialog modal-lg" role="document">
    <div class="modal-content">
      <div class="modal-header">
-       <h5 class="modal-title">Methods</h5>
+       <h5 class="modal-title">Finance</h5>
        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
      </div>
      <div class="modal-body ">
-      <div class="border-bottom">
-       <p class="font-weight-bold txt-14"></p>
-       <p class="font-italic txt-14"></p>
-       <p class="txt-12"></p>
-      </div>
+      <p>No information provided</p>
      </div>
    </div>
  </div>
 </div>
-<div class="modal fade" style="" id="list_o_lakes">
+<div class="modal fade w-100" style="" id="list_o_lakes">
  <div class="modal-dialog modal-lg" role="document">
    <div class="modal-content">
      <div class="modal-header">
-       <h5 class="modal-title">List of rivers and lakes with SLR surveys</h5>
+       <h5 class="modal-title">List of cities with SLR surveys</h5>
        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
      </div>
      <div class="modal-body ">
@@ -427,7 +433,7 @@ html {
    </div>
  </div>
 </div>
-<div class="modal fade" style="" id="list_o_cities">
+<div class="modal fade w-100" style="" id="list_o_cities">
  <div class="modal-dialog modal-lg" role="document">
    <div class="modal-content">
      <div class="modal-header">
@@ -465,7 +471,7 @@ html {
    </div>
  </div>
 </div>
-<div class="modal fade" id="water_search">
+<div class="modal fade w-100" id="water_search">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header bg-info text-white">
@@ -516,6 +522,8 @@ html {
                       SLR</a>
                     <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'mcbp_home' %}" aria-expanded="false" aria-controls="table-of-results">
                       MCBP</a>
+                      <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'hdc_home' %}" aria-expanded="false" aria-controls="table-of-results">
+                        HDC</a>
                   </div>
                 </div>
               </div>

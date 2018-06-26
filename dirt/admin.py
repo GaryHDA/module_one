@@ -1,37 +1,16 @@
 from django.contrib import admin
-from .models import Beaches, Codes, All_Data, References, Finance, SLR_Beaches, SLR_Data, Projects
+from .models import Beaches, Codes, All_Data, References, Finance, SLR_Beaches, SLR_Data, Projects, HDC_Beaches, HDC_Data
 # Register your models here.
 
 class BeachesAdmin(admin.ModelAdmin):
     search_fields = ['location']
 
-#admin.site.register(Material, BeachesAdmin)
+
 admin.site.register(Beaches, BeachesAdmin)
 admin.site.register(Projects, BeachesAdmin)
-#admin.site.register(Codes)
-#admin.site.register(Densities, BeachesAdmin)
-# admin.site.register(All_Data)
-#admin.site.register(References)
-#admin.site.register(Finance)
 
-# class All_DataAdmin(admin.ModelAdmin):
-#     list_display=('location', 'date', 'code')
-#     fields = []
-# class All_DataAdmin(admin.ModelAdmin):
-#     list_display=('date', 'location', 'item_code', 'item_description', 'item_material', 'quantity','project')
-#     list_editable = ['quantity']
-#
-#     def item_code(self, obj):
-#         return obj.code.code
-#     def item_description(self, obj):
-#         return obj.code.description
-#     def item_material(self, obj):
-#         return obj.code.material
-    # def item_quant(self, obj):
-    #     return obj.quantity
 class All_DataAdmin(admin.ModelAdmin):
-    # readonly_fields = ( 'item_code', 'item_description',
-    # 'item_material')
+
     raw_id_fields = ("location",)
     list_display=('date', 'location', 'item_code', 'item_description', 'item_material', 'quantity','project')
 

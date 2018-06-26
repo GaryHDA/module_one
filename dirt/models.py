@@ -65,6 +65,33 @@ class Beaches(models.Model):
         managed = True
         db_table = 'beaches'
         ordering = ['location']
+class HDC_Beaches(models.Model):
+    """
+    Beach names for hd california and gps data, Beaches.beachList() returns a list of just beach names.
+    """
+    location = models.CharField(db_column='location', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
+    latitude = models.DecimalField(db_column='latitude', max_digits=11, decimal_places=8, blank=True, null=True)
+    longitude = models.DecimalField(db_column='longitude', max_digits=11, decimal_places=8, blank=True, null=True)
+    city = models.CharField(db_column='city', max_length=100, blank=True, null=True)
+    post = models.CharField(db_column='post', max_length=12, blank=True, null=True)
+    water = models.CharField(db_column='water', max_length=12, blank=True, null=True, choices=WATER_CHOICES)
+    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
+
+    def beachList():
+        nameList = []
+        for x in HDC_Beaches.objects.values('location'):
+            for t, y in x.items():
+                nameList.append(y)
+        return nameList
+
+
+    def __str__(self):
+        return u'location:%s, lat:%s, lon:%s, city:%s, water:%s, post:%s, project:%s'%(self.location, self.latitude, self.longitude, self.city, self.water, self.post, self.project)
+
+    class Meta:
+        managed = True
+        db_table = 'hdrc_beaches'
+        ordering = ['location']
 
 class SLR_Beaches(models.Model):
     """
@@ -156,6 +183,21 @@ class All_Data(models.Model):
     class Meta:
         managed = True
         db_table = 'all_items'
+    def __str__(self):
+        return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location, self.length, self.quantity, self.code  )
+
+class HDC_Data(models.Model):
+    location = models.ForeignKey(Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)  # Field name made lowercase.
+    date = models.DateField(db_column='date', blank=True, null=True)  # Field name made lowercase.
+    length = models.DecimalField(db_column='length', decimal_places=2, max_digits= 7, blank=True, null=True)
+    quantity = models.DecimalField(db_column='quantity',decimal_places=2, max_digits= 7, blank=True, null=True)
+    code = models.ForeignKey(Codes, db_column='code', null=True,  on_delete=models.DO_NOTHING)
+    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
+
+
+    class Meta:
+        managed = True
+        db_table = 'hdrc_data'
     def __str__(self):
         return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location, self.length, self.quantity, self.code  )
 
