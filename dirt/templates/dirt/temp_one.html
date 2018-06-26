@@ -30,12 +30,16 @@
  <meta property="og:description" content="hammerdirt, helping you create knowledge.  A research partner that specializes in the development of data products for and from crowd sourced research projects." />
  <meta property="og:site_name" content="MW. Shovel" />
  <!-- <meta property="fb:admins" content="" /> -->
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{% static 'css/font-awesome-4.7.0/css/font-awesome.min.css' %}"></link>
   <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}"></link>
   <script src="{% static 'js/jquery.js' %}"></script>
   <script src="{% static 'js/bootstrap.min.js' %}"></script>
-
+  <script type="text/javascript">
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+  </script>
   <style>
 
    {% block style %}
@@ -44,7 +48,7 @@
   </style>
 </head>
 
-<body class="">
+<body class="w-100 m-0">
   <nav class="navbar navbar-expand-md navbar-dark bg-dark text-white">
     <span class="navbar-brand" >hammerdirt</span>
     <button class="navbar-toggler navbar-toggler-right text-white" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,20 +57,20 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav text-white">
         <li class="nav-item">
-          <a class="nav-link text-white" href={% url 'index' %}>README - module one</a>
+          <a class="nav-link text-white" href={% url 'index' %}>home</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-white " href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Beach Litter Results
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href={% url 'litter_home' %}>Combined Results</a>
-            <a class="dropdown-item" href={% url 'slr_home' %}>Swiss Litter Report</a>
-            <a class="dropdown-item" href={% url 'mcbp_home' %}>Montreux Clean Beach</a>
-          </div>
+        <li class="nav-item">
+          <a class="nav-link text-white"  href={% url 'litter_home' %}>Beach litter</a>
         </li>
-        {% block return_to %}
-        {% endblock %}
+        <li class="nav-item">
+          <a class="nav-link text-white"  href={% url 'microbiology' %}>Water quality</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white"  href={% url 'in_the_works' %}>In the works</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href={% url 'services' %}>Services</a>
+        </li>
       </ul>
       <span class="navbar-text ml-auto text-white">
         Making data more accesible
@@ -97,7 +101,7 @@
 {% endblock %}
 
 
-<footer class="footer bg-dark m-0">
+<footer class="footer bg-dark m-0 p-0">
   <div class="container m-0 pt-2 pb-2">
     <p class="text-white"> We have grants for organizations with unfunded requirements. Contact us for more information.</p>
   </div>

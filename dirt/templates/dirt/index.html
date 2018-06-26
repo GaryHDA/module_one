@@ -1,417 +1,182 @@
-{% extends "dirt/temp_one.html" %}
+<!DOCTYPE HTML>
+<html lang="en">
 
-{% block style %}
 
-p, ul, li {
-  font-size: 14px;
+<head>
+  <meta http-equiv="x-ua-compatible" content="IE=edge" />
+  {% load static %}
+
+  <meta http-equiv="content-type" content="text/html" charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MW. Shovel</title>
+  <meta name="description" content="hammerdirt, helping you create knowledge.  A research partner that specializes in the development of data products for and from crowd sourced research projects.">
+
+ <!-- twitter card data -->
+ <meta name="twitter:card" content="summary">
+ <meta name="twitter:site" content="@hammerdirt">
+ <meta name="twitter:title" content="MW. Shovel">
+ <meta name="twitter:description" content="hammerdirt, helping you create knowledge.  A research partner that specializes in the development of data products for and from crowd sourced research projects.">
+ <meta name="twitter:creator" content="@hammerdirt">
+ <meta name="twitter:image" content= "{% static "images/weblogo.jpg" %}"  >
+
+ <!-- Open Graph Data -->
+ <meta property="og:title" content="hammerdirt" />
+ <meta property="og:type" content="article" />
+ <meta property="og:url" content="http://mwshovel.pythonanywhere.com/dirt/beach_litter.html" />
+ <meta property="og:image" content= "{% static "images/weblogo.jpg" %}" />
+ <meta property="og:image:width" content="400" />
+<meta property="og:image:height" content="246" />
+ <meta property="og:description" content="hammerdirt, helping you create knowledge.  A research partner that specializes in the development of data products for and from crowd sourced research projects." />
+ <meta property="og:site_name" content="MW. Shovel" />
+ <!-- <meta property="fb:admins" content="" /> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'css/font-awesome-4.7.0/css/font-awesome.min.css' %}"></link>
+  <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}"></link>
+  <script src="{% static 'js/jquery.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript">
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+  </script>
+  <style>
+
+
+
+  .txt-12 {
+    font-size: 12px;
+  }
+
+  .txt-14 {
+    font-size: 14px;
+  }
+
+  .col-sm {
+      width: 100%;
+    }
+
+  }
+
+
+.bttn{
+  width:100%;
+  height:100%;
 }
 
-card, card-body, collpase, accordion {
-  border-width: 0;
-  border-color: #ffffff;
+.col-sm{
+  width:25%
 }
-{% endblock %}
+a {
+  font-size: 2rem;
 
+}
+li{
+  padding:2;
+  margin:2;
+}
 
-{% block content  %}
+  </style>
+</head>
+
+<body>
 {% load humanize %}
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-4 col-xs-12 m-0 p-2">
-      <div class="w-100" id="accordion" role="tablist">
-        <div class="card pb-0 m-w-376 border-0">
-          <div class="bg-info text-white card-header" id="" style="">
-            <a class="bg-info text-white w-100 p-1" data-toggle="collapse" data-parent="#accordion" data-target="#readme" aria-expanded="false" aria-controls="links">
-              <i class="fa fa-th-list fa-lg"></i>&nbsp; Read Me - module pre-release
-            </a>
-          </div>
-          <div class="collapse show" id="readme" data-parent="#accordion">
-            <div class="card-body p-1 w-100">
-              <p>The beach litter project is the first and longest running project of hammerdirt.</p>
-              <p>In anitcipatation of a few upcoming conferences in April and May we decided to make the
-                beach litter module available to get feedback from those interested in the subject.
-              </p>
-              <p class="font-weight-bold">
-                Hammerdirt is primarily concerned with the collection, aggregation, analysis and visualisation of data. To that end we use accepted mathematical methods and
-                standards with modern programing languages to develop data products for the research and NGO communities.
-              </p>
-              <p>
-                In this module we focus on GARBAGE IN THE WATER. In each section you will find the usual descriptive statistics,
-                top ten items, time-series charts and a map of locations with a summary. From there you can filter results by city.
-              </p>
-              <p>
-                If you are unfamiliar with the subject in the first section there is a 30 second primer on "measuring beach ltter" as well as a brief
-                history of the evolution of this project in Switzerland.
-              </p>
-              <p class="pt-1">
-                <h5 class="text-center"><a href={% url "litter_home" %}>Go to the first section</a></h5>
-                <h6 class="text-center text-muted">From there you can link to the results for each project</h6>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4 col-xs-12 m-0 p-2">
-      <div class="w-100" id="accordion2" role="tablist">
-        <div class="card pb-0 m-w-376 border-0">
-          <div class="bg-info text-white card-header" id="" style="">
-            <a class="bg-info text-white w-100 p-1" data-toggle="collapse" data-parent="#accordion2" data-target="#chart" aria-expanded="false" aria-controls="links">
-              <i class="fa fa-line-chart fa-lg"></i>&nbsp; {{ num_samps|floatformat:0|intcomma }} trash counts since Nov 2015
-            </a>
-          </div>
-          <div class="collapse show" id="chart" data-parent="accordion2">
-            <div class="card-body w-100 p-1">
-              <h5 class="card-title text-center">Beach litter observations 2015-2018</h5>
-              <h6 class="card-subtitle text-muted text-center"> Validated observations MCBP-SLR </h6>
-              <div id="scatterchart" class="w-100 bg-dark mt-2 mb-2 p-1" style="height: 360px;"></div>
-              <p class="card-text">Each point represents a table of data containng an exhaustive list of items found, location(gps), quantity of each item, sample date, and username.
-                From this information we extract/calculate the postal code, city name, closest body of water and pieces/per meter(per item and per sample-day)</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4 col-xs-12 m-0 p-2">
-      <div class="w-100" id="addordion3" role="tablist">
-        <div class="card pb-0 m-w-376 border-0">
-          <div class="bg-info text-white card-header" id="" style="">
-            <a class="bg-info text-white w-100 p-1" data-toggle="collapse" data-parent="#accordion3" data-target="#mnp" aria-expanded="false" aria-controls="links">
-              <i class="fa fa-line-chart fa-lg"></i>&nbsp; A little math and probability
-            </a>
-          </div>
-          <div class="collapse show" id="mnp" data-parent="#accordion3">
-            <div class="card-body p-1 w-100">
-              <h5 class="card-title text-center">Distribution of reported litter densities </h5>
-              <h6 class="card-subtitle text-muted text-center"> Validated observations MCBP-SLR </h6>
-              <div id="probchart" class="w-100 bg-dark mt-2 mb-2 p-1" style="height: 360px;"></div>
-              <p class="card-text">Another way to look at these results is by grouping the results according to pcs/m value. We can use this to anticipate what we may find the next time we go to a beach,
-                or better understand how the litter quantity of one beach compares to the whole.<a href="" data-toggle="modal" data-target="#assume">See assumptions and notes </a>
-              </p>
-
-            </div>
-          </div>
-        </div>
-        <div class="modal fade" id="assume">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h6 class="modal-title">Assumptions and notes</h6>
-                <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <p class="font-weight-bold">Assumptions:</p>
-                <ul>
-                  <li>You know what a probability distribution is.</li>
-                  <li>In general the probability of finding any amount of trash on the shoreline is related to the total amount of trash in the environment.</li>
-                  <li>That the variety of locations are sufficient to develop a representative model.</li>
-                  <li>These are minimums. There is actually alot more trash out there. It was just not identified or counted.</li>
-                  <li>There are many variables that are unacounted for in this model.</li>
-                  <li>That the samples were gathered according to the protocols provided to the particpants.</li>
-                </ul>
-                <p class="font-weight-bold">Notes:</p>
-                <ul>
-                    <li>Pieces/meter (pcs/m) values are rounded to thousandths (.001)</li>
-                    <li>This is the work of hammerdirt association, as of {{ t_day|date:"D d M Y" }} we have received no financial or technical assistance from the SLR or WWF.</li>
-                    <li>Your comments or feedback are greatly appreciated, contac us.</li>
-                </ul>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="container-fluid p-0 m-0" style="height:100vh; width:100%; background-color:#464646">
+  <div class="w-100 p-1 pl-3 text-left" style="height:20%">
+    <h1 class="display-3" style="color:#008080"> HAMMER</h1>
   </div>
+
+
+
+  <div class="fixed-bottom w-100 ml-auto pr-3 text-right">
+    <h1 class="display-2" style="color:#008080; opacity:0.6">dirt</h1>
+  </div>
+
+  <nav class="navbar navbar-expand-md navbar-dark text-white">
+  
+    <div class="collapse navbar-collapse show" id="navbarNavDropdown">
+      <ul class="navbar-nav text-white">
+        <li class="nav-item p-2">
+          <a class="nav-link text-white"  href={% url 'litter_home' %}>Beach litter</a>
+        </li>
+        <li class="nav-item p-2">
+          <a class="nav-link text-white"  href={% url 'microbiology' %}>Water quality</a>
+        </li>
+        <li class="nav-item p-2">
+          <a class="nav-link text-white"  href={% url 'in_the_works' %}>In the works</a>
+        </li>
+        <li class="nav-item p-2">
+          <a class="nav-link text-white" href={% url 'services' %}>Services</a>
+        </li>
+      </ul>
+      <span class="navbar-text ml-auto text-white">
+        Believe what you see and take good notes.
+      </span>
+    </div>
+  </nav>
 </div>
 
-{% endblock %}
-
-{% block charts %}
 
 
 
-
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="https://code.highcharts.com/modules/histogram-bellcurve.js"></script>
-<script src="https://code.highcharts.com/modules/series-label.js"></script>
-<script src="http://code.highcharts.com/modules/exporting.js"></script>
 
 <script type="text/javascript">
-// var plot_all = {{ plot_mc|safe }};
-// var plot_data = {{ plot_density|safe }};
-var plot_list = {{ plot_list|safe }};
-var hist_list = {{ hist_list|safe }};
-var ts_plot = [];
-plot_list.forEach(function(element){
-  element.date = Date.parse(element.date);
-  element.density = parseFloat(element.density);
-  var today = new Date();
-  if (element.date < today){
-    ts_plot.push({"name":element.location_id, "x":element.date, "y":element.density});
-  }
-});
 
-// var slr_plot = [];
-// plot_data.forEach(function(element){
-//   element.date = Date.parse(element.date);
-//   element.density = parseFloat(element.density);
-//   var today = new Date();
-//   if (element.date < today){
-//     slr_plot.push({"name":element.location_id, "x":element.date, "y":element.density});
-//   }
-// });
-</script>
 
-<script type="text/javascript">
-Highcharts.chart('scatterchart', {
-    chart: {
-        type: 'scatter',
-        plotBorderWidth:0,
-        spacingBottom: 20,
-        zoomType: 'x',
-        style: {
-          fontFamily: 'sans-serif',
-        }
-    },
-    title: {
-        text: '',
-        style: {
-            display: 'none'
-        }
-    },
-    subtitle: {
-        text: '',
-        style: {
-            display: 'none'
-        }
-    },
-    credits:{
-      text:'hammerdirt 2018',
+$(document).ready(function() {
 
-    },
-    exporting: {
-      enabled:false,
-    },
-    legend: {
-      enabled: true,
-      verticalAlign: 'top',
-      horizontalAlign: 'left',
-      layout:'vertical',
-      floating:true,
-      x:-40,
-      y:10,
-      backgroundColor:'rgba(255,255,255, .4)',
-      borderColor:'rgba(10, 46, 92, .5)',
-      borderWidth:1,
-      itemMarginTop:4,
-      itemMarginBottom:4,
-      itemStyle:{
-        color: 'black',
-        fontSize: 14,
-        fontWeight: 'bold',
-      }
-    },
-    xAxis: {
-      type: 'datetime',
-      tickInterval:3600*1000*24*28*2,
-      labels: {
-        style: {
-          color:'rgba(00, 00, 00, 1)'
-        }
-      },
-      dateTimeLabelFormats: {
-        month: '%b - %Y',
-      },
-    },
-    yAxis: {
-        title: {
-            align: 'low',
-            offset: 40,
-            text: 'Pieces of trash per meter of shoreline',
-            style:{
-              fontSize: '12px',
-              color:'#000000',
-            },
-        },
-        gridLineColor:'rgba(10, 46, 92, .1)',
-        labels:{
-          style: {
-            color:'rgba(00, 00, 00, 1)'
-          }
-        },
-        tickInterval: 8,
-        min: 0,
+  $('.shutterTitle').click(function() {
+    var parentTag = $( this ).parent();
+    var this_height = $(this);
+    var this_child = $(this).children()[1];
+    console.log(this_child);
 
-    },
-    tooltip: {
-        headerFormat: '<b>{point.key}</b><br>',
-        pointFormat: '{point.x:%e-%b}: {point.y:.2f} pc/m'
-    },
-    series: [{
-      turboThreshold:5000,
-      zIndex:3,
-      type: 'scatter',
-      name:'Combined results',
-      marker: {
-        symbol: 'circle',
-        radius:6,
-        lineColor: 'rgba(10, 46, 92, .7)',
-        fillColor:  'rgba(22, 199, 158, .7)',
-        lineWidth:2,
-      },
-      data:ts_plot,
+    // if($(this).height() <= 100 ){
+    // console.log('true');
+    // $(this).removeClass('bg-info').addClass('bg-dark');
+    // };
 
-    },
-    // {
-    //   zIndex:3,
-    //   type: 'scatter',
-    //   name:'{{ city }} results',
-    //   marker: {
-    //     symbol: 'circle',
-    //     radius:6,
-    //     lineColor: 'rgb(10, 46, 92, .7)',
-    //     fillColor:  'rgb(22, 199, 158, .7)',
-    //     lineWidth:2,
-    //   },
-    //   data:ts_plot,
 
-    // }
-  ],
-  }
+    $( parentTag ).each(function(i){
+      if ($(parentTag).hasClass('close-animate') || !$(parentTag).hasClass('shutterExpanded')) {
+      console.log(this);
+      $(this_height ).css("height", "auto");
+      $(this_height).addClass('text-right');
+      $(this_height).addClass('pr-3');
+      $(this_height).removeClass('p-1');
+      // $(this_child).addClass('text-right');
+      $(parentTag).removeClass('close-animate').addClass('shutterExpanded');
+      $('.wrapper').addClass('shutterOpen');
+      console.log(this_child)
+
+    } else {
+      console.log("Else");
+      $(this).removeClass('shutterExpanded').addClass('close-animate');
+      $(this_height).removeClass('text-right');
+      $(this_height).removeClass('pr-3');
+      $(this_height).addClass('p-1');
+      // $(this_height).children(".p").css("display", "visible");
+      $(this_height ).css("height", "100%");
+      $('.wrapper').removeClass('shutterOpen');
+      console.log(this);
+    }
+    // console.log(this)
+  });
+})}
 );
-
-
 </script>
+
 
 <script type="text/javascript">
-Highcharts.chart('probchart', {
-    chart:{
-      spacingBottom:20
-    },
-    title: {
-        text: '',
-        style: {
-            display: 'none'
-        }
-    },
-    subtitle: {
-        text: '',
-        style: {
-            display: 'none'
-        }
-    },
-    credits:{
-      text:'hammerdirt 2018',
-
-    },
-    exporting: {
-      enabled:false,
-    },
-    xAxis: [{
-        title: {
-          text: 'ln(pcs/m)',
-          style:{
-            fontSize:'14px',
-            color:'#000000',
-          },
-         },
-        alignTicks: false,
-    },
-  ],
-
-    yAxis: [{
-        title: {
-          text: 'Number of observations SLR-MCBP',
-          style:{
-            fontSize:'14px',
-            color:'rgba(22, 199, 158, 1)',
-          },
-
-        },
-        labels:{
-          style:{
-            color:'rgba(22, 199, 158, 1)',
-          }
-        }
-    },
-    ],
-    legend: {
-      enabled: true,
-      verticalAlign: 'top',
-      horizontalAlign: 'left',
-      layout:'horizontal',
-      floating:true,
-      x:-40,
-      y:10,
-      backgroundColor:'rgba(255,255,255, .4)',
-      borderColor:'rgba(10, 46, 92, .5)',
-      borderWidth:1,
-      itemMarginTop:4,
-      itemMarginBottom:4,
-      itemStyle:{
-        color: 'black',
-        fontSize: 14,
-        fontWeight: 'bold',
-      }
-    },
-    tooltip: {
-        headerFormat: '<b>{series.name}</b><br>',
-        pointFormat: 'min ln(pcs/m): {point.x: .2f}, # of samples: {point.y}'
-    },
-
-    series: [{
-        name: 'ln(pcs/m) -- all_results',
-        type: 'histogram',
-        xAxis: 0,
-        yAxis: 0,
-        binsNumber:'sturges',
-        borderColor: 'rgba(10, 46, 92, .5)',
-        color:  'rgba(22, 199, 158, .6)',
-        lineWidth:2,
-        baseSeries:  1,
-        zIndex: -1
-    },
-    {
-        data: hist_list,
-        visible:false,
-        showInLegend:false,
-
-    },
-    // {
-    //     name: 'ln(density) -- MCBP',
-    //     type: 'histogram',
-    //     xAxis: 0,
-    //     yAxis: 1,
-    //     binsNumber:'sturges',
-    //     borderColor:'rgb(00, 00, 00, .5)',
-    //     color:  'rgb(159, 183, 159, .6)',
-    //     lineWidth:2,
-    //     baseSeries:  3,
-    //     zIndex: -1
-    // },{
-    //     data: mc_hist,
-    //     visible:false,
-    //     showInLegend:false,
-
-    // },
-  ]
-});
+// $(function(){
+//   $("a").addClass("m-3");
+//   $("#dips").css({"font-size":"80px"});
+//
+//   $("#make_me").css({"height":"600px", "width":"600px", "margin-left":"60px",})
+//   $("#dips2").fadeIn(1000, function(){
+//     })
+// })
 
 </script>
-
-<script type="text/javascript">
-
-</script>
-
-<script type="text/javascript">
-
-</script>
-<script type="text/javascript">
-
-</script>
-
-{% endblock %}
+</body>
+</html>

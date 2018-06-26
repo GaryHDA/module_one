@@ -66,7 +66,7 @@ html {
 {% block content %}
 {% load humanize %}
 <div class="container-fluid p-0 m-0" style="height:100vh; overflow:auto">
-  <div class="row no-gutters border" style="height:100%">
+  <div class="row no-gutters border border-danger" style="height:100%">
     <div class="col-sm-4" style="">
       <div class="card pb-0" style="height:100%">
         <div class="bg-info text-white card-header p-2 pl-3" id="" style="">
@@ -152,7 +152,7 @@ html {
               <br>Circle size relative to avg pcs/m</small></h6>
               <div id="maps" style="height:68%;min-height:390px"></div>
               <div class="bg-black text-white card-header" id="" style="">
-                  <form class="d-inline-block" action='search_MCBP/' method='get'>
+                  <form class="d-inline-block" action='search_hdc/' method='get'>
                     <i class="fa fa-folder-open fa-lg mr-1 "></i>&nbsp;Details:&nbsp;&nbsp;
                     <select class="form-control-sm d-inline-block mr-2"style="width:180px" name='q'>
                       {% for x in slr_cities %}
@@ -189,7 +189,7 @@ html {
 
           <div class="align-self-center"  style="height:67%; min-height:400px" id="box-plot"></div>
           <button class="btn bg-info w-100 p-2 pl-3 text-white text-left mt-1" style="height:10%" data-toggle="modal"  data-target="#box_rivs_lakes" aria-expanded="false" aria-controls="table-of-results">
-            <i class="fa fa-line-chart fa-lg "></i>&nbsp; Make this chart bigger
+            <i class="fa fa-line-chart fa-lg "></i>&nbsp; Results sorted by river and lakes
           </button>
           <button class="btn bg-info w-100 p-2 pl-3 text-white text-left border-white" style="height:10%" role="button" data-toggle="modal" data-target="#water_search" aria-expanded="false" aria-controls="">
             Search by city, body of water or project</button>
@@ -203,7 +203,7 @@ html {
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title">All items identified from the MCBP {{ summary.last|date:"M Y" }}</h6>
+        <h6 class="modal-title">All items identified by hammerdirt California {{ summary.last|date:"M Y" }}</h6>
         <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -370,7 +370,7 @@ html {
 </div>
 
 
-<div class="modal fade w-100" style="" id="goals">
+<div class="modal fade" style="" id="goals">
  <div class="modal-dialog modal-lg" role="document">
    <div class="modal-content">
      <div class="modal-header">
@@ -408,7 +408,7 @@ html {
    </div>
  </div>
 </div>
-<div class="modal fade w-100" style="" id="finance">
+<div class="modal fade" style="" id="finance">
  <div class="modal-dialog modal-lg" role="document">
    <div class="modal-content">
      <div class="modal-header">
@@ -425,16 +425,16 @@ html {
    </div>
  </div>
 </div>
-<div class="modal fade w-100" style="" id="list_o_lakes">
+<div class="modal fade" style="" id="list_o_lakes">
  <div class="modal-dialog modal-lg" role="document">
    <div class="modal-content">
      <div class="modal-header">
-       <h5 class="modal-title">List lakes with MCBP surveys</h5>
+       <h5 class="modal-title">List of rivers and lakes with hammerdirt surveys</h5>
        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
      </div>
      <div class="modal-body ">
       <dl class="row">
-        <dt class="col-sm-3">Lake</dt>
+        <dt class="col-sm-3">River or Lake</dt>
         <dd class="col-sm-9">List of survey locations</dd>
       </dl>
       <dl class="row">
@@ -447,11 +447,11 @@ html {
    </div>
  </div>
 </div>
-<div class="modal fade w-100" style="" id="list_o_cities">
+<div class="modal fade" style="" id="list_o_cities">
  <div class="modal-dialog modal-lg" role="document">
    <div class="modal-content">
      <div class="modal-header">
-       <h5 class="modal-title">Cities with surveys in the Swiss Litter Report</h5>
+       <h5 class="modal-title">Cities with hammerdirt surveys</h5>
        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
      </div>
      <div class="modal-body ">
@@ -473,18 +473,18 @@ html {
  <div class="modal-dialog modal-lg" role="document">
    <div class="modal-content">
      <div class="modal-header">
-       <h6 class="card-title" style="">SLR results sorted by rivers and lakes
-         <br><small class="text-muted mb-2">April 2017 - April 2018, toggle categories in legend
+       <h6 class="card-title" style="">hammerdirt results
+         <br><small class="text-muted mb-2">{{ summary.first|date:"M Y" }} - {{ summary.last|date:"M Y" }}, toggle categories in legend
          <br>Monthly summaries, click and drag in chart areaa to zoom date</small></h6>
        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
      </div>
      <div class="modal-body ">
-      <div class="align-self-center" style="height:100%;width:100%" id="riv-lake"></div>
+      <div class="align-self-center" style="height:100%;min-width:500px" id="box-plot2"></div>
      </div>
    </div>
  </div>
 </div>
-<div class="modal fade w-100" id="water_search">
+<div class="modal fade" id="water_search">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header bg-info text-white">
@@ -537,7 +537,7 @@ html {
                     <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'mcbp_home' %}" aria-expanded="false" aria-controls="table-of-results">
                       MCBP</a>
                     <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'hdc_home' %}" aria-expanded="false" aria-controls="table-of-results">
-                        HDC</a>
+                      HDC</a>
                   </div>
                 </div>
               </div>
@@ -568,19 +568,10 @@ html {
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 <script type="text/javascript">
 var map_points = {{ map_points|safe }};
-// var box_cats = {{ box_cats|safe }};
+
 var boxer = {{ box_plot|safe }};
 var plot_data = {{ plot_density|safe }};
-var river = {{ rivers|safe }};
-var lake = {{ lakes|safe }};
-var box_lake = {{ box_lake|safe }};
-var box_river = {{ box_river|safe }};
-// var box_cats = {{ box_cats|safe }};
-// var sources_as = {{ sources_as|safe }}
 
-// console.log(box_cats)
-// console.log(box_lake)
-// console.log(box_river)
 
 var ts_plot = [];
 plot_data.forEach(function(element){
@@ -597,20 +588,6 @@ boxer.forEach(function(element){
   element[0] = Date.parse(element[0]);
   mc_box.push([element[0], element[1], element[2], element[3], element[4], element[5]])
 });
-var riv_dens = []
-river.forEach(function(element){
-  element.date = Date.parse(element.date);
-  element.density = parseFloat(element.density);
-  riv_dens.push ({"name":element.location_id, "x":element.date, "y":element.density})
-});
-
-var lak_dens = []
-lake.forEach(function(element){
-  element.date = Date.parse(element.date);
-  element.density = parseFloat(element.density);
-  lak_dens.push ({"name":element.location_id, "x":element.date, "y":element.density})
-});
-
 </script>
 <script type="text/javascript">
 var map;
@@ -747,10 +724,10 @@ function initMap() {
     ]
   }
 ],
-{name:'MCBP locations'});
+{name:'Hammerdirt California locations'});
   map = new google.maps.Map(document.getElementById('maps'), {
     zoom:7,
-    center: {lat: 46.83, lng: 8.23},
+    // center: {lat: 46.83, lng: 8.23},
     minZoom:7,
     mapTypeControlOptions: {
       mapTypeIds: ['styled_map'],
@@ -769,7 +746,7 @@ function initMap() {
 
   for (i = 0; i < map_points.length; i++) {
     marker = new google.maps.Marker({
-      position: new google.maps.LatLng(map_points[i][0], map_points[i][1]),
+      position: new google.maps.LatLng(map_points[i][1], map_points[i][0]),
       map: map,
       // label:{
       //   fontFamily: 'Fontawesome',
@@ -871,7 +848,7 @@ Highcharts.chart('box-plot', {
     },
     xAxis: [{
       type: 'datetime',
-      min: Date.UTC(2015, 11, 01),
+      // min: Date.UTC(2015, 11, 01),
       tickColor:'rgba(00, 00, 00, 1)',
       tickInterval:3600*1000*24*28,
       tickColor:'rgba(00, 00, 00, 1)',
@@ -938,7 +915,7 @@ Highcharts.chart('box-plot', {
 });
 </script>
 <script type="text/javascript">
-Highcharts.chart('riv-lake', {
+Highcharts.chart('box-plot2', {
     chart: {
         type: 'boxplot',
         spacingBottom: 20,
@@ -994,7 +971,7 @@ Highcharts.chart('riv-lake', {
     },
     xAxis: [{
       type: 'datetime',
-      min: Date.UTC(2015, 11, 01),
+      // min: Date.UTC(2015, 11, 01),
       tickColor:'rgba(00, 00, 00, 1)',
       tickInterval:3600*1000*24*28,
       tickColor:'rgba(00, 00, 00, 1)',
@@ -1059,8 +1036,6 @@ Highcharts.chart('riv-lake', {
       },
     }]
 });
-
 </script>
-
 
 {% endblock %}
