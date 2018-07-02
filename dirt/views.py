@@ -6,7 +6,6 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from dirt.models import SLR_Data, SLR_Density, SLR_Beaches, Beaches, Codes, All_Data, References, SUBJECT_CHOICES, SLR_Area, HDC_Data, HDC_Beaches
 from django.contrib.auth.models import User
-#from django.contrib.staticfiles.storage import staticfiles_storage
 from django.templatetags.static import static
 from django.conf import settings
 import json
@@ -25,23 +24,30 @@ from dateutil.rrule import rrule, MONTHLY
 
 class Water_bodies():
     """
-    Manualy generated json file.  Dictionary that assigns location_id to name of the water body.
+    Creates dictionary that has river or lake name as key and all the locations that are situated on that water body.
+    Pulls the data from the Beaches, SLR_Beaches and HDC_Beaches models
+
     """
-    n = os.path.join( settings.BASE_DIR, 'dirt/static/water_bodies_hdc.json' )
-    o = open(n, 'r')
-    p = json.load(o)
-    f=os.path.join( settings.BASE_DIR, 'dirt/static/water_bodies.json' )
-    f = open(f, 'r')
-    a = json.load(f)
-    b = sorted(list(a.keys()))
-    def make_all(c):
-        a = {}
-        for b in c:
-            for key, value in b.items():
-                a.update({key:value})
-        return a
-    all_water = make_all([a, p])
-    # print(a)
+    a = list(Beaches.objects.all().values())
+    b = list(SLR_Beaches.objects.all().values())
+    c = list(HDC_Beaches.objects.all().values())
+
+    def make_water_bodies(x):
+        b = {}
+        for c in x:
+            for h in c:
+                d = h['location']
+                e = h['water']
+                f = h['water_name']
+                g = list(b.keys())
+                if f not in g:
+                    b.update({f:[d]})
+                elif f in g:
+                    b[f].append(d)
+        return b
+
+    swiss = make_water_bodies([a,b])
+    hdc = make_water_bodies([c])
 
 
 class Make_cites():
@@ -55,7 +61,9 @@ class Make_cites():
     river_dict, city_dict: creates dict that assigns sets of location_ids to rivers, lakes and cities
 
     """
-    a_1 = list(Beaches.objects.all().values())
+    print()
+    a_1 = list(Beaches.objects.filter(project = 'MCBP').values())
+    a_2 = list(Beaches.objects.filter(project = 'PC').values())
     b_1 = list(SLR_Beaches.objects.all().values())
     c_1 = list(HDC_Beaches.objects.all().values())
     def combine_it(c):
@@ -67,32 +75,26 @@ class Make_cites():
                 if d not in a:
                     a.append(d)
         return a
-    a_b_all = combine_it([a_1, b_1,])
+    a_b_all = combine_it([a_1, b_1,a_2])
 
     def beaches_mc(b):
         a = pd.DataFrame(b)
-        a['project'] = 'MCBP'
-        b = a.copy()
-        c = list(b['city'].unique())
-        return c, b
-    mc_cities, a = beaches_mc(a_1)
+        c = list(a['city'].unique())
+        return c
+    mc_cities = beaches_mc(a_1)
 
     def beaches_slr(b):
         a = pd.DataFrame(b)
-        a['project'] = 'SLR'
-        b = a.copy()
-        c = list(b['city'].unique())
-        return c, b
+        c = list(a['city'].unique())
+        return c
 
-    slr_cities, b = beaches_slr(b_1)
+    slr_cities = beaches_slr(b_1)
 
     def beaches_hdc(b):
         a = pd.DataFrame(b)
-        a['project'] = 'HDC'
-        b = a.copy()
-        c = list(b['city'].unique())
-        return c, b
-    hdc_cities, a = beaches_hdc(c_1)
+        c = list(a['city'].unique())
+        return c
+    hdc_cities = beaches_hdc(c_1)
 
 
     def cite_dict(a_list):
@@ -122,9 +124,9 @@ class Make_cites():
             if len(d) > 0:
                 b.update(e)
         return b
-    slr_rivers = river_dict(Water_bodies.a, list(Water_bodies.a.keys()), list(slr_cite_info.keys()))
-    mc_rivers =  river_dict(Water_bodies.a, list(Water_bodies.a.keys()), list(mc_site_info.keys()))
-    hdc_rivers = river_dict(Water_bodies.p, list(Water_bodies.p.keys()), list(hdc_sites.keys()))
+    slr_rivers = river_dict(Water_bodies.swiss, list(Water_bodies.swiss.keys()), list(slr_cite_info.keys()))
+    mc_rivers =  river_dict(Water_bodies.swiss, list(Water_bodies.swiss.keys()), list(mc_site_info.keys()))
+    hdc_rivers = river_dict(Water_bodies.hdc, list(Water_bodies.hdc.keys()), list(hdc_sites.keys()))
 
     def city_dict(l_st, keys, df):
         g = {}
@@ -152,11 +154,11 @@ class Make_data():
     a = pd.DataFrame(list(All_Data.objects.all().values()))
     b = pd.DataFrame(list(SLR_Data.objects.all().values()))
     e = pd.DataFrame(list(SLR_Density.objects.all().values()))
-    f = pd.DataFrame(list(SLR_Density.objects.filter(location__water = 'river').values()))
-    g = pd.DataFrame(list(SLR_Density.objects.filter(location__water = 'lake').values()))
+    f = pd.DataFrame(list(SLR_Density.objects.filter(location__water = 'r').values()))
+    g = pd.DataFrame(list(SLR_Density.objects.filter(location__water = 'l').values()))
     i = pd.DataFrame(list(SLR_Area.objects.all().values()))
-    k = pd.DataFrame(list(SLR_Area.objects.filter(location__water = 'river').values()))
-    l = pd.DataFrame(list(SLR_Area.objects.filter(location__water = 'lake').values()))
+    k = pd.DataFrame(list(SLR_Area.objects.filter(location__water = 'r').values()))
+    l = pd.DataFrame(list(SLR_Area.objects.filter(location__water = 'l').values()))
     o = pd.DataFrame(list(HDC_Data.objects.all().values()))
 
     def format_data(y):
@@ -175,19 +177,21 @@ class Make_data():
             y = y.astype({'sample':float}, copy=False)
         if 'length' in a:
             y = y.astype({'length':float}, copy=False)
-        # if 'project' not in a:
-        #     print('no project')
+
         return y
     c = format_data(a)
+    print(c[:10])
     d = format_data(b)
     h = format_data(e)
     j = format_data(i)
     m = format_data(k)
     n = format_data(l)
     p = format_data(o)
-    # print(p)
+
     river = format_data(f)
     lake = format_data(g)
+    print("this is make_data.lake  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    print(c.loc[c.location_id == 'Home sweet home'])
     all_data = pd.concat([c,d])
 
 class Make_daily():
@@ -201,26 +205,32 @@ class Make_daily():
     some of these get passed to directly to a JS function.
     """
     def daily(a, b):
-        e =  a['quantity'].groupby([a['date'], a['location_id'], a['length']]).sum().copy()
+        e =  a['quantity'].groupby([a['date'], a['location_id'], a['length'], a['project_id']]).sum().copy()
         e = pd.DataFrame(e)
         e.reset_index(inplace=True)
         e = e[e.date > min(e.date)]
         e['density'] = e['quantity']/e['length']
         e['density'] = e['density'].round(4)
+        print('this is the location id!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        print(e['location_id'].unique())
+        print('this is beach list!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        print(b)
         for name in b:
+
             n=0
             for i, row in e.iterrows():
                 if e.loc[i, 'location_id'] == name:
+
                     n=n+1
                     e.loc[i, 'sample'] = n
+
         return e
     c = daily(Make_data.c, Beaches.beachList())
     f = daily(Make_data.p, HDC_Beaches.beachList())
-    print(HDC_Beaches.beachList())
-    # print(f)
+
     def daily_density(df):
-        a = df[['date', 'location_id', 'density','quantity', 'sample']].copy()
-        bb = a[['date', 'location_id', 'density']].copy()
+        a = df[['date', 'location_id', 'density','quantity', 'sample', 'project_id']].copy()
+        bb = a[['date', 'location_id', 'density', 'project_id']].copy()
         a['date'] = a['date'].dt.strftime("%Y-%m-%d")
         x = a.to_dict(orient='records')
         b = list(a['density'])
@@ -257,7 +267,7 @@ class Make_daily():
                 a.append(s)
         b = pd.DataFrame(a)
         return b, a
-    all_daily_df, all_daily_list = all_samples([e,d,hd])
+    all_daily_df, all_daily_list = all_samples([e,d])
     slr_area_daily, slr_area_list = all_samples([ar])
 
 class Make_codes():
@@ -289,6 +299,8 @@ class Make_codes():
         return b
     codes_material = material_dict()
     # print(codes_material['G27'])
+    print("this is make_data.d")
+    print(Make_data.d[:1])
 
     def top_ten_codes(df, dci, mat):
         """
@@ -305,6 +317,8 @@ class Make_codes():
         return f, b
 
     all_inventory, inv_df = top_ten_codes(Make_data.all_data, codes_dict, codes_material)
+    print("this is all inv")
+    print(all_inventory[:1])
     slr_inventory, inv_series = top_ten_codes(Make_data.d, codes_dict, codes_material)
     mc_inventory, mc_inv_series = top_ten_codes(Make_data.c, codes_dict, codes_material)
     hdc_inventory, hdc_inv_series = top_ten_codes(Make_data.p, codes_dict, codes_material)
@@ -336,7 +350,7 @@ class Make_water():
         a list of location_ids, returns the sliced df
         """
         a = Make_daily.all_daily_df
-        b = Water_bodies.a
+        b = Water_bodies.swiss
         c = a.loc[a.location_id.isin(b[x])]
         return c
     def water_dict(x):
@@ -351,8 +365,8 @@ class Make_water():
                 e = {d:b}
                 f.update(e)
         return f
-    site_body = water_dict(Water_bodies.a)
-    site_body_hdc = water_dict(Water_bodies.p)
+    site_body = water_dict(Water_bodies.swiss)
+    site_body_hdc = water_dict(Water_bodies.hdc)
 class Make_coordinates():
     """
     Generates the out put for a map plot on google maps API
@@ -546,7 +560,7 @@ class make_months():
     dates = [dt.strftime("%b - %Y") for dt in rrule(MONTHLY, dtstart=first_day, until=t_day)]
 class Make_boxes():
     def box_plots(a):
-        #mon_dict = {1:'jan', 2:'Feb', 3:'Mar', 4:'Apr', 5:'May', 6:'Jun', 7:'July', 8:'Aug', 9:'Sep', 10:'Oct', 11:'Nov', 12:'Dec'}
+
         i = []
         c = a['density'].groupby([a.date.dt.year, a.date.dt.month]).describe()
         c.index.rename(['year', 'month',], inplace=True)
@@ -563,7 +577,7 @@ class Make_boxes():
             b_date = b_date.strftime("%Y-%m-%d")
             bx_ix = [b_date, h[want[1]], h[want[2]].round(3), h[want[3]].round(3), h[want[4]].round(3), h[want[5]].round(3)]
             i.append(bx_ix)
-        #print(i)
+
         return i
 
 
@@ -589,29 +603,19 @@ class Make_boxes():
             b_date = b_date.strftime("%Y-%m-%d")
             bx_ix = [b_date, h[want[1]], h[want[2]].round(3), h[want[3]].round(3), h[want[4]].round(3), h[want[5]].round(3)]
             i.append(bx_ix)
-        #print(i)
+
         return i
     river_box2 = box_plots2(Make_daily.arr2)
     lake_box2 = box_plots2(Make_daily.arl2)
     s_box2 = box_plots2(Make_daily.ar2)
 
-    def box_cats(x):
-        if x == 'SLR':
-            first_day = datetime.date(2017,4,1)
-        elif x == 'MCBP':
-            first_day = datetime.date(2015,11,15)
-        elif x == null:
-            first_day = datetime.date(2015,11,15)
 
-        t_day = datetime.date.today()
-        dates = [dt.strftime("%b-%Y") for dt in rrule(MONTHLY, dtstart=first_day, until=t_day)]
-        return dates
 class Make_logs():
     """
     creates the output to plot normal dists from density data
     """
     def lake_river_prob(name):
-        e = Make_daily.all_daily_df.loc[Make_daily.all_daily_df.location_id.isin(Water_bodies.a[name])]
+        e = Make_daily.all_daily_df.loc[Make_daily.all_daily_df.location_id.isin(Water_bodies.swiss[name])]
         d = list(e['location_id'].unique())
         num_locs = len(d)
 
@@ -640,9 +644,6 @@ class Make_library():
         sub_key = dict(SUBJECT_CHOICES)
         return sub_list, sub_key
     the_subs, sub_key = subjects()
-    # print('break')
-    # print(sub_key)
-
 
     def make_library(b,d,f ):
         h = {}
@@ -671,8 +672,8 @@ def beach_litter(request):
     num_lakes = Make_totals.no_of_lake
     num_rivers = Make_totals.no_of_river
     summary, num_location = Make_totals.all_summary, Make_totals.number_location
-    bodies_dict = Water_bodies.a
-    bodies_list = Water_bodies.b
+    bodies_dict = Water_bodies.swiss
+    bodies_list = Water_bodies.swiss
     box_lake = Make_boxes.lake_box
     box_river = Make_boxes.river_box
     box_mc = Make_boxes.mc_box
@@ -737,7 +738,7 @@ def beach_litter(request):
     num_samps = len(summary_df_x)
 
 
-    return render(request, 'dirt/beach_litter.html', { 'mk_pers':mk_pers, 'top_ten':top_ten_table, 'top_ten_total': top_ten[:10].sum(),'all_water':Water_bodies.b,
+    return render(request, 'dirt/beach_litter.html', { 'mk_pers':mk_pers, 'top_ten':top_ten_table, 'top_ten_total': top_ten[:10].sum(),'all_water':Water_bodies.swiss,
     'all_cities':Make_cites.cities, 'plot_all':plot_all, 'y_one_s':len(plot_density), 'y_two_s':len(plot_mc), 'year_one':plot_density, 'year_two':plot_mc, 'combined_map':combined_map,
     'num_locs':num_location, 'dist_2016':dist_2016,'dist_2017':dist_2017 , 'num_samps':num_samps, 't_day':t_day, 'inventory':inventory, 'bodies_dict':bodies_dict, 'bodies_list':bodies_list,
     'num_lakes':num_lakes, 'num_rivers':num_rivers,'summary':summary,'box_lake':box_lake, 'box_river':box_river, 'box_mc':box_mc, 'lakes':Make_daily.l, 'rivers':Make_daily.r,'plot_mc':Make_daily.e})
@@ -844,7 +845,7 @@ def search_city(request):
 
         return render(request, 'dirt/search_city.html', {'city':q, 'city_top_ten':t_ten, 'summary':summary,  'num_locs':num_locs, 'mk_pers':mk_pers,
         'plot_density':c_1,'plot_all': Make_daily.all_daily_list,'map_points':map_data, 'locs_samples':locs_and_samples(), 'ceiling':max(c_4['density']) + 10, 'inventory':total_inventory,
-        'all_water':Water_bodies.b, 'all_cities':Make_cites.cities,})
+        'all_water':Water_bodies.swiss, 'all_cities':Make_cites.cities,})
 
     else:
         return HttpResponse('Please submit a search term')
@@ -856,7 +857,7 @@ def search_water(request):
 
         t_day = pd.to_datetime('today')
         # dcitionary that relates location id to waterbody
-        water_bodies = Water_bodies.a
+        water_bodies = Water_bodies.swiss
 
         # this gets the data for the report
         def get_daily_values(criteria):
@@ -918,7 +919,7 @@ def search_water(request):
 
         return render(request, 'dirt/search_water.html', {'city':q, 'city_top_ten':t_ten, 'summary':summary,  'num_locs':num_locs, 'mk_pers':mk_pers,
         'plot_density':c_1,'plot_all': Make_daily.all_daily_list,'map_points':map_data, 'locs_samples':locs_and_samples(), 'ceiling':max(c_4['density']) + 10, 'inventory':total_inventory,
-        'all_water':Water_bodies.b, 'all_cities':Make_cites.cities,})
+        'all_water':Water_bodies.swiss, 'all_cities':Make_cites.cities,})
 
     else:
         return HttpResponse('Please submit a search term')
@@ -996,7 +997,7 @@ def search_SLR(request):
 
         return render(request, 'dirt/search_slr.html', {'city':q, 'city_top_ten':t_ten, 'summary':summary,  'num_locs':num_locs, 'mk_pers':mk_pers,
         'plot_density':c_1,'plot_all': Make_daily.ar,'map_points':map_data, 'locs_samples':locs_and_samples(), 'ceiling':max(c_4['density2']) + 10, 'inventory':total_inventory,
-        'all_water':Water_bodies.b, 'all_cities':Make_cites.cities,})
+        'all_water':Water_bodies.swiss, 'all_cities':Make_cites.cities,})
 
     else:
         return HttpResponse('Please submit a search term')
@@ -1077,7 +1078,7 @@ def search_MCBP(request):
 
             return render(request, 'dirt/search_MCBP.html', {'city':q, 'city_top_ten':t_ten, 'summary':summary,  'num_locs':num_locs, 'mk_pers':mk_pers,
             'plot_density':c_1,'plot_all': Make_daily.e,'map_points':map_data, 'locs_samples':locs_and_samples(), 'ceiling':max(c_4['density']) + 10, 'inventory':total_inventory,
-            'all_water':Water_bodies.b, 'all_cities':Make_cites.cities,})
+            'all_water':Water_bodies.swiss, 'all_cities':Make_cites.cities,})
 
         else:
             return HttpResponse('Please submit a search term')
@@ -1086,7 +1087,7 @@ def search_MCBP(request):
 
 def slr_home(request):
 
-    slr_locs = SLR_Beaches.beachList()
+    #slr_locs = SLR_Beaches.beachList()
     slr_beaches = SLR_Beaches.objects.all().values()
 
 
@@ -1141,17 +1142,16 @@ def slr_home(request):
 
     return render(request, 'dirt/slr.html', {'books':books, 'num_lakes':Make_totals.no_of_lake, 'num_rivers':Make_totals.no_of_river,
     'num_locs':number_locations, 'top_ten':top_ten_table, 'summary':summary, 'mk_pers':mk_pers, 'plot_density': Make_daily.ar,
-    'map_points':map_points, 'slr_cities': cities,'box_plot': Make_boxes.s_box2, 'box_cats':Make_boxes.box_cats('SLR'),
-    'lakes':Make_daily.arl, 'rivers':Make_daily.arr, 'box_lake':Make_boxes.lake_box2, 'box_river':Make_boxes.river_box2,
+    'map_points':map_points, 'slr_cities': cities,'box_plot': Make_boxes.s_box2,'lakes':Make_daily.arl, 'rivers':Make_daily.arr, 'box_lake':Make_boxes.lake_box2, 'box_river':Make_boxes.river_box2,
     'inventory':inventory, 'locs_samples':locs_and_samples(), 'city_locs':Make_cites.all_slr_cities, 'slr_river':Make_cites.slr_rivers,
-    'all_water':Water_bodies.b, 'all_cities':Make_cites.cities})
+    'all_water':Water_bodies.swiss, 'all_cities':Make_cites.cities})
 
 def mcbp_home(request):
-        slr_locs = Beaches.beachList()
-        slr_beaches = Beaches.objects.all().values()
+        #slr_locs = Beaches.beachList()
+        slr_beaches = Beaches.objects.filter(project = 'MCBP').values()
         # codes = Codes.objects.all()
 
-        summary, number_locations = Make_totals.make_summary(Make_daily.c)
+        summary, number_locations = Make_totals.make_summary(Make_daily.c.loc[Make_daily.c.project_id == 'MCBP'])
         map_points = Make_coordinates.mc_map
         inventory = Make_codes.mc_inventory
         mk_pers = Make_percents(Make_codes.mc_inv_series, Make_codes.codes_material).get_percents()
@@ -1200,10 +1200,9 @@ def mcbp_home(request):
 
         return render(request, 'dirt/mcbp.html', {'books':books, 'num_lakes':Make_totals.mc_no_of_lake, 'num_rivers':Make_totals.mc_no_of_river,
         'num_locs':number_locations, 'top_ten':top_ten_table, 'summary':summary, 'mk_pers':mk_pers, 'plot_density': Make_daily.e,
-        'map_points':map_points, 'slr_cities': cities,'box_plot':Make_boxes.mc_box, 'box_cats':Make_boxes.box_cats('SLR'),
-        'lakes':Make_daily.l, 'rivers':Make_daily.r, 'box_lake':Make_boxes.lake_box, 'box_river':Make_boxes.river_box,
+        'map_points':map_points, 'slr_cities': cities,'box_plot':Make_boxes.mc_box, 'lakes':Make_daily.l, 'rivers':Make_daily.r, 'box_lake':Make_boxes.lake_box, 'box_river':Make_boxes.river_box,
         'inventory':inventory, 'locs_samples':locs_and_samples(), 'city_locs':Make_cites.all_mc_cities, 'slr_river':Make_cites.mc_rivers,
-        'all_water':Water_bodies.b, 'all_cities':Make_cites.cities})
+        'all_water':Water_bodies.swiss, 'all_cities':Make_cites.cities})
 
 def hdc_home(request):
         slr_locs = HDC_Beaches.beachList()
@@ -1261,7 +1260,7 @@ def hdc_home(request):
         return render(request, 'dirt/hdc.html', {'books':books, 'num_lakes':Make_totals.hdc_no_of_lake, 'num_rivers':Make_totals.hdc_no_of_river,
         'num_locs':number_locations, 'top_ten':top_ten_table, 'summary':summary, 'mk_pers':mk_pers, 'plot_density': Make_daily.hd,
         'map_points':map_points, 'slr_cities': cities,'box_plot':Make_boxes.mc_box, 'inventory':inventory, 'locs_samples':locs_and_samples(), 'city_locs':Make_cites.all_hdc_cities, 'slr_river':Make_cites.hdc_rivers,
-        'all_water':Water_bodies.a, 'all_cities':Make_cites.cities})
+        'all_water':Water_bodies.swiss, 'all_cities':Make_cites.cities})
 
 def search_hdc(request):
         if 'q' in request.GET and request.GET['q']:
@@ -1337,7 +1336,7 @@ def search_hdc(request):
 
             return render(request, 'dirt/search_hdc.html', {'city':q, 'city_top_ten':t_ten, 'summary':summary,  'num_locs':num_locs, 'mk_pers':mk_pers,
             'plot_density':c_1,'plot_all': Make_daily.hd,'map_points':map_data, 'locs_samples':locs_and_samples(), 'ceiling':max(c_4['density']) + 10, 'inventory':total_inventory,
-            'all_water':Water_bodies.b, 'all_cities':Make_cites.cities,})
+            'all_water':Water_bodies.swiss, 'all_cities':Make_cites.cities,})
 
         else:
             return HttpResponse('Please submit a search term')
