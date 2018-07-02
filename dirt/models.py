@@ -48,6 +48,7 @@ class Beaches(models.Model):
     city = models.CharField(db_column='city', max_length=100, blank=True, null=True)
     post = models.CharField(db_column='post', max_length=12, blank=True, null=True)
     water = models.CharField(db_column='water', max_length=12, blank=True, null=True, choices=WATER_CHOICES)
+    water_name = models.CharField(db_column='water_name', max_length=100, blank=True, null=True)
     project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
 
     def beachList():
@@ -75,6 +76,7 @@ class HDC_Beaches(models.Model):
     city = models.CharField(db_column='city', max_length=100, blank=True, null=True)
     post = models.CharField(db_column='post', max_length=12, blank=True, null=True)
     water = models.CharField(db_column='water', max_length=12, blank=True, null=True, choices=WATER_CHOICES)
+    water_name = models.CharField(db_column='water_name', max_length=100, blank=True, null=True)
     project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
 
     def beachList():
@@ -103,6 +105,7 @@ class SLR_Beaches(models.Model):
     city = models.CharField(db_column='city', max_length=100, blank=True, null=True)
     post = models.CharField(db_column='post', max_length=12, blank=True, null=True)
     water = models.CharField(db_column='water', max_length=12, blank=True, null=True, choices=WATER_CHOICES)
+    water_name = models.CharField(db_column='water_name', max_length=100, blank=True, null=True)
     project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
 
     def beachList():
@@ -208,6 +211,7 @@ class SLR_Data(models.Model):
     quantity = models.DecimalField(db_column='quantity',decimal_places=2, max_digits= 7, blank=True, null=True)
     density = models.DecimalField(db_column='density', decimal_places=3, max_digits=8, blank=True, null=False,)
     code = models.ForeignKey(Codes, db_column='code', null=True, on_delete=models.DO_NOTHING)
+    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
 
     class Meta:
         managed = True
@@ -221,6 +225,7 @@ class SLR_Density(models.Model):
     sample = models.IntegerField(db_column='sample', blank=True, null=True)
     density = models.DecimalField(db_column='density', decimal_places=3, max_digits=8, blank=True, null=False)
     quantity = models.IntegerField(db_column='quantity', blank=True, null=True)
+    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
 
     class Meta:
         managed = True
@@ -234,6 +239,7 @@ class SLR_Area(models.Model):
     sample = models.IntegerField(db_column='sample', blank=True, null=True)
     density2 = models.DecimalField(db_column='density2', decimal_places=3, max_digits=8, blank=True, null=False)
     quantity = models.IntegerField(db_column='quantity', blank=True, null=True)
+    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
 
     class Meta:
         managed = True
