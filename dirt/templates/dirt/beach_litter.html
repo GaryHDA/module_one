@@ -441,19 +441,23 @@
           </div>
         </div>
         <div class="col-sm" id='ap_1' style="height:100%">
-          <div class="card pb-0" id="">
+            <div class="card pb-0" id="">
             <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
-              How much trash is out there?
+              A rating scheme for beach litter based on probability
             </div>
             <div class="card-body text-left" style="height:100%">
-              <h6 class="card-title">Using results from the surveys to estimate quantity
-                <br><small class="text-muted">Random sampling from a truncated gaussian distribution
-                <br>Random sampling from actual results (with replacement)</small></h6>
-              <p class="card-text">Somebody asked, so I did it.  How many pieces of trash are on the shores of Swiss water ways?</p>
-              <p class="card-text">Links to a <a href="https://github.com/hammerdirt/notes/blob/master/how_much_trash.ipynb"> repository on Github </a></p>
-              <img src="{% static 'images/how_much.svg' %}" class="img-fluid">
+              <h6 class="card-title">Using the probability distribution of litter to rate beaches
+                <br><small class="text-muted">Based on the Log normal distribution
+                <br>A beaches average pcs/m result is comapred to the distribution</small></h6>
+              <p class="card-text">It is impossible to determine how much trash is really out there. However we can determine how likeley you are to find a quantity of trash at a beach. We use that to rate beach litter at sites in the SLR.</p>
+              <p class="card-text">Links to a <a href="https://github.com/hammerdirt/stopLight"> repository on Github </a></p>
+              <h6 class="card-title mt-2">Image: Rating of SLR beaches
+                <br><small class="text-muted">Rating based on beaches avg pcs/m quantile ranking.
+                <br>Four classifications</small></h6>
+              <img src="{% static 'images/stopLights.jpg' %}" class="img-fluid">
             </div>
           </div>
+
         </div>
         <div class="col-sm "  id='ap_2' style="height:100%">
           <div class="card pb-0" id="">
@@ -474,20 +478,18 @@
           </div>
           <div class="card pb-0" id="">
             <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
-              A rating scheme for beach litter based on probability
+              How much trash is out there?
             </div>
             <div class="card-body text-left" style="height:100%">
-              <h6 class="card-title">Using the probaility distribution of litter to rate beaches
-                <br><small class="text-muted">Based on the Log normal distribution
-                <br>A beaches average pcs/m result is comapred to the distribution</small></h6>
-              <p class="card-text">It is impossible to determine how much trash is really out there. However we can determine how likeley you are to find a quantity of trash at a beach. We use that to rate beach litter at sites in the SLR.</p>
-              <p class="card-text">Links to a <a href="https://github.com/hammerdirt/stopLight"> repository on Github </a></p>
-              <h6 class="card-title mt-2">Image: Rating of SLR beaches
-                <br><small class="text-muted">Rating based on beaches avg pcs/m quantile ranking.
-                <br>Four classifications</small></h6>
-              <img src="{% static 'images/stopLights.jpg' %}" class="img-fluid">
+              <h6 class="card-title">Using results from the surveys to estimate quantity
+                <br><small class="text-muted">Random sampling from a truncated gaussian distribution
+                <br>Random sampling from actual results (with replacement)</small></h6>
+              <p class="card-text">Somebody asked, so I did it.  How many pieces of trash are on the shores of Swiss water ways?</p>
+              <p class="card-text">Links to a <a href="https://github.com/hammerdirt/notes/blob/master/how_much_trash.ipynb"> repository on Github </a></p>
+              <img src="{% static 'images/how_much.svg' %}" class="img-fluid">
             </div>
           </div>
+
         </div>
       </div>
     </div>

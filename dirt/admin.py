@@ -41,6 +41,7 @@ class All_DataAdmin(admin.ModelAdmin):
     def item_material(self, obj):
         return obj.code.material
 admin.site.register(All_Data, All_DataAdmin)
+
 class ReferencesAdmin(admin.ModelAdmin):
     list_display = ('subject', 'title', 'abstract', 'author', 'project')
     list_filter = ('subject', 'author')
@@ -73,6 +74,7 @@ class  HDC_DataAdmin(admin.ModelAdmin):
         return obj.code.description
     def item_material(self, obj):
         return obj.code.material
+
 admin.site.register(HDC_Data, HDC_DataAdmin)
 
 

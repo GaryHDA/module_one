@@ -368,6 +368,8 @@ class Make_water():
     site_body = water_dict(Water_bodies.swiss)
     site_body_hdc = water_dict(Water_bodies.hdc)
 class Make_coordinates():
+    print(' this should not have home !!!!!!!!!!!!!!!2' )
+    print(Make_daily.e3.loc[Make_daily.e3.project_id == 'MCBP']['location_id'].unique())
     """
     Generates the out put for a map plot on google maps API
     Includes summary information per location
@@ -1189,7 +1191,7 @@ def mcbp_home(request):
             return h
         mk_pers = material_as_percent(mk_pers)
 
-        color = ['rgb(10, 46, 92, 1)', 'rgb(71, 142, 235, 1)', 'rgb(163, 199, 245, 1)', 'rgb(115, 18, 13, 1)', 'rgb(199, 31, 22, 1)', 'rgb(13, 115, 91, 1)', 'rgb(22, 199, 158, 1)', 'rgb(121, 70, 40, 1)', 'rgb(159, 183, 159, 1)', 'rgb(102,102, 0, 1)', 'rgb(215, 78, 9, 1)', 'rgb(255, 191, 0, 1)']
+        # color = ['rgb(10, 46, 92, 1)', 'rgb(71, 142, 235, 1)', 'rgb(163, 199, 245, 1)', 'rgb(115, 18, 13, 1)', 'rgb(199, 31, 22, 1)', 'rgb(13, 115, 91, 1)', 'rgb(22, 199, 158, 1)', 'rgb(121, 70, 40, 1)', 'rgb(159, 183, 159, 1)', 'rgb(102,102, 0, 1)', 'rgb(215, 78, 9, 1)', 'rgb(255, 191, 0, 1)']
 
         def locs_and_samples():
             a =  Make_daily.c.groupby('location_id')
@@ -1202,7 +1204,7 @@ def mcbp_home(request):
         'num_locs':number_locations, 'top_ten':top_ten_table, 'summary':summary, 'mk_pers':mk_pers, 'plot_density': Make_daily.e,
         'map_points':map_points, 'slr_cities': cities,'box_plot':Make_boxes.mc_box, 'lakes':Make_daily.l, 'rivers':Make_daily.r, 'box_lake':Make_boxes.lake_box, 'box_river':Make_boxes.river_box,
         'inventory':inventory, 'locs_samples':locs_and_samples(), 'city_locs':Make_cites.all_mc_cities, 'slr_river':Make_cites.mc_rivers,
-        'all_water':Water_bodies.swiss, 'all_cities':Make_cites.cities})
+        'all_water':Water_bodies.swiss, 'all_cities':Make_cites.mc_cities})
 
 def hdc_home(request):
         slr_locs = HDC_Beaches.beachList()

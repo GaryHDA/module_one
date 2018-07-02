@@ -73,7 +73,7 @@ html {
           <i class="fa fa-th-list fa-lg"></i>&nbsp; Summary : {{ city }}
         </div>
         <div class="card-body p-0" style="height:100%">
-          <h6 class="card-title pt-1" style="">Summary data for the Montreux Clean Beach
+          <h6 class="card-title pt-1" style="">Summary data for hammerdirt California
             <br><small class="text-muted">{{ summary.first|date:"M Y" }}-{{ summary.last|date:"M Y" }}
             <br>units= pieces/meter (pcs/m)</small></h6>
           <table class="table table-sm table-striped text-left pb-0"  style="height:62%">
@@ -144,10 +144,10 @@ html {
     <div class="col-sm-4" style="">
       <div class="card pb-0" style="height:100%" id="map-of-locations">
           <div class="bg-info text-white card-header p-2 pl-3" id="" style="">
-            <i class="fa fa-map fa-lg "></i>&nbsp;Map of MCBP locations
+            <i class="fa fa-map fa-lg "></i>&nbsp;Map of hammerdirt California locations
           </div>
           <div class="card-body p-0 pt-1" style="height:100%; ">
-            <h6 class="card-title" style="">Locations of the MCBP samples
+            <h6 class="card-title" style="">Locations of the HDC samples
               <br><small class="text-muted">{{ summary.first|date:"M Y" }}-{{ summary.last|date:"M Y" }}
               <br>Circle size relative to avg pcs/m</small></h6>
               <div id="maps" style="height:68%;min-height:390px"></div>
@@ -183,13 +183,13 @@ html {
         <div class="bg-info text-white card-header p-2 pl-3" id="" style="">
           <i class="fa fa-line-chart fa-lg "></i>&nbsp; Inventory results by day
         </div>
-        <div class="card-body p-0 pt-1 " style=""><h6 class="card-title" style="">All MCBP daily results
+        <div class="card-body p-0 pt-1 " style=""><h6 class="card-title" style="">All HDC daily results
           <br><small class="text-muted">{{ summary.first|date:"M Y" }}-{{ summary.last|date:"M Y" }}, toggle categories in legend
           <br>Monthly summaries, click and drag in chart areaa to zoom date</small></h6>
 
           <div class="align-self-center"  style="height:67%; min-height:400px" id="box-plot"></div>
           <button class="btn bg-info w-100 p-2 pl-3 text-white text-left mt-1" style="height:10%" data-toggle="modal"  data-target="#box_rivs_lakes" aria-expanded="false" aria-controls="table-of-results">
-            <i class="fa fa-line-chart fa-lg "></i>&nbsp; Results sorted by river and lakes
+            <i class="fa fa-line-chart fa-lg "></i>&nbsp; Make this chart bigger
           </button>
           <button class="btn bg-info w-100 p-2 pl-3 text-white text-left border-white" style="height:10%" role="button" data-toggle="modal" data-target="#water_search" aria-expanded="false" aria-controls="">
             Search by city, body of water or project</button>
