@@ -65,7 +65,7 @@ class  HDC_DataAdmin(admin.ModelAdmin):
 
     fieldsets = ((None, {
     'fields':('date', 'location',
-        'project', 'code', 'quantity')}),
+        'project', 'code', 'quantity', 'length')}),
         (None, {'fields':[]}))
 
     def item_code(self, obj):

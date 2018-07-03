@@ -190,7 +190,7 @@ class All_Data(models.Model):
         return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location, self.length, self.quantity, self.code  )
 
 class HDC_Data(models.Model):
-    location = models.ForeignKey(Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)  # Field name made lowercase.
+    location = models.ForeignKey(HDC_Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)  # Field name made lowercase.
     date = models.DateField(db_column='date', blank=True, null=True)  # Field name made lowercase.
     length = models.DecimalField(db_column='length', decimal_places=2, max_digits= 7, blank=True, null=True)
     quantity = models.DecimalField(db_column='quantity',decimal_places=2, max_digits= 7, blank=True, null=True)
