@@ -53,10 +53,17 @@ class Beaches(models.Model):
 
     def beachList():
         nameList = []
-        for x in Beaches.objects.values('location'):
+        for x in Beaches.objects.filter(project='MCBP').values('location'):
             for t, y in x.items():
                 nameList.append(y)
         return nameList
+    def p_beaches():
+        nameList = []
+        for x in Beaches.objects.filter(project='PC').values('location'):
+            for t, y in x.items():
+                nameList.append(y)
+        return nameList
+        
 
 
     def __str__(self):
@@ -177,8 +184,8 @@ class Codes(models.Model):
 class All_Data(models.Model):
     location = models.ForeignKey(Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)  # Field name made lowercase.
     date = models.DateField(db_column='date', blank=True, null=True)  # Field name made lowercase.
-    length = models.DecimalField(db_column='length', decimal_places=2, max_digits= 7, blank=True, null=True)
-    quantity = models.DecimalField(db_column='quantity',decimal_places=2, max_digits= 7, blank=True, null=True)
+    length = models.IntegerField(db_column='length', default=0)
+    quantity = models.IntegerField(db_column='quantity', default=0)
     code = models.ForeignKey(Codes, db_column='code', null=True,  on_delete=models.DO_NOTHING)
     project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
 
@@ -189,11 +196,27 @@ class All_Data(models.Model):
     def __str__(self):
         return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location, self.length, self.quantity, self.code  )
 
+class Precious(models.Model):
+    location = models.ForeignKey(Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)  # Field name made lowercase.
+    date = models.DateField(db_column='date', blank=True, null=True)  # Field name made lowercase.
+    length = models.IntegerField(db_column='length', default=0)
+    quantity = models.IntegerField(db_column='quantity', default=0)
+    code = models.ForeignKey(Codes, db_column='code', null=True,  on_delete=models.DO_NOTHING)
+    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
+
+
+    class Meta:
+        managed = True
+        db_table = 'precious'
+    def __str__(self):
+        return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location, self.length, self.quantity, self.code  )
+
+
 class HDC_Data(models.Model):
     location = models.ForeignKey(HDC_Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)  # Field name made lowercase.
     date = models.DateField(db_column='date', blank=True, null=True)  # Field name made lowercase.
-    length = models.DecimalField(db_column='length', decimal_places=2, max_digits= 7, blank=True, null=True)
-    quantity = models.DecimalField(db_column='quantity',decimal_places=2, max_digits= 7, blank=True, null=True)
+    length = models.IntegerField(db_column='length', default=0)
+    quantity = models.IntegerField(db_column='quantity', default=0)
     code = models.ForeignKey(Codes, db_column='code', null=True,  on_delete=models.DO_NOTHING)
     project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
 
@@ -207,8 +230,8 @@ class HDC_Data(models.Model):
 class SLR_Data(models.Model):
     location = models.ForeignKey(SLR_Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)  # Field name made lowercase.
     date = models.DateField(db_column='date', blank=True, null=True)  # Field name made lowercase.
-    length = models.DecimalField(db_column='length', decimal_places=2, max_digits= 7, blank=True, null=True)
-    quantity = models.DecimalField(db_column='quantity',decimal_places=2, max_digits= 7, blank=True, null=True)
+    length = models.IntegerField(db_column='length', default=0)
+    quantity = models.IntegerField(db_column='quantity', default=0)
     density = models.DecimalField(db_column='density', decimal_places=3, max_digits=8, blank=True, null=False,)
     code = models.ForeignKey(Codes, db_column='code', null=True, on_delete=models.DO_NOTHING)
     project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
@@ -238,7 +261,7 @@ class SLR_Area(models.Model):
     date = models.DateField(db_column='date', blank=True, null=True)
     sample = models.IntegerField(db_column='sample', blank=True, null=True)
     density2 = models.DecimalField(db_column='density2', decimal_places=3, max_digits=8, blank=True, null=False)
-    quantity = models.IntegerField(db_column='quantity', blank=True, null=True)
+    quantity = models.IntegerField(db_column='quantity', default=0)
     project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
 
     class Meta:
