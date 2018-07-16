@@ -991,6 +991,8 @@ var lake = {{ lakes|safe }};
 var box_lakes = {{ box_lake|safe }};
 var box_rivers = {{ box_river|safe }};
 var box_mcs = {{ box_mc|safe }};
+var plot_p = {{ plot_p|safe }};
+var p_box = {{ p_box|safe }}
 
 
 var year_one = [];
@@ -1028,6 +1030,13 @@ mc_plot.forEach(function(element){
   element.density = parseFloat(element.density);
   plot_mc.push ({"name":element.location_id, "x":element.date, "y":element.density})
 });
+var p_plot = [];
+plot_p.forEach(function(element){
+  element.date = Date.parse(element.date);
+  element.density = parseFloat(element.density);
+  p_plot.push ({"name":element.location_id, "x":element.date, "y":element.density})
+});
+
 var riv_dens = [];
 river.forEach(function(element){
   element.date = Date.parse(element.date);
@@ -1058,6 +1067,11 @@ var mc_box = [];
 box_mcs.forEach(function(element){
   element[0] = Date.parse(element[0]);
   mc_box.push([element[0], element[1], element[2], element[3], element[4], element[5]])
+});
+var box_p = [];
+p_box.forEach(function(element){
+  element[0] = Date.parse(element[0]);
+  box_p.push([element[0], element[1], element[2], element[3], element[4], element[5]])
 });
 
 </script>
@@ -1805,6 +1819,25 @@ Highcharts.chart('box_plot_one', {
         lineWidth:1,
       },
       data:plot_mc,
+      tooltip: {
+          headerFormat: '<b>{point.key}</b><br>',
+          pointFormat: '{point.x:%e-%b}: {point.y:.2f} pcs/m'
+      },
+
+    },
+    {
+      zIndex:2,
+      xAxis:0,
+      type: 'scatter',
+      name:'Precious - lake',
+      marker: {
+         symbol: 'circle',
+        radius:3,
+        lineColor: 'rgba(00, 00, 00, .3)',
+        fillColor:  'rgba(255, 65, 168, .5)',
+        lineWidth:1,
+      },
+      data:p_plot,
       tooltip: {
           headerFormat: '<b>{point.key}</b><br>',
           pointFormat: '{point.x:%e-%b}: {point.y:.2f} pcs/m'

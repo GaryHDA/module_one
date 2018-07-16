@@ -75,35 +75,6 @@ class Make_cites():
         return a
     a_b_all = combine_it([a_1, b_1, a_2])
     
-#    def beaches_cities(b):
-#         a = pd.DataFrame(b)
-#        c = list(a['city'].unique())
-#        return c
-#    mc_cities = beaches_cities(a_1)
-#    slr_cities = beaches_cities(b_1)
-#    hdc_cities = beaches_citeis(c_1)
-#    p_cities = beaches_cities(a_2)
-        
-
-#    def beaches_mc(b):
-#        a = pd.DataFrame(b)
-#        c = list(a['city'].unique())
-#        return c
-#    mc_cities = beaches_mc(a_1)
-#
-#    def beaches_slr(b):
-#        a = pd.DataFrame(b)
-#        c = list(a['city'].unique())
-#        return c
-#
-#    slr_cities = beaches_slr(b_1)
-#
-#    def beaches_hdc(b):
-#        a = pd.DataFrame(b)
-#        c = list(a['city'].unique())
-#        return c
-#    hdc_cities = beaches_hdc(c_1)
-
 
     def cite_dict(a_list):
         d = {}
@@ -180,7 +151,7 @@ class P_data():
         y = y[y.date <= t_day]
         return y
     c = format_data(a)
-    
+print(P_data.c)   
 class Slr_data():
     a = pd.DataFrame(list(SLR_Data.objects.all().exclude(location='untersee_steckborn_siedlerm').values()))
     def format_data(y):
@@ -254,55 +225,7 @@ class Slr_AL_data():
 class All_data():
     all_data = pd.concat([Slr_data.c, Mc_data.c, P_data.c], sort=True)
     
-#class Make_data():
-#    """
-#    Creates dfs from mysql query. loads all tables that hold daily data.
-#    Formats columns, cuts off all entries greater than today.
-#    Returns df for all datatables and one aggregated df of all data(slr and mcbp)
-#
-#    """
-#    a = pd.DataFrame(list(All_Data.objects.all().values()))
-#    b = pd.DataFrame(list(SLR_Data.objects.all().values()))
-#    e = pd.DataFrame(list(SLR_Density.objects.all().values()))
-#    f = pd.DataFrame(list(SLR_Density.objects.filter(location__water = 'r').values()))
-#    g = pd.DataFrame(list(SLR_Density.objects.filter(location__water = 'l').values()))
-#    i = pd.DataFrame(list(SLR_Area.objects.all().values()))
-#    k = pd.DataFrame(list(SLR_Area.objects.filter(location__water = 'r').values()))
-#    l = pd.DataFrame(list(SLR_Area.objects.filter(location__water = 'l').values()))
-#    o = pd.DataFrame(list(HDC_Data.objects.all().values()))
-#
-#    def format_data(y):
-#        t_day = pd.to_datetime('today')
-#        a = y.columns
-#        if 'quantity' in a:
-#            y = y.astype({'quantity':float}, copy=False)
-#        if 'density' in a:
-#            y = y.astype({'density':float}, copy=False)
-#        if 'density2' in a:
-#            y = y.astype({'density2':float}, copy=False)
-#        if 'date' in a:
-#            y['date'] = pd.to_datetime(y['date'])
-#            y = y[y.date <= t_day]
-#        if 'sample' in a:
-#            y = y.astype({'sample':float}, copy=False)
-#        if 'length' in a:
-#            y = y.astype({'length':float}, copy=False)
-#
-#        return y
-#    c = format_data(a)
-#    print(c[:10])
-#    d = format_data(b)
-#    h = format_data(e)
-#    j = format_data(i)
-#    m = format_data(k)
-#    n = format_data(l)
-#    p = format_data(o)
-#
-#    river = format_data(f)
-#    lake = format_data(g)
-#    print("this is make_data.lake  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-#    print(c.loc[c.location_id == 'Home sweet home'])
-#    all_data = pd.concat([c,d])
+
 class Daily():
     def __init__(self, df, names):
         self.df = df
@@ -313,13 +236,8 @@ class Daily():
         e =  a['quantity'].groupby([a['date'], a['location_id'], a['length'], a['project_id']]).sum().copy()
         e = pd.DataFrame(e)
         e.reset_index(inplace=True)
-        e = e[e.date > min(e.date)]
         e['density'] = e['quantity']/e['length']
         e['density'] = e['density'].round(4)
-#        print('this is the location id!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-#        print(e['location_id'].unique())
-#        print('this is beach list!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-#        print(b)
         for name in b:
             n=0
             for i, row in e.iterrows():
@@ -328,24 +246,6 @@ class Daily():
                     e.loc[i, 'sample'] = n
         return e
 class Mc_density():
-#    def daily(a, b):
-#        e =  a['quantity'].groupby([a['date'], a['location_id'], a['length'], a['project_id']]).sum().copy()
-#        e = pd.DataFrame(e)
-#        e.reset_index(inplace=True)
-#        e = e[e.date > min(e.date)]
-#        e['density'] = e['quantity']/e['length']
-#        e['density'] = e['density'].round(4)
-#        print('this is the location id!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-#        print(e['location_id'].unique())
-#        print('this is beach list!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-#        print(b)
-#        for name in b:
-#            n=0
-#            for i, row in e.iterrows():
-#                if e.loc[i, 'location_id'] == name:
-#                    n=n+1
-#                    e.loc[i, 'sample'] = n
-#        return e
     mc_density = Daily(Mc_data.c, Beaches.beachList()).daily()
 class P_density():
     p_density = Daily(P_data.c, Beaches.p_beaches()).daily()
@@ -366,13 +266,12 @@ class Daily_density():
         return x, e, bb, a
 class Mc_daily():
     mc, mc_one, mc_two, mc_three = Daily_density(Mc_density.mc_density).daily_density()
-for record in Mc_daily.mc:
-    print(record['location_id'], record['density'])
+
 class Hdc_daily():
     hdc, hdc_one, hdc_two, hdc_three = Daily_density(Hdc_density.hdc_density).daily_density()
 class P_daily():
     p, p_one, p_two, p_three = Daily_density(P_density.p_density).daily_density()
-print(P_daily.p)
+
 class Slr_daily():
     slr, slr_one, slr_two, slr_three = Daily_density(Slr_density.c).daily_density()
 class Slr_lake_daily():
@@ -413,80 +312,6 @@ class All_ch():
     all_ch_df, all_ch_lst = All_dailies([Slr_daily.slr,Mc_daily.mc, P_daily.p]).all_samples()
 class All_area():
     all_ch_dfa, all_ch_lsta = All_dailies([Slr_a_density.slr_a]).all_samples()
-
-
-#class Make_daily():
-#    """
-#    daily: takes a df of daily code values, groups quantity by date and location and gets the daily sum of density per location
-#    and assigns a sample number. returns a df
-#    daily density: takes a df of daily density values, formats the date to str, creates a list of dicts per daily record,
-#    gets the log of all densities. returns a dict of records, a list of logs, and two dfs
-#    daily density 2: same as daily density but for data sets using area and not pcs/m
-#    all-samples: aggregates list of dicts (record form) in two a single list of dicts. returns a list of dicts and a df
-#    some of these get passed to directly to a JS function.
-#    """
-#    def daily(a, b):
-#        e =  a['quantity'].groupby([a['date'], a['location_id'], a['length'], a['project_id']]).sum().copy()
-#        e = pd.DataFrame(e)
-#        e.reset_index(inplace=True)
-#        e = e[e.date > min(e.date)]
-#        e['density'] = e['quantity']/e['length']
-#        e['density'] = e['density'].round(4)
-#        print('this is the location id!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-#        print(e['location_id'].unique())
-#        print('this is beach list!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-#        print(b)
-#        for name in b:
-#            n=0
-#            for i, row in e.iterrows():
-#                if e.loc[i, 'location_id'] == name:
-#                    n=n+1
-#                    e.loc[i, 'sample'] = n
-#        return e
-#    c = daily(Make_data.c, Beaches.beachList())
-#    f = daily(Make_data.p, HDC_Beaches.beachList())
-#
-#    def daily_density(df):
-#        a = df[['date', 'location_id', 'density','quantity', 'sample', 'project_id']].copy()
-#        bb = a[['date', 'location_id', 'density', 'project_id']].copy()
-#        a['date'] = a['date'].dt.strftime("%Y-%m-%d")
-#        x = a.to_dict(orient='records')
-#        b = list(a['density'])
-#        c = sorted(b)
-#        d = [x for x in c if x > 0]
-#        e = [math.log(x) for x in d]
-#        return [x, e, bb, a]
-#
-#    d, d1, d2, d3 = daily_density(Make_data.h)
-#    e, e1, e2, e3 = daily_density(c)
-#    r, r1, r2, r3 = daily_density(Make_data.river)
-#    l, l1, l2, l3 = daily_density(Make_data.lake)
-#    hd, hd1, hd2, hd3, = daily_density(f)
-#
-#    def daily_density2(df):
-#        a = df[['date', 'location_id', 'density2','quantity', 'sample']].copy()
-#        bb = a[['date', 'location_id', 'density2']].copy()
-#        a['date'] = a['date'].dt.strftime("%Y-%m-%d")
-#        x = a.to_dict(orient='records')
-#        b = list(a['density2'])
-#        c = sorted(b)
-#        d = [x for x in c if x > 0]
-#        e = [math.log(x) for x in d]
-#        return [x, e, bb, a]
-#
-#    ar, ar1, ar2, ar3 = daily_density2(Make_data.j)
-#    arl, arl1, arl2, arl3 = daily_density2(Make_data.n)
-#    arr, arr1, arr2, arr3 = daily_density2(Make_data.m)
-#    def all_samples(e):
-#        a = []
-#        c = e
-#        for v in c:
-#            for s in v:
-#                a.append(s)
-#        b = pd.DataFrame(a)
-#        return b, a
-#    all_daily_df, all_daily_list = all_samples([e,d])
-#    slr_area_daily, slr_area_list = all_samples([ar])
 
 class Make_codes():
     """
@@ -628,7 +453,7 @@ class Make_coordinates():
         return(a)
     combined_map = coord_list([map_coords(Slr_lake_daily.slr_lake_three,  Make_cites.all_site_list, 'SLR', 'lake'),
     map_coords(Slr_river_daily.slr_river_three, Make_cites.all_site_list, 'SLR', 'river'),
-    map_coords(Mc_daily.mc_three, Make_cites.all_site_list, 'MCBP', 'lake')])
+    map_coords(Mc_daily.mc_three, Make_cites.all_site_list, 'MCBP', 'lake'), map_coords(P_daily.p_three, Make_cites.all_site_list, 'Precious', 'lake')])
     mc_map = coord_list([map_coords(Mc_daily.mc_three, Make_cites.all_site_list, 'MCBP', 'lake')])
     hdc_map = coord_list([map_coords(Hdc_daily.hdc_three, Make_cites.hdc_sites, 'HDC', 'river' )])
     slr_map = coord_list([map_coords2(Slr_la_density.slr_a_lake_three,  Make_cites.all_site_list, 'SLR', 'lake'),
@@ -691,11 +516,11 @@ class Make_totals():
         f={'lake':[], 'river':[]}
         for d in c:
             if d != 'untersee_steckborn_siedlerm':
-                if b[d]['water'] == 'lake':
+                if b[d]['water'] == 'l':
                     if a[d] not in f['lake']:
                         e = a[d]
                         f['lake'].append(e)
-                elif b[d]['water'] == 'river':
+                elif b[d]['water'] == 'r':
                     if a[d] not in f['river']:
                         e = a[d]
                         f['river'].append(e)
@@ -805,6 +630,7 @@ class Make_boxes():
     lake_box = box_plots(Slr_lake_daily.slr_lake_two)
     mc_box = box_plots(Mc_daily.mc_two)
     s_box = box_plots(Slr_daily.slr_two)
+    p_box = box_plots(P_daily.p_two)
     def box_plots2(a):
         #mon_dict = {1:'jan', 2:'Feb', 3:'Mar', 4:'Apr', 5:'May', 6:'Jun', 7:'July', 8:'Aug', 9:'Sep', 10:'Oct', 11:'Nov', 12:'Dec'}
         i = []
@@ -967,7 +793,8 @@ def beach_litter(request):
     return render(request, 'dirt/beach_litter.html', { 'mk_pers':mk_pers, 'top_ten':top_ten_table, 'top_ten_total': top_ten[:10].sum(),'all_water':Water_bodies.swiss,
     'all_cities':Make_cites.cities, 'plot_all':plot_all, 'y_one_s':len(plot_density), 'y_two_s':len(plot_mc), 'year_one':plot_density, 'year_two':plot_mc, 'combined_map':combined_map,
     'num_locs':num_location, 'dist_2016':dist_2016,'dist_2017':dist_2017 , 'num_samps':num_samps, 't_day':t_day, 'inventory':inventory, 'bodies_dict':bodies_dict, 'bodies_list':bodies_list,
-    'num_lakes':num_lakes, 'num_rivers':num_rivers,'summary':summary,'box_lake':box_lake, 'box_river':box_river, 'box_mc':box_mc, 'lakes':Slr_lake_daily.slr_lake, 'rivers':Slr_river_daily.slr_river,'plot_mc':Mc_daily.mc})
+    'num_lakes':num_lakes, 'num_rivers':num_rivers,'summary':summary,'box_lake':box_lake, 'box_river':box_river, 'box_mc':box_mc, 'lakes':Slr_lake_daily.slr_lake, 'rivers':Slr_river_daily.slr_river,
+    'plot_mc':Mc_daily.mc, 'plot_p':P_daily.p, 'p_box':Make_boxes.p_box})
 
 def services_home(request):
     return render(request, 'dirt/services.html')
