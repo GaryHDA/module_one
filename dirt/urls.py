@@ -20,6 +20,7 @@ url(r'^services.html', views.services_home, name='services'),
 url(r'^intheworks.html', views.in_the_works, name='in_the_works'),
 url(r'^microbiology.html', views.microbiology, name='microbiology'),
 url(r'^precious.html', views.precious, name='precious'),
+url(r'^search_precious/$', views.search_precious, name='precious_search_results'),
 
 
 ]

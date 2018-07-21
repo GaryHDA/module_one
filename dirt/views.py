@@ -1462,3 +1462,78 @@ def precious(request):
         'map_points':map_points, 'slr_cities': cities,'box_plot':Make_boxes.p_box, 'lakes':P_daily.p, 'rivers':D_daily.d, 'box_lake':Make_boxes.d_box, 
         'inventory':inventory, 'locs_samples':locs_and_samples(), 'city_locs':Make_cites.all_p_cities, 'slr_river':Make_cites.p_rivers,
         'all_water':Water_bodies.swiss, 'all_cities':Make_cites.p_cities})
+def search_precious(request):
+        if 'q' in request.GET and request.GET['q']:
+            q = request.GET['q']
+           
+            # dcitionary that relates location id to waterbody
+            water_bodies = Make_cites.all_p_cities
+
+            # this gets the data for the report
+            def get_daily_values(criteria):
+                # gets the values associated with the user choice
+                # sets the date and time stamp
+                # calls Make_daily to sort and make different lists\
+                a = pd.concat([P_daily.p_three, D_daily.d_three], sort=True)
+                a['date'] = pd.to_datetime(a['date'])
+                a = a.loc[a.location_id.isin(water_bodies[criteria])]
+                c_1, c_2, c_3, c_4 = Daily_density(a).daily_density()
+
+                return c_1, c_2, c_3, c_4
+            # c_1 = a list of dicts in form df-record per dict
+            # c_2 = a list of np.log() values for daily pcs/m
+            # c_3 = a df with 'date', 'location_id', 'density'
+            # c_4 = a df with 'date', 'location_id', 'density','quantity', 'sample'
+
+            c_1, c_2, c_3, c_4 = get_daily_values(q)
+
+
+            summary, num_locs= Make_totals.make_summary(c_4)
+
+            map_data = Make_coordinates.coord_list([Make_coordinates.map_coords(c_3, Make_cites.p_sites, 'Precious', q)])
+            print(map_data)
+            code_data = All_p_data.all_p_data.loc[All_p_data.all_p_data.location_id.isin(water_bodies[q])].copy()
+
+            # data for table 'locations, samples and avgerages'
+            # groups c_4 by location id, aggregates density and sample no
+            # ourputs data to dict for js output
+
+            def locs_and_samples():
+                a = c_4.groupby('location_id')
+                b = a.agg({'density':np.mean, 'sample':max})
+                b.reset_index(inplace=True)
+                c = b.to_dict('records')
+                return c
+
+            # Materioal and Topten functions:
+            # use the code id attributes to sort and aggregate results
+            # creates a dict of top_ten and material, ourput is for js
+            def material_as_percent(d):
+                a = summary['total']
+                h = {}
+                for b, c in d.items():
+                    e = (c/a )*100
+                    f = [c,e]
+                    g = {b:f}
+                    h.update(g)
+                return h
+            def top_ten_percents(e):
+                a = summary['total']
+                b = []
+                for c in e:
+                    c.update({'per':(c['total']/a)*100})
+                    b.append(c)
+                return b
+
+            total_inventory, city_top_ten = Make_codes.top_ten_codes(code_data, Make_codes.codes_dict, Make_codes.codes_material)
+            t_ten = top_ten_percents(total_inventory[:10])
+            mk_pers = Make_percents(city_top_ten, Make_codes.codes_material).get_percents()
+            mk_pers = material_as_percent(mk_pers)
+
+
+            return render(request, 'dirt/search_precious.html', {'city':q, 'city_top_ten':t_ten, 'summary':summary,  'num_locs':num_locs, 'mk_pers':mk_pers,
+            'plot_density':c_1,'plot_all': All_p.all_p_lst,'map_points':map_data, 'locs_samples':locs_and_samples(), 'ceiling':max(c_4['density']) + 10, 'inventory':total_inventory,
+            'all_water':Water_bodies.swiss, 'all_cities':Make_cites.cities,})
+
+        else:
+            return HttpResponse('Please submit a search term')
