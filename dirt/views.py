@@ -1461,7 +1461,7 @@ def precious(request):
         'num_locs':number_locations, 'top_ten':top_ten_table, 'summary':summary, 'mk_pers':mk_pers, 'plot_density': All_p.all_p_lst,
         'map_points':map_points, 'slr_cities': cities,'box_plot':Make_boxes.p_box, 'lakes':P_daily.p, 'rivers':D_daily.d, 'box_lake':Make_boxes.d_box, 
         'inventory':inventory, 'locs_samples':locs_and_samples(), 'city_locs':Make_cites.all_p_cities, 'slr_river':Make_cites.p_rivers,
-        'all_water':Water_bodies.swiss, 'all_cities':Make_cites.p_cities})
+        'all_water':Water_bodies.swiss, 'all_cities':Make_cites.cities})
 def search_precious(request):
         if 'q' in request.GET and request.GET['q']:
             q = request.GET['q']
