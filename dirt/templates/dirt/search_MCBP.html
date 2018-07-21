@@ -155,7 +155,7 @@
           <i class="fa fa-line-chart fa-lg "></i>&nbsp; {{ city }} Results by day and location
         </div>
         <div class="card-body p-0" style="height:100%">
-          <h6 class="card-title" style="">{{ city }} vs all other SLR surveys surveys
+          <h6 class="card-title" style="">{{ city }} vs all other MCBP surveys
             <br><small class="text-muted">Click and drag in chart area to zoom date
             <br>Surveys greater than 10 pcs/m of this locations max value not shown</small></h6>
           <div class="" style="height:88%;width:100%" id="combined-ts"></div>
@@ -368,7 +368,7 @@
           </tr>
           {% endfor %}
           <tr>
-            <td colspan="3" class="bg-info text-white"> End of inventory
+            <td colspan="4" class="bg-info text-white"> End of inventory
               <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </td>
           </tr>
@@ -428,8 +428,10 @@
                       SLR</a>
                     <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'mcbp_home' %}" aria-expanded="false" aria-controls="table-of-results">
                       MCBP</a>
-                      <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'hdc_home' %}" aria-expanded="false" aria-controls="table-of-results">
+                    <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'hdc_home' %}" aria-expanded="false" aria-controls="table-of-results">
                         HDC</a>
+                    <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'precious' %}" aria-expanded="false" aria-controls="table-of-results">
+                        PC</a>
                   </div>
                 </div>
               </div>
@@ -781,7 +783,7 @@ Highcharts.chart('combined-ts', {
     series: [{
       zIndex:3,
       type: 'scatter',
-      name:'All other surveys',
+      name:'All other MCBP surveys',
       marker: {
         symbol: 'circle',
         radius:6,

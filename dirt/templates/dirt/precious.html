@@ -70,10 +70,10 @@ html {
     <div class="col-sm-4" style="">
       <div class="card pb-0" style="height:100%">
         <div class="bg-info text-white card-header p-2 pl-3" id="" style="">
-          <i class="fa fa-th-list fa-lg"></i>&nbsp; Summary : {{ city }}
+          <i class="fa fa-th-list fa-lg"></i>&nbsp; Summary: Precious Collect
         </div>
         <div class="card-body p-0" style="height:100%">
-          <h6 class="card-title pt-1" style="">Summary data for the Montreux Clean Beach
+          <h6 class="card-title pt-1" style="">Summary data for Precious Collect
             <br><small class="text-muted">{{ summary.first|date:"M Y" }}-{{ summary.last|date:"M Y" }}
             <br>units= pieces/meter (pcs/m)</small></h6>
           <table class="table table-sm table-striped text-left pb-0"  style="height:62%">
@@ -144,15 +144,15 @@ html {
     <div class="col-sm-4" style="">
       <div class="card pb-0" style="height:100%" id="map-of-locations">
           <div class="bg-info text-white card-header p-2 pl-3" id="" style="">
-            <i class="fa fa-map fa-lg "></i>&nbsp;Map of MCBP locations
+            <i class="fa fa-map fa-lg "></i>&nbsp;Map of Precious Collect acitvities
           </div>
           <div class="card-body p-0 pt-1" style="height:100%; ">
-            <h6 class="card-title" style="">Locations of the MCBP samples
+            <h6 class="card-title" style="">Locations of the Precious Collect samples
               <br><small class="text-muted">{{ summary.first|date:"M Y" }}-{{ summary.last|date:"M Y" }}
               <br>Circle size relative to avg pcs/m</small></h6>
               <div id="maps" style="height:68%;min-height:390px"></div>
               <div class="bg-black text-white card-header" id="" style="">
-                  <form class="d-inline-block" action='search_MCBP/' method='get'>
+                  <form class="d-inline-block" action='search_precious/' method='get'>
                     <i class="fa fa-folder-open fa-lg mr-1 "></i>&nbsp;Details:&nbsp;&nbsp;
                     <select class="form-control-sm d-inline-block mr-2"style="width:180px" name='q'>
                       {% for x in slr_cities %}
@@ -183,7 +183,7 @@ html {
         <div class="bg-info text-white card-header p-2 pl-3" id="" style="">
           <i class="fa fa-line-chart fa-lg "></i>&nbsp; Inventory results by day
         </div>
-        <div class="card-body p-0 pt-1 " style=""><h6 class="card-title" style="">All MCBP daily results
+        <div class="card-body p-0 pt-1 " style=""><h6 class="card-title" style="">All Precious Collect daily results
           <br><small class="text-muted">{{ summary.first|date:"M Y" }}-{{ summary.last|date:"M Y" }}, toggle categories in legend
           <br>Monthly summaries, click and drag in chart areaa to zoom date</small></h6>
 
@@ -203,7 +203,7 @@ html {
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title">All items identified from the MCBP {{ summary.last|date:"M Y" }}</h6>
+        <h6 class="modal-title">All items identified by Precious Collect </h6>
         <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -241,8 +241,7 @@ html {
     <div class="modal-content">
       <div class="modal-header">
         <h6 class="modal-title">The top-ten items indentified from all samples.<small class="text-mutted">
-        <br>REMEMBER: these are the reported observations of people in your community
-        <br>Units are "pieces", the description and code are Marine Litter Watch</small>
+         <br>Units are "pieces", the description and code are Marine Litter Watch</small>
         </h6>
         <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -333,11 +332,6 @@ html {
             <td class="text-right"> {{ r.sample|floatformat:0 }}</td>
           </tr>
           {% endfor %}
-          <tr>
-            <td colspan="3" class="bg-info text-white"> End of inventory
-              <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </td>
-          </tr>
         </table>
       </div>
     </div>
@@ -434,7 +428,7 @@ html {
  <div class="modal-dialog modal-lg" role="document">
    <div class="modal-content">
      <div class="modal-header">
-       <h5 class="modal-title">List of lakes and rivers with MCBP surveys</h5>
+       <h5 class="modal-title">List of lakes and rivers with Precious Collect surveys</h5>
        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
      </div>
      <div class="modal-body ">
@@ -456,7 +450,7 @@ html {
  <div class="modal-dialog modal-lg" role="document">
    <div class="modal-content">
      <div class="modal-header">
-       <h5 class="modal-title">Cities with surveys in the MCBP</h5>
+       <h5 class="modal-title">Cities with Precious Collect surveys</h5>
        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
      </div>
      <div class="modal-body ">
@@ -478,8 +472,8 @@ html {
  <div class="modal-dialog modal-lg" role="document">
    <div class="modal-content">
      <div class="modal-header">
-       <h6 class="card-title" style="">All MCBP results 
-         <br><small class="text-muted mb-2">{{ summary.first|date:"M Y" }}-{{ summary.last|date:"M Y" }}, toggle categories in legend
+       <h6 class="card-title" style="">Precious Collect results sorted by rivers and lakes
+         <br><small class="text-muted mb-2">June 2018 - present, toggle categories in legend
          <br>Monthly summaries, click and drag in chart areaa to zoom date</small></h6>
        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
      </div>
@@ -543,7 +537,7 @@ html {
                       MCBP</a>
                     <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'hdc_home' %}" aria-expanded="false" aria-controls="table-of-results">
                         HDC</a>
-                     <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'precious' %}" aria-expanded="false" aria-controls="table-of-results">
+                    <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'precious' %}" aria-expanded="false" aria-controls="table-of-results">
                         PC</a>
                   </div>
                 </div>
@@ -581,12 +575,12 @@ var plot_data = {{ plot_density|safe }};
 var river = {{ rivers|safe }};
 var lake = {{ lakes|safe }};
 var box_lake = {{ box_lake|safe }};
-var box_river = {{ box_river|safe }};
+// var box_river = {{ box_river|safe }};
 // var box_cats = {{ box_cats|safe }};
 // var sources_as = {{ sources_as|safe }}
 
-// console.log(box_cats)
-// console.log(box_lake)
+console.log(map_points)
+
 // console.log(box_river)
 
 var ts_plot = [];
@@ -598,7 +592,7 @@ plot_data.forEach(function(element){
     ts_plot.push({"name":element.location_id, "x":element.date, "y":element.density});
   }
 });
-
+console.log(ts_plot)
 var mc_box = [];
 boxer.forEach(function(element){
   element[0] = Date.parse(element[0]);
@@ -754,11 +748,11 @@ function initMap() {
     ]
   }
 ],
-{name:'MCBP locations'});
+{name:'Precious Collect locations'});
   map = new google.maps.Map(document.getElementById('maps'), {
-    zoom:7,
+    zoom:5,
     center: {lat: 46.83, lng: 8.23},
-    minZoom:7,
+    minZoom:5,
     mapTypeControlOptions: {
       mapTypeIds: ['styled_map'],
     },
@@ -878,7 +872,7 @@ Highcharts.chart('box-plot', {
     },
     xAxis: [{
       type: 'datetime',
-      min: Date.UTC(2015, 11, 01),
+      min: Date.UTC(2018, 05, 01),
       tickColor:'rgba(00, 00, 00, 1)',
       tickInterval:3600*1000*24*28,
       tickColor:'rgba(00, 00, 00, 1)',
@@ -914,16 +908,17 @@ Highcharts.chart('box-plot', {
         }
       },
     },
-    series:[{
-      zIndex:3,
-      xAxis:0,
-      type: 'boxplot',
-      name: 'Monthly summary',
-      data: mc_box,
-      tooltip: {
-          headerFormat: '<em>{point.key}</em><br/>'
-      },
-    },
+    series:[
+//    {
+//      zIndex:3,
+//      xAxis:0,
+//      type: 'boxplot',
+//      name: 'Monthly summary',
+//      data: mc_box,
+//      tooltip: {
+//          headerFormat: '<em>{point.key}</em><br/>'
+//      },
+//    },
     {
       zIndex:2,
       xAxis:0,
@@ -1001,7 +996,7 @@ Highcharts.chart('riv-lake', {
     },
     xAxis: [{
       type: 'datetime',
-      min: Date.UTC(2015, 11, 01),
+      min: Date.UTC(2018, 05, 01),
       tickColor:'rgba(00, 00, 00, 1)',
       tickInterval:3600*1000*24*28,
       tickColor:'rgba(00, 00, 00, 1)',
@@ -1037,16 +1032,17 @@ Highcharts.chart('riv-lake', {
         }
       },
     },
-    series:[{
-      zIndex:3,
-      xAxis:0,
-      type: 'boxplot',
-      name: 'Monthly summary',
-      data: mc_box,
-      tooltip: {
-          headerFormat: '<em>{point.key}</em><br/>'
-      },
-    },
+    series:[
+//    {
+//      zIndex:3,
+//      xAxis:0,
+//      type: 'boxplot',
+//      name: 'Monthly summary',
+//      data: mc_box,
+//      tooltip: {
+//          headerFormat: '<em>{point.key}</em><br/>'
+//      },
+//    },
     {
       zIndex:2,
       xAxis:0,

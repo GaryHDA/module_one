@@ -228,7 +228,7 @@ html {
           </tr>
           {% endfor %}
           <tr>
-            <td colspan="3" class="bg-info text-white"> End of inventory
+            <td colspan="4" class="bg-info text-white"> End of inventory
               <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </td>
           </tr>
@@ -334,6 +334,11 @@ html {
             <td class="text-right"> {{ r.sample|floatformat:0 }}</td>
           </tr>
           {% endfor %}
+          <tr>
+            <td colspan="3" class="bg-info text-white"> End of inventory
+              <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </td>
+          </tr>
         </table>
       </div>
     </div>
@@ -509,7 +514,7 @@ html {
                 </select>
                 <button class="d-inline-block btn txt-14 p-1" style="background-color:transparent; border-color:black; border-width:1px" type='submit' ><i class="fa fa-external-link fa-lg"></i></button>
               </form>
-              <div class="card-text"><small>* Get all results from a river or lake </small></div>
+              <div class="card-text"><small>* Get all results from a Swiss river or lake </small></div>
             </div>
           </div>
           <div class="card " style="">
@@ -524,6 +529,8 @@ html {
                       MCBP</a>
                       <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'hdc_home' %}" aria-expanded="false" aria-controls="table-of-results">
                         HDC</a>
+                     <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'precious' %}" aria-expanded="false" aria-controls="table-of-results">
+                        PC</a>
                   </div>
                 </div>
               </div>
