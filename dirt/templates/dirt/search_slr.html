@@ -368,7 +368,7 @@
           </tr>
           {% endfor %}
           <tr>
-            <td colspan="3" class="bg-info text-white"> End of inventory
+            <td colspan="4" class="bg-info text-white"> End of inventory
               <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </td>
           </tr>
@@ -428,8 +428,10 @@
                       SLR</a>
                     <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'mcbp_home' %}" aria-expanded="false" aria-controls="table-of-results">
                       MCBP</a>
-                      <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'hdc_home' %}" aria-expanded="false" aria-controls="table-of-results">
-                        HDC</a>
+                    <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'hdc_home' %}" aria-expanded="false" aria-controls="table-of-results">
+                      HDC</a>
+                    <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'precious' %}" aria-expanded="false" aria-controls="table-of-results">
+                        PC</a>
                   </div>
                 </div>
               </div>
@@ -622,7 +624,7 @@ function initMap() {
 ],
 {name:'Beach litter surveys: {{ city }}'});
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom:8,
+    zoom:6,
     // center: {lat: map_points[0][0], lng: map_points[0][1]},
     minZoom:5,
     mapTypeControlOptions: {
@@ -781,7 +783,7 @@ Highcharts.chart('combined-ts', {
     series: [{
       zIndex:3,
       type: 'scatter',
-      name:'All other surveys',
+      name:'All other SLR surveys',
       marker: {
         symbol: 'circle',
         radius:6,

@@ -63,6 +63,12 @@ class Beaches(models.Model):
             for t, y in x.items():
                 nameList.append(y)
         return nameList
+    def d_beaches():
+        nameList = []
+        for x in Beaches.objects.filter(project='MWP').values('location'):
+            for t, y in x.items():
+                nameList.append(y)
+        return nameList
         
 
 
@@ -211,7 +217,21 @@ class Precious(models.Model):
     def __str__(self):
         return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location, self.length, self.quantity, self.code  )
 
+class Descente(models.Model):
+    location = models.ForeignKey('Beaches', db_column='location', null=True, on_delete=models.DO_NOTHING)  # Field name made lowercase.
+    date = models.DateField(db_column='date', blank=True, null=True)  # Field name made lowercase.
+    length = models.IntegerField(db_column='length', default=0)
+    quantity = models.IntegerField(db_column='quantity', default=0)
+    code = models.ForeignKey('Codes', db_column='code', null=True,  on_delete=models.DO_NOTHING)
+    project = models.ForeignKey('Projects', db_column='project',null=True, on_delete=models.DO_NOTHING)
 
+
+    class Meta:
+        managed = True
+        db_table = 'descente'
+    def __str__(self):
+        return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location, self.length, self.quantity, self.code  )
+    
 class HDC_Data(models.Model):
     location = models.ForeignKey(HDC_Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)  # Field name made lowercase.
     date = models.DateField(db_column='date', blank=True, null=True)  # Field name made lowercase.

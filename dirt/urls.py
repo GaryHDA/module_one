@@ -19,6 +19,7 @@ url(r'^beach_litter.html', views.beach_litter, name='litter_home'),
 url(r'^services.html', views.services_home, name='services'),
 url(r'^intheworks.html', views.in_the_works, name='in_the_works'),
 url(r'^microbiology.html', views.microbiology, name='microbiology'),
+url(r'^precious.html', views.precious, name='precious'),
 
 
 ]

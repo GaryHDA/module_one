@@ -210,6 +210,9 @@
                   <div class="btn m-1 wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
                     <a class="text-white txt-14" href="{% url 'hdc_home' %}" aria-expanded="false"> California<br> Results </a>
                   </div>
+                  <div class="btn m-1 wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
+                    <a class="text-white txt-14" href="{% url 'precious' %}" aria-expanded="false"> Precious<br> Results </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -753,7 +756,7 @@
                 </select>
                 <button class="d-inline-block btn txt-14 p-1" style="background-color:transparent; border-color:black; border-width:1px" type='submit' ><i class="fa fa-external-link fa-lg"></i></button>
               </form>
-                <div class="card-text"><small>* Get all results from a river or lake </small></div>
+                <div class="card-text"><small>* Get all results from a Swiss river or lake </small></div>
               </div>
             </div>
             <div class="card " style="">
@@ -768,6 +771,8 @@
                       MCBP</a>
                     <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'hdc_home' %}" aria-expanded="false" aria-controls="table-of-results">
                       HDC</a>
+                    <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'precious' %}" aria-expanded="false" aria-controls="table-of-results">
+                        PC</a> 
                   </div>
                 </div>
                 </div>
@@ -948,7 +953,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Beach-litter densities 2015-2018 rivers vs. lakes : SLR & MCBP<br>
+        <h5 class="modal-title">Beach-litter densities 2015-2018 rivers vs. lakes : SLR, MCBP Precious Collect<br>
           <small class="text-muted"> Click and drag to zoom date, enable/disable groups in the legend </small>
         </h5>
         <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
