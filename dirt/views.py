@@ -121,7 +121,7 @@ class Make_cites():
     all_mc_cities = city_dict(mc_cities, list(mc_site_info.keys()), mc_site_info )
     all_hdc_cities = city_dict(hdc_cities, list(hdc_sites.keys()), hdc_sites)
     all_p_cities = city_dict(p_cities, list(p_sites), p_sites)
-    
+
     def make_lakes(b, e):
         d = []
         for x in b:
@@ -136,7 +136,10 @@ class Make_cites():
     d_lake = make_lakes(a_3, 'l')
     d_river = make_lakes(a_3, 'r')
     print(mc_river, mc_lake)
-    
+class Make_csvs():
+    a = pd.DataFrame(Make_cites.a_b_all)
+    a.to_csv('dirt/static/site_data.csv')
+
 class Mc_data():
     a = pd.DataFrame(list(All_Data.objects.all().values()))
     def format_data(y):
@@ -241,9 +244,10 @@ class Slr_AL_data():
         return y
     c = format_data(a)
 class All_data():
-    all_data = pd.concat([Slr_data.c, Mc_data.c, P_data.c], sort=True)
+    all_data = pd.concat([Slr_data.c, Mc_data.c, P_data.c])
+    all_data.to_csv('dirt/static/code_data.csv')
 class All_p_data():
-    all_p_data = pd.concat([D_data.c, P_data.c], sort=True)
+    all_p_data = pd.concat([D_data.c, P_data.c])
 class Daily():
     def __init__(self, df, names):
         self.df = df
@@ -292,7 +296,7 @@ class P_daily():
     p, p_one, p_two, p_three = Daily_density(P_density.p_density).daily_density()
 class D_daily():
     d, d_one, d_two, d_three = Daily_density(D_density.d_density).daily_density()
-    
+
 class Slr_daily():
     slr, slr_one, slr_two, slr_three = Daily_density(Slr_density.c).daily_density()
 class Slr_lake_daily():
@@ -331,6 +335,7 @@ class All_dailies():
         return b, a
 class All_ch():
     all_ch_df, all_ch_lst = All_dailies([Slr_daily.slr,Mc_daily.mc, P_daily.p]).all_samples()
+    all_ch_df.to_csv('dirt/static/daily_data.csv')
 class All_area():
     all_ch_dfa, all_ch_lsta = All_dailies([Slr_a_density.slr_a]).all_samples()
 class All_p():
@@ -352,7 +357,7 @@ class Make_codes():
             b.update({code['code']:code['description']})
         return b
     codes_dict = desc_dict()
-    
+
     def material_dict():
         """
         rerturns a dict with key = code_id, value = code material
@@ -362,7 +367,7 @@ class Make_codes():
             b.update({code['code']:code['material']})
         return b
     codes_material = material_dict()
- 
+
     def top_ten_codes(df, dci, mat):
         """
         rerturns a list of dicts, output is for templates, sorted descending
@@ -474,7 +479,7 @@ class Make_coordinates():
     slr_map = coord_list([map_coords2(Slr_la_density.slr_a_lake_three,  Make_cites.all_site_list, 'SLR', 'lake'),
     map_coords2(Slr_ra_density.slr_a_river_three, Make_cites.all_site_list, 'SLR', 'river')])
     p_map = coord_list([map_coords(P_daily.p_three, Make_cites.p_sites, 'Precious', 'lake' ), map_coords(D_daily.d_three, Make_cites.p_sites, 'Descente', 'river' )])
-    
+
 class Make_totals():
     def get_total():
         """
@@ -486,7 +491,7 @@ class Make_totals():
         p_total = Precious.objects.all().aggregate(t_total = Sum('quantity'))
         d_total = Descente.objects.all().aggregate(t_total = Sum('quantity'))
         mc_tot = float(mcbp_total['t_total'])
-        sl_tot = float(slr_total['t_total']) 
+        sl_tot = float(slr_total['t_total'])
         p_tot = float(p_total['t_total'])
         d_tot = float(d_total['t_total'])
         p_d_tot = p_tot +d_tot
@@ -508,7 +513,7 @@ class Make_totals():
                 if r not in b:
                     b.append(r)
         g = len(b)
-        
+
         return b, g
     locs_lakes, lake_locs, = get_lakes()
 
@@ -585,7 +590,7 @@ class Make_totals():
     hdc_lake_river, hdc_no_of_lake, hdc_no_of_river = total_lakes2(list(Make_cites.hdc_sites.keys()),Make_cites.hdc_sites, Make_water.site_body_hdc)
     p_lake_river, p_no_of_lake, p_no_of_river = total_lakes2(list(Make_cites.p_sites.keys()), Make_cites.p_sites, Make_water.site_body_p )
     print(p_lake_river)
-    
+
 
     def make_summary(x):
         # running a df through pd.describe and assigning varaible names to
@@ -610,7 +615,7 @@ class Make_totals():
         return q, num_location
     all_summary, number_location = make_summary(All_ch.all_ch_df)
     def make_summary2(x):
-       
+
         x['date'] = pd.to_datetime(x['date'])
         f = x.describe()['density2']
         num_samps = f['count']
@@ -728,7 +733,6 @@ class Make_library():
         return h
     books = make_library(the_subs, sub_key, library)
 
-
 def beach_litter(request):
     t_day = pd.to_datetime('today')
 
@@ -824,12 +828,12 @@ def services_home(request):
 def in_the_works(request):
     return render(request, 'dirt/intheworks.html')
 def microbiology(request):
-    
+
     def get_jsons_x(file_name):
         with open(os.path.join( settings.BASE_DIR, 'dirt/static/jsons/' + file_name ), 'r') as f:
             a = json.load(f)
             return a
-    
+
     mrd_map = get_jsons_x('summ_mrd_map.json')
     t_cfu_17 = get_jsons_x('t_cfu_17.json')
     t_uv_17 = get_jsons_x('total_uv17.json')
@@ -852,7 +856,7 @@ def search_city(request):
         q = request.GET['city']
         print(q)
 
-#        
+#
         # dcitionary that relates location id to waterbody
         water_bodies = Make_cites.all_cities
 
@@ -1198,7 +1202,7 @@ def slr_home(request):
         return h
     mk_pers = material_as_percent(mk_pers)
 
-    
+
     def locs_and_samples():
         a =  Slr_A_data.c.groupby('location_id')
         b = a.agg({'density2':np.mean, 'sample':max})
@@ -1272,7 +1276,7 @@ def mcbp_home(request):
 
 
 def hdc_home(request):
-        
+
         slr_beaches = HDC_Beaches.objects.all().values()
         # codes = Codes.objects.all()
 
@@ -1331,7 +1335,7 @@ def hdc_home(request):
 def search_hdc(request):
         if 'q' in request.GET and request.GET['q']:
             q = request.GET['q']
-           
+
             # dcitionary that relates location id to waterbody
             water_bodies = Make_cites.all_hdc_cities
 
@@ -1402,8 +1406,8 @@ def search_hdc(request):
 
         else:
             return HttpResponse('Please submit a search term')
-        
-        
+
+
 def precious(request):
         #slr_locs = Beaches.beachList()
         slr_beaches = Make_cites.p_all
@@ -1459,13 +1463,13 @@ def precious(request):
 
         return render(request, 'dirt/precious.html', {'books':books, 'num_lakes':Make_totals.p_no_of_lake, 'num_rivers':Make_totals.p_no_of_river,
         'num_locs':number_locations, 'top_ten':top_ten_table, 'summary':summary, 'mk_pers':mk_pers, 'plot_density': All_p.all_p_lst,
-        'map_points':map_points, 'slr_cities': cities,'box_plot':Make_boxes.p_box, 'lakes':P_daily.p, 'rivers':D_daily.d, 'box_lake':Make_boxes.d_box, 
+        'map_points':map_points, 'slr_cities': cities,'box_plot':Make_boxes.p_box, 'lakes':P_daily.p, 'rivers':D_daily.d, 'box_lake':Make_boxes.d_box,
         'inventory':inventory, 'locs_samples':locs_and_samples(), 'city_locs':Make_cites.all_p_cities, 'slr_river':Make_cites.p_rivers,
         'all_water':Water_bodies.swiss, 'all_cities':Make_cites.cities})
 def search_precious(request):
         if 'q' in request.GET and request.GET['q']:
             q = request.GET['q']
-           
+
             # dcitionary that relates location id to waterbody
             water_bodies = Make_cites.all_p_cities
 
@@ -1474,7 +1478,7 @@ def search_precious(request):
                 # gets the values associated with the user choice
                 # sets the date and time stamp
                 # calls Make_daily to sort and make different lists\
-                a = pd.concat([P_daily.p_three, D_daily.d_three], sort=True)
+                a = pd.concat([P_daily.p_three, D_daily.d_three])
                 a['date'] = pd.to_datetime(a['date'])
                 a = a.loc[a.location_id.isin(water_bodies[criteria])]
                 c_1, c_2, c_3, c_4 = Daily_density(a).daily_density()

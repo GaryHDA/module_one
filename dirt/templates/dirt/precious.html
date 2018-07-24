@@ -1,5 +1,29 @@
 {% extends "dirt/temp_one.html" %}
 
+{% block og_data %}
+{% load static %}
+ <!-- twitter card data -->
+ <meta name="twitter:card" content="summary">
+ <meta name="twitter:site" content="@hammerdirt">
+ <meta name="twitter:title" content="Precious collect">
+ <meta name="twitter:description" content="Precious collect on hammerdirt: Precious Plastic Léman redonne de la valeur aux déchets plastiques. Pour agir à notre échelle face à la pollution des océans,
+                notre atelier du bord du Léman transforme les déchets en de nouveaux objets.">
+ <meta name="twitter:creator" content="@hammerdirt">
+ <meta name="twitter:image" content= "{% static "images/bag_stick.jpg" %}"  >
+
+ <!-- Open Graph Data -->
+ <meta property="og:title" content="Precious collect" />
+ <meta property="og:type" content="article" />
+ <meta property="og:url" content="http://mwshovel.pythonanywhere.com/dirt/precious.html" />
+ <meta property="og:image" content= "{% static "images/bag_stick.jpg" %}" />
+ <meta property="og:image:width" content="200" />
+<meta property="og:image:height" content="200" />
+ <meta property="og:description" content="Precious collect on hammerdirt: Precious Plastic Léman redonne de la valeur aux déchets plastiques. Pour agir à notre échelle face à la pollution des océans,
+                notre atelier du bord du Léman transforme les déchets en de nouveaux objets." />
+ <meta property="og:site_name" content="MW. Shovel" />
+ <!-- <meta property="fb:admins" content="" /> -->
+ {% endblock %}
+
 {% block style %}
 
 .charts {
@@ -377,30 +401,23 @@ html {
        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
      </div>
      <div class="modal-body">
-
-
-        <h5>Goals</h5>
-        <ul>
-           <li>Relate aquatic litter in our local environment to the global problem.</li>
-           <li>Create a benchmark that clearly establishes the trash levels in our environment for a given time frame.</li>
-           <li>Develop a platform that facilitates open research by all those curious about the world around them.</li>
-        </ul>
-        <h5>Objectives</h5>
-        <ul>
-            <li>Identify a common protocol for quantifying and cataloging beach-litter</li>
-            <li>Develop an understanding of aquatic litter in relation to municipal waste sytems and urban planning</li>
-            <li>Use technology to create an efficient method to catalog and document litter levels</li>
-            <li>Create links/networks with others interested in the subject</li>
-            <li>Apply current methods of data visualisation and analysis to sample results</li>
-            <li>Accomplish all of the above with the least amount of financial burden</li>
-        </ul>
-        <h5>Methods</h5>
-        <ul>
-            <li>Litterature review of all topics associated with the goals and objectives</li>
-            <li>Sampling of litter at a variety of locations</li>
-            <li>Documentation of results</li>
-            <li>If possible engage local authorities and experts</li>
-        </ul>
+         <h5>Objectifs</h5>
+            <p>
+                L’association Precious Plastic Léman fait partie des 230 ateliers de la planète qui redonnent
+                de la valeur aux déchets plastiques. Pour agir à notre échelle face à la pollution des océans,
+                notre atelier du bord du Léman transforme les déchets en de nouveaux objets.
+            <p>
+        <h5>Motivations</h5>
+            <p>
+                Le plastique mérite mieux que de finir dans l’eau ou sur la plage. Ici, au bord du Léman,
+                nos déchets n’atterrissent pas n’importe où. En fait, ils filent droit vers la Méditerranée,
+                en passant par le Rhône.
+            </p>
+        <h5>Precious collect & projet Rhône </h5>
+            <p>
+                En août 2018, nous faisons les premières collectes en suivant le fil du fleuve,
+                en partant du Lac Léman (Genève) pour atteindre la Mer Méditerranée à Port-Saint-Louis-du-Rhône.
+            </p>
 
 
      </div>

@@ -1,0 +1,139 @@
+,city,latitude,location,longitude,post,project_id,water,water_name
+0,La Tour-de-Peilz,46.44721600,Anarchy Beach,6.85961200,1814,MCBP,l,Lac Léman
+1,Vevey,46.46209900,Arabie,6.83497200,1800,MCBP,l,Lac Léman
+2,La Tour-de-Peilz,46.45050680,Bain des Dames,6.85809180,1814,MCBP,l,Lac Léman
+3,Montreux,46.43978700,Baye de Clarens,6.88890300,1815,MCBP,l,Lac Léman
+4,Montreux,46.43096200,Baye de Montreux - D,6.90867300,1820,MCBP,l,Lac Léman
+5,Montreux,46.43083400,Baye de Montreux - G,6.90877800,1820,MCBP,l,Lac Léman
+6,Tolochenaz,46.49102970,Boiron,6.48016180,1131,MCBP,l,Lac Léman
+7,Saint-Gingolph,46.38774600,Grand Clos,6.84368600,1898,MCBP,l,Lac Léman
+8,Genève,46.22590880,Jardin Botanique,6.14935720,1202,MCBP,l,Lac Léman
+9,Morges,46.50406300,La Morges,6.49409900,1110,MCBP,l,Lac Léman
+10,Montreux,46.43972700,Le Pierrier,6.88896800,1815,MCBP,l,Lac Léman
+11,La Tour-de-Peilz,46.45224500,Le Port,6.85518000,1814,MCBP,l,Lac Léman
+12,La Tour-de-Peilz,46.44629600,Maladaire,6.87696000,1814,MCBP,l,Lac Léman
+13,La Tour-de-Peilz,46.45668200,Oyonne,6.85226200,1814,MCBP,l,Lac Léman
+14,Saint-Sulpice,46.51521500,Parc des Pierrettes,6.57553100,1025,MCBP,l,Lac Léman
+15,Montreux,46.43956010,Pierrier sud,6.89100010,1815,MCBP,l,Lac Léman
+16,Saint-Sulpice,46.51816900,Plage de Dorigny,6.58331900,1025,MCBP,l,Lac Léman
+17,Saint-Sulpice,46.51326500,Plage de St Sulpice,6.57097700,1025,MCBP,l,Lac Léman
+18,Vevey,46.46015600,Quai Maria-Belgia,6.83671800,1800,MCBP,l,Lac Léman
+19,Thonon-les-Bains,46.36533580,Thonnon-les-Bains,6.44699340,74200,mcbp,l,Lac Léman
+20,Versoix,46.28919400,Versoix,6.17056930,1290,MCBP,l,Lac Léman
+21,Vevey,46.46102200,Veveyse,6.83498300,1800,MCBP,l,Lac Léman
+22,Lausanne,46.51471550,Vidy,6.59858840,1007,MCBP,l,Lac Léman
+23,Genève,46.22235000,Villa Barton,6.15250000,1202,MCBP,l,Lac Léman
+24,Bern,46.97100970,aarezufluss_bern_scheurerk,7.45278970,3004,SLR,r,Aare
+25,Muri bei Bern,46.92357880,Aare_Bern_CaveltiN,7.47331910,3074,SLR,r,Aare
+26,Bern,46.98936310,Aare_bern_gerberm,7.45209770,3004,SLR,r,Aare
+27,Bern,46.97096720,aare_bern_scheurerk,7.45258570,3004,SLR,r,Aare
+28,Brugg,47.49485530,Aare_Brugg_BuchiE,8.23655810,5200,SLR,r,Aare
+29,Bern,46.93102010,Aare_Elfenau_cataldiv,7.46296050,3006,SLR,r,Aare
+30,Belp,46.92357190,aare_kehrsatz_stolten,7.48830110,3123,SLR,r,Aare
+31,Köniz,46.93458850,aare_köniz_hoppej,7.45817030,3084,SLR,r,Aare
+32,Rupperswil,47.41030900,aare_rupperswil_badert,8.11255370,5102,SLR,r,Aare
+33,Solothurn,47.19774950,aare_solothurn_nguyena,7.52422470,4500,SLR,r,Aare
+34,Aarau,47.40566920,aare_suhrespitz_badert,8.06601800,5032,SLR,r,Aare
+35,Veyrier,46.17849120,arve_carouge_battistellak,6.15431870,1234,SLR,r,Arve
+36,Berlingen,47.67243120,Berlingen swisslitterreport,9.01105530,8267,SLR,l,Untersee
+37,Vinelz,47.03839840,Bielersee_Vinelz_FankhauserS,7.10831140,3234,SLR,l,Bielersee
+38,Birsfelden,47.55774290,Birsköpfli Rusco,7.61729160,4127,SLR,r,Birs
+39,Basel,47.55112760,Birs_Basel_GrunerN,7.62219880,4052,SLR,r,Birs
+40,Basel,47.54604970,Birs_basel_läderachs,7.62259810,4052,SLR,r,Birs
+41,Reinach,47.50368170,Birs_Reinach_DiNucciN,7.60700850,4153,SLR,r,Birs
+42,Thal,47.48650690,bodensee_altenrhein_caluoria,9.54396640,9422,SLR,l,Bodensee
+43,Arbon,47.52088870,Bodensee_Arbon_MösliS,9.43114400,9320,SLR,l,Bodensee
+44,Horn,47.49827570,bodensee_horn_huberm,9.45697820,9326,SLR,l,Bodensee
+45,Steinach,47.50629920,Bodensee_Steinach_Dolder_A,9.43617140,9323,SLR,l,Bodensee
+46,Thal,47.48621630,bodensee_thal_schlachterj_1,9.54390990,9422,SLR,l,Bodensee
+47,Dübendorf,47.40291950,chriesbach_duebendorf_schneidera,8.60514580,8600,SLR,r,Chriesbach
+48,Biberist,47.16922080,emme_biberist_jennim,7.55899480,4562,SLR,r,Emme
+49,Zuchwil,47.21194420,emme_luterbach_huggenbergerk,7.57401440,4528,SLR,r,Emme
+50,Utzenstorf,47.12369600,Emme_Utzenstorf_Grüttert,7.53962700,3427,SLR,r,Emme
+51,Opfikon,47.41676910,glatt_oerlikon_covosN,8.56671200,8152,SLR,r,Glatt
+52,Goldach,47.47391110,goldach_goldach_schlachterj,9.45930940,9403,SLR,r,Goldach
+53,Fällanden,47.36093810,greifensee_fällanden_meistery,8.65372280,8117,SLR,l,Greifensee
+54,Fällanden,47.35971410,greifensee_fällanden_simmenc,8.65484330,8117,SLR,l,Greifensee
+55,Greifensee,47.36357230,greifensee_greifensee_simmenc,8.67569910,8606,SLR,l,Greifensee
+56,Maur,47.33238640,greifensee_maur_simmenc,8.68551460,8124,SLR,l,Greifensee
+57,Uster,47.34743600,greifensee_uster_fischerb_ 2,8.68988050,8610,SLR,l,Greifensee
+58,Uster,47.35012740,greifensee_uster_fischerb_1,8.68979720,8610,SLR,l,Greifensee
+59,Illnau-Effretikon,47.42564910,Grendelbach_Effretikon_DamboneC,8.69070620,8307,SLR,r,Grändelbach
+60,Scuol,46.80087600,Inn_Pradella_KohlT,10.31999400,7550,SLR,r,Inn
+61,Dürnten,47.26842720,jona_tann_nusslin,8.86412510,8635,SLR,r,Jona
+62,Zürich,47.42847280,katzenbach_zuerich_sanesim,8.51308800,8046,SLR,l,Katzensee
+63,Zürich,47.43112810,katzensee_regensdorfzuerichaffoltern_stueberj,8.49292430,8046,SLR,l,Katzensee
+64,Gland,46.40286930,lacléman_gland_kubela,6.28193580,1196,SLR,l,Lac Léman
+65,Gland,46.40281060,Lacléman_Gland_LecoanetS,6.28195860,1196,SLR,l,Lac Léman
+66,La Tour-de-Peilz,46.45038920,LacLéman_La Tour-de-Peilz_bain des dames_Hammerdirt,6.85823420,1814,SLR,l,Lac Léman
+67,Lausanne,46.51831780,lacléman_vidy_santie,6.58960780,1007,SLR,l,Lac Léman
+68,Langenthal,47.21653320,langete_langenthal_geiserm,7.79230410,4900,SLR,r,Langeten
+69,Dietikon,47.40798910,limmat_dietikon_keiserp,8.40953980,8953,SLR,r,Limmat
+70,Unterengstringen,47.40940030,Limmat_Unterengstringen_OggierBührer,8.44693340,8103,SLR,r,Limmat
+71,Zürich,47.40002470,Limmat_Zuerich_JansenA,8.48468470,8064,SLR,r,Limmat
+72,Zürich,47.39453930,limmat_zuerich_suterd&glauserp,8.51344350,8005,SLR,r,Limmat
+73,Zürich,47.40349560,Limmat_Zuerich_WagnerC,8.47777010,8064,SLR,r,Limmat
+74,Zürich,47.40025150,limmat_zürich_mortensena_meiera,8.48541100,8064,SLR,r,Limmat
+75,Baar,47.19540190,Lorze_Baar_BlarerE,8.54023700,6340,SLR,r,Lorze
+76,Ostermundigen,46.96494600,lötschebach_bern_scheurerk,7.49283590,3072,SLR,r,Lötschebach
+77,Steckborn,47.65583660,Mammern swisslitterreport,8.95531680,8266,SLR,l,Untersee
+78,Wängi,47.49361000,Murg_Waengi_StrickerR,8.96159280,9545,SLR,r,Murg
+79,Cudrefin,46.96270890,Neuenburgersee_Cudrefin_MatterA,7.02596810,1588,SLR,l,Neuenburgersee
+80,Vevey,46.45994130,Ognonnaz-1,6.85913410,1800,SLR,r,Ognonnaz
+81,Rothrist,47.29856780,Pfaffner_Rothrist_Ischik,7.89946640,4852,SLR,r,Pfaffnern
+82,Bremgarten,47.32986910,Reuss,8.35684930,5626,SLR,r,Reuss
+83,Hünenberg,47.23297550,reuss_hünenberg_eberhardy,8.40101210,6331,SLR,r,Reuss
+84,Merenschwand,47.27835450,reuss_ottenbach_schoenenbergerl,8.39422420,5634,SLR,r,Reuss
+85,Luzern,47.05711180,Reuss_St.Karli_LinigerS/ImhofY,8.28791450,6004,SLR,r,Reuss
+86,Basel,47.55680180,Rhein_Basel,7.60108560,4058,SLR,r,Rhein
+87,Huningue,47.58940620,Rhein_Basel_BlarerP_1,7.58731810,68330,SLR,r,Rhein
+88,Huningue,47.59115100,Rhein_Basel_BlarerP_2,7.58794850,68330,SLR,r,Rhein
+89,Basel,47.55821760,Rhein_Basel_HungerbuehlerN,7.61034880,4058,SLR,r,Rhein
+90,Basel,47.55864390,Rhein_Beach near Tinguely Museum_Bolger. O_Sigrist F.,7.61215360,4058,SLR,r,Rhein
+91,Domat/Ems,46.83803750,rhein_domatems_foppa_f,9.44763870,7013,SLR,r,Rhein
+92,Eglisau,47.57331590,rhein_eglisau_gomringerp,8.53458470,8193,SLR,r,Rhein
+93,Hemishofen,47.67552360,Rhein_Hemishofen_StollL,8.82802920,8261,SLR,r,Rhein
+94,Büsingen am Hochrhein,47.69152540,rhein_laag_jungbluthn,8.71721040,78266,SLR,r,Rhein
+95,Düdingen,46.85915140,schiffenensee_duedingen_hirschij,7.17643740,3186,SLR,l,Schiffenensee
+96,Sempach,47.12861810,sempachersee_sempach_tampec,8.19187370,6204,SLR,l,Sempachsee
+97,Köniz,46.88312060,Sense_Törishaus_g-cubes,7.35318890,3174,SLR,r,Sense
+98,Einsiedeln,47.14139380,sihlsee_einsiedeln_schilligerllacherl,8.76035880,8840,SLR,l,Sihlsee
+99,Adliswil,47.31242170,Sihl_Adliswil_Oggi_Fort,8.52625490,8134,SLR,r,Sihl
+100,Horgen,47.27269460,Sihl_Horgen_BucherF,8.55368210,8810,SLR,r,Sihl
+101,Zürich,47.32543610,sihl_leimbach_kruegerm,8.51911950,8041,SLR,r,Sihl
+102,Menzingen,47.19150120,Sihl_Menzingen_Kucharska_Magdalena,8.61842140,6313,SLR,r,Sihl
+103,Zürich,47.38189810,sihl_zuerich_eggerskoehlingera,8.53832790,8005,SLR,r,Sihl
+104,Zürich,47.33958830,Sihl_zuerich_eichenbergerD,8.51669650,8041,SLR,r,Sihl
+105,Zürich,47.37314950,Sihl_Zuerich_ScherfS,8.53236980,8001,SLR,r,Sihl
+106,Zürich,47.34305540,sihl_zürich_himmelhebern,8.51861220,8041,SLR,r,Sihl
+107,Sankt Gallen,47.42516090,sitter_gaiserwald_buehlerf,9.34010370,9000,SLR,r,Sitter
+108,Sankt Gallen,47.41024240,Sitter_St.Gallen_JennyA,9.32037600,9014,SLR,r,Sitter
+109,Sankt Gallen,47.43329170,sitter_stgallen_steinbrunnerf ,9.35807470,9000,SLR,r,Sitter
+110,Delémont,47.37098680,sorne_birse_WWFJura,7.36090990,2800,SLR,r,Birs
+111,Spiez,46.70443680,thunersee_spiez_meierd_1,7.65788240,3646,SLR,l,Thunersee
+112,Kradolf-Schönenberg,47.52407260,Thur_Schoenenberg_SchaerA,9.19833470,9214,SLR,r,Thur
+113,Wil,47.44678660,thur_schwarzenbach_meiliw,9.06381560,9500,SLR,r,Thur
+114,Bauma,47.37017570,Töss_Bauma_KurthE,8.86782490,8494,SLR,r,Töss
+115,Zell,47.45456980,töss_kollbrunn_bürgid,8.77968000,8483,SLR,r,Töss
+116,Winterthur,47.47870730,Töss_Winterthur 2,8.70842640,8406,SLR,r,Töss
+117,Ermatingen,47.67263330,unterdsee_ermatingen_brunkem,9.08124620,8272,SLR,l,Untersee
+118,Selyshche,48.49575410,untersee_steckborn_siedlerm,27.07421580,60216,SLR,l,Untersee
+119,Hundwil,47.32509860,urnaesch_urnaesch_meierr,9.29541880,9107,SLR,r,Urnäsch
+120,Weggis,47.04453210,vierwaldstättersee_weggis_schöberls_1,8.41856890,6353,SLR,l,Quatre cantons
+121,Weggis,47.04395300,vierwaldstättersee_weggis_schöberls_2,8.41730760,6353,SLR,l,Quatre cantons
+122,Weggis,47.02995660,vierwaldstättersee_weggis_schöberls_3,8.41080100,6353,SLR,l,Quatre cantons
+123,Disentis/Mustér,46.69827390,vorderrhein_disentis_schmidn,8.85783730,7180,SLR,r,Vorderrhein
+124,Walenstadt,47.12182820,Walensee_Walenstadt_WyssE,9.29955170,8880,SLR,l,Walensee
+125,Männedorf,47.25475400,zuerichsee_maennedorf_vanderkaadene,8.68750380,8708,SLR,l,Zurichsee
+126,Richterswil,47.21764580,zuerichsee_richterswil_benkoem_2,8.69871330,8805,SLR,l,Zurichsee
+127,Stäfa,47.23464310,zuerichsee_staefa_hennm,8.76988140,8713,SLR,l,Zurichsee
+128,Richterswil,47.21954680,zuerichsee_waedenswil_colomboc_1,8.69196110,8805,SLR,l,Zurichsee
+129,Zürich,47.35395730,zuerichsee_zurich_kullg,8.55047430,8008,SLR,l,Zurichsee
+130,Zug,47.17821570,ZugerseeCholler_Cham_BlarerM,8.48001280,6300,SLR,l,Zugersee
+131,Meierskappel,47.10668690,zugersee_Immensee_Guedesd,8.47888120,6344,SLR,l,Zugersee
+132,Steffisburg,46.77424310,zulg_steffisburg_schmassmanne,7.62453720,3612,SLR,r,Zulg
+133,Zürich,47.35939220,Zürichsee-Feldeggstr-BänningerSand,8.54736820,8008,SLR,l,Zurichsee
+134,Küsnacht,47.31768490,Zürichsee_Küsnachterhorn_Thirkell-WhiteJ,8.57686020,8700,SLR,l,Zurichsee
+135,Zürich,47.34588990,zürichsee_wollishofen_langendorfm,8.53615450,8038,SLR,l,Zurichsee
+136,Préverenges,46.51085300,Home sweet home,6.53112100,1028,PC,l,Lac Léman
+137,Préverenges,46.51269000,Préverenges,6.52765700,1028,PC,l,Lac Léman

@@ -200,6 +200,13 @@
                       <br>If you intend on managing it, then you need to measure it.</small></h6>
                   </div>
                 </div>
+                <div class="list-group-item flex-column align-items-start">
+                 <div class="d-flex w-100 ">
+                    <p class="mb-1"> <a data-toggle="modal"  data-target="#data" aria-expanded="false" aria-controls="table-of-results">Click here to get data in csv format
+
+                    </a></p>
+                </div>
+                </div>
                 <div class="d-flex w-100 align-items-center justify-content-center">
                   <div class="btn m-1 wide-88 d-inline-flex align-items-center justify-content-center rounded-circle bg-red">
                     <a class="text-white txt-14" href="{% url 'slr_home' %}" aria-expanded="false"> SLR<br> Results </a>
@@ -356,8 +363,8 @@
               Beach litter is a probability
             </div>
             <div class="card-body text-left" style="height:100%">
-              <h6 class="card-title">Understanding how trash gets in the water
-                <br><small class="text-muted">Log normal distribution
+              <h6 class="card-title">How can we compare year over year results?
+                <br><small class="text-muted">Log normal distribution <a href=" https://github.com/hammerdirt/notes/blob/master/notes-hammerdirt.ch/how%20normal%20is%20normal.ipynb">(click to see how 'normal')</a>
                 <br>Allows for the application of standard analysis techniques</small></h6>
               <p>The scatter plot for Lac Léman 2015 - 2017 displays the results, grouped by year (Nov - Nov). There are a couple of differnces between the two sample groups</p>
               <ul>
@@ -437,8 +444,9 @@
                 <br><small class="text-muted">Standard format for all operations
                 <br>Automated, exploitable at the time the record is created</small></h6>
               <p class="card-text">This is the initial code used to generate standardized, automated reports for the SLR.  Python (Pandas, Matplotlib, Jupyter) are the main tools.  Output is PDF or any image file (see below)</p>
-              <p class="card-text">This work will be revived and the function offered to participating organisations. However there is still alot of work that needs to be done.</p>
+              <p class="card-text">This script will be revived and the function offered to participating organisations. </p>
               <p class="card-text"> Links to a <a href="https://github.com/hammerdirt/beachLitterSurveys"> repository on Github </a></p>
+              <h6><a data-toggle="modal"  data-target="#report" aria-expanded="false" >Click to see sample report</a></h6>
               <img src="{% static 'images/report.png' %}" class="img-fluid">
             </div>
           </div>
@@ -457,6 +465,7 @@
               <h6 class="card-title mt-2">Image: Rating of SLR beaches
                 <br><small class="text-muted">Rating based on beaches avg pcs/m quantile ranking.
                 <br>Four classifications</small></h6>
+                <h6><a data-toggle="modal"  data-target="#rated" aria-expanded="false" >Click to see sample poster</a></h6>
               <img src="{% static 'images/stopLights.jpg' %}" class="img-fluid">
             </div>
           </div>
@@ -465,18 +474,18 @@
         <div class="col-sm "  id='ap_2' style="height:100%">
           <div class="card pb-0" id="">
             <div class="bg-dark text-white card-header p-2 pl-3 text-left" id="" style="">
-              Comparing probability distributions
+              Comparing results across similar locations
             </div>
             <div class="card-body text-left" style="height:100%">
-              <h6 class="card-title">Answering the question: "What will you find at the beach?"
-                <br><small class="text-muted">Comparing the PDF for pcs/m across categories and items
-                <br>Hotel nights sold as a proxy for changes in pop density --- Montreux</small>              </h6>
-              <p class="card-text">There are regional differences that can be identified by comparing the distributions of specific items. Even with a lower population density, Montreux still has an elevated pcs/m rating. Hotel nights sold per month can account for some of that.</p>
-              <p class="card-text">Links to a <a href="https://github.com/hammerdirt/notes/blob/master/basel/Integrate%20hydro%2C%20pop-Copy1.ipynb"> repository on Github </a></p>
-              <h6 class="card-title mt-2">Image: pcs/m results, lake vs rivers SLR
-                <br><small class="text-muted">Logarithmic scale (np.log())
-                <br>Only results  greater than zero</small></h6>
-              <img src="{% static 'images/ln_rivers_lakes.svg' %}" class="img-fluid">
+              <h6 class="card-title">Answering the question: "How do the results of Swiss lakes compare to each other"
+                <br><small class="text-muted">Indentify specific categories for intervention
+                <br>Identify items that may have been misidentified</small></h6>
+              <p class="card-text">There are regional differences and similarities that can be identified by comparing the results of specific items
+               and or groups of items that are found in similar locations. Here we compare the pcs/m results of objects with different origins on Swiss lakes</p>
+              <h6 class="card-title mt-2"><a data-toggle="modal"  data-target="#arrays" aria-expanded="false" aria-controls="table-of-results">Click here to see the comparison.</a>
+                <br><small class="text-muted"><a href="https://github.com/hammerdirt/notes/blob/master/notes-hammerdirt.ch/Checking%20exceptions.ipynb">Click here to see the notebook</a>
+                <br>opens to github</small></h6>
+              <img src="{% static 'images/cons_groups.png' %}" class="img-fluid">
             </div>
           </div>
           <div class="card pb-0" id="">
@@ -772,7 +781,7 @@
                     <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'hdc_home' %}" aria-expanded="false" aria-controls="table-of-results">
                       HDC</a>
                     <a class="btn bg-info text-white mt-1 p-2 border-white" style="white-space: normal;" href="{% url 'precious' %}" aria-expanded="false" aria-controls="table-of-results">
-                        PC</a> 
+                        PC</a>
                   </div>
                 </div>
                 </div>
@@ -883,7 +892,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h6 class="modal-title">The top-ten items indentified from all samples.<small class="text-mutted">
+          <h6 class="modal-title">The top-ten items identified from all samples.<small class="text-mutted">
           <br>REMEMBER: these are the reported observations of people in your community
           <br>Units are "pieces", the description and code are Marine Litter Watch</small>
           </h6>
@@ -920,7 +929,7 @@
             </div>
             <div class="card">
               <div class="card-body">
-                <div class="card-title"><h6>Table of results: ten most indentified objects
+                <div class="card-title"><h6>Table of results: ten most identified objects
                   <br><small class="text-muted">Object description sourced from MLW guide
                     <br>Object description is provided with the item code</small></h6>
                 </div>
@@ -967,6 +976,265 @@
   </div>
 </div>
 </div>
+<div class="modal fade" id="data">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">All data on record for Switzerland<br>
+          <small class="text-muted"> Updated every 24 hours, csv format </small>
+        </h5>
+        <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Location information</h6>
+                            <p class="card-text">File that contains the indentifying information per sample location. Including city, postal code, GPS, name of lake/river, project id.</p>
+                                <a href="{% static '/site_data.csv' %}" class="btn btn-primary">Get location information</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Daily totals by location</h6>
+                            <p class="card-text">File that contains the daily totals for each sample site. Including date, location name, pcs/m, quantity, project id and sample number.</p>
+                            <a href="{% static '/daily_data.csv' %}" class="btn btn-primary">Get daily totals</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Daily totals by MLW code</h6>
+                            <p class="card-text">File that contains the daily values per MLW code per location. Includes code id, date, pcs/m, quantity, location, project id and beach length.</p>
+                            <a href="{% static '/code_data.csv' %}" class="btn btn-primary">Get all code data</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="modal fade w-100" id="arrays">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Comparing results from lakes<br>
+                    <small class="text-muted">Understand how results are specific to regions. Identify needs for education, training and investment</small>
+                </h5>
+                    <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="card w-100">
+                        <div class ="card-header">
+                            Our assumption is that areas that have common characteristics will have similar sample results.
+                            Or we could say the distribution of results for common items will be similar across areas that share certain traits.
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                Start by comparing the results of objects that represent three broad categories: Industry, Infrastucture and Consumer.
+                            </p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><h6>Industry:</h6>  Fragmented Styrofoam and plastic, plastic construction waste, industrial sheeting</li>
+                                <li class="list-group-item"><h6>Infrastructure:</h6> Cotton swabs, tampons & maxi pads, tampon applicators, media filters</li>
+                                <li class="list-group-item"><h6>Consumer:</h6> Candy wrappers, lolipop sticks, bottle caps(metal and plastic), straws</li>
+                            </ul>
+                            <p class="ẗext-muted">
+                                *Cigarette stubs were left out, they are common and tend to obscure the propensity of other objects.
+                            </p>
+                            <table class="table table-sm m-0, p-0">
+                                <thead>
+                                    <tr>
+                                        <th>Infrastructure</th>
+                                        <th>Consumer</th>
+                                        <th>Industry</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="background-color:#00008b; height:40px; width:20%"></td>
+                                        <td style="background-color:#1e90ff; height:40px; width:20%"></td>
+                                        <td style="background-color:#40e0d0; height:40px; width:20%"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <img src="{% static 'images/groups.png' %}" class="mx-auto mx-auto d-block" alt="image">
+                            <p>
+                                A pattern emerges, that is well established already on Lac Leman. Waste attributed to Industry is more frequently identified
+                                than items directly related to the consumer or infrastructure. The amplitude of industrial objects at Wallensee is twice that
+                                of Lac Leman. We can zoom in on that group and see which items are causing the problem.
+                            </p>
+                            <p>
+                                Have a look at items classifed as industry:
+                            </p>
+
+                            <table class="table table-sm m-0, p-0">
+                                <thead>
+                                    <tr>
+                                        <th>Plastic films</th>
+                                        <th>Fragmented plastics</th>
+                                        <th>Frag styrofoam</th>
+                                        <th>Construction</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="background-color:#00008b; height:40px; width:20%"></td>
+                                        <td style="background-color:#1e90ff; height:40px; width:20%"></td>
+                                        <td style="background-color:#40e0d0; height:40px; width:20%"></td>
+                                        <td style="background-color:#FF00FF; height:40px; width:20%"></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <img src="{% static 'images/indus_groups.png' %}" class="mx-auto mx-auto d-block" alt="image">
+                            <p>
+                                According to the observations, Wallensee has a quite a bit of fragmented styrofoam and plastic on the shore line.
+                                Plastic films, styrofoam and plastic are are common to all lakes with the exception of Sihlsee.
+                            </p>
+                            <p>
+                                Have a look at items classifed as consumer.
+                            </p>
+                             <table class="table table-sm m-0, p-0">
+                                <thead>
+                                    <tr>
+                                        <th>Wrappers</th>
+                                        <th>Metal caps</th>
+                                        <th>Drink lids</th>
+                                        <th>Plastic lids</th>
+                                        <th>Lollipop sticks</th>
+                                        <th>Straws stirers</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="background-color:#00008b; height:40px; width:16%"></td>
+                                        <td style="background-color:#1e90ff; height:40px; width:16%"></td>
+                                        <td style="background-color:#40e0d0; height:40px; width:16%"></td>
+                                        <td style="background-color:#FF00FF; height:40px; width:16%"></td>
+                                        <td style="background-color:#7fff00; height:40px; width:16%"></td>
+                                        <td style="background-color:#54ff9f; height:40px; width:16%"></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <img src="{% static 'images/cons_groups.png' %}" class="mx-auto mx-auto d-block" alt="image">
+                             <p>
+                                Food wrappers and are the predominant item in this group on all lakes, with the exception of Wallensee and Sihlsee. Lac Leman
+                                leads this classification by far.  However the predominance of lollipop sticks in Wallensee could be due to misidentification or
+                                a one time incident.
+                            </p>
+                            <p>
+                                Have a look at items classifed as infrastructure.
+                            </p>
+                            <table class="table table-sm m-0, p-0">
+                                <thead>
+                                    <tr>
+                                        <th>Q-tips</th>
+                                        <th>Tampon applicators</th>
+                                        <th>Media filter</th>
+                                        <th>Tampons</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="background-color:#00008b; height:40px; width:20%"></td>
+                                        <td style="background-color:#1e90ff; height:40px; width:20%"></td>
+                                        <td style="background-color:#40e0d0; height:40px; width:20%"></td>
+                                        <td style="background-color:#FF00FF; height:40px; width:20%"></td>
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <img src="{% static 'images/infra_groups.png' %}" class="mx-auto mx-auto d-block" alt="image">
+                             <p>
+                                Lac Leman leads this classification also. The presence of 'media filters' has been attributed to two accidents in
+                                2011. The sources (identified by Surfrider Europe) were two water treatemnt facilities, one on the lake and one up stream in Valais. However,
+                                 the dominant items are q-tips and tampon applicators.
+                            </p>
+                            <h6>Conclusion</h6>
+                            <p>
+                                Fragemnted plastics, styrofoam and plastic films are present on almost all the lakes shores in this survey.  These objects fragment and along with candy wrappers,
+                                were identified as a major source of microplastics by the EPFL in 2014 in a study mandated by the OFEV.
+                            </p>
+                            <p>
+                                The predominance of q-tips and tampon applicators on Lac Leman is a classic sign of water treatment plant runoff. There are
+                                numerous studies that point to this origin. The Valais is upstream and it is well known that the water treatment facilities in this
+                                 canton are in need of renovation and upgrade. The abscence of these items at Zurichsee should be investigated as well as the
+                                curious amount of lollipop sticks at Wallensee (q-tips are often misidentified as lolisticks).
+                            </p>
+                            <h6>Actions -- minimum</h6>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Repeat the surveys at Zurichsee. Train the particpants in identiifcation and ensure that a wide variety of locations are sampled</li>
+                                <li class="list-group-item">Repeat the surveys at Wallenssee and Sempachsee. Train the particpants in identiifcation and ensure that a wide variety of locations are sampled</li>
+                                <li class="list-group-item">Investigate the water treatement faiclities on Lac Leman and upstream. Identify where the inputs are and invest to stop the flow</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="report">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sample mid term report from SLR<br>
+          <small class="text-muted"> Automatically generated using data from the app </small>
+        </h5>
+        <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card" style="width: 100%">
+            <img class="card-img-top" src="{% static 'images/sample_report.png' %}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">This function has been disabled while we rework the script and get feedback from partners.</p>
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="rated">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">SLR locations rated by distribution ranking<br>
+          <small class="text-muted">Possible communications tool, generated on click</small>
+        </h5>
+        <button type="button" class="close align" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card" style="width: 100%">
+            <img class="card-img-top" src="{% static 'images/stopLightsFinished600.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">This function has been disabled while we rework the script and get feedback from partners.</p>
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
 
 
 {% endblock %}
@@ -989,7 +1257,7 @@ var dist_2016 = {{ dist_2016|safe }}
 var dist_2017 = {{ dist_2017|safe }}
 var combined_map = {{ combined_map|safe}}
 var plot_all = {{ plot_all|safe }}
-var top_ten = {{ top_ten|safe }}
+//var top_ten = {{ top_ten|safe }}
 var mc_plot = {{ plot_mc|safe }};
 var river = {{ rivers|safe }};
 var lake = {{ lakes|safe }};
