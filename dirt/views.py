@@ -138,7 +138,7 @@ class Make_cites():
     print(mc_river, mc_lake)
 class Make_csvs():
     a = pd.DataFrame(Make_cites.a_b_all)
-    a.to_csv('dirt/static/site_data.csv')
+    a.to_csv('dirt/static/site_data.csv', encoding='latin1')
 
 class Mc_data():
     a = pd.DataFrame(list(All_Data.objects.all().values()))
@@ -245,7 +245,7 @@ class Slr_AL_data():
     c = format_data(a)
 class All_data():
     all_data = pd.concat([Slr_data.c, Mc_data.c, P_data.c])
-    all_data.to_csv('dirt/static/code_data.csv')
+    all_data.to_csv('dirt/static/code_data.csv', encoding='latin1')
 class All_p_data():
     all_p_data = pd.concat([D_data.c, P_data.c])
 class Daily():
@@ -335,7 +335,7 @@ class All_dailies():
         return b, a
 class All_ch():
     all_ch_df, all_ch_lst = All_dailies([Slr_daily.slr,Mc_daily.mc, P_daily.p]).all_samples()
-    all_ch_df.to_csv('dirt/static/daily_data.csv')
+    all_ch_df.to_csv('dirt/static/daily_data.csv', encoding='latin1')
 class All_area():
     all_ch_dfa, all_ch_lsta = All_dailies([Slr_a_density.slr_a]).all_samples()
 class All_p():

@@ -69,7 +69,7 @@ class Beaches(models.Model):
             for t, y in x.items():
                 nameList.append(y)
         return nameList
-        
+
 
 
     def __str__(self):
@@ -231,7 +231,7 @@ class Descente(models.Model):
         db_table = 'descente'
     def __str__(self):
         return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location, self.length, self.quantity, self.code  )
-    
+
 class HDC_Data(models.Model):
     location = models.ForeignKey(HDC_Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)  # Field name made lowercase.
     date = models.DateField(db_column='date', blank=True, null=True)  # Field name made lowercase.
@@ -290,7 +290,7 @@ class SLR_Area(models.Model):
     def __str__(self):
         return u"date:%s, location:%s, density:%s, sample:%s, quantity:%s" %(self.date, self.location, self.density, self.sample, self.quantity)
 FINANCE_CHOICES = (
-    ('t', 'Transportation'),
+    ('t-r', 'Transportation'),
     ('m', 'Meals'),
     ('s', 'Software'),
     ('n', 'Network'),
@@ -303,7 +303,8 @@ FINANCE_CHOICES = (
     ('s-g', 'Services group activity'),
     ('s-c', 'Services beach clean'),
     ('s-s', 'Services IT'),
-    ('l', 'labor' ),
+    ('l', 'labor'),
+    ('c', 'consultation-meeting' ),
 )
 
 ENTRY_CHOICES = (
