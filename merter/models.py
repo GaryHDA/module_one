@@ -15,20 +15,13 @@ class Project(models.Model):
     """
     Projects using the platform
     """
-    project = models.CharField(db_column='project', max_length=100, blank=True, null=False, primary_key=True)
-    org = models.CharField(db_column='org', max_length=100, blank=True, null=True, )
+    project = models.CharField(db_column='project', max_length=100, primary_key=True)
+    org = models.CharField(db_column='org', max_length=100, default='project')
     org_email = models.CharField(validators=[validate_email])
     owner = models.ForeignKey(get_user_model(), db_column='owner', related_name='owner', on_delete=models.DO_NOTHING)
 
-    def projectList():
-        d = []
-        for a in Projects.objects.values('project'):
-            for b, c in a.items():
-                d.append(c)
-        return d
-
     def __str__(self):
-        return u'project:%s, org:%s'%(self.project, self.org)
+        return u'project:%s, org:%s, email:%s, owner:%s'%(self.project, self.org, self.org_email, self.owner)
 
     class Meta:
         managed = True
@@ -39,15 +32,15 @@ class Beach(models.Model):
     """
     Beach names and gps data, Beaches.beachList() returns a list of just beach names.
     """
-    location = models.CharField(db_column='location', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    latitude = models.DecimalField(db_column='latitude', max_digits=11, decimal_places=8, blank=True, null=True)
-    longitude = models.DecimalField(db_column='longitude', max_digits=11, decimal_places=8, blank=True, null=True)
-    city = models.CharField(db_column='city', max_length=100, blank=True, null=True)
-    post = models.CharField(db_column='post', max_length=12, blank=True, null=True)
-    departement = models.IntegerField(db_column='length', default=0)
-    water = models.CharField(db_column='water', max_length=12, blank=True, null=True, choices=WATER_CHOICES)
-    water_name = models.CharField(db_column='water_name', max_length=100, blank=True, null=True)
-    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
+    location = models.CharField(db_column='location', max_length=100, primary_key=True).
+    latitude = models.DecimalField(db_column='latitude', max_digits=11, decimal_places=8,)
+    longitude = models.DecimalField(db_column='longitude', max_digits=11, decimal_places=8,)
+    city = models.CharField(db_column='city', max_length=100, default='city')
+    post = models.CharField(db_column='post', max_length=12, default='post code')
+    departement = models.IntegerField(db_column='length', default=000000)
+    water = models.CharField(db_column='water', max_length=12, default='o', choices=WATER_CHOICES)
+    water_name = models.CharField(db_column='water_name', max_length=100, default='name of water body')
+    project = models.ForeignKey(Projects, db_column='project', on_delete=models.DO_NOTHING)
     owner = models.ForeignKey(get_user_model(), db_column='owner', on_delete=models.DO_NOTHING)
 
 
@@ -66,10 +59,10 @@ class Code(models.Model):
     Codes.describe() gives a list of the items characeterized by the MLW code,
     Codes.sources() gives a list of the sources as defined for this study.
     """
-    m_code = models.CharField('MLW code', db_column='code', max_length=5, blank=True, null=False, primary_key=True)
-    o_code = models.CharField('OSPAR code', db_column='code', max_length=5, blank=True, null=False, primary_key=True)
-    material = models.CharField(db_column='material', max_length=30, blank=True, null=True)
-    description = models.CharField(db_column='description', max_length=30, blank=True, null=True)
+    m_code = models.CharField('MLW code', db_column='m_code', max_length=5, primary_key=True)
+    o_code = models.CharField('OSPAR code', db_column='o_code', max_length=5)
+    material = models.CharField(db_column='material', max_length=30, default='plastic')
+    description = models.CharField(db_column='description', max_length=30, default='trash')
     # source = models.CharField(db_column='source', max_length=30, blank=True, null=True)
     owner = models.ForeignKey(get_user_model(), db_column='owner',  on_delete=models.DO_NOTHING)
 
@@ -77,7 +70,7 @@ class Code(models.Model):
 
 
     def __str__(self):
-        return u'MLW code:%s, OSPAR code:%s material:%s, source:%s, description:%s' %(self.m_code, self.o_code, self.material, self.source, self.description)
+        return u'MLW code:%s, OSPAR code:%s material:%s, description:%s' %(self.m_code, self.o_code, self.material, self.description)
 
 
     class Meta:
@@ -95,14 +88,15 @@ EVENT_CHOICES = (
 
 
 class Event(models.Model):
-    location = models.ForeignKey(Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)
-    date = models.DateField(db_column='date', blank=True, null=True)
+    location = models.ForeignKey(Beaches, db_column='location', on_delete=models.DO_NOTHING)
+    date = models.DateField(db_column='date')
     length = models.IntegerField(db_column='length', default=0)
-    method = models.CharField(db_column='method', max_length=12, blank=True, null=True, choices=EVENT_CHOICES)
-    volume = models.IntegerField(db_column='quantity', default=0)
-    weight = models.ForeignKey(Codes, db_column='code', null=True,  on_delete=models.DO_NOTHING)
-    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
-    time = models.IntegerField(db_column='time', default=0 )
+    method = models.CharField(db_column='method', max_length=12, default='i', choices=EVENT_CHOICES)
+    volume = models.IntegerField(db_column='volume', default=0)
+    weight = models.DecimalField('weight in kilos', db_column='weight', max_digits=6, decimal_places=2, default=0,)
+    project = models.ForeignKey(Projects, db_column='project', on_delete=models.DO_NOTHING)
+    time = models.IntegerField('time in minutes', db_column='time', default=0 )
+    people = models.IntegerField('number of people', db_column='volume', default=0)
     owner = models.ForeignKey(get_user_model(), db_column='owner',  on_delete=models.DO_NOTHING)
 
     class Meta:
@@ -116,12 +110,12 @@ class Event(models.Model):
         return self.location.location
 
 class ItemData(models.Model):
-    location = models.ForeignKey(Beache, db_column='location', null=True, on_delete=models.DO_NOTHING)  # Field name made lowercase.
-    date = models.DateField(db_column='date', blank=True, null=True)  # Field name made lowercase.
+    location = models.ForeignKey(Beache, db_column='location', on_delete=models.DO_NOTHING)
+    date = models.DateField(db_column='date',)
     length = models.IntegerField(db_column='length', default=0)
     quantity = models.IntegerField(db_column='quantity', default=0)
     code = models.ForeignKey(Codes, db_column='code', null=True,  on_delete=models.DO_NOTHING)
-    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
+    project = models.ForeignKey(Projects, db_column='project', on_delete=models.DO_NOTHING)
     owner = models.ForeignKey(get_user_model(), db_column='owner', on_delete=models.DO_NOTHING)
 
 
