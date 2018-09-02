@@ -1,17 +1,10 @@
-# This is an auto-generated Django model module.
-# You'll have to do the following manually to clean this up:
-#   * Rearrange models' order
-#   * Make sure each model has one field with primary_key=True
-#   * Make sure each ForeignKey has `on_delete` set to the desired behavior.
-#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
-# Feel free to rename the models, but don't rename db_table values or field names.
 from __future__ import unicode_literals
 
 from django.db import models
 from django.db.models import Sum, Avg, Max, Min, F
-from django.contrib.auth.models import UserManager
-
-
+from django.contrib.auth.models import UserManager, User
+from django.conf import settings
+from django.contrib.auth import get_user_model
 WATER_CHOICES = (
     ('r', 'river'),
     ('l', 'lake')
@@ -22,6 +15,7 @@ class Projects(models.Model):
     """
     project = models.CharField(db_column='project', max_length=100, blank=True, null=False, primary_key=True)
     org = models.CharField(db_column='org', max_length=100, blank=True, null=True, )
+    owner = models.ForeignKey(get_user_model(), db_column='owner', related_name='owner', on_delete=models.DO_NOTHING)
 
     def projectList():
         d = []
@@ -50,6 +44,7 @@ class Beaches(models.Model):
     water = models.CharField(db_column='water', max_length=12, blank=True, null=True, choices=WATER_CHOICES)
     water_name = models.CharField(db_column='water_name', max_length=100, blank=True, null=True)
     project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(get_user_model(), db_column='owner', on_delete=models.DO_NOTHING)
 
     def beachList():
         nameList = []
@@ -91,6 +86,7 @@ class HDC_Beaches(models.Model):
     water = models.CharField(db_column='water', max_length=12, blank=True, null=True, choices=WATER_CHOICES)
     water_name = models.CharField(db_column='water_name', max_length=100, blank=True, null=True)
     project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(get_user_model(), db_column='owner',  on_delete=models.DO_NOTHING)
 
     def beachList():
         nameList = []
@@ -148,6 +144,7 @@ class Codes(models.Model):
     material = models.CharField(db_column='material', max_length=30, blank=True, null=True)
     description = models.CharField(db_column='description', max_length=30, blank=True, null=True)
     source = models.CharField(db_column='source', max_length=30, blank=True, null=True)
+    owner = models.ForeignKey(get_user_model(), db_column='owner',  on_delete=models.DO_NOTHING)
 
     def materials():
         matList = []
@@ -194,6 +191,7 @@ class All_Data(models.Model):
     quantity = models.IntegerField(db_column='quantity', default=0)
     code = models.ForeignKey(Codes, db_column='code', null=True,  on_delete=models.DO_NOTHING)
     project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(get_user_model(), db_column='owner', on_delete=models.DO_NOTHING)
 
 
     class Meta:
@@ -201,6 +199,8 @@ class All_Data(models.Model):
         db_table = 'all_items'
     def __str__(self):
         return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location, self.length, self.quantity, self.code  )
+    def location_name(self):
+        return self.location.location
 
 class Precious(models.Model):
     location = models.ForeignKey(Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)  # Field name made lowercase.
@@ -209,14 +209,17 @@ class Precious(models.Model):
     quantity = models.IntegerField(db_column='quantity', default=0)
     code = models.ForeignKey(Codes, db_column='code', null=True,  on_delete=models.DO_NOTHING)
     project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
-
+    owner = models.ForeignKey(get_user_model(), db_column='owner',  on_delete=models.DO_NOTHING)
 
     class Meta:
         managed = True
         db_table = 'precious'
     def __str__(self):
         return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location, self.length, self.quantity, self.code  )
-
+    
+    @property
+    def location_name(self):
+        return self.location.location
 class Descente(models.Model):
     location = models.ForeignKey('Beaches', db_column='location', null=True, on_delete=models.DO_NOTHING)  # Field name made lowercase.
     date = models.DateField(db_column='date', blank=True, null=True)  # Field name made lowercase.
@@ -224,6 +227,7 @@ class Descente(models.Model):
     quantity = models.IntegerField(db_column='quantity', default=0)
     code = models.ForeignKey('Codes', db_column='code', null=True,  on_delete=models.DO_NOTHING)
     project = models.ForeignKey('Projects', db_column='project',null=True, on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(get_user_model(), db_column='owner',  on_delete=models.DO_NOTHING)
 
 
     class Meta:
@@ -231,6 +235,10 @@ class Descente(models.Model):
         db_table = 'descente'
     def __str__(self):
         return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location, self.length, self.quantity, self.code  )
+    
+    @property
+    def location_name(self):
+        return self.location.location
 
 class HDC_Data(models.Model):
     location = models.ForeignKey(HDC_Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)  # Field name made lowercase.
@@ -239,6 +247,7 @@ class HDC_Data(models.Model):
     quantity = models.IntegerField(db_column='quantity', default=0)
     code = models.ForeignKey(Codes, db_column='code', null=True,  on_delete=models.DO_NOTHING)
     project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(get_user_model(), db_column='owner', on_delete=models.DO_NOTHING)
 
 
     class Meta:
@@ -246,6 +255,11 @@ class HDC_Data(models.Model):
         db_table = 'hdrc_data'
     def __str__(self):
         return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location, self.length, self.quantity, self.code  )
+    def location_name(self):
+        return self.location.location
+    @property
+    def location_name(self):
+        return self.location.location
 
 class SLR_Data(models.Model):
     location = models.ForeignKey(SLR_Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)  # Field name made lowercase.
@@ -261,6 +275,9 @@ class SLR_Data(models.Model):
         db_table = 'slr_data'
     def __str__(self):
         return u"date:%s,location:%s, length:%s, code:%s, quantity:%s, density:%s" %(self.date, self.location, self.length, self.code, self.quantity, self.density,)
+    
+    def location_name(self):
+        return self.location.location
 
 class SLR_Density(models.Model):
     location = models.ForeignKey(SLR_Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)
@@ -318,6 +335,9 @@ class Finance(models.Model):
     origin = models.CharField(db_column='source', max_length=30, choices=FINANCE_CHOICES)
     amount = models.DecimalField(db_column='amount', decimal_places=2, max_digits=10, blank=True, null=True)
     project = models.CharField(db_column='project', max_length=30, blank=True)
+    client = models.CharField(db_column='client', max_length=40, blank=True)
+    comments = models.CharField(db_column='comments', max_length=100, blank=True)
+    owner = models.ForeignKey(get_user_model(), db_column='owner',  on_delete=models.DO_NOTHING)
 
     class Meta:
         managed = True
@@ -354,7 +374,7 @@ class References(models.Model):
     abstract = models.CharField(db_column='abstract', max_length=300, blank=True, null=True)
     subject = models.CharField(db_column='subject', max_length=30, choices=SUBJECT_CHOICES)
     project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
-
+    owner = models.ForeignKey(get_user_model(), db_column='owner',  on_delete=models.DO_NOTHING)
     def __str__(self):
         return u"title:%s, author:%s, abstract:%s, subject:%s" %(self.title, self.author, self.abstract, self.subject)
 
