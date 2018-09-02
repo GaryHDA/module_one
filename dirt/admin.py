@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Beaches, Codes, All_Data, References, Finance, SLR_Beaches, SLR_Data, Projects, HDC_Beaches, HDC_Data, Precious, Descente
+from .models import Beaches, Codes, AllData, References, Finance, SLR_Beaches, SLR_Data, Projects, HDC_Beaches, HDC_Data, Precious, Descente
 import dirt.forms
 import dirt.models as models
 from django_admin_listfilter_dropdown.filters import DropdownFilter, RelatedDropdownFilter
@@ -22,26 +22,26 @@ class HDC_BeachesAdmin(admin.ModelAdmin):
 admin.site.register(HDC_Beaches, HDC_BeachesAdmin)
 
 
-class All_DataAdmin(admin.ModelAdmin):
+class AllDataAdmin(admin.ModelAdmin):
 
     raw_id_fields = ("location",)
     list_display=('date', 'location_name', 'item_code', 'quantity','project_project')
     list_filter = ('project__project',('location__city', DropdownFilter),('location__location',DropdownFilter))
     list_editable = ('quantity',)
     def formfield_for_dbfield(self,db_field,request,**kwargs):
-        field = super(All_DataAdmin, self).formfield_for_dbfield(db_field, request,**kwargs)
+        field = super(AllDataAdmin, self).formfield_for_dbfield(db_field, request,**kwargs)
         if db_field.name == 'location':
-            field.initial = All_Data.objects.latest('date').location.location
+            field.initial = AllData.objects.latest('date').location.location
         if db_field.name == 'project':
-            field.initial = All_Data.objects.latest('date').project.project
+            field.initial = AllData.objects.latest('date').project.project
         if db_field.name == 'length':
-            field.initial = All_Data.objects.latest('date').length
+            field.initial = AllData.objects.latest('date').length
         if db_field.name == 'date':
-            field.initial = All_Data.objects.latest('date').date
+            field.initial = AllData.objects.latest('date').date
         if db_field.name == 'owner':
             field.initial = User.username
         return field
-    
+
     fields = (('date','project','location'),'length','code','quantity', 'owner')
     print(User.username)
     def item_code(self, obj):
@@ -53,7 +53,7 @@ class All_DataAdmin(admin.ModelAdmin):
     def project_project(self, obj):
         return obj.project.project
 
-admin.site.register(All_Data, All_DataAdmin)
+admin.site.register(AllData, AllDataAdmin)
 
 class ReferencesAdmin(admin.ModelAdmin):
     list_display = ('subject', 'title', 'abstract', 'author', 'project')
@@ -88,7 +88,7 @@ class  HDC_DataAdmin(admin.ModelAdmin):
         if db_field.name == 'date':
             field.initial = HDC_Data.objects.latest('date').date
         return field
-    
+
     fields = (('date','project','location'),'length','code','quantity')
 
     def item_code(self, obj):
@@ -103,7 +103,7 @@ class  HDC_DataAdmin(admin.ModelAdmin):
 admin.site.register(HDC_Data, HDC_DataAdmin)
 
 class  P_DataAdmin(admin.ModelAdmin):
-    
+
     raw_id_fields = ("location",)
     list_display=('date', 'location_name', 'item_code', 'quantity','project_project')
     list_filter = ('project__project',('location__city', DropdownFilter),('location__location',DropdownFilter))
@@ -131,11 +131,11 @@ class  P_DataAdmin(admin.ModelAdmin):
         return obj.code.material
     def project_project(self, obj):
         return obj.project.project
-    
+
 admin.site.register(Precious, P_DataAdmin)
 
 class  D_DataAdmin(admin.ModelAdmin):
-    
+
     raw_id_fields = ("location",)
     list_display=('date', 'location_name', 'item_code', 'quantity','project_project')
     list_filter = ('project__project',('location__city', DropdownFilter),('location__location',DropdownFilter))
@@ -163,7 +163,7 @@ class  D_DataAdmin(admin.ModelAdmin):
         return obj.code.material
     def project_project(self, obj):
         return obj.project.project
-    
+
 admin.site.register(Descente, D_DataAdmin)
 
 

@@ -1,9 +1,9 @@
 from django import forms
 import datetime
-from .models import All_Data, HDC_Data, Precious, Descente
+from .models import AllData, HDC_Data, Precious, Descente
 
 class AllDataSurvey(forms.ModelForm):
-    model=All_Data
+    model=AllData
     errors = None
     fields = ('location')
 
@@ -21,4 +21,3 @@ class DescenteDataSurvey(forms.ModelForm):
     model=Descente
     errors = None
     fields = ('location')
-

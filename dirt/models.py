@@ -184,7 +184,7 @@ class Codes(models.Model):
 
 
 
-class All_Data(models.Model):
+class AllData(models.Model):
     location = models.ForeignKey(Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)  # Field name made lowercase.
     date = models.DateField(db_column='date', blank=True, null=True)  # Field name made lowercase.
     length = models.IntegerField(db_column='length', default=0)
@@ -216,7 +216,7 @@ class Precious(models.Model):
         db_table = 'precious'
     def __str__(self):
         return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location, self.length, self.quantity, self.code  )
-    
+
     @property
     def location_name(self):
         return self.location.location
@@ -235,7 +235,7 @@ class Descente(models.Model):
         db_table = 'descente'
     def __str__(self):
         return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location, self.length, self.quantity, self.code  )
-    
+
     @property
     def location_name(self):
         return self.location.location
@@ -275,7 +275,7 @@ class SLR_Data(models.Model):
         db_table = 'slr_data'
     def __str__(self):
         return u"date:%s,location:%s, length:%s, code:%s, quantity:%s, density:%s" %(self.date, self.location, self.length, self.code, self.quantity, self.density,)
-    
+
     def location_name(self):
         return self.location.location
 

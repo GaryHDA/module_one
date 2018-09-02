@@ -3,7 +3,7 @@
 from django.db.models import Sum
 from django.shortcuts import render
 from django.http import HttpResponse
-from dirt.models import SLR_Data, SLR_Density, SLR_Beaches, Beaches, Codes, All_Data, References, SUBJECT_CHOICES, SLR_Area, HDC_Data, HDC_Beaches, Precious, Descente
+from dirt.models import SLR_Data, SLR_Density, SLR_Beaches, Beaches, Codes, AllData, References, SUBJECT_CHOICES, SLR_Area, HDC_Data, HDC_Beaches, Precious, Descente
 from django.conf import settings
 
 import json
@@ -141,7 +141,7 @@ class Make_csvs():
     a.to_csv('dirt/static/site_data.csv', encoding='latin1')
 
 class Mc_data():
-    a = pd.DataFrame(list(All_Data.objects.all().values()))
+    a = pd.DataFrame(list(AllData.objects.all().values()))
     def format_data(y):
         t_day = pd.to_datetime('today')
         y['date'] = pd.to_datetime(y['date'])
@@ -487,7 +487,7 @@ class Make_totals():
         returns the grand total and the subtotals
         """
         slr_total = SLR_Data.objects.all().aggregate(t_total = Sum('quantity'))
-        mcbp_total = All_Data.objects.all().aggregate(t_total = Sum('quantity'))
+        mcbp_total = AllData.objects.all().aggregate(t_total = Sum('quantity'))
         p_total = Precious.objects.all().aggregate(t_total = Sum('quantity'))
         d_total = Descente.objects.all().aggregate(t_total = Sum('quantity'))
         mc_tot = float(mcbp_total['t_total'])
