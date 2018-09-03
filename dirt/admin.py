@@ -1,9 +1,37 @@
 from django.contrib import admin
 from .models import Beaches, Codes, AllData, References, Finance, SLR_Beaches, SLR_Data, Projects, HDC_Beaches, HDC_Data, Precious, Descente
+from merter.models import Project, Beach, Code, Event, ItemData
 import dirt.forms
 import dirt.models as models
 from django_admin_listfilter_dropdown.filters import DropdownFilter, RelatedDropdownFilter
 from django.contrib.auth.models import User
+
+# MertTer models
+
+class BeachAdmin(admin.ModelAdmin):
+    search_fields = ['location']
+
+admin.site.register(Beach, BeachAdmin)
+
+class EventAdmin(admin.ModelAdmin):
+    search_fields = ['location']
+
+admin.site.register(Event, EventAdmin)
+
+class CodeAdmin(admin.ModelAdmin):
+    search_fields = ['location']
+
+admin.site.register(Code, CodeAdmin)
+
+class ItemDataAdmin(admin.ModelAdmin):
+    search_fields = ['location']
+
+admin.site.register(ItemData, ItemDataAdmin)
+
+class ProjectDataAdmin(admin.ModelAdmin):
+    search_fields = ['location']
+
+admin.site.register(Project, ProjectDataAdmin)
 
 class BeachesAdmin(admin.ModelAdmin):
     search_fields = ['location']

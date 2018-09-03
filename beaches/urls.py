@@ -16,10 +16,12 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from  dirt import views
+from merter import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^dirt/', include('dirt.urls')),
+    url(r'^merter/', include('merter.urls')),
     url(r'^$', views.index, name='index'),
 
 
