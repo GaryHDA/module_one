@@ -129,7 +129,7 @@ class ItemData(models.Model):
         db_table = 'itemdata'
         verbose_name_plural = 'Mer-Terre Objects'
     def __str__(self):
-        return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location, self.length, self.quantity, self.code  )
+        return u"date:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.location, self.length, self.quantity, self.code  )
     def location_name(self):
         return self.location.location
 
