@@ -48,7 +48,7 @@ class Beach(models.Model):
 
 
     def __str__(self):
-        return u'location:%s, lat:%s, lon:%s, city:%s, post:%s, departement:%s, water:%s, post:%s, project:%s'%(self.location, self.latitude, self.longitude, self.city, self.post, self.departement, self.water,  self.project)
+        return u'location:%s, lat:%s, lon:%s, city:%s, post:%s, departement:%s, water:%s, project:%s'%(self.location, self.latitude, self.longitude, self.city, self.post, self.departement, self.water,  self.project)
 
     class Meta:
         managed = True
@@ -64,10 +64,10 @@ class Code(models.Model):
     """
     m_code = models.CharField('MLW code', db_column='m_code', max_length=5, primary_key=True)
     o_code = models.CharField('OSPAR code', db_column='o_code', max_length=5)
-    material = models.CharField(db_column='material', max_length=30, default='plastic')
-    description = models.CharField(db_column='description', max_length=30, default='trash')
+    material = models.CharField(db_column='material', max_length=100, default='plastic')
+    description = models.CharField(db_column='description', max_length=140, default='trash')
     # source = models.CharField(db_column='source', max_length=30, blank=True, null=True)
-    owner = models.ForeignKey(get_user_model(), db_column='owner',  on_delete=models.DO_NOTHING)
+    #owner = models.ForeignKey(get_user_model(), db_column='owner',  on_delete=models.DO_NOTHING)
 
     objects = UserManager()
 

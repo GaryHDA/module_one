@@ -24,7 +24,35 @@ class CodeAdmin(admin.ModelAdmin):
 admin.site.register(Code, CodeAdmin)
 
 class ItemDataAdmin(admin.ModelAdmin):
-    search_fields = ['location']
+    #search_fields = ['location']
+    raw_id_fields = ("location",)
+    list_display=('date', 'location_name', 'item_code', 'quantity','project_project')
+    list_filter = ('project__project',('location__city', DropdownFilter),('location__location',DropdownFilter))
+    list_editable = ('quantity',)
+    def formfield_for_dbfield(self,db_field,request,**kwargs):
+        field = super(ItemDataAdmin, self).formfield_for_dbfield(db_field, request,**kwargs)
+        if db_field.name == 'location':
+            field.initial = ItemData.objects.latest('date').location.location
+        if db_field.name == 'project':
+            field.initial = ItemData.objects.latest('date').project.project
+        if db_field.name == 'length':
+            field.initial = ItemData.objects.latest('date').length
+        if db_field.name == 'date':
+            field.initial = ItemData.objects.latest('date').date
+        if db_field.name == 'owner':
+            field.initial = User.username
+        return field
+
+    fields = (('date','project','location'),'length','code','quantity', 'owner')
+    print(User.username)
+    def item_code(self, obj):
+        return obj.code.m_code
+    def item_description(self, obj):
+        return obj.code.description
+    def item_material(self, obj):
+        return obj.code.material
+    def project_project(self, obj):
+        return obj.project.project
 
 admin.site.register(ItemData, ItemDataAdmin)
 
