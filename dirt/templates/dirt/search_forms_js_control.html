@@ -1,0 +1,34 @@
+<script type="text/javascript">
+    function submitCity(){
+        var cities = document.getElementById('city-select').value;
+        var start_here = '/dirt/litter/city/';
+        var go_here = start_here + cities;
+        try_this =   document.getElementById('city-form')
+        try_this.action = go_here
+        document.getElementById('city-form').submit();
+    };
+    function submitWater(){
+        var cities = document.getElementById('water-select').value;
+        var start_here = '/dirt/litter/lake-river/';
+        var go_here = start_here + cities;
+        try_this =   document.getElementById('water-form')
+        try_this.action = go_here
+        document.getElementById('water-form').submit();
+    };
+    function submitProject(){
+        var cities = document.getElementById('project-select').value;
+        var start_here = '/dirt/litter/project/';
+        var go_here = start_here + cities;
+        try_this =   document.getElementById('project-form')
+        try_this.action = go_here
+        document.getElementById('project-form').submit();
+    };
+    function submitLocation(){
+        var cities = document.getElementById('location-select').value;
+        var start_here = '/dirt/litter/location/';
+        var go_here = start_here + cities;
+        try_this =   document.getElementById('location-form')
+        try_this.action = go_here
+        document.getElementById('location-form').submit();
+    };
+</script>

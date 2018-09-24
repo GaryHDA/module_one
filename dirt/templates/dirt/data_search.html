@@ -1,0 +1,81 @@
+<!--
+Variables called:
+all_cities : calls the list of all cities in the data set
+all_water : calls the list of all lakes and rivers in the data set
+all_locations : calls the list of all locations in the data set
+all_projects ; calls the list of all projects in the data set
+each form calls uses the corresponding JScript submitCity, submitProject, submitWater, submitLocation
+located in the search_forms_js_control template
+-->
+<div class="modal fade w-100" id="data_search">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <div class="container-fluid">
+          <h5 class="">The search is limted to projects that have registered surveys<br>
+          <small class="text-white">If you would like to have a project listed here, contact us.</small></h5>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="card-group">
+          <div class="card p-1" style="">
+            <h6 class="card-title">City</h6>
+            <div class="card-body p-1">
+              <form id="city-form" class="form-inline justify-content-left">
+                <select id="city-select" class="form-control-sm w-100" style="" >
+                  {% for x in all_cities %}
+                  <option class=""  value= "{{ x }}">{{ x }}</option>
+                  {% endfor %}
+                </select>
+              <button class="btn btn-info mt-2"  onclick="submitCity()" style="">Go!</button>
+              </form>
+            </div>
+          </div>
+          <div class="card p-1 " style="">
+            <h6 class="card-title">Lake or river</h6>
+            <div class="card-body p-1">
+              <form id="water-form" class="form-inline justify-content-left">
+                <select id="water-select" class="form-control-sm w-100" style="">
+                  {% for x in all_water %}
+                  <option class="" value= "{{ x }}">{{ x }}</option>
+                  {% endfor %}
+                </select>
+                <button class="btn btn-info mt-2" onclick="submitWater()" style="">Go!</button>
+              </form>
+            </div>
+          </div>
+          <div class="card p-1" style="">
+            <h6 class="card-title">Project</h6>
+            <div class="card-body p-1">
+              <form id="project-form" class="form-inline justify-content-left">
+                <select id="project-select" class="form-control-sm w-100" style="">
+                  {% for x in all_projects %}
+                  <option class="" value= "{{ x }}">{{ x }}</option>
+                  {% endfor %}
+                </select>
+                <button class="btn btn-info mt-2" onclick="submitProject()" style="">Go!</button>
+              </form>
+            </div>
+          </div>
+          <div class="card p-1" style="">
+            <h6 class="card-title">Location</h6>
+            <div class="card-body p-1">
+              <form id="location-form" class="form-inline justify-content-left">
+                <select id="location-select" class="form-control-sm w--100" style="">
+                  {% for x in all_locations %}
+                  <option class="" value= "{{ x }}">{{ x }}</option>
+                  {% endfor %}
+                </select>
+                <button class="btn btn-info mt-2" onclick="submitLocation()" style="">Go!</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer bg-info">
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span></button>
+      </div>
+    </div>
+  </div>
+</div>

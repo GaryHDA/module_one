@@ -1,0 +1,38 @@
+<!--
+Variables called:
+calls hotel_dif.svg
+-->
+{% load static %}
+<div class="card pb-0" id="">
+  <div class="card-body text-left" style="height:100%;font-family:'Montserrat'">
+    <h6 class="card-title mb-2" style="font-family:'Montserrat';" >Hotel nights sold per month
+      <br><small class="text-muted">The number of hotel nights sold increases by 50% in one month
+      <br>Source: <a href="https://www.bfs.admin.ch/bfs/en/home/statistics/tourism.html>">Swiss federal office of statistics</a></small>
+    </h6>
+    <p>Montreux is a tourist town, with a population of ~25'000.  When this project was conceived, the annual report by the <a href="http://www.cipel.org/en/">CIPEL</a> showed that, sewage overflows were under estimated. See the <a href="http://www.cipel.org/wp-content/uploads/2016/10/12_controle_STEP_camp_2015.pdf"> report</a> (in french)</p>
+    <p>The hotel nights effectiveley double (almost triple the population)</p>
+    <figure class="figure w-100 mb-1" style="height:40%">
+      <img src="{% static 'images/hotel_dif.svg' %}" class="img-fluid" style="">
+      <figcaption class="figure-caption text-right pr-2"><small><a href="https://github.com/hammerdirt/notes/blob/master/micro/output_for_hdch.ipynb">Check the repository too see how this was calculated</a></small></figcaption>
+    </figure>
+    <dl class="row mt-2">
+      <dt class="col-sm-3">Interpretation of results</dt>
+      <dd class="col-sm-9">
+        <ul>
+          <li>
+            UV (2017 only): E.coli colonies will fluoresce under longwave UV light.
+          </li>
+          <li>
+            Big Blue: E. coli colonies will have a dark blue/purple overall colony color.
+          </li>
+          <li>
+            Med Blue: Non-fecal coliforms (Enterobacter, Citrobacter and Klebsiella spp. & others) are lighter blue/grey to purplish in color.
+          </li>
+          <li>
+            Gram-positive organisms are generally inhibited
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+</div>

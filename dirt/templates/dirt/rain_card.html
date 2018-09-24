@@ -1,0 +1,38 @@
+<!--
+Variables called:
+calls jazz_dif.svg
+-->
+{% load static %}
+<div class="card pb-0" id="">
+  <div class="card-body text-left" style="height:100%;font-family:'Montserrat'">
+    <h6 class="card-title mb-2" style="font-family:'Montserrat';" >72 hour rainfall totals
+      <br><small class="text-muted">Coliforms tend to increase in lake water during and after rain events
+      <br>Increases in E.coli suggest a bypass of the water treatment system</small></h6>
+      <p> If changes in the bacterial fauna are due to rainfall then we should see an increase in colony counts as rainfall increases.</p>
+      <p>However, the change would only be relfected if the capacity of the water treatment facility was surpassed. This would produce a spike in the graph above a certain amount of rainfall</p>
+    <figure class="figure w-100 mb-1" style="height:40%">
+      <img src="{% static 'images/rain_dif.svg' %}"  class="img-fluid" style="">
+      <figcaption class="figure-caption text-right pr-2"><small><a href="https://github.com/hammerdirt/notes/blob/master/micro/output_for_hdch.ipynb">Check the repository too see how this was calculated</a></small></figcaption>
+    </figure>
+
+    <dl class="row mt-2">
+      <dt class="col-sm-3">Interpretation of results</dt>
+      <dd class="col-sm-9">
+        <ul>
+          <li>
+            UV (2017 only): E.coli colonies will fluoresce under longwave UV light.
+          </li>
+          <li>
+            Big Blue: E. coli colonies will have a dark blue/purple overall colony color.
+          </li>
+          <li>
+            Med Blue: Non-fecal coliforms (Enterobacter, Citrobacter and Klebsiella spp. & others) are lighter blue/grey to purplish in color.
+          </li>
+          <li>
+            Gram-positive organisms are generally inhibited
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+</div>

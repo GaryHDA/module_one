@@ -1,0 +1,27 @@
+
+<!--
+Variables called:
+id='combined_map' : referenced by the google maps function
+list_lakes_rivers_button : calls the modal that lists lakes and rivers
+call_data_search_button.html : calls the modal to search for results
+-->
+<div class="card border-white" id="map-card" style="height:100%">
+  <div class="card-header w-100 bg-dark text-left text-white" id="" style="font-family:'Montserrat'">
+    Location of beach litter surveys:
+  </div>
+  <div class="card-body p-0 text-left"  style="height:100%">
+    <div class="embed-responsive" style="padding-bottom: 130%">
+      <div id="combined_map" class="embed-responsive-item" style=""></div>
+    </div>
+    <div class="btn-toolbar">
+      <div class="btn-grp w-100" style="">
+        <button class="btn bg-info text-white w-100 border-white text-left" style="" role="button" data-toggle="modal" data-target="#lakes_rivers" aria-expanded="false" aria-controls="">
+            See list of lakes and rivers
+        </button>
+        <button id="data-search-button" class="btn bg-danger text-white w-100 border-white text-left" style=""  role="button" data-toggle="modal" data-target="#data_search" aria-expanded="false" aria-controls="">
+              Search by city, body of water or project
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

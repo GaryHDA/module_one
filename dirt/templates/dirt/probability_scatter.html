@@ -1,0 +1,166 @@
+<!--
+Variables called:
+calls year_one, year_two and year_three
+the parser is incldued with script
+-->
+{% load static %}
+<script type="text/javascript">
+var year_one = {{ year_one|safe}}
+var year_two = {{ year_two|safe}}
+var year_three = {{ year_three|safe}}
+
+var y_one = [];
+year_one.forEach(function(element){
+  element.date = Date.parse(element[1]);
+  element.density = parseFloat(element[2]);
+  var today = new Date();
+  if (element.date < today){
+    y_one.push({"name":element[0], "x":element.date, "y":element.density});
+  }
+});
+var y_two = [];
+year_two.forEach(function(element){
+  element.date = Date.parse(element[1]);
+  element.density = parseFloat(element[2]);
+  var today = new Date();
+  if (element.date < today){
+    y_two.push({"name":element[0], "x":element.date, "y":element.density});
+  }
+});
+var y_three = [];
+year_three.forEach(function(element){
+  element.date = Date.parse(element[1]);
+  element.density = parseFloat(element[2]);
+  var today = new Date();
+  if (element.date < today){
+    y_three.push({"name":element[0], "x":element.date, "y":element.density});
+  }
+});
+
+Highcharts.chart('probability-scatter', {
+    chart: {
+        type: 'scatter',
+        plotBorderWidth:0,
+        spacingBottom: 20,
+        zoomType: 'x',
+        style: {
+          fontFamily: 'sans-serif',
+        }
+    },
+    title: {
+        text: '',
+        style: {
+            display: 'none'
+        }
+    },
+    subtitle: {
+        text: '',
+        style: {
+            display: 'none'
+        }
+    },
+    credits:{
+      text:'hammerdirt 2018',
+    },
+    exporting: {
+      enabled:false,
+    },
+    legend: {
+      enabled: true,
+      align: 'right',
+      verticalAlign: 'top',
+      horizontalAlign: 'right',
+      layout:'vertical',
+      floating:true,
+      x:0,
+      y:10,
+      backgroundColor:'rgba(255,255,255, .4)',
+      borderColor:'rgba(10, 46, 92, .5)',
+      borderWidth:1,
+      itemMarginTop:4,
+      itemMarginBottom:4,
+      itemStyle:{
+        color: 'black',
+        fontSize: 14,
+        fontWeight: 'bold',
+      }
+    },
+    xAxis: {
+      type: 'datetime',
+      tickInterval:3600*1000*24*28*2,
+      labels: {
+        style: {
+          color:'rgba(00, 00, 00, 1)'
+        }
+      },
+      dateTimeLabelFormats: {
+        month: '%b - %Y',
+      },
+    },
+    yAxis: {
+        title: {
+            align: 'low',
+            offset: 40,
+            text: 'Pieces of trash per meter of shoreline',
+            style:{
+              fontSize: '12px',
+              color:'#000000',
+            },
+        },
+        gridLineColor:'rgba(10, 46, 92, .1)',
+        labels:{
+          style: {
+            color:'rgba(00, 00, 00, 1)'
+          }
+        },
+        tickInterval: 8,
+        min: 0,
+    },
+    tooltip: {
+        headerFormat: '<b>{point.key}</b><br>',
+        pointFormat: '{point.x:%e-%b}: {point.y:.2f} pcs/m'
+    },
+    series: [
+      {
+      zIndex:1,
+      type: 'scatter',
+      name:'Year one',
+      marker: {
+        symbol: 'circle',
+        radius:6,
+        lineColor: '#ffffff',
+        fillColor:  '#E76F51',
+        lineWidth:1,
+      },
+      data:y_one,
+    },
+    {
+      zIndex:2,
+      type: 'scatter',
+      name:'Year two',
+      marker: {
+        symbol: 'circle',
+        radius:6,
+        lineColor: '#FFFFFF',
+        fillColor:  '#2A9D8F',
+        lineWidth:2,
+      },
+      data:y_two,
+    },
+    {
+      zIndex:3,
+      type: 'scatter',
+      name:'Year three',
+      marker: {
+        symbol: 'circle',
+        radius:6,
+        lineColor: '#FFFFFF',
+        fillColor:  '#264653',
+        lineWidth:2,
+      },
+      data:y_three,
+    },
+  ],
+  }
+);
+</script>

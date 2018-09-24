@@ -1,0 +1,41 @@
+
+<!--
+Variables called:
+locations_samples summary of all locations included in the query
+-->
+<div class="modal fade w-100" id="locations-samples">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title">Location, average pcs/m and number-of-samples<br>
+          <small class="text-white">For all locations included in this summary </small>
+        </h5>
+        <button type="button" class="close align text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table-striped table table-sm">
+          <thead class="text-left">
+            <tr>
+              <th>Location:</th>
+              <th>pcs/m:</th>
+              <th>N<sup>o</sup> of samples:</th>
+            </tr>
+          </thead>
+          {% for r in locations_samples %}
+          <tr class="text-left">
+            <td>{{ r.0 }}</td>
+            <td class="">{{ r.2|floatformat:2 }}</td>
+            <td class="pl-2"> {{ r.1|floatformat:0 }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      <div class="modal-footer bg-info">
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span></button>
+      </div>
+    </div>
+  </div>
+</div>

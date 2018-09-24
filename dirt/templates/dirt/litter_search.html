@@ -1,0 +1,75 @@
+{% extends "dirt/hd_base.html" %}
+<!-- The template for litter data searches
+used for city, projet, lake/river and location data displays
+Variables used:
+litter_search_row_one.html
+total_inventory.html
+top_ten_code_material.html
+box_one.html
+list_of_lakes_rivers.html
+locations_samples.html
+data_search.html
+'sponsor_data':sponsor_data
+'sponsor', 'sponsor_icon_name', 'sponsor_url', 'message'
+survey_map.html
+combined_scatter_two.html
+ -->
+ {% block og_data %}
+ {% load static %}
+ <title>Hammerdirt</title>
+ <!-- Open Graph Data -->
+ <meta property="og:title" content="Another clean beach" />
+ <meta property="og:type" content="article" />
+ <meta property="og:url" content="{{ og_return_url }}" />
+ <meta property="og:image" content= "{% static "images/litter_location.jpeg" %}" />
+ <meta property="og:image:width" content="700" />
+ <meta property="og:image:height" content="623" />
+ <meta property="og:description" content="hammerdirt, helping you create knowledge.  A research partner that specializes in the development of data products for and from crowd sourced research projects." />
+ <meta property="og:site_name" content="MW-Shovel" />
+ <!-- <meta property="fb:admins" content="" /> -->
+ {% endblock %}
+
+{% block style %}
+.col-sm{
+  min-width:400px;
+}
+
+{% endblock %}
+{% block content  %}
+{% load humanize %}
+{% load static %}
+<div class="container-fluid p-0 m-0" style="width:100%; height:auto">
+  {%include 'dirt/litter_search_row_one.html'%}
+  <div class="row no-gutters bg-dark mt-1">
+    <p class="text-white"> We have grants for organizations with unfunded requirements. Contact us for more information.</p>
+  </div>
+</div>
+
+{% include 'dirt/total_inventory.html' %}
+{% include 'dirt/top_ten_code_material.html' %}
+{% include 'dirt/box_one.html' %}
+{% include 'dirt/list_of_lakes_rivers.html' %}
+{% include 'dirt/locations_samples.html' %}
+{% include 'dirt/data_search.html' %}
+{% endblock %}
+
+{% block charts %}
+<script type="text/javascript">
+{% for x in sponsor_data %}
+$('#{{ x.0|slugify }}').popover({
+  container: 'body'
+});
+
+{% endfor %}
+var a = {{ sponsor_data|safe }}
+console.log({{ a }})
+</script>
+
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+{% include 'dirt/survey_map.html' %}
+{% include 'dirt/combined_scatter_two.html' %}
+{% endblock %}

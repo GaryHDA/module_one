@@ -1,0 +1,81 @@
+{% load humanize %}
+{% load static %}
+<!--
+Variables called:
+summary : retrieves the summary array
+button_top_ten_inventory_material.html
+'sponsor_data':sponsor_data
+'sponsor', 'sponsor_icon_name', 'sponsor_url', 'message'
+-->
+<div class="card border-white" id="data-summary" style="height:100%">
+  <div class="card-header w-100 bg-dark text-left text-white" id="" style="font-family:'Montserrat'">
+    Summary: &nbsp;{{ summary.13}}
+  </div>
+  <div class="card-body p-0 text-left" style="height:100%">
+    <div class="embed-responsive" style="padding-bottom: 130%">
+
+      <table id="summary-table" class="table table-sm table-striped text-left mb-0 embed-responsive-item"  style="">
+        <tbody>
+          <tr>
+            <td class="bg-white p-0 pt-1 border-0"><small><strong>Crew:</strong></small> <div class="btn-group pl-1 bg-white">{% for x in sponsor_data %}
+              <button id="{{ x.0|slugify }}" class="btn p-0" data-content="{{ x.3|safe }}" rel="popover" data-placement="bottom" data-original-title="{{ x.0 }} says:" data-trigger="hover" href="{{ x.2 }}">
+              <img src={% static  x.1 %}  height="40" alt='django logo'> </buton>
+              {% endfor %}</div></td>
+          </tr>
+           <tr>
+             <td class="ml-auto">N<sup>o</sup> of Samples:</td>
+             <td class="mr-auto">{{ summary.2 }}</td>
+           </tr>
+           <tr>
+             <td class="ml-auto">N<sup>o</sup> of locations:</td>
+             <td class="mr-auto">{{ summary.0|floatformat:0 }}</td>
+           </tr>
+           <tr>
+             <td class="ml-auto">N<sup>o</sup> of rivers - lakes:</td>
+             <td class="mr-auto">{{ summary.11|floatformat:0 }} - {{ summary.10|floatformat:0 }}</td>
+           </tr>
+           <tr>
+             <td class="ml-auto">First sample date:</td>
+             <td class="mr-auto">{{ summary.3 }}</td>
+           </tr>
+           <tr>
+             <td class="ml-auto">Most recent sample:</td>
+             <td class="mr-auto">{{ summary.4 }}</td>
+           </tr>
+           <tr>
+             <td class="ml-auto">N<sup>o</sup> of pieces of garbage:</td>
+             <td class="mr-auto">{{ summary.1|intcomma }}</td>
+           </tr>
+           <tr>
+             <td class="ml-auto">Avg pieces/meter:</td>
+             <td class="mr-auto">{{ summary.5|floatformat:2 }} pcs/m</td>
+           </tr>
+           <tr>
+             <td class="ml-auto">Standard deviation</td>
+             <td class="mr-auto">{{ summary.12|floatformat:2 }}</td>
+           </tr>
+           <tr>
+             <td class="ml-auto">25<sup>th</sup> percentile</td>
+             <td class="mr-auto">{{ summary.8|floatformat:2 }} pcs/m</td>
+           </tr>
+           <tr>
+             <td class="ml-auto">75<sup>th</sup> percentile</td>
+             <td class="mr-auto"> {{ summary.9|floatformat:2 }} pcs/m</td>
+           </tr>
+           <tr>
+             <td class="ml-auto">Min - Max pcs/m :</td>
+             <td class="mr-auto"> {{ summary.7|floatformat:4 }} - {{ summary.6|floatformat:2 }}</td>
+           </tr>
+         </tbody>
+      </table>
+    </div>
+    <div class="btn-toolbar">
+      <div class="btn-grp w-100" style="">
+    <button class="btn bg-info w-100 text-white text-left border-white " style="" data-toggle="modal"  data-target="#top-ten-code-material" aria-expanded="false" aria-controls="table-of-results">
+      Top-ten-codes, material as % of total</button>
+    <button class="btn bg-info w-100 text-white text-left border-white"  style="" data-toggle="modal" data-target="#total-inventory" aria-expanded="false" aria-controls="">
+        Inventory of all items in this summary</button>
+      </div>
+    </div>
+  </div>
+</div>

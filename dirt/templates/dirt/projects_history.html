@@ -1,0 +1,62 @@
+<!--
+Variables called:
+history.html
+about_technology.html
+tech_toolbar.html
+-->
+{% load static %}
+<div class="card border-white" id="history_projects" style="" >
+  <div class="card-header w-100 bg-dark text-left text-white" id="" style="font-family:'Montserrat'">
+    History and projects
+  </div>
+  <div class="card-body p-1 w-100 text-left" >
+    <div class="list-group border-right-0 border-left-0 ">
+      <div class="list-group-item flex-column border-right-0 border-left-0">
+        <h6 class="mb-1" style="font-family:'Montserrat'">All good things take time:
+          <br><small class="text-muted"> The project was built from the ground up. From the first set of observations noted on paper
+              to developing the application that allows all stakeholders to use the data as they see fit.</small></h6>
+        <div class="btn-group">
+          <button class="btn bg-info text-white border-white" style="" data-toggle="modal" data-target="#mcbp-1" aria-expanded="false" aria-controls="">
+             MCBP-1
+          </button>
+          <button class="btn bg-info text-white border-white " style="" data-toggle="modal"  data-target="#mcbp-2" aria-expanded="false" aria-controls="">
+             MCBP-2
+          </button>
+          <button class="btn bg-info text-white border-white" style="" data-toggle="modal"  data-target="#mcbp-3" aria-expanded="false" aria-controls="table-of-results">
+             MCBP-3
+          </button>
+          <button class="btn bg-info text-white border-white" style="" data-toggle="modal"  data-target="#mcbp-4" aria-expanded="false" aria-controls="">
+             MCBP-4
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="list-group border-right-0 border-left-0 ">
+      <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+        <h6 class="" style="font-family:'Montserrat'">Developers first:
+          <br><small class="text-muted">Providing dynamic data output requires a
+             relational database, an ORM and other tools.</small>
+        </h6>
+      </div>
+      <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+        <h6 class="" style="font-family:'Montserrat'">Made possible by open acces:<br><small class="text-muted">Thanks to the developers from the following companies</small>
+
+        </h6>
+      </div>
+    </div>
+    <div class="btn-toolbar" role="toolbar">
+      <div class="btn-group">
+        <a class="btn p-0 " href="https://www.djangoproject.com/" role="link"><img src={% static 'images/logo-Django.png' %}  height="50" alt='django logo'> </a>
+        <a class="btn p-0 " href="https://www.mysql.com/" role="link"><img src={% static 'images/mysql_PNG16.png' %}  height="50" alt='django logo'> </a>
+        <a class="btn p-0 " href="https://www.getbootstrap.com" role="a"> <img src={% static 'images/bootstrap.png' %} height="50"> </a>
+        <a class="btn p-0 " href="https://www.python.org/psf/" role="link"><img src={% static 'images/python.png' %}  height="50" alt='django logo'> </a>
+        <a class="btn p-0 " href="https://www.scipy.org/" role="link"> <img src={% static 'images/scipy.png' %} height="50"> </a>
+        <a class="btn p-0 " href="http://jupyter.org/" role="link"><img src={% static 'images/jupyter.png' %}  height="50" alt='django logo'> </a>
+        <a class="btn p-0 " href="https://github.com/" role="link"> <img src={% static 'images/git_hub.png' %} height="50"> </a>
+        <a class="btn p-0 " href="https://matplotlib.org/" role="link"><img src={% static 'images/Matplotlib.svg' %}  height="50" alt='django logo'> </a>
+        <a class="btn p-0 " href="https://www.highcharts.com/" role="link"><img src={% static 'images/highsoft.png' %}  height="50" alt='django logo'> </a>
+        <a class="btn p-0 " href="https://www.ubuntu.com/" role="link"><img src={% static 'images/ubuntu.png' %}  height="50" alt='django logo'> </a>
+      </div>
+    </div>
+  </div>
+</div>

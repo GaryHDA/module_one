@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta http-equiv="x-ua-compatible" content="IE=edge" />
+  {% load static %}
+  <meta http-equiv="content-type" content="text/html" charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% block og_data %}
+  <title>Hammerdirt</title>
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="hammerdirt" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="http://mwshovel.pythonanywhere.com/" />
+  <meta property="og:image" content= "{% static "images/OG_image.png" %}" />
+  <meta property="og:image:width" content="400" />
+  <meta property="og:image:height" content="246" />
+  <meta property="og:description" content="hammerdirt, helping you create knowledge.  A research partner that specializes in the development of data products for and from crowd sourced research projects." />
+  <meta property="og:site_name" content="MW-Shovel" />
+  {% endblock %}
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'css/font-awesome-4.7.0/css/font-awesome.min.css' %}"></link>
+  <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}"></link>
+  <script src="{% static 'js/d3.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  {% include 'dirt/search_forms_js_control.html' %}
+  <script type="text/javascript">
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+  </script>
+  <style>
+  html { font-size: .7rem; }
+  @media (min-width: 380px) {
+      html { font-size: .9rem; }
+  }
+  @media (min-width: 768px) {
+      html { font-size: .9rem; }
+  }
+  @media (min-width: 992px) {
+      html { font-size: 1rem; }
+  }
+  @media (min-width: 1200px) {
+      html { font-size: 1.1rem; }
+  }
+  {% block style %} {% endblock %}
+  </style>
+</head>
+<body class="w-100 m-0">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark text-white">
+    <span class="navbar-brand" >hammerdirt</span>
+    <button class="navbar-toggler navbar-toggler-right text-white" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fa fa-bars fa-lg "></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav text-white">
+        <li class="nav-item mr-1">
+          <a class="nav-link text-white" href="{% url 'home' %}">home</a>
+        </li>
+        <li class="nav-item dropdown bg-dark mr-1">
+          <a class="nav-link dropdown-toggle mr-1 text-white"  data-toggle="dropdown" href='#'>Beach litter</a>
+          <div class="dropdown-menu bg-dark"  aria-labelledby="navbarDropdown">
+            <a class="dropdown-item bg-dark text-white" href="{% url 'beach-litter-home' %}">Switzerland</a>
+            <a class="dropdown-item bg-dark text-white" href="{% url 'california' %}">California</a>
+          </div>
+        </li>
+         <li class="nav-item mr-1">
+          <a class="nav-link text-white"  href={% url 'micro' %}>Water quality</a>
+        </li>
+        <li class="nav-item dropdown mr-1">
+          <a class="nav-link dropdown-toggle text-white mr-1"  data-toggle="dropdown" href='#'>Activities</a>
+          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item bg-dark text-white" href="#">Writing code</a>
+            <a class="dropdown-item bg-dark text-white" href="#">Math & probability</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown mr-1">
+          <a class="nav-link dropdown-toggle text-white mr-1"  data-toggle="dropdown" href='#'>About</a>
+          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item bg-dark text-white" href="#">Services</a>
+            <a class="dropdown-item bg-dark text-white" href="#">Who we are</a>
+          </div>
+        </li>
+        <li class="nav-item mr-1">
+         <a class="nav-link text-white"  href="http://127.0.0.1:8000/dirt/api-auth/login/">Api log-in</a>
+       </li>
+      </ul>
+      <span class="navbar-text ml-auto text-white">
+        Making data more accesible
+      </span>
+    </div>
+  </nav>
+
+
+
+{% block content %}
+
+{% endblock %}
+{% block d3 %}
+
+{% endblock %}
+
+
+{% block charts %}
+
+{% endblock %}
+
+</body>
+</html>
