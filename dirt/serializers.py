@@ -69,6 +69,14 @@ class AllDataSerial(serializers.Serializer):
     project_id = serializers.CharField()
     owner = serializers.CharField()
 
+class HdcDataSerial(serializers.Serializer):
+    location_id = serializers.CharField()
+    code_id = serializers.CharField()
+    length = serializers.IntegerField()
+    quantity = serializers.IntegerField()
+    project_id = serializers.CharField()
+    owner = serializers.CharField()
+
 class DailyTotalSerial(serializers.Serializer):
     location = serializers.CharField()
     date = serializers.DateTimeField(format=None)

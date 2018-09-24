@@ -33,6 +33,7 @@ class Projects(models.Model):
         managed = True
         db_table = 'projects'
         ordering = ['project']
+        verbose_name_plural = 'Projects'
 class Beaches(models.Model):
     """
     Beach names and gps data, Beaches.beachList() returns a list of just beach names.
@@ -55,6 +56,7 @@ class Beaches(models.Model):
         managed = True
         db_table = 'beaches'
         ordering = ['location']
+        verbose_name_plural = 'Beaches-Europe'
 class HDC_Beaches(models.Model):
     """
     Beach names for hd california and gps data, Beaches.beachList() returns a list of just beach names.
@@ -77,28 +79,8 @@ class HDC_Beaches(models.Model):
         managed = True
         db_table = 'hdrc_beaches'
         ordering = ['location']
-class SLR_Beaches(models.Model):
-    """
-    Beach names and gps data, SLR_Beaches.beachList() returns a list of just beach names.
-    """
-    location = models.CharField(db_column='Location', max_length=100, blank=True, null=False, primary_key=True)
-    latitude = models.DecimalField(db_column='latitude', max_digits=11, decimal_places=8, blank=True, null=True)
-    longitude = models.DecimalField(db_column='longitude', max_digits=11, decimal_places=8, blank=True, null=True)
-    city = models.CharField(db_column='city', max_length=100, blank=True, null=True)
-    post = models.CharField(db_column='post', max_length=12, blank=True, null=True)
-    water = models.CharField(db_column='water', max_length=12, blank=True, null=True, choices=WATER_CHOICES)
-    water_name = models.CharField(db_column='water_name', max_length=100, blank=True, null=True)
-    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
-    owner = models.CharField(db_column='owner', max_length=40,blank=True, null=False,default='mwshovel',)
+        verbose_name_plural = 'Beaches-California'
 
-
-    def __str__(self):
-        return u'location:%s, lat:%s, lon:%s, city:%s, water:%s, post:%s, project:%s'%(self.location, self.latitude, self.longitude, self.city, self.water, self.post, self.project)
-
-    class Meta:
-        managed = False
-        db_table = 'slr_beaches'
-        ordering = ['location']
 class Codes(models.Model):
     """
     MLW codes and decriptions, Codes.materials() gives a list of the materials,
@@ -122,6 +104,7 @@ class Codes(models.Model):
         managed = True
         db_table = 'codes'
         ordering = ['material']
+        verbose_name_plural = 'MLW codes'
 class AllData(models.Model):
     location = models.ForeignKey(Beaches, db_column='location',null=True, on_delete=models.DO_NOTHING)
     date = models.DateField(db_column='date', blank=False, null=False, default=datetime.date.today )
@@ -136,6 +119,7 @@ class AllData(models.Model):
         get_latest_by = 'date'
         managed = True
         db_table = 'all_items'
+        verbose_name_plural = 'All data Europe'
     def __str__(self):
         return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location, self.length, self.quantity, self.code  )
     def location_name(self):
@@ -155,57 +139,14 @@ class HDC_Data(models.Model):
     class Meta:
         managed = True
         db_table = 'hdrc_data'
+        verbose_name_plural = 'All data California'
     def __str__(self):
         return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location, self.length, self.quantity, self.code  )
 
     @property
     def location_name(self):
         return self.location.location
-class SLR_Data(models.Model):
-    location = models.ForeignKey(SLR_Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)
-    date = models.DateField(db_column='date', blank=True, null=True)
-    length = models.IntegerField(db_column='length', default=0)
-    quantity = models.IntegerField(db_column='quantity', default=0)
-    density = models.DecimalField(db_column='density', decimal_places=3, max_digits=8, blank=True, null=False,)
-    code = models.ForeignKey(Codes, db_column='code', null=True, on_delete=models.DO_NOTHING)
-    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
-    owner = models.CharField(db_column='owner', max_length=40,blank=True, null=False,default='mwshovel',)
 
-    class Meta:
-        managed = False
-        db_table = 'slr_data'
-    def __str__(self):
-        return u"date:%s,location:%s, length:%s, code:%s, quantity:%s, density:%s" %(self.date, self.location, self.length, self.code, self.quantity, self.density,)
-
-    def location_name(self):
-        return self.location.location
-class SLR_Density(models.Model):
-    location = models.ForeignKey(SLR_Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)
-    date = models.DateField(db_column='date', blank=True, null=True)
-    sample = models.IntegerField(db_column='sample', blank=True, null=True)
-    density = models.DecimalField(db_column='density', decimal_places=3, max_digits=8, blank=True, null=False)
-    quantity = models.IntegerField(db_column='quantity', blank=True, null=True)
-    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'slr_dens_date'
-    def __str__(self):
-        return u"date:%s, location:%s, density:%s, sample:%s, quantity:%s" %(self.date, self.location, self.density, self.sample, self.quantity)
-class SLR_Area(models.Model):
-    location = models.ForeignKey(SLR_Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)
-    date = models.DateField(db_column='date', blank=True, null=True)
-    sample = models.IntegerField(db_column='sample', blank=True, null=True)
-    density2 = models.DecimalField(db_column='density2', decimal_places=3, max_digits=8, blank=True, null=False)
-    quantity = models.IntegerField(db_column='quantity', default=0)
-    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
-    owner = models.CharField(db_column='owner', max_length=40,blank=True, null=False,default='mwshovel',)
-
-    class Meta:
-        managed = False
-        db_table = 'slr_area'
-    def __str__(self):
-        return u"date:%s, location:%s, density:%s, sample:%s, quantity:%s" %(self.date, self.location, self.density, self.sample, self.quantity)
 FINANCE_CHOICES = (
     ('t-r', 'Transportation'),
     ('m', 'Meals'),
@@ -293,6 +234,7 @@ class References(models.Model):
         managed = True
         get_latest_by = 'date'
         db_table = 'library'
+        verbose_name_plural = 'References'
 
 PLATFORM_CHOICES = (
     ('SO', 'Stack Overflow'),
@@ -315,6 +257,7 @@ class PlatformActivity(models.Model):
         managed = True
         get_latest_by = 'date'
         db_table = 'platform_activity'
+        verbose_name_plural = 'Recent posts'
 
 CONTRACT_CHOICES = (
     ('l', 'location'),
@@ -333,12 +276,9 @@ STAFF = (
 class Sponsors(models.Model):
     sponsor = models.CharField(db_column='sponsor', max_length=120, blank=False, null=False, primary_key=True)
     is_staff = models.CharField(db_column='is_staff', max_length=14, choices=STAFF)
-    # is_paid = models.CharField(db_column='is_paid', max_length=3, default='y', choices=PAID)
-    # is_active = models.CharField(db_column='is_active', max_length=3,default='y', choices=PAID)
     sponsor_url = models.URLField(db_column='url', blank=True, null=True)
     sponsor_icon_name = models.CharField(db_column='icon', max_length=120, blank=False, null=False, default='images/icon_one.jpeg')
     message = models.CharField(db_column='message', max_length=120, blank=False, null=False, default='Why do you do it?')
-    # owner = models.CharField(db_column='owner', max_length=40,blank=True, null=False,default='mwshovel',)
     beach = models.ManyToManyField(Beaches)
     ca_beach = models.ManyToManyField(HDC_Beaches)
 
@@ -348,19 +288,79 @@ class Sponsors(models.Model):
     class Meta:
         managed = True
         db_table = 'sponsors'
+        verbose_name_plural = 'Sponsors'
     def __str__(self):
         return u"sponsor:%s, url:%s, icon:%s, message:%s" %(self.sponsor, self.sponsor_url, self.sponsor_icon_name, self.message,)
 
+# The modles below are not managed by the ORM, this data is static. The data tables exist. 
+# the contentst of SLR_Data and SLR_Beaches has been folded into AllData and Beaches.
+class SLR_Beaches(models.Model):
+    """
+    Beach names and gps data, SLR_Beaches.beachList() returns a list of just beach names.
+    """
+    location = models.CharField(db_column='Location', max_length=100, blank=True, null=False, primary_key=True)
+    latitude = models.DecimalField(db_column='latitude', max_digits=11, decimal_places=8, blank=True, null=True)
+    longitude = models.DecimalField(db_column='longitude', max_digits=11, decimal_places=8, blank=True, null=True)
+    city = models.CharField(db_column='city', max_length=100, blank=True, null=True)
+    post = models.CharField(db_column='post', max_length=12, blank=True, null=True)
+    water = models.CharField(db_column='water', max_length=12, blank=True, null=True, choices=WATER_CHOICES)
+    water_name = models.CharField(db_column='water_name', max_length=100, blank=True, null=True)
+    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
+    owner = models.CharField(db_column='owner', max_length=40,blank=True, null=False,default='mwshovel',)
 
-# class SponsorLocation(models.Model):
-#     location = models.ManyToManyField(Beaches)
-#     sponsor = models.ForeignKey(Sponsors, db_column='sponsor', null=True, on_delete=models.DO_NOTHING)
-#     owner = models.CharField(db_column='owner', max_length=40,blank=True, null=False,default='mwshovel',)
-#
-#
-#     def __str__(self):
-#         return u"location:%s, sponsor:%s, url:%s, icon:%s, message:%s, owner:%s" %(self.location, self.sponsor, self.sponsor_url, self.sponsor_icon_name, self.message, self.owner)
-#
-#     class Meta:
-#         managed = True
-#         db_table = 'sponsored_locations'
+
+    def __str__(self):
+        return u'location:%s, lat:%s, lon:%s, city:%s, water:%s, post:%s, project:%s'%(self.location, self.latitude, self.longitude, self.city, self.water, self.post, self.project)
+
+    class Meta:
+        managed = False
+        db_table = 'slr_beaches'
+        ordering = ['location']
+
+
+
+class SLR_Data(models.Model):
+    location = models.ForeignKey(SLR_Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)
+    date = models.DateField(db_column='date', blank=True, null=True)
+    length = models.IntegerField(db_column='length', default=0)
+    quantity = models.IntegerField(db_column='quantity', default=0)
+    density = models.DecimalField(db_column='density', decimal_places=3, max_digits=8, blank=True, null=False,)
+    code = models.ForeignKey(Codes, db_column='code', null=True, on_delete=models.DO_NOTHING)
+    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
+    owner = models.CharField(db_column='owner', max_length=40,blank=True, null=False,default='mwshovel',)
+
+    class Meta:
+        managed = False
+        db_table = 'slr_data'
+    def __str__(self):
+        return u"date:%s,location:%s, length:%s, code:%s, quantity:%s, density:%s" %(self.date, self.location, self.length, self.code, self.quantity, self.density,)
+
+    def location_name(self):
+        return self.location.location
+class SLR_Density(models.Model):
+    location = models.ForeignKey(SLR_Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)
+    date = models.DateField(db_column='date', blank=True, null=True)
+    sample = models.IntegerField(db_column='sample', blank=True, null=True)
+    density = models.DecimalField(db_column='density', decimal_places=3, max_digits=8, blank=True, null=False)
+    quantity = models.IntegerField(db_column='quantity', blank=True, null=True)
+    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'slr_dens_date'
+    def __str__(self):
+        return u"date:%s, location:%s, density:%s, sample:%s, quantity:%s" %(self.date, self.location, self.density, self.sample, self.quantity)
+class SLR_Area(models.Model):
+    location = models.ForeignKey(SLR_Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)
+    date = models.DateField(db_column='date', blank=True, null=True)
+    sample = models.IntegerField(db_column='sample', blank=True, null=True)
+    density2 = models.DecimalField(db_column='density2', decimal_places=3, max_digits=8, blank=True, null=False)
+    quantity = models.IntegerField(db_column='quantity', default=0)
+    project = models.ForeignKey(Projects, db_column='project',null=True, on_delete=models.DO_NOTHING)
+    owner = models.CharField(db_column='owner', max_length=40,blank=True, null=False,default='mwshovel',)
+
+    class Meta:
+        managed = False
+        db_table = 'slr_area'
+    def __str__(self):
+        return u"date:%s, location:%s, density:%s, sample:%s, quantity:%s" %(self.date, self.location, self.density, self.sample, self.quantity)

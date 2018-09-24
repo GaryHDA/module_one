@@ -12,10 +12,10 @@ class BeachesAdmin(admin.ModelAdmin):
 admin.site.register(Beaches, BeachesAdmin)
 admin.site.register(Projects, BeachesAdmin)
 
-class SLR_BeachesAdmin(admin.ModelAdmin):
-    search_fields = ['location']
-
-admin.site.register(SLR_Beaches, SLR_BeachesAdmin)
+# class SLR_BeachesAdmin(admin.ModelAdmin):
+#     search_fields = ['location']
+#
+# admin.site.register(SLR_Beaches, SLR_BeachesAdmin)
 
 class HDC_BeachesAdmin(admin.ModelAdmin):
     search_fields = ['location']
@@ -26,6 +26,7 @@ admin.site.register(HDC_Beaches, HDC_BeachesAdmin)
 class AllDataAdmin(admin.ModelAdmin):
 
     raw_id_fields = ("location",)
+    # exclude = ['owner']
     list_display=('date', 'location_name', 'item_code', 'quantity','project_project')
     list_filter = ('project__project',('location__city', DropdownFilter),('location__location',DropdownFilter))
     list_editable = ('quantity',)
@@ -39,8 +40,6 @@ class AllDataAdmin(admin.ModelAdmin):
             field.initial = AllData.objects.latest('date').length
         if db_field.name == 'date':
             field.initial = AllData.objects.latest('date').date
-        if db_field.name == 'owner':
-            field.initial = User.username
         return field
 
     fields = (('date','project','location'),'length','code','quantity', 'owner')
@@ -53,6 +52,10 @@ class AllDataAdmin(admin.ModelAdmin):
         return obj.code.material
     def project_project(self, obj):
         return obj.project.project
+
+    def save_model(self, request, obj, form, change):
+        object.owner = request.user
+        super().save_model(request, obj, form, change)
 
 admin.site.register(AllData, AllDataAdmin)
 
@@ -100,6 +103,11 @@ class  HDC_DataAdmin(admin.ModelAdmin):
         return obj.code.material
     def project_project(self, obj):
         return obj.project.project
+
+    def save_model(self, request, obj, form, change):
+        object.owner = request.user
+        super().save_model(request, obj, form, change)
+
 
 admin.site.register(HDC_Data, HDC_DataAdmin)
 

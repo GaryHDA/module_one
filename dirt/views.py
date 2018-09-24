@@ -13,8 +13,8 @@ from datetime import datetime
 import numpy as np
 from scipy.stats import norm
 import os, json
-# def handle_500(request):
-#     return render(request,'500.html')
+def api_home(request):
+     return render(request,'api-home.html')
 
 def item_data():
     """
@@ -627,7 +627,7 @@ def api_root(request, format=None):
         'city-list': reverse('city-list', request=request, format=format),
         'summaries': reverse('location-summary', request=request, format=format),
         'daily-density': reverse('daily-dens', request=request, format=format),
-        'daily-log': reverse('dens-log', request=request, format=format),
+        'api_home.html': reverse('api-home', request=request, format=format),
     })
 
 class CreateRecord(generics.CreateAPIView):
@@ -744,7 +744,7 @@ class CreateBeach(generics.CreateAPIView):
     queryset = Beaches.objects.all()
     serializer_class = BeachCreate
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-class CreateCaBeach(generics.CreateAPIView):
+class CaCreateBeach(generics.CreateAPIView):
     '''
     The is the api for creating survey locations in Europe. This needs to be completed before entering data on a 'new beach'
 
@@ -757,7 +757,10 @@ class CreateCaBeach(generics.CreateAPIView):
     queryset = HDC_Beaches.objects.all()
     serializer_class = HdcBeachCreate
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-
+@api_view()
+def api_home(request):
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    return render(request,'dirt/api-home.html')
 class BeachApi(APIView):
     """
     This is the searchable api for hammerdirt beach survey locations. Get the geo details for a particular survey site:
