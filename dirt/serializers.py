@@ -63,6 +63,7 @@ class HdcBeachCreate(serializers.ModelSerializer):
 
 class AllDataSerial(serializers.Serializer):
     location_id = serializers.CharField()
+    date = serializers.DateTimeField(format=None)
     code_id = serializers.CharField()
     length = serializers.IntegerField()
     quantity = serializers.IntegerField()
@@ -71,6 +72,7 @@ class AllDataSerial(serializers.Serializer):
 
 class HdcDataSerial(serializers.Serializer):
     location_id = serializers.CharField()
+    date = serializers.DateTimeField(format=None)
     code_id = serializers.CharField()
     length = serializers.IntegerField()
     quantity = serializers.IntegerField()

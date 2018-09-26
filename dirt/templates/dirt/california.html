@@ -15,6 +15,14 @@ dirt/survey_map.html
 dirt/combined_scatter.html
  -->
  {% block og_data %}
+ <!--
+ This is the load spinner and the
+ div that centers it, they are both made
+ inivisible when the map is finished loading
+ -->
+ <div id="loading2" class="cn">
+   <div id="loading" class="spinner"></div>
+ </div>
  <title>H-dirt California</title>
  <!-- Open Graph Data -->
  <meta property="og:title" content="Hammerdirt California" />
@@ -50,7 +58,6 @@ dirt/combined_scatter.html
     <p class="text-white"> We have grants for organizations with unfunded requirements. Contact us for more information.</p>
   </div>
 </div>
-
 {% include 'dirt/total_inventory.html' %}
 {% include 'dirt/top_ten_code_material.html' %}
 {% include 'dirt/box_one.html' %}
@@ -58,21 +65,21 @@ dirt/combined_scatter.html
 {% include 'dirt/locations_samples.html' %}
 {% include 'dirt/data_search.html' %}
 {% endblock %}
-
 {% block charts %}
-
+<!--
+Slugifies the sponosr data so that it can be used
+as id values in jas, for the placement of user icons
+-->
 <script type="text/javascript">
 {% for x in sponsor_data %}
 $('#{{ x.0|slugify }}').popover({
   container: 'body'
 });
-
 {% endfor %}
-var a = {{ sponsor_data|safe }}
-console.log({{ a }})
+$('#help').popover({
+  container: 'body'
+});
 </script>
-
-
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>

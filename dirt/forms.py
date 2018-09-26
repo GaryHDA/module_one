@@ -3,10 +3,10 @@ import datetime
 from .models import AllData, HDC_Data
 
 
-class AllDataSurvey(forms.ModelForm):
-    model=AllData
-    errors = None
-    fields = ('location')
+# class AllDataSurvey(forms.ModelForm):
+#     model=AllData
+#     errors = None
+#     fields = ('location')
 
 class HdcDataSurvey(forms.ModelForm):
     model=HDC_Data

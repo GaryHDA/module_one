@@ -8,7 +8,6 @@ var combined_map = {{ combined_map|safe}}
 console.log(combined_map)
 var map;
 var styledMapType;
-
 function initMap() {
   styledMapType = new google.maps.StyledMapType(
     [
@@ -167,8 +166,6 @@ function initMap() {
         strokeOpacity:1,
         strokeWeight:2,
       },
-
-
     });
     bounds.extend(marker.position);
     google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
@@ -177,15 +174,14 @@ function initMap() {
         this.setZoom(9);
       }
     });
-
     map.fitBounds(bounds);
-    // map.setZoom(map.getZoom()-2);
-    // var listener = google.maps.event.addListener(
-    //   map, "idle", function(){
-    //     map.setZoom(8);
-    //     google.maps.event.removeListener(listener);
-    //   });
+    //this function listens for the event "tiles loaded" and then hides the spiiner and center div
+    var div_hide = google.maps.event.addListenerOnce(map,'tilesloaded', function () {
+          document.getElementById('loading').style.visibility='hidden';
+          document.getElementById('loading2').style.display='none';
+          document.getElementById('hide-me').style.visibility='visible';
 
+    });
     var contentString = '<div><p style="margin-bottom:4px; font-size:14px;">' +  combined_map[i][0] + '</p>'+
     '<ul><li>City: ' + combined_map[i][5] + '</li><li>Average pcs/m: ' + combined_map[i][2] + '</li><li>N<sup>o</sup> of samples: ' +
     combined_map[i][1] + '</li><li>Project : ' + combined_map[i][6] + '</li></ul></div>';
@@ -196,12 +192,9 @@ function initMap() {
       }
     }(contentString));
     markers.push(marker);
-
   };
   map.mapTypes.set('styled_map', styledMapType);
   map.setMapTypeId('styled_map');
-
   };
-
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm40jm5y3TNXHeagBkulq-mS2A3ep4TWY&libraries=visualization&callback=initMap"  async defer> </script>

@@ -12,7 +12,7 @@
    <meta property="og:image:height" content="246" />
    <meta property="og:description" content="hammerdirt, helping you create knowledge.  A research partner that specializes in the development of data products for and from crowd sourced research projects." />
    <meta property="og:site_name" content="MW-Shovel" />
-   <!-- <meta property="fb:admins" content="" /> -->
+   
 {% endblock %}
 {% block style %}
 .col-sm{
@@ -95,11 +95,14 @@
       </div>
 
   </div>
-
-
-
-
-
 </div>
 {% endblock %}
-{% block charts %}{% endblock %}
+{% block charts %}
+<!--
+The template 'body' tag is hidden durring loading
+this makes it visible right away when index is called
+-->
+<script type="text/javascript">
+    document.getElementById('hide-me').style.visibility='visible'
+</script>
+{% endblock %}

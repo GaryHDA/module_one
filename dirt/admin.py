@@ -27,7 +27,7 @@ class AllDataAdmin(admin.ModelAdmin):
 
     raw_id_fields = ("location",)
     # exclude = ['owner']
-    list_display=('date', 'location_name', 'item_code', 'quantity','project_project')
+    list_display=('date', 'location_location', 'item_code', 'quantity','project_project')
     list_filter = ('project__project',('location__city', DropdownFilter),('location__location',DropdownFilter))
     list_editable = ('quantity',)
     def formfield_for_dbfield(self,db_field,request,**kwargs):
@@ -52,6 +52,8 @@ class AllDataAdmin(admin.ModelAdmin):
         return obj.code.material
     def project_project(self, obj):
         return obj.project.project
+    def location_location(self, obj):
+        return obj.location.location
 
     def save_model(self, request, obj, form, change):
         object.owner = request.user
@@ -77,7 +79,7 @@ admin.site.register(Finance, FinanceAdmin)
 class  HDC_DataAdmin(admin.ModelAdmin):
 
     raw_id_fields = ("location",)
-    list_display=('date', 'location_name', 'item_code', 'quantity','project_project')
+    list_display=('date', 'location_location', 'item_code', 'quantity','project_project')
     list_filter = ('project__project',('location__city', DropdownFilter),('location__location',DropdownFilter))
     list_editable = ('quantity',)
 
@@ -103,6 +105,8 @@ class  HDC_DataAdmin(admin.ModelAdmin):
         return obj.code.material
     def project_project(self, obj):
         return obj.project.project
+    def location_location(self, obj):
+        return obj.location.location
 
     def save_model(self, request, obj, form, change):
         object.owner = request.user

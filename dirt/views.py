@@ -607,6 +607,9 @@ def index(request):
 
     return render(request, 'dirt/index.html',{'latest_sample':latest_sample, "see_latest":see_latest, 'last_post':last_post, 'last_read':last_read})
 
+def code_shovel(request):
+    return render(request, 'dirt/code-shovel.html')
+
 from django.http import HttpResponse, JsonResponse
 from rest_framework.response import Response
 from dirt.serializers import SummarySerializer, MakeJson, AllDataSerial, BeachSerial, AllDataCreate, CitySerializer, AllDataSerial, BeachCreate, DailyTotalSerial, DailyLogSerial, HdcDataCreate, HdcBeachCreate
@@ -700,35 +703,35 @@ class LitterApi(APIView):
 
     """
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    def get_object(self, location):
+    def get_object(self, place):
         a = item_data()
         b = HDC_Data.objects.all()
         c, d, e, f = location_list(a), city_list(a), water_list(a), project_list(a)
         g, h, i, j = location_list(b), city_list(b), water_list(b), project_list(b)
-        if location in c:
-            return location_filter(a, location).values()
-        elif location in d:
-            return city_filter(a, location).values()
-        elif location in  e:
-            return water_filter(a,location).values()
-        elif location in  f:
-            return project_filter(a,location).values()
-        elif location in g:
-            return location_filter(b, location).values()
-        elif location in h:
-            return city_filter(b, location).values()
-        elif location in  i:
-            return water_filter(b,location).values()
-        elif location in  j:
-            return project_filter(b,location).values()
+        if place in c:
+            return location_filter(a, place).values()
+        elif place in d:
+            return city_filter(a, place).values()
+        elif place in  e:
+            return water_filter(a,place).values()
+        elif place in  f:
+            return project_filter(a,place).values()
+        elif place in g:
+            return location_filter(b, place).values()
+        elif place in h:
+            return city_filter(b, place).values()
+        elif place in  i:
+            return water_filter(b, place).values()
+        elif place in  j:
+            return project_filter(b,place).values()
         else:
             try:
-                return AllData.objects.filter(location=location).values()
+                return AllData.objects.filter(location=place).values()
             except AllData.DoesNotExist:
                 raise Http404
 
-    def get(self, request, location, format=None):
-        detail = self.get_object(location)
+    def get(self, request, place, format=None):
+        detail = self.get_object(place)
         serializer = AllDataSerial(detail, many=True)
         return Response(serializer.data)
 class CreateBeach(generics.CreateAPIView):
@@ -835,7 +838,7 @@ class BeachApi(APIView):
     def get(self, request, name, format=None):
         print(name)
         detail = self.get_object(name)
-        print(detail)
+        # print(detail)
         serializer = BeachSerial(detail, many=True)
         return Response(serializer.data)
 
@@ -994,35 +997,35 @@ class LitterApiCode(APIView):
 
     """
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    def get_object(self, location, code):
+    def get_object(self, place, thing):
         a = item_data()
         b = HDC_Data.objects.all()
         c, d, e, f = location_list(a), city_list(a), water_list(a), project_list(a)
         g, h, i, j = location_list(b), city_list(b), water_list(b), project_list(b)
-        if location in c:
-            return location_filter(a, location).filter(code=code).values()
-        elif location in d:
-            return city_filter(a, location).filter(code=code).values()
-        elif location in  e:
-            return water_filter(a,location).filter(code=code).values()
-        elif location in  f:
-            return project_filter(a,location).filter(code=code).values()
-        elif location in g:
-            return location_filter(b, location).filter(code=code).values()
-        elif location in h:
-            return city_filter(b, location).filter(code=code).values()
-        elif location in  i:
-            return water_filter(b,location).filter(code=code).values()
-        elif location in  j:
-            return project_filter(b,location).filter(code=code).values()
+        if place in c:
+            return location_filter(a, place).filter(code=thing).values()
+        elif place in d:
+            return city_filter(a, place).filter(code=thing).values()
+        elif place in  e:
+            return water_filter(a,place).filter(code=thing).values()
+        elif place in  f:
+            return project_filter(a,place).filter(code=thing).values()
+        elif place in g:
+            return location_filter(b, place).filter(code=thing).values()
+        elif place in h:
+            return city_filter(b, place).filter(code=thing).values()
+        elif place in  i:
+            return water_filter(b,place).filter(code=thing).values()
+        elif place in  j:
+            return project_filter(b,place).filter(code=thing).values()
         else:
             try:
-                return AllData.objects.filter(location=location).filter(code=code).values()
+                return AllData.objects.filter(location=place).filter(code=thing).values()
             except AllData.DoesNotExist:
                 raise Http404
-    def get(self, request, location, code, format=None):
-        print(location, code)
-        detail = self.get_object(location, code)
+    def get(self, request, place, thing, format=None):
+        print(place, thing)
+        detail = self.get_object(place, thing)
         #print(detail)
         serializer = AllDataSerial(detail, many=True)
         return Response(serializer.data)

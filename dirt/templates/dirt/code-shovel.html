@@ -1,0 +1,217 @@
+{% extends "dirt/hd_base.html" %}
+<!--
+Variables called:
+
+
+-->
+{% block og_data %}
+<!--
+This is the load spinner and the
+div that centers it, they are both made
+inivisible when the map is finished loading
+-->
+<!-- <div id="loading2" class="cn">
+  <div id="loading" class="spinner"></div>
+</div> -->
+{% load static %}
+<title>Hammerdirt</title>
+<!-- Open Graph Data -->
+<meta property="og:title" content="hammerdirt" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="{% url 'code-shovel' %}" />
+<meta property="og:image" content= "{% static "images/weblogo.jpg" %}" />
+<meta property="og:image:width" content="400" />
+<meta property="og:image:height" content="246" />
+<meta property="og:description" content="hammerdirt- coding page in progress" />
+<meta property="og:site_name" content="MW-Shovel" />
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+{% block content  %}
+{% load humanize %}
+{% load static %}
+<div id="" class="container-fluid p-0 m-0" style="width:100%; ">
+  <div class="row no-gutters" id="" style="">
+    <div class="col-sm borders-0 " id="" style="">
+      <div class="card pb-0 borders-0" id="cd_10"  style="">
+        <div class="card-header w-100 bg-dark text-left text-white" id="" style="font-family:'Montserrat'">
+          Welcome to the code shovel
+        </div>
+        <div class="card-body p-0 borders-0 text-left"  style="height:100%">
+          <div class="list-group border-right-0 border-left-0 ">
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">This is where the work in progress is
+                <br><small class="text-muted">Primarily JavaScript and Python for analysis and visualisation</small>
+              </h6>
+            </div>
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Links are either to Jupyter Notebooks or Observable js<br>
+                <small class="text-muted" >There will be some css and html mixed in for display<strong> front-end is not really my thing</strong></small>
+              </h6>
+            </div>
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Grab what you want<br>
+                <small class="text-muted">Let people know where you got it</small>
+              </h6>
+            </div>
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">The data is coming through the API
+                <br><small class="text-muted">There is a link on the menu bar, or just follow the links in the code samples.</small>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-sm" id="" style="">
+      <div class="card pb-0 borders-0 " id="cd_10"  style="">
+        <div class="card-header w-100 bg-dark text-left text-white" id="" style="font-family:'Montserrat'">
+          Good things take time
+        </div>
+        <div class="card-body p-0 text-left"  style="height:100%">
+          <div class="list-group border-right-0 border-left-0 ">
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">First we will finish up some projects
+                <br><small class="text-muted">The ongoing beach litter surveys provide a wealth of 'non-critical' data, and there are some really cool visualisations to be made.</small>
+              </h6>
+            </div>
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Don't get offended<br>
+                <small class="text-muted" >The data doesn't lie (and neither do I).<strong> If you don't like my analysis great! Send me your alternative if the math works it will be posted right here.</strong></small>
+              </h6>
+            </div>
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">What are you working on?<br>
+                <small class="text-muted">If your stuff is organized and you would like to take advantage of this platform, contact me ( roger@hammerdirt.ch )</small>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-sm" id='' style="">
+      <div class="card pb-0 borders-0 " id="cd_10"  style="">
+        <div class="card-header w-100 bg-dark text-left text-white" id="" style="font-family:'Montserrat'">
+          Thanks:
+        </div>
+        <div class="card-body p-0 text-left"  style="height:100%">
+          <div class="list-group border-right-0 border-left-0 ">
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Open acces is cool
+                <br><small class="text-muted">Without open acces to the following tools and resources this would not be possible</small>
+              </h6>
+            </div>
+            <div class="btn-toolbar m-1" role="toolbar">
+              <div class="btn-group">
+                <a class="btn p-0 " href="https://www.djangoproject.com/" role="link"><img src={% static 'images/logo-Django.png' %}  height="50" alt='django logo'> </a>
+                <a class="btn p-0 " href="https://www.mysql.com/" role="link"><img src={% static 'images/mysql_PNG16.png' %}  height="50" alt='django logo'> </a>
+                <a class="btn p-0 " href="https://www.getbootstrap.com" role="a"> <img src={% static 'images/bootstrap.png' %} height="50"> </a>
+                <a class="btn p-0 " href="https://www.python.org/psf/" role="link"><img src={% static 'images/python.png' %}  height="50" alt='django logo'> </a>
+                <a class="btn p-0 " href="https://www.scipy.org/" role="link"> <img src={% static 'images/scipy.png' %} height="50"> </a>
+                <a class="btn p-0 " href="http://jupyter.org/" role="link"><img src={% static 'images/jupyter.png' %}  height="50" alt='django logo'> </a>
+                <a class="btn p-0 " href="https://github.com/" role="link"> <img src={% static 'images/git_hub.png' %} height="50"> </a>
+                <a class="btn p-0 " href="https://matplotlib.org/" role="link"><img src={% static 'images/Matplotlib.svg' %}  height="50" alt='django logo'> </a>
+                <a class="btn p-0 " href="https://www.highcharts.com/" role="link"><img src={% static 'images/highsoft.png' %}  height="50" alt='django logo'> </a>
+                <a class="btn p-0 " href="https://www.ubuntu.com/" role="link"><img src={% static 'images/ubuntu.png' %}  height="50" alt='django logo'> </a>
+              </div>
+            </div>
+          </div>
+        </div>
+            <div class="btn-toolbar m-1" role="toolbar">
+              <div class="btn-group">
+                <a class="btn p-0 " href="https://developers.google.com/" role="link"><img src={% static 'images/google.png' %}  height="50" alt='django logo'> </a>
+                <a class="btn p-0 " href="https://www.mozilla.org/en-US/technology/" role="link"><img src={% static 'images/mozilla.png' %}  height="50" alt='django logo'> </a>
+                <a class="btn p-0 " href="https://www.anaconda.com/" role="a"> <img src={% static 'images/anaconda.jpeg' %} height="50"> </a>
+                <a class="btn p-0 " href="https://stackoverflow.com/" role="link"><img src={% static 'images/stackoverflow.png' %}  height="50" alt='django logo'> </a>
+                <a class="btn p-0 " href="https://d3js.org/" role="link"> <img src={% static 'images/d3.jpeg' %} height="50"> </a>
+                <a class="btn p-0 " href="https://beta.observablehq.com/" role="link"> <img src={% static 'images/observable.jpg' %} height="50"> </a>
+                  <a class="btn p-0 " href="https://math.stackexchange.com/" role="link"> <img src={% static 'images/math.jpg' %} height="50"> </a>
+              </div>
+            </div>
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Special thanks to all those university professors that have recieved me. Privacy matters but we all know who you are, you have earned your salary!
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+  <div class="row no-gutters" id="combined-data-row" style="">
+    <div class="col-sm h-100" id="data-summary-column" style="">
+      <div class="card pb-0 borders-0" id="cd_10"  style="">
+        <div class="card-header w-100 bg-dark text-left text-white" id="" style="font-family:'Montserrat'">
+          Finishing the stoplights poster
+        </div>
+        <div class="card-body p-0 borders-0 text-left"  style="height:100%">
+          <div class="list-group border-right-0 border-left-0 ">
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Comparing percentile rankings
+                <br><small class="text-muted">Represents 130 locations and over 1000 beach litter samples from all over switzerland</small>
+              </h6>
+            </div>
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Originally done in Pandas with output to Matplotlob.<br>
+                <small class="text-muted"> Here is the repo <a href="https://github.com/hammerdirt/stopLight"> Stoplights</a> take a look. Depending on your personality you should either be laughing or crying, but it works.</small>
+              </h6>
+            </div>
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Use the concept to:<br>
+                <small class="text-muted">Make a grid that wirtes SVGs for each location (color coded) and a ditribution chart as key,
+                  write that in python, use django to 'put' to the api and pick up with JS for our interactive pleasure.</small>
+              </h6>
+            </div>
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Dynamic and updated automatically
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="col-sm h-100" id="map-search-column"  style="">
+
+    </div>
+    <div class="col-sm h-100" id="charts-column"  style="" >
+
+    </div>
+  </div>
+  <div class="row no-gutters bg-dark mt-1">
+    <p class="text-white"> We have grants for organizations with unfunded requirements. Contact us for more information.</p>
+  </div>
+</div>
+<!--
+Modals go here
+-->
+{% endblock %}
+{% block charts %}
+<!--
+Slugifies the sponosr data so that it can be used
+as id values in jas, for the placement of user icons
+-->
+<script type="text/javascript">
+{% for x in sponsor_data %}
+$('#{{ x.0|slugify }}').popover({
+  container: 'body'
+});
+{% endfor %}
+$('#help').popover({
+  container: 'body'
+});
+</script>
+<!--
+The template 'body' tag is hidden durring loading
+this makes it visible right away when index is called
+-->
+<script type="text/javascript">
+    document.getElementById('hide-me').style.visibility='visible'
+</script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+{% endblock %}
