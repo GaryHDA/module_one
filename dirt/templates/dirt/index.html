@@ -12,23 +12,24 @@
    <meta property="og:image:height" content="246" />
    <meta property="og:description" content="hammerdirt, helping you create knowledge.  A research partner that specializes in the development of data products for and from crowd sourced research projects." />
    <meta property="og:site_name" content="MW-Shovel" />
-   
+
 {% endblock %}
 {% block style %}
 .col-sm{
-  min-width:380px;
+  min-width:400px;
 }
+
+
 {% endblock %}
 {% block content  %}
 {% load humanize %}
 {% load static %}
 <div class="container-fluid  p-0 " style="background-color:#464646; min-height:100vh">
-  <div class="row no-gutters w-100" id="" style="background-color:#464646">
-    <div class="col-sm-4 h-100" id="" style="">
+  <div class="row no-gutters w-100" id="" style="background-color:#464646; min-height:100vh">
+    <div class="col-sm h-100" id="" style="">
       <div class="p-1 pl-3 text-left" style="">
         <h3 class="display-3" style="color:#008080;">HAMMER...</h3>
         <h5 style="color:#008080;">Believe what you see and take notes</h5>
-
       </div>
       <div class="p-1 pl-3 mt-3 mr-2 pb-0 text-left bg-light"  style="width:100%">
         <p style="font-family:'Montserrat';">
@@ -49,20 +50,24 @@
         <h4 class="display-4" style="font-family:'Montserrat';color:#008080;">
           What can we build together?
         </h4>
-        <p class="mt-4" style=""><small>Brought to you with love by the developers at hammerdirt.</small></p>
+        <p class="mt-4" style=""><small>Brought to you with love by roger at hammerdirt.</small></p>
       </div>
       <div class="ml-auto mt-2 pr-3 text-right ">
         <h1 class="display-3 bg-transparent" style="color:#008080;">...dirt</h1>
       </div>
     </div>
-    <div>
+    <div>    </div>
+    <div class="col-sm " id="" style="">
+      
 
-    </div>
-    <div class="col-sm-4" id="" style="">
+      </div>
 
 
-    </div>
-    <div class="col-sm-4" id='' style="">
+
+
+
+
+    <div class="col-sm" id='' style="">
     <!--
     Variables called:
     latest_sample
@@ -70,31 +75,34 @@
     last_read
     last_commit
     -->
-      <div class="p-2 mt-3 mr-2 pb-0 text-left float-right bg-light" style="width:100%">
+      <div class="p-2 mt-3 mr-2 pb-0 text-left float-right bg-light" style="width:98%">
         <h6 style="font-family:'Montserrat'"><strong>Latest litter-survey:</strong><small>
           <br>{% for s in latest_sample %}<strong>City:</strong> {{ s.2 }},<strong> Location:</strong> {{ s.0 }},
           <br><strong>Date:</strong> {{ s.1 }},<strong> N<sup>o</sup> of pieces:</strong> {{ s.3 }}</small></h6>
           {% endfor %}
         <p class="pb-0 mb-0" style="font-family:'Montserrat'"><small><strong><a href="{{ see_latest }}"> see the results</a></strong></small></p>
       </div>
-      <div class="p-2 pb-0 mt-3 mr-2 text-left float-right bg-light"  style="width:100%">
+      <div class="p-2 pb-0 mt-3 mr-2 text-left float-right bg-light"  style="width:98%">
         <p style="font-family:'Montserrat'"><strong>Latest posts:</strong><small>
           <br><strong>Platform:</strong> {{ last_post.0 }}, Date: {{ last_post.1 }},
           <br><strong>Comments:</strong> {{ last_post.3 }}. <strong>Owner:</strong> {{ last_post.5 }}</small></p>
         <p class="pb-0 mb-0" style="font-family:'Montserrat'"><small><strong><a href="{{ last_post.4 }}"> check it</a></strong></small></p>
       </div>
-      <div class="p-2 pb-0 mt-3 mr-2 text-left float-right bg-light"  style="width:100%">
+      <div class="p-2 pb-0 mt-3 mr-2 text-left float-right bg-light"  style="width:98%">
         <p style="font-family:'Montserrat'"><strong>Latest reads:</strong><small>
           <br><strong>Title:</strong> {{ last_read.0 }}<br><strong>Author(s):</strong> {{ last_read.1 }},
           <br> {{ last_read.3|truncatewords:"30" }}... <br>Google that title to find out more  --> </small></p>
       </div>
-      <div class="p-2 pb-0 mt-3 mr-2 mb-2 text-left float-right bg-light"  style="width:100%">
+      <div class="p-2 pb-0 mt-3 mr-2 mb-2 text-left float-right bg-light"  style="width:98%">
         <p style="font-family:'Montserrat'"><strong>Latest commit:</strong><small>
           <br><strong>Repo:</strong> <br><strong>Comments:</strong>
           <br></small></p>
       </div>
 
   </div>
+</div>
+<div class="row no-gutters bg-dark mt-1">
+  <p class="text-white p-2"> We have grants for organizations with unfunded requirements. Contact us for more information.</p>
 </div>
 {% endblock %}
 {% block charts %}

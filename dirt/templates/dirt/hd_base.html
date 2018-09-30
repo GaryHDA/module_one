@@ -1,5 +1,44 @@
 <!DOCTYPE HTML>
 <html lang="en">
+<style>
+.cn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  width:100%;
+  height: 100%;
+  visibility:visible;
+}
+.spinner {
+  width: 100px;
+  height: 100px;
+  background-color: #333;
+  visibility:visible;
+  z-index: 10000;
+  margin: 30vh ;
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+@-webkit-keyframes sk-rotateplane {
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes sk-rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+  } 50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+  } 100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+</style>
 <head>
   <meta http-equiv="x-ua-compatible" content="IE=edge" />
   {% load static %}
@@ -27,11 +66,11 @@
   {% include 'dirt/search_forms_js_control.html' %}
   <script type="text/javascript">
   $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="popover"]').tooltip()
   })
   </script>
   <style>
-  .cn {
+  /*.cn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,11 +85,10 @@
     background-color: #333;
     visibility:visible;
     z-index: 10000;
-    margin: 30vh auto;*/
+    margin: 30vh ;
     -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
     animation: sk-rotateplane 1.2s infinite ease-in-out;
   }
-
   @-webkit-keyframes sk-rotateplane {
     0% { -webkit-transform: perspective(120px) }
     50% { -webkit-transform: perspective(120px) rotateY(180deg) }
@@ -69,19 +107,42 @@
       -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
     }
   }
+}*/
   html { font-size: .7rem; }
   @media (min-width: 380px) {
+  }
+  @media (min-width: 639px) {
       html { font-size: .9rem; }
   }
   @media (min-width: 768px) {
       html { font-size: .9rem; }
   }
   @media (min-width: 992px) {
-      html { font-size: 1rem; }
+      html { font-size: .9rem; }
   }
-  @media (min-width: 1200px) {
-      html { font-size: 1.1rem; }
+  @media (min-width: 1365px) {
+      html { font-size: 1rem; },
+      }
   }
+  @media (min-width: 1440px) {
+      html { font-size: 1.2rem; }
+  }
+  @media (min-width: 1623px) {
+      html { font-size: 1.3rem; }
+  }
+  @media (min-width: 1920px) {
+      html { font-size: 1.5rem; },
+  }
+  @media (min-width: 2048px) {
+      html { font-size: 1.5rem; }
+  }
+  @media (min-width: 2560px) {
+      html { font-size: 1.8rem; }
+  }
+  @media (min-width: 3000px) {
+      html { font-size: 2.5rem; }
+  }
+
   {% block style %} {% endblock %}
   </style>
 </head>
@@ -99,6 +160,7 @@
         <li class="nav-item dropdown bg-dark mr-1 mt-1">
           <a class="nav-link dropdown-toggle text-white"  data-toggle="dropdown" href='#'>Beach litter</a>
           <div class="dropdown-menu bg-dark"  aria-labelledby="navbarDropdown">
+            <a class="dropdown-item bg-dark text-white" href="{% url 'sponsor-promo' %}">Sponsor a beach</a>
             <a class="dropdown-item bg-dark text-white" href="{% url 'beach-litter-home' %}">Switzerland</a>
             <a class="dropdown-item bg-dark text-white" href="{% url 'california' %}">California</a>
           </div>
@@ -107,14 +169,15 @@
           <a class="nav-link text-white"  href={% url 'micro' %}>Water quality</a>
         </li>
         <li class="nav-item dropdown mr-1 mt-1">
-          <a class="nav-link dropdown-toggle text-white mr-1"  data-toggle="dropdown" href='#'>In progress</a>
+          <a class="nav-link dropdown-toggle text-white mr-1"  data-toggle="dropdown" href='#'>hammerdirt labs</a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item bg-dark text-white" href="{% url 'code-shovel' %}">Python/JS</a>
-            <a class="dropdown-item bg-dark text-white" href="#">Probability</a>
+            <a class="dropdown-item bg-dark text-white" href="{% url 'api-home' %}">API home</a>
+            <a class="dropdown-item bg-dark text-white" href="{% url 'python-lab' %}">Python/JS</a>
+            <a class="dropdown-item bg-dark text-white" href="{% url 'probability-lab' %}">Probability</a>
           </div>
         </li>
         <li class="nav-item mr-1 mt-1">
-          <a class="nav-link text-white"  data-toggle="dropdown" href='#'>About</a>
+          <a class="nav-link text-white" href="{% url 'about-hammerdirt' %}">About</a>
         </li>
         <li class="nav-item dropdown mr-1 mt-1">
           <a class="nav-link dropdown-toggle text-white mr-1"  data-toggle="dropdown" href='#'>Log in</a>
@@ -125,7 +188,7 @@
         </li>
       </ul>
       <span class="navbar-text ml-auto text-white">
-        Making data more accesible
+        Inform intelligently
       </span>
     </div>
   </nav>
@@ -134,6 +197,7 @@
 {% block d3 %}
 {% endblock %}
 {% block charts %}
+
 {% endblock %}
 </body>
 </html>

@@ -67,19 +67,41 @@ dirt/combined_scatter.html
 {% endblock %}
 {% block charts %}
 <!--
-Slugifies the sponosr data so that it can be used
+Slugifies the sponosr and crew data so that it can be used
 as id values in jas, for the placement of user icons
+Assigns the popover attirbute to the element with the id
 -->
-<script type="text/javascript">
-{% for x in sponsor_data %}
-$('#{{ x.0|slugify }}').popover({
-  container: 'body'
-});
+{% for x in sponsors %}
+  <script type="text/javascript">
+
+      $('#{{ x.0|slugify }}').popover({
+        container: 'body'
+      });
+  </script>
 {% endfor %}
-$('#help').popover({
-  container: 'body'
-});
-</script>
+{% for x in crew %}
+  <script type="text/javascript">
+
+      $('#{{ x.0|slugify }}').popover({
+        container: 'body'
+       });
+  </script>
+{% endfor %}
+<!--
+Assigns the popover attribute to the help elements
+int the data summary table
+-->
+
+  <script type="text/javascript">
+
+      $('#help').popover({
+        container: 'body'
+      });
+      $('#helpx').popover({
+        container: 'body'
+      });
+  </script>
+
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>

@@ -1,0 +1,68 @@
+{% extends "dirt/hd_base.html" %}
+<!--
+Variables called:
+this is a dynamic page with regular additions
+variables will be announced as called
+-->
+{% block og_data %}
+<!--
+This is the load spinner and the
+div that centers it, they are both made
+inivisible when the map is finished loading
+-->
+<!-- <div id="loading2" class="cn">
+  <div id="loading" class="spinner"></div>
+</div> -->
+{% load static %}
+<title>Hammerdirt</title>
+<!-- Open Graph Data -->
+<meta property="og:title" content="hammerdirt" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="{% url 'probability-lab' %}" />
+<meta property="og:image" content= "{% static "images/weblogo.jpg" %}" />
+<meta property="og:image:width" content="400" />
+<meta property="og:image:height" content="246" />
+<meta property="og:description" content="hammerdirt lab: Understanding probability" />
+<meta property="og:site_name" content="MW-Shovel" />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+{% endblock %}
+{% block style %}
+.col-sm{
+  min-width:400px;
+}
+{% endblock %}
+{% block content  %}
+{% load humanize %}
+{% load static %}
+<div id="" class="container-fluid p-0 m-0" style="width:100%; ">
+  <div class="row no-gutters" id="" style="">
+    <div class="container"><h4 class="display-4">Sponosr a beach</h4></div>
+
+
+  </div>
+</div>
+
+<!--
+Modals go here
+-->
+
+{% endblock %}
+{% block charts %}
+<!--
+Slugifies the sponosr data so that it can be used
+as id values in jas, for the placement of user icons
+-->
+
+<!--
+The template 'body' tag is hidden durring loading
+this makes it visible right away when index is called
+-->
+<script type="text/javascript">
+    document.getElementById('hide-me').style.visibility='visible'
+</script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+{% endblock %}

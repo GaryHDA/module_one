@@ -1,21 +1,22 @@
-
+# django imprts
 from django.shortcuts import render
 from django.db.models import Sum, Avg, FloatField, F
 from django.db.models.functions import Cast
 from django.http import Http404
 from django.conf import settings
 
+# model imports from
 from dirt.models import AllData, Beaches, HDC_Beaches, HDC_Data, PlatformActivity, References, Sponsors
 
+# python imports
 from statistics import mean
 import datetime
 from datetime import datetime
 import numpy as np
 from scipy.stats import norm
 import os, json
-def api_home(request):
-     return render(request,'api-home.html')
 
+# These are the functions that shape the data for various views
 def item_data():
     """
     Initial query of all item counts
@@ -102,7 +103,6 @@ def daily_pcs_m(q):
     b = list(a.values_list('location','date','pcs_m'))
     b = [[c[0], c[1], c[2]] for c in b]
     return b
-
 def pcs_m_tup(a,l):
     """
     Takes the results from daily_pcs_m and returns a tuple ('location',[array of pcs/m])
@@ -262,6 +262,22 @@ def item_data_exclude_locations(q, l):
     """
     b = q.exclude(location__in=l)
     return b
+def sponsors_volunteers(l):
+    """
+    Separates the data from the sponsors model.
+    Returns two lists of lists one list holds sponsor data
+    the other participant data
+    """
+    a = [b for b in l if b[4] == 's']
+    c = [d for d in l if d[4] == 'm' or d[4] == 'v']
+    return a, c
+def lists_for_search_button(q):
+    a = city_list(q)
+    b = water_list(q)
+    c = project_list(q)
+    d = location_list(q)
+    return a, b, c, d
+# These are views for the app they use the functions above
 def beach_litter(request):
     a = item_data()
 
@@ -273,11 +289,10 @@ def beach_litter(request):
     daily_values, summary = item_summary(a,'All locations')
     # fills the total inventory modal
     inventory = code_inventory(a, summary[1])
-    # these are for the data search button
-    all_cities = city_list(a)
-    all_water = water_list(a)
-    all_projects = project_list(a)
+    # location names in this query
     all_locations = location_list(a)
+    # these are for the data search button
+    search_city, search_water, search_project, search_location = lists_for_search_button(a)
     # data for the topten and material modal
     material_percents = material_inventory(a, summary[1])
     code_top_ten = code_t_ten(inventory)
@@ -292,6 +307,7 @@ def beach_litter(request):
     lac_leman = Beaches.objects.filter(water_name='Lac-Léman')
     # these gets the values from scatter_plot limits them to locations on lac Leman
     # and seperates them by year
+
     year_one = pcs_m_y('2015-11-15', '2016-11-15',  daily_values[0],lac_leman)
     year_two = pcs_m_y('2016-11-15', '2017-11-15',  daily_values[0], lac_leman)
     year_three = pcs_m_y('2017-11-15', '2018-11-15',  daily_values[0], lac_leman)
@@ -301,15 +317,20 @@ def beach_litter(request):
     y_one_s = len(dist_y_one)
     y_two_s = len(dist_y_two)
 
+    # this gets the og_data for the header and participant data
     def og_data(l):
         a = list(Sponsors.objects.filter(beach__location__in=l).values_list('sponsor', 'sponsor_icon_name', 'sponsor_url', 'message', 'is_staff').distinct())
         return a
+
+    # break that up into sponsors: people who paid for the service and those who rendered the service
     sponsor_data = og_data(all_locations)
+    sponsors, crew = sponsors_volunteers(sponsor_data)
 
     return render(request, 'dirt/beach_litter.html',  {'lake_locations':lake_locations, 'summary':summary,'river_locations':river_locations,
-    'inventory':inventory,  'all_cities':all_cities, 'all_water':all_water, 'all_projects':all_projects,'material_percents':material_percents,'code_top_ten':code_top_ten,'locations_samples':locations_samples, 'all_locations':all_locations,
-    'scatter_plot':scatter_plot,'combined_map':combined_map, 'year_one':year_one, 'year_two':year_two, 'year_three':year_three,
-    'dist_y_one':dist_y_one, 'dist_y_two':dist_y_two, 'y_one_s':y_one_s, 'y_two_s':y_two_s,  'sponsor_data':sponsor_data})
+    'inventory':inventory,  'material_percents':material_percents,'code_top_ten':code_top_ten,'locations_samples':locations_samples,
+    'all_locations':all_locations, 'scatter_plot':scatter_plot,'combined_map':combined_map, 'year_one':year_one, 'year_two':year_two,
+    'year_three':year_three, 'dist_y_one':dist_y_one, 'dist_y_two':dist_y_two, 'y_one_s':y_one_s, 'y_two_s':y_two_s,  'sponsors':sponsors,
+    'crew':crew, 'search_city': search_city, 'search_water':search_water, 'search_project':search_project, 'search_location':search_location})
 def litter_city(request, city):
 
     x = city_list(item_data())
@@ -334,10 +355,8 @@ def litter_city(request, city):
     river_locations = water_body_dict(a.filter(location__water = 'r'))
     daily_values, summary = item_summary(a,city)
     inventory = code_inventory(a, summary[1])
-    all_cities = city_list(a)
-    all_water = water_list(a)
-    all_projects = project_list(a)
     all_locations = location_list(a)
+    search_city, search_water, search_project, search_location = lists_for_search_button(other_data)
     material_percents = material_inventory(a, summary[1])
     code_top_ten = code_t_ten(inventory)
     locations_samples = beaches_in_a_region(daily_values[0], all_locations)
@@ -351,6 +370,7 @@ def litter_city(request, city):
     og_return_url = see_that()
 
     sponsor_data = og_data(all_locations)
+    sponsors, crew = sponsors_volunteers(sponsor_data)
 
     # def sponsor_image():
     #     sponsor = Sponsors.filter(city=city).values('sponsor')
@@ -358,8 +378,9 @@ def litter_city(request, city):
 
 
     return render(request, 'dirt/litter_search.html', {'lake_locations':lake_locations, 'summary':summary,'river_locations':river_locations,
-    'inventory':inventory,  'all_cities':all_cities, 'all_water':all_water, 'all_projects':all_projects,'material_percents':material_percents,'code_top_ten':code_top_ten,'locations_samples':locations_samples, 'all_locations':all_locations,
-    'scatter_plot':scatter_plot, 'total_scatter':total_scatter, 'combined_map':combined_map, 'og_return_url':og_return_url, 'sponsor_data':sponsor_data})
+    'inventory':inventory,  'material_percents':material_percents, 'code_top_ten':code_top_ten,'locations_samples':locations_samples,
+    'all_locations':all_locations,'scatter_plot':scatter_plot, 'total_scatter':total_scatter, 'combined_map':combined_map, 'og_return_url':og_return_url,
+    'sponsors':sponsors, 'crew':crew, 'search_city': search_city, 'search_water':search_water,'search_project':search_project, 'search_location':search_location})
 def litter_water(request, lakeRiver):
 
     x = water_list(item_data())
@@ -384,10 +405,8 @@ def litter_water(request, lakeRiver):
     river_locations = water_body_dict(a.filter(location__water = 'r'))
     daily_values, summary = item_summary(a,lakeRiver)
     inventory = code_inventory(a, summary[1])
-    all_cities = city_list(a)
-    all_water = water_list(a)
-    all_projects = project_list(a)
     all_locations = location_list(a)
+    search_city, search_water, search_project, search_location = lists_for_search_button(other_data)
     material_percents = material_inventory(a, summary[1])
     code_top_ten = code_t_ten(inventory)
     locations_samples = beaches_in_a_region(daily_values[0], all_locations)
@@ -402,10 +421,12 @@ def litter_water(request, lakeRiver):
     og_return_url = see_that()
 
     sponsor_data = og_data(all_locations)
+    sponsors, crew = sponsors_volunteers(sponsor_data)
 
     return render(request, 'dirt/litter_search.html', {'lake_locations':lake_locations, 'summary':summary,'river_locations':river_locations,
-    'inventory':inventory,  'all_cities':all_cities, 'all_water':all_water, 'all_projects':all_projects,'material_percents':material_percents,'code_top_ten':code_top_ten,'locations_samples':locations_samples, 'all_locations':all_locations,
-    'scatter_plot':scatter_plot, 'total_scatter':total_scatter, 'combined_map':combined_map, 'og_return_url':og_return_url, 'sponsor_data':sponsor_data})
+    'inventory':inventory,'material_percents':material_percents,'code_top_ten':code_top_ten,'locations_samples':locations_samples,
+    'all_locations':all_locations, 'scatter_plot':scatter_plot, 'total_scatter':total_scatter, 'combined_map':combined_map, 'og_return_url':og_return_url,
+    'sponsors':sponsors, 'crew':crew, 'search_city': search_city, 'search_water':search_water,'search_project':search_project, 'search_location':search_location})
 def litter_project(request, project):
 
     if project in ['MCBP', 'SLR', 'PC', 'MWP']:
@@ -429,10 +450,8 @@ def litter_project(request, project):
     river_locations = water_body_dict(a.filter(location__water = 'r'))
     daily_values, summary = item_summary(a,project)
     inventory = code_inventory(a, summary[1])
-    all_cities = city_list(a)
-    all_water = water_list(a)
-    all_projects = project_list(a)
     all_locations = location_list(a)
+    search_city, search_water, search_project, search_location = lists_for_search_button(other_data)
     material_percents = material_inventory(a, summary[1])
     code_top_ten = code_t_ten(inventory)
     locations_samples = beaches_in_a_region(daily_values[0], all_locations)
@@ -447,10 +466,12 @@ def litter_project(request, project):
     og_return_url = see_that()
 
     sponsor_data = og_data(all_locations)
+    sponsors, crew = sponsors_volunteers(sponsor_data)
 
     return render(request, 'dirt/litter_search.html', {'lake_locations':lake_locations, 'summary':summary,'river_locations':river_locations,
-    'inventory':inventory,  'all_cities':all_cities, 'all_water':all_water, 'all_projects':all_projects,'material_percents':material_percents,'code_top_ten':code_top_ten,'locations_samples':locations_samples, 'all_locations':all_locations,
-    'scatter_plot':scatter_plot, 'total_scatter':total_scatter, 'combined_map':combined_map, 'og_return_url':og_return_url, 'sponsor_data':sponsor_data})
+    'inventory':inventory,'material_percents':material_percents,'code_top_ten':code_top_ten,'locations_samples':locations_samples, 'all_locations':all_locations,
+    'scatter_plot':scatter_plot, 'total_scatter':total_scatter, 'combined_map':combined_map, 'og_return_url':og_return_url, 'sponsors':sponsors, 'crew':crew,
+    'search_city': search_city, 'search_water':search_water,'search_project':search_project, 'search_location':search_location})
 def litter_location(request, location):
     all_locations = location_list(item_data())
 
@@ -475,10 +496,8 @@ def litter_location(request, location):
     river_locations = water_body_dict(a.filter(location__water = 'r'))
     daily_values, summary = item_summary(a,location)
     inventory = code_inventory(a, summary[1])
-    all_cities = city_list(a)
-    all_water = water_list(a)
-    all_projects = project_list(a)
-    all_locations = location_list(a)
+    #all_locations = location_list(a)
+    search_city, search_water, search_project, search_location = lists_for_search_button(other_data)
     material_percents = material_inventory(a, summary[1])
     code_top_ten = code_t_ten(inventory)
     locations_samples = beaches_in_a_region(daily_values[0], all_locations)
@@ -493,11 +512,12 @@ def litter_location(request, location):
     og_return_url = see_that()
 
     sponsor_data = og_data(all_locations)
+    sponsors, crew = sponsors_volunteers(sponsor_data)
 
     return render(request, 'dirt/litter_search.html', {'lake_locations':lake_locations, 'summary':summary,'river_locations':river_locations,
-    'inventory':inventory,  'all_cities':all_cities, 'all_water':all_water, 'all_projects':all_projects,'material_percents':material_percents,'code_top_ten':code_top_ten,'locations_samples':locations_samples, 'all_locations':all_locations,
-    'scatter_plot':scatter_plot, 'total_scatter':total_scatter, 'combined_map':combined_map, 'og_return_url':og_return_url, 'sponsor_data':sponsor_data})
-
+    'inventory':inventory, 'material_percents':material_percents,'code_top_ten':code_top_ten,'locations_samples':locations_samples, 'all_locations':all_locations,
+    'scatter_plot':scatter_plot, 'total_scatter':total_scatter, 'combined_map':combined_map, 'og_return_url':og_return_url, 'sponsors':sponsors, 'crew':crew,
+    'search_city': search_city, 'search_water':search_water,'search_project':search_project, 'search_location':search_location})
 def litter_california(request):
     a = HDC_Data.objects.all()
     lake_locations = water_body_dict(a.filter(location__water = 'l'))
@@ -505,10 +525,8 @@ def litter_california(request):
 
     daily_values, summary = item_summary(a,'California')
     inventory = code_inventory(a, summary[1])
-    all_cities = city_list(a)
-    all_water = water_list(a)
-    all_projects = project_list(a)
     all_locations = location_list(a)
+    search_city, search_water, search_project, search_location = lists_for_search_button(a)
     material_percents = material_inventory(a, summary[1])
     code_top_ten = code_t_ten(inventory)
     locations_samples = beaches_in_a_region(daily_values[0], all_locations)
@@ -520,46 +538,15 @@ def litter_california(request):
     #     return a
     # og_return_url = see_that()
     def og_data(l):
-        a = list(Sponsors.objects.filter(ca_beach__location__in=l).values_list('sponsor', 'sponsor_icon_name', 'sponsor_url', 'message').distinct())
+        a = list(Sponsors.objects.filter(ca_beach__location__in=l).values_list('sponsor', 'sponsor_icon_name', 'sponsor_url', 'message', 'is_staff' ).distinct())
         return a
     sponsor_data = og_data(all_locations)
+    sponsors, crew = sponsors_volunteers(sponsor_data)
 
     return render(request, 'dirt/california.html', {'lake_locations':lake_locations, 'summary':summary,'river_locations':river_locations,
-    'inventory':inventory,  'all_cities':all_cities, 'all_water':all_water, 'all_projects':all_projects,'material_percents':material_percents,'code_top_ten':code_top_ten,'locations_samples':locations_samples, 'all_locations':all_locations,
-    'scatter_plot':scatter_plot, 'combined_map':combined_map, 'sponsor_data':sponsor_data})
-
-# def cali_search(request, location):
-#     a = location_filter(HDC_Data.objects.all(), location)
-#     lake_locations = water_body_dict(a.filter(location__water = 'l'))
-#     river_locations = water_body_dict(a.filter(location__water = 'r'))
-#
-#     daily_values, summary = item_summary(a,location)
-#     inventory = code_inventory(a, summary[1])
-#     all_cities = city_list(a)
-#     all_water = water_list(a)
-#     all_projects = project_list(a)
-#     all_locations = location_list(a)
-#     material_percents = material_inventory(a, summary[1])
-#     code_top_ten = code_t_ten(inventory)
-#     locations_samples = beaches_in_a_region(daily_values[0], all_locations)
-#     combined_map = map_info(all_locations, locations_samples)
-#     scatter_plot = [[c[0], c[1].strftime("%Y-%m-%d"), c[2]] for c in daily_values[0]]
-#     other_scatter = daily_pcs_m(item_data_exclude_locations(item_data(), all_locations))
-#     total_scatter = [[c[0], c[1].strftime("%Y-%m-%d"), c[2]] for c in other_scatter]
-#
-#     def see_that():
-#         a = ''.join(["http://127.0.0.1:8000/dirt/litter/city","/",city,"/"])
-#         return a
-#     og_return_url = see_that()
-#     def og_data(l):
-#         a = list(Sponsors.objects.filter(beach__location__in=l).values_list('sponsor', 'sponsor_icon_name', 'sponsor_url').distinct())
-#         return a
-#     sponosr_data = og_data(all_locations)
-#
-#     return render(request, 'dirt/litter_search.html', {'lake_locations':lake_locations, 'summary':summary,'river_locations':river_locations,
-#     'inventory':inventory,  'all_cities':all_cities, 'all_water':all_water, 'all_projects':all_projects,'material_percents':material_percents,'code_top_ten':code_top_ten,'locations_samples':locations_samples, 'all_locations':all_locations,
-#     'scatter_plot':scatter_plot, 'total_scatter':total_scatter, 'combined_map':combined_map})
-
+    'inventory':inventory, 'material_percents':material_percents,'code_top_ten':code_top_ten,'locations_samples':locations_samples, 'all_locations':all_locations,
+    'scatter_plot':scatter_plot, 'combined_map':combined_map, 'sponsors':sponsors, 'crew':crew, 'search_city': search_city, 'search_water':search_water,
+    'search_project':search_project, 'search_location':search_location})
 def microbiology(request):
 
     def get_jsons_x(file_name):
@@ -582,7 +569,6 @@ def microbiology(request):
                 't_cfu_17_svt': t_cfu_17[2], 't_uv_17_svt':t_uv_17[2], 't_uv_17_mrd':t_uv_17[0], 't_uv_17_vnx':t_uv_17[1],
                 'b_blue16_svt':big_blue16[2], 'b_blue16_vnx':big_blue16[1], 'b_blue16_mrd':big_blue16[0], 't_cfu_16_mrd':t_cfu_16[0], 't_cfu_16_vnx': t_cfu_16[1],
                 't_cfu_16_svt': t_cfu_16[2], 'rain_16':rain_16, 'sige_points':sige_points})
-
 def index(request):
     def last_litter_activity():
         a = item_data()
@@ -606,10 +592,17 @@ def index(request):
         return b
 
     return render(request, 'dirt/index.html',{'latest_sample':latest_sample, "see_latest":see_latest, 'last_post':last_post, 'last_read':last_read})
-
 def code_shovel(request):
     return render(request, 'dirt/code-shovel.html')
+def probability_view(request):
+    return render(request, 'dirt/probability.html')
+def about_hd(request):
+    return render(request, 'dirt/About.html')
+def sponsor_program(request):
+    return render(request, 'dirt/sponsorship.html')
 
+
+# imports specific to the API
 from django.http import HttpResponse, JsonResponse
 from rest_framework.response import Response
 from dirt.serializers import SummarySerializer, MakeJson, AllDataSerial, BeachSerial, AllDataCreate, CitySerializer, AllDataSerial, BeachCreate, DailyTotalSerial, DailyLogSerial, HdcDataCreate, HdcBeachCreate
@@ -621,6 +614,7 @@ from rest_framework.decorators import api_view
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework_jwt.views import obtain_jwt_token
 
+# API views
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
@@ -632,7 +626,8 @@ def api_root(request, format=None):
         'daily-density': reverse('daily-dens', request=request, format=format),
         'api_home.html': reverse('api-home', request=request, format=format),
     })
-
+def api_home(request):
+     return render(request,'api-home.html')
 class CreateRecord(generics.CreateAPIView):
     '''
     The is the data-entry api for hammerdirt beach litter surveys.  Enter a record for each object identified.

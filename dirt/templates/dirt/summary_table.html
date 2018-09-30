@@ -16,13 +16,30 @@ button_top_ten_inventory_material.html
 
       <table id="summary-table" class="table table-sm table-striped text-left mb-0 embed-responsive-item"  style="">
         <tbody>
+
           <tr>
-            <td class="bg-white p-0 pt-1 border-0"><small><strong>Crew:</strong></small> <div class="btn-group pl-1 bg-white">{% for x in sponsor_data %}
-              <button id="{{ x.0|slugify }}" class="btn p-0" data-content="{{ x.3|safe }}" rel="popover" data-placement="bottom" data-original-title="{{ x.0 }} says:" data-trigger="hover" href="{{ x.2 }}">
-              <img src={% static  x.1 %}  height="40" alt='django logo'> </buton>
-              {% endfor %}<button id="help" class="btn btn-primary" data-content="These are members or volunteers that have helped, this could be your companies logo here! All you have to do is pay for some beach-litter-surveys." rel="popover" data-placement="bottom" data-original-title="Why not sponsor this?" data-trigger="click" href="#">
-              <small><- What is this?</small></buton></div></td>
+            <td class="bg-white p-0 pt-1 border-0"><small><strong>Sponsor:</strong></small>
+              <div class="btn-group pl-1 bg-white">  {% for x in sponsors %}
+                <button id="{{ x.0|slugify }}" class="btn p-0" data-content="{{ x.3 }}" rel="popover" data-placement="bottom" data-original-title="Not a real Sponsor" data-trigger="hover" href="#">
+                  <img src={% static  x.1 %}  height="40" alt='django logo'>
+                </button>{% endfor %}
+              <button id="help" style="height:40px" class="btn btn-outline-primary border-white " data-content="Beaches can be sponsored by companies or groups of companies. Logos would appear here. Company information, message or url in this message box." rel="popover" data-placement="top" data-original-title="Sponsor a beach?" data-trigger="hover" href="#">
+              <strong><- What is that? </strong></button></div></td>
           </tr>
+         <tr>
+            <td class="bg-white p-0 pt-1 border-0"><small><strong>Crew:</strong></small>
+              {% for b in crew %}
+              <div class="btn-group pl-1 bg-white">
+                <button id="{{ b.0|slugify }}" class="btn p-0" data-content="{{ b.3|safe }}" rel="popover" data-placement="bottom" data-original-title="Terry Pratchet Quote:" data-trigger="hover" href="#">
+                   <img src={% static  b.1 %}  height="40" alt='django logo'>
+                </button>{% endfor %}
+                <button id="helpx" style="height:40px" class="btn btn-outline-primary border-white " data-content="Members or volunteer icon goes here. If you want to contribute take a look the site. We need front end developers, dev-ops would be good too. Math and stats people are alaways welcome. Dedicated individuals are what is needed." rel="popover" data-placement="top" data-original-title="Participate?" data-trigger="hover" href="#">
+                  <strong><- What is that? </strong>
+                </button>
+              </div>
+            </td>
+          </tr>
+
            <tr>
              <td class="ml-auto">N<sup>o</sup> of Samples:</td>
              <td class="mr-auto">{{ summary.2 }}</td>

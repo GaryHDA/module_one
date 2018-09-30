@@ -1,9 +1,9 @@
 <!--
 Variables called:
-all_cities : calls the list of all cities in the data set
-all_water : calls the list of all lakes and rivers in the data set
-all_locations : calls the list of all locations in the data set
-all_projects ; calls the list of all projects in the data set
+search_city : calls the list of all cities in the database
+search_water : calls the list of all lakes and rivers in the database
+search_location : calls the list of all locations in the database
+search_project ; calls the list of all projects in the database
 each form calls uses the corresponding JScript submitCity, submitProject, submitWater, submitLocation
 located in the search_forms_js_control template
 -->
@@ -23,7 +23,7 @@ located in the search_forms_js_control template
             <div class="card-body p-1">
               <form id="city-form" class="form-inline justify-content-left">
                 <select id="city-select" class="form-control-sm w-100" style="" >
-                  {% for x in all_cities %}
+                  {% for x in search_city %}
                   <option class=""  value= "{{ x }}">{{ x }}</option>
                   {% endfor %}
                 </select>
@@ -36,7 +36,7 @@ located in the search_forms_js_control template
             <div class="card-body p-1">
               <form id="water-form" class="form-inline justify-content-left">
                 <select id="water-select" class="form-control-sm w-100" style="">
-                  {% for x in all_water %}
+                  {% for x in search_water %}
                   <option class="" value= "{{ x }}">{{ x }}</option>
                   {% endfor %}
                 </select>
@@ -49,7 +49,7 @@ located in the search_forms_js_control template
             <div class="card-body p-1">
               <form id="project-form" class="form-inline justify-content-left">
                 <select id="project-select" class="form-control-sm w-100" style="">
-                  {% for x in all_projects %}
+                  {% for x in search_project %}
                   <option class="" value= "{{ x }}">{{ x }}</option>
                   {% endfor %}
                 </select>
@@ -62,7 +62,7 @@ located in the search_forms_js_control template
             <div class="card-body p-1">
               <form id="location-form" class="form-inline justify-content-left">
                 <select id="location-select" class="form-control-sm w--100" style="">
-                  {% for x in all_locations %}
+                  {% for x in search_location %}
                   <option class="" value= "{{ x }}">{{ x }}</option>
                   {% endfor %}
                 </select>

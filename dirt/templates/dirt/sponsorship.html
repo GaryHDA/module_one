@@ -1,0 +1,269 @@
+{% extends "dirt/hd_base.html" %}
+<!--
+Variables called:
+this is a dynamic page with regular additions
+variables will be announced as called
+-->
+{% block og_data %}
+<!--
+This is the load spinner and the
+div that centers it, they are both made
+inivisible when the map is finished loading
+-->
+<!-- <div id="loading2" class="cn">
+  <div id="loading" class="spinner"></div>
+</div> -->
+{% load static %}
+<title>Hammerdirt</title>
+<!-- Open Graph Data -->
+<meta property="og:title" content="hammerdirt" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="{% url 'probability-lab' %}" />
+<meta property="og:image" content= "{% static "images/weblogo.jpg" %}" />
+<meta property="og:image:width" content="400" />
+<meta property="og:image:height" content="246" />
+<meta property="og:description" content="hammerdirt lab: Understanding probability" />
+<meta property="og:site_name" content="MW-Shovel" />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+{% endblock %}
+{% block style %}
+.col-sm{
+  min-width:400px;
+}
+{% endblock %}
+{% block content  %}
+{% load humanize %}
+{% load static %}
+<div id="" class="container-fluid p-0 m-0" style="width:100%; ">
+  <div class="row no-gutters" id="" style="">
+    <div class="container"><h4 class="display-4">Sponsor a beach</h4>
+      <div class="container"><h5 class="display-5">When an organization sponsors a beach they are supporting:</h5>
+        <ul>
+          <li>The removal of garbage form the environment</li>
+          <li>Establishing a benchmark for trash levels in the region</li>
+          <li>The objective presentation of environmental data</li>
+          <li>Citizen science and constructive engagement of the public</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container"><h4 class="display-4">What does the sponsor get?</h4>
+      <div class="container"><h5 class="display-5">Your logo, message and contact information will be visible in:</h5>
+        <ul>
+          <li>The data-summary table for the beach sponsored*</li>
+          <li>The data-summary table for the body of water where the beach is located**</li>
+          <li>Your message and logo will populate the Open-Graph data when shared on social media</li>
+          <li>One click access to all the operations and results made possible by the sponsorhip</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="container" id="samp-one" style="width:400px; height:400px">
+    <div class="card border-white" id="data-summary" style="height:100%">
+      <div class="card-header w-100 bg-dark text-left text-white" id="" style="font-family:'Montserrat'">
+        Summary: &nbsp;Jardin-Botanique
+      </div>
+      <div class="card-body p-0 text-left" style="height:auto">
+
+    <table id="summary-table" class="table table-sm table-striped text-left mb-0 float-right"  style="width:100%">
+      <tbody>
+        <tr>
+          <td class="bg-white p-0 pt-1 border-0" style="">
+            <div class="btn-group pl-1 bg-white">
+              <button id="" class="btn bg-white text-left"  style="min-width:72px"  href="#">
+               <small><strong>Sponsor:</strong></small>
+              </button>
+
+              <button id="sponsor" class="btn popover p-0" data-html='true' data-placement="top" data-toggle="popover" data-trigger="hover" href="#">
+                <img src="{% static  'images/ubuntu.png' %}" height="50" alt='django logo'>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="bg-white p-0 pt-1 border-0" style="">
+            <div class="btn-group pl-1 bg-white" >
+              <button id="" class="btn bg-white text-left" style="min-width:72px" href="#">
+               <small><strong>Crew:</strong></small>
+              </button>
+              <button id="crew_one" class="btn popover p-0" data-html='true' data-placement="top" data-toggle="popover" data-trigger="hover" href="#">
+                <img src="{% static  "images/litter_location.jpeg" %}" height="40" alt="django logo">
+              </button>
+              <button id="crew_two" class="btn popover p-0" data-html='true' data-placement="top" data-toggle="popover" data-trigger="hover" href="#">
+                <img src="{% static  "images/icon_four.svg" %}" height="40" alt="django logo">
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="ml-auto">N<sup>o</sup> of Samples:</td>
+          <td class="mr-auto">4</td>
+        </tr>
+        <tr>
+          <td class="ml-auto">N<sup>o</sup> of locations:</td>
+          <td class="mr-auto">1</td>
+        </tr>
+        <tr>
+          <td class="ml-auto">N<sup>o</sup> of rivers - lakes:</td>
+          <td class="mr-auto">1 - 0</td>
+        </tr>
+        <tr>
+          <td class="ml-auto">First sample date:</td>
+          <td class="mr-auto">2016-07-01</td>
+        </tr>
+        <tr>
+          <td class="ml-auto">Last sample date:</td>
+          <td class="mr-auto">2018-08-10</td>
+        </tr>
+        <tr>
+          <td class="ml-auto">...</td>
+        </tr>
+       </tbody>
+     </table>
+   </div>
+ </div>
+
+</div>
+<div class="container" id="samp-one" style="width:400px; height:400px">
+<div class="card border-white" id="data-summary" style="height:100%">
+  <div class="card-header w-100 bg-dark text-left text-white" id="" style="font-family:'Montserrat'">
+    Summary: &nbsp;Lac Léman
+  </div>
+  <div class="card-body p-0 text-left" style="height:auto">
+
+<table id="summary-table" class="table table-sm table-striped text-left mb-0 float-right"  style="width:100%">
+  <tbody>
+    <tr>
+      <td class="bg-white p-0 pt-1 border-0" style="">
+        <div class="btn-group pl-1 bg-white">
+          <button id="" class="btn bg-white text-left"  style="min-width:72px"  href="#">
+           <small><strong>Sponsor:</strong></small>
+          </button>
+          <button id="sponsor-three" class="btn popover p-0" data-html='true' data-placement="top" data-toggle="popover" data-trigger="hover" href="#">
+            <img src="{% static  'images/ubuntu.png' %}" height="50" alt='django logo'>
+          </button>
+          <button id="sponsor-two" class="btn popover p-0" data-html='true' data-placement="top" data-toggle="popover" data-trigger="hover" href="#">
+            <img src="{% static  'images/math.jpg' %}" height="50" alt='django logo'>
+          </button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="bg-white p-0 pt-1 border-0" style="">
+        <div class="btn-group pl-1 bg-white" >
+          <button id="" class="btn bg-white text-left" style="min-width:72px" href="#">
+           <small><strong>Crew:</strong></small>
+          </button>
+          <button id="crew_one" class="btn popover p-0" data-html='true' data-placement="top" data-toggle="popover" data-trigger="hover" href="#">
+            <img src="{% static  "images/litter_location.jpeg" %}" height="40" alt="django logo">
+          </button>
+          <button id="crew_two" class="btn popover p-0" data-html='true' data-placement="top" data-toggle="popover" data-trigger="hover" href="#">
+            <img src="{% static  "images/icon_four.svg" %}" height="40" alt="django logo">
+          </button>
+          <button id="crew_three" class="btn popover p-0" data-html='true' data-placement="top" data-toggle="popover" data-trigger="hover" href="#">
+            <img src="{% static  "images/icon_three.svg" %}" height="40" alt="django logo">
+          </button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="ml-auto">N<sup>o</sup> of Samples:</td>
+      <td class="mr-auto">146</td>
+    </tr>
+    <tr>
+      <td class="ml-auto">N<sup>o</sup> of locations:</td>
+      <td class="mr-auto">29</td>
+    </tr>
+    <tr>
+      <td class="ml-auto">N<sup>o</sup> of rivers - lakes:</td>
+      <td class="mr-auto">0 - 1</td>
+    </tr>
+    <tr>
+      <td class="ml-auto">First sample date:</td>
+      <td class="mr-auto">2015-11-01</td>
+    </tr>
+    <tr>
+      <td class="ml-auto">Last sample date:</td>
+      <td class="mr-auto">2018-07</td>
+    </tr>
+    <tr>
+      <td class="ml-auto">...</td>
+    </tr>
+   </tbody>
+ </table>
+</div>
+</div>
+
+</div>
+
+<!--
+Modals go here
+-->
+
+{% endblock %}
+{% block charts %}
+<!--
+Slugifies the sponosr data so that it can be used
+as id values in jas, for the placement of user icons
+-->
+<script type="text/javascript">
+    $('#sponsor').popover({
+      container: 'body',
+      content:'Ubuntu is not a real sponsor, however we do use the Long-term-release 18.04 as our standard  desktop OS. We also use Lubuntu on our older machines',
+      title:'<img src="{% static  "images/ubuntu.png" %}" height="40" alt="django logo">&nbsp;Ubuntu - not a realsponsor',
+
+    });
+</script>
+<script type="text/javascript">
+    $('#sponsor-three').popover({
+      container: 'body',
+      content:'Ubuntu is not a real sponsor, however we do use the Long-term-release 18.04 as our standard  desktop OS. We also use Lubuntu on our older machines',
+      title:'<img src="{% static  "images/ubuntu.png" %}" height="40" alt="django logo">&nbsp;Ubuntu - not a realsponsor',
+
+    });
+</script>
+<script type="text/javascript">
+    $('#sponsor-two').popover({
+      container: 'body',
+      content:'Stack exchange Math is not a real sponsor, however we do use the forum alot. Once in awhile we ask questions',
+      title:'<img src="{% static  "images/math.jpg" %}" height="40" alt="django logo">&nbsp;Math Stack Exchange - not a sponsor',
+
+    });
+</script>
+<script type="text/javascript">
+    $('#crew_one').popover({
+      container: 'body',
+      content:'Participants can also leave a message and a URL for contact - the icon is limited to black and white. The message is approved by hammeridrt staff. In general the message is to be non judgemental or political',
+      title:'<img src="{% static  "images/litter_location.jpeg" %}" height="40" alt="django logo">&nbsp;Group - not a real group',
+
+    });
+</script>
+<script type="text/javascript">
+    $('#crew_two').popover({
+      container: 'body',
+      content:'Participants can also leave a message and a URL for contact -  the icon is limited to black and white. The message is approved by hammeridrt staff. In general the message is to be non judgemental or political.',
+      title:'<img src="{% static  "images/icon_four.svg" %}" height="40" alt="django logo">&nbsp;Group - not a real group',
+
+    });
+</script>
+<script type="text/javascript">
+    $('#crew_three').popover({
+      container: 'body',
+      content:'Participants can also leave a message and a URL for contact -  the icon is limited to black and white. The message is approved by hammeridrt staff. In general the message is to be non judgemental or political.',
+      title:'<img src="{% static  "images/icon_four.svg" %}" height="40" alt="django logo">&nbsp;Group - not a real group',
+
+    });
+</script>
+
+<!--
+The template 'body' tag is hidden durring loading
+this makes it visible right away when index is called
+-->
+<script type="text/javascript">
+    document.getElementById('hide-me').style.visibility='visible'
+</script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+{% endblock %}

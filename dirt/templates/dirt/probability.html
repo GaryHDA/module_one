@@ -18,12 +18,13 @@ inivisible when the map is finished loading
 <!-- Open Graph Data -->
 <meta property="og:title" content="hammerdirt" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="{% url 'python-lab' %}" />
+<meta property="og:url" content="{% url 'probability-lab' %}" />
 <meta property="og:image" content= "{% static "images/weblogo.jpg" %}" />
 <meta property="og:image:width" content="400" />
 <meta property="og:image:height" content="246" />
-<meta property="og:description" content="hammerdirt lab: Visualising data with Pthon and JavaScript" />
+<meta property="og:description" content="hammerdirt lab: Understanding probability" />
 <meta property="og:site_name" content="MW-Shovel" />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
 {% endblock %}
 {% block style %}
 .col-sm{
@@ -38,20 +39,21 @@ inivisible when the map is finished loading
     <div class="col-sm borders-0 " id="" style="">
       <div class="card pb-0 border-white" id="cd_10"  style="">
         <div class="card-header w-100 bg-secondary text-left text-white" id="" style="font-family:'Montserrat'">
-          Welcome to hammerdirt labs - Python-JS
+          Welcome to hammerdirt labs - Probability
         </div>
         <div class="card-body p-0 borders-0 text-left"  style="height:100%">
           <div class="list-group border-right-0 border-left-0 ">
             <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
-              <h6 class="mb-1" style="font-family:'Montserrat'">Visualisation of common statistical indicators</h6>
+              <h6 class="mb-1" style="font-family:'Montserrat'">Application and visualisation of probability methods</h6>
                 <br>
-                <p class="text-muted">In this section the idea is integrate different methods to convey the meaning of statistical results. The posts will follow release date (kind of like a blog).
-                   In the first few posts it will be about integrating the Observable note book (or sections of), how to connect and get data from the API and some basic SVG manipulation.</p>
+                <p class="text-muted">In this section the idea is ensure that the visualisations convey a real concept. I am drawing a line between the derivation of some statisitical or probability method
+                  and the visualisation. Most of the 'math' will be done in Python and formatted in JSON so it can be consumed by a JavaScript method that places it in the browser. That workflow will
+                  cary over as we move to react and android platforms.</p>
             </div>
             <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
               <h6 class="mb-1" style="font-family:'Montserrat'">Inform itelligently<br>
-                <small class="text-muted">While classic scatter plots are quite clear, not everybody understands a histogram or a distribution plot. It is not our intention to teach the world 'statistics'.
-                   The idea here is to convey 'meaning' in the statistical context using JavaScript and Python.</small>
+                <small class="text-muted">This lab is meant to add value to the visualisations and the data collection by connecting the results of one beach-litter-survey to the results of all other surveys mathematically.
+                  Thus the relationship to other variables can be potentially identified. This is a place to use visualisations to explain basic concepts and develop models, so the the Python lab and this one will follow very closely.</small>
               </h6>
             </div>
             <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
@@ -77,7 +79,7 @@ inivisible when the map is finished loading
             Call the open_acces_modal
             -->
             <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
-              <h6 class="" style="font-family:'Montserrat'">Open access is a critical resource
+              <h6 class="" style="font-family:'Montserrat'">Open access is a critical ressource
                 <br><small class="text-muted">This is a list of all the different tools used to make this app:</small>
               </h6>
               <button class="btn bg-info text-white border-white text-left" style=""  role="button" data-toggle="modal" data-target="#open-acces" aria-expanded="false" aria-controls="">
@@ -88,22 +90,23 @@ inivisible when the map is finished loading
       </div>
       <div class="card pb-0 border-white" id=""  style="">
         <div class="card-header w-100 bg-secondary text-left text-white" id="" style="font-family:'Montserrat'">
-          Project : Finish the stoplights poster
+          Project :The binomial variable
         </div>
         <div class="card-body p-0 borders-0 text-left"  style="height:100%">
           <div class="list-group border-right-0 border-left-0 ">
             <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
-              <h6 class="mb-1" style="font-family:'Montserrat'">Comparing percentile rankings</h6>
-                <br><p class="text-muted">A common evaluation technique is to compare one member of a group to other members of that group. In school this was done on bell curve.
-                  The idea is to bring that simplicity to the results of 130 locations across the country with the results from the litter-surveys.</p>
+              <h6 class="mb-1" style="font-family:'Montserrat'">Recurring events </h6>
+                <br><p class="text-muted">Alot of emphasis is given to calculating "How much trash?" is in the environment. I don't think it is possible to calculate any number that has any real meaning.
+                   However we can calculate the probability of how much trash you may find each time you go to the shore. The differnce is subtle, but we can test the results of a probability model far more reliably
+                   than any extraplotation.</p>
             </div>
             <!--
               call the stoplights modalS
             -->
             <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
-              <h6 class="mb-1" style="font-family:'Montserrat'">There is math involved<br>
-                <small class="text-muted">A 'bell curve' is representation of a distribution of values. In the case of the poster the values are pcs/m of trash on the water line.
-                   In the probability section that whole model will be treated (but not now)</small>
+              <h6 class="mb-1" style="font-family:'Montserrat'">Testing the probability model<br>
+                <small class="text-muted">To test the probability model, all you have to do is go down to the beach and do a litter-inventory. The bonus is that the results from that inventory will be added to the model. Thus refining the model
+                  each time you go out.</small>
               </h6>
             </div>
           </div>
@@ -116,33 +119,29 @@ inivisible when the map is finished loading
           <div class="list-group border-right-0 border-left-0 ">
             <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
               <h6 class="mb-1" style="font-family:'Montserrat'"> Inspiration and motivations: 26-09-2018<br>
-                <small class="text-muted">Trash is a problem everywhere, it ends up in the ocean and fish and people end up eating it. How do you convey the abundance of trash in the natural environment ?</small>
+                <small class="text-muted">The binomial variable has come up several times while I was looking for a way to express the siginifigance of results or predict a value:
+                  <br><br>
+                <ul>
+                  <li>Determining if the microbio results were just random</li>
+                  <li>Predicting the qty of trash you might find per meter of shoreline
+                </ul> </small>
               </h6>
             </div>
             <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
-              <h6 class="mb-1" style="font-family:'Montserrat'">Originally done in Pandas with output to Matplotlob.<br>
-                <small class="text-muted"> Here is the repo <a href="https://github.com/hammerdirt/stopLight"> Stoplights</a> take a look. Depending on your personality you should either be laughing or crying, but it works.
-                <br>here is the poster (opens a modal):</small> <button class="btn bg-info btn-sm text-white border-white text-left" style=""role="button" data-toggle="modal" data-target="#stoplights" aria-expanded="false" aria-controls="">
-                <small>Stoplights</small></button>
+              <h6 class="mb-1" style="font-family:'Montserrat'">Binomial succes or not<br>
+                <small class="text-muted"> The questions both ask the same thing "What are the chances that 'this' event will happen ?". In the first
+                  case if the probability is high then it would not be prudent to associate other independent variables with the 'event'. In the second case if
+                  the probaility is high we may be approaching a baseline value for deteriming trash levels on the shoreline.</small>
               </h6>
             </div>
             <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
-               <h6 class="mb-1" style="font-family:'Montserrat'">Another way to draw a circle</h6>
-        <pre ><code>
-&lt;svg width="50" height="50"&gt;
-  &lt;circle cx="25" cy="25" r="20" fill="yellow"&lt;/&gt;
-&lt;/svg&gt;
-          </code></pre>
-               <p> <small class="text-muted">Will draw an SVG in the browser like this:</small></p>
-               <div class="container ml-2">
-                <svg width="50" height="50">
-                  <circle cx="25" cy="25" r="20" fill="yellow" />
-                </svg>
-               </div>
+               <h6 class="mb-1" style="font-family:'Montserrat'">\(x^2\)</h6>
+               <p> <small class="text-muted">The first challenge in this section is getting <a href="https://www.mathjax.org/">MathJax</a> up and running on the page. I will get that all sorted and start the next post.
+               To use Sicpy or it is not necesary to memorize the formulas, but to understand what is REALLY going on the formulas are essential.</small></p>
             </div>
             <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
-              <h6 class="mb-1" style="font-family:'Montserrat'">Control the tag variables<br>
-                <small class="text-muted">In the next post: get data from the API and make some circles with it ~ Oct 10th 2018</small>
+              <h6 class="mb-1" style="font-family:'Montserrat'">Next post<br>
+                <small class="text-muted">In the next post: Look at how the two applications are similar by understanding the Binomial variable</small>
               </h6>
             </div>
           </div>

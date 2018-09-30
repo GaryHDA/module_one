@@ -26,7 +26,7 @@
 {% load humanize %}{% load static %}
 
 <div class="container-fluid p-0 m-0" style="width:100%">
-  <div class="row no-gutters" id="intro-row" style="">
+  <div class="row no-gutters w-100" id="intro-row" style="">
     <div class="col-sm" id="" style="">
       {% include 'dirt/reasons_why_micro.html' %}
     </div>
@@ -37,20 +37,20 @@
       {% include 'dirt/micro_projects_history.html' %}
     </div>
   </div>
-  <div class="row no-gutters" id="combined-data-row" style="">
-    <div class="col-sm h-100" id="data-summary-column" style="">
+  <div class="row no-gutters w-100" id="combined-data-row" style="">
+    <div class="col-sm " id="data-summary-column" style="">
       {% include 'dirt/col_one_data_micro.html' %}
       {% include 'dirt/micro_map_card.html' %}
     </div>
-    <div class="col-sm h-100" id="map-search-column"  style="">
+    <div class="col-sm " id="map-search-column"  style="">
       {% include 'dirt/micro_2016_card.html' %}
     </div>
-    <div class="col-sm h-100" id="charts-column"  style="" >
+    <div class="col-sm " id="charts-column"  style="" >
       {% include 'dirt/micro_2017_card.html' %}
 
     </div>
   </div>
-  <div class="row no-gutters bg-dark mt-1 w-100">
+  <div class="row no-gutters w-100 bg-dark mt-1 ">
     <p class="text-white"> We have grants for organizations with unfunded requirements. Contact us for more information.</p>
   </div>
         {% include 'dirt/culture_medium_modal.html' %}
@@ -59,6 +59,7 @@
         {% include 'dirt/jazz_modal.html' %}
         {% include 'dirt/rain_modal.html' %}
         {% include 'dirt/micro_array_modal.html' %}
+        {% include 'dirt/open_acces_modal.html' %}
 {% endblock %}
 
 

@@ -265,6 +265,7 @@ class LastCommit(models.Model):
         db_table = 'last_commit'
         verbose_name_plural = 'Recent posts'
 
+
 CONTRACT_CHOICES = (
     ('l', 'location'),
     ('l-m', 'location-multiple'),

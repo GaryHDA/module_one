@@ -7,7 +7,10 @@ from rest_framework_jwt.views import obtain_jwt_token
 urlpatterns = [
     re_path(r'^beach_litter.html', views.beach_litter, name='beach-litter-home'),
     re_path(r'^california.html', views.litter_california, name='california'),
-    re_path(r'^code-shovel.html', views.code_shovel, name='code-shovel'),
+    re_path(r'^code-shovel.html', views.code_shovel, name='python-lab'),
+    re_path(r'^About.html', views.about_hd, name='about-hammerdirt'),
+    re_path(r'^probability.html', views.probability_view, name='probability-lab'),
+    re_path(r'^sponsorship.html', views.sponsor_program, name='sponsor-promo'),
     re_path(r'^litter/city/(?P<city>[-\w+]+[-\w+])/$', views.litter_city, name='city-search'),
     re_path(r'^litter/lake-river/(?P<lakeRiver>[-\w+]+[-\w+])/$', views.litter_water, name='lakeRiver-search'),
     re_path(r'^litter/location/(?P<location>[-\w+]+[-\w+])/$', views.litter_location, name='location-search'),
