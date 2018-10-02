@@ -1,0 +1,23 @@
+<!--
+Variables called:
+objectives_card.html
+-->
+<div class="modal fade" id="micro-arrays-modal">
+  <div class="modal-dialog mw-100 w-75" sytle=" min-width:420px" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title">Average colony counts by year, week, location and species</h5>
+        <button type="button" class="close align text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-0">
+        {% include 'dirt/micro_2016_array_card.html' %}
+      </div>
+      <div class="modal-footer bg-info">
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span></button>
+      </div>
+    </div>
+  </div>
+</div>

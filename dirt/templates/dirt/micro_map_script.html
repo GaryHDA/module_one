@@ -1,0 +1,225 @@
+<script type="text/javascript">
+var map_points = {{ map_points|safe }};
+var sige_points = {{ sige_points|safe }};
+var map;
+var styledMapType;
+function initMap() {
+  styledMapType = new google.maps.StyledMapType([
+  {
+    "featureType": "administrative",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.locality",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#313026"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.locality",
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#313026"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.neighborhood",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "transit",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#00cdff"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "labels.text",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  }
+],
+{name:'Surveys 2016 - 2017'});
+  map = new google.maps.Map(document.getElementById('maps'), {
+    zoom:13,
+    center: {lat: 46.428233, lng: 6.905199},
+    minZoom:9,
+    mapTypeControlOptions: {
+      mapTypeIds: ['styled_map'],
+    },
+    streetViewControl:false,
+    fullscreenControl:false,
+
+  });
+  map.mapTypes.set('styled_map', styledMapType);
+  map.setMapTypeId('styled_map');
+
+  var infowindow = new google.maps.InfoWindow();
+  var marker, i;
+  var markerx, o;
+  var markers = [];
+  var markersx = [];
+
+
+  for (i = 0; i < map_points.length; i++) {
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(map_points[i].latitude, map_points[i].longitude),
+      // console.log()
+      map: map,
+      icon:  {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 10,
+        fillColor: 'rgb(255, 65, 168)',
+        strokeColor: 'rgb(255, 00, 00)',
+        fillOpacity:0.6,
+        strokeOpacity:1,
+        strokeWeight:2,
+      },
+    });
+
+    var contentString = '<div><p style="margin-bottom:4px; font-size:14px;">' + map_points[i].location +  '</p><ul><li>City: ' + map_points[i].city + '</li><li> N<sup>o</sup> of samples: ' + map_points[i].num_samps + '</li><li> First sample: ' + map_points[i].first_samp + '</li</ul></div>';
+
+    marker.addListener('click', function(content){
+      return function(){
+        infowindow.setContent(content);
+        infowindow.open(map, this);
+      }
+    }(contentString));
+    markers.push(marker);
+
+    // map.mapTypes.set('styled_map', styledMapType);
+    //
+    // map.setMapTypeId('styled_map');
+
+  };
+  for (o = 0; o < sige_points.length; o++) {
+    markerx = new google.maps.Marker({
+      position: new google.maps.LatLng(sige_points[o].latitude, sige_points[o].longitude),
+      // console.log(position),
+      map: map,
+      icon:  {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 10,
+        fillColor: 'rgb(255, 69, 0)',
+        strokeColor: 'rgb(255, 00, 00)',
+        fillOpacity:0.8,
+        strokeOpacity:1,
+        strokeWeight:2,
+      },
+    });
+
+    var contentString = '<div><p style="margin-bottom:4px; font-size:14px;">' + sige_points[o].location +  '</p><ul><li>City: ' + sige_points[o].city + '</li><li> N<sup>o</sup> of samples: ' + sige_points[o].num_samps + '</li><li> First sample: ' + sige_points[o].first_samp + '</li</ul></div>';
+
+    markerx.addListener('click', function(content){
+      return function(){
+        infowindow.setContent(content);
+        infowindow.open(map, this);
+      }
+    }(contentString));
+    markers.push(markerx);
+
+    map.mapTypes.set('styled_map', styledMapType);
+
+    map.setMapTypeId('styled_map');
+
+  };
+
+   };
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm40jm5y3TNXHeagBkulq-mS2A3ep4TWY&callback=initMap"  async defer> </script>

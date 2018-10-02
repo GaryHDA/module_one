@@ -1,0 +1,85 @@
+{% extends "dirt/hd_base.html" %}
+<!--
+Variables called:
+
+
+-->
+{% block og_data %}
+<!--
+This is the load spinner and the
+div that centers it, they are both made
+inivisible when the map is finished loading
+-->
+<div id="loading2" class="cn">
+  <div id="loading" class="spinner"></div>
+</div>
+{% load static %}
+<title>Hammerdirt</title>
+<!-- Open Graph Data -->
+<meta property="og:title" content="hammerdirt" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="{% url 'beach-litter-home' %}" />
+<meta property="og:image" content= "{% static "images/weblogo.jpg" %}" />
+<meta property="og:image:width" content="400" />
+<meta property="og:image:height" content="246" />
+<meta property="og:description" content="hammerdirt, helping you create knowledge.  A research partner that specializes in the development of data products for and from crowd sourced research projects." />
+<meta property="og:site_name" content="MW-Shovel" />
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+{% block content  %}
+{% load humanize %}
+{% load static %}
+<div id="" class="container-fluid p-0 m-0" style="width:100%; ">
+  <div class="row no-gutters" id="" style="">
+    <div class="col-sm" id="" style="">
+
+    </div>
+    <div class="col-sm" id="" style="">
+
+    </div>
+    <div class="col-sm" id='' style="">
+
+    </div>
+  </div>
+  <div class="row no-gutters" id="combined-data-row" style="">
+    <div class="col-sm h-100" id="data-summary-column" style="">
+
+    </div>
+    <div class="col-sm h-100" id="map-search-column"  style="">
+      {% include 'dirt/map_search.html' %}
+    </div>
+    <div class="col-sm h-100" id="charts-column"  style="" >
+
+    </div>
+  </div>
+  <div class="row no-gutters bg-dark mt-1">
+    <p class="text-white"> We have grants for organizations with unfunded requirements. Contact us for more information.</p>
+  </div>
+</div>
+<!--
+Modals go here
+-->
+{% endblock %}
+{% block charts %}
+<!--
+Slugifies the sponosr data so that it can be used
+as id values in jas, for the placement of user icons
+-->
+<script type="text/javascript">
+{% for x in sponsor_data %}
+$('#{{ x.0|slugify }}').popover({
+  container: 'body'
+});
+{% endfor %}
+$('#help').popover({
+  container: 'body'
+});
+</script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+<!--
+Variables called:
+lake_locations : dictionary that lists the lake name and the locations surveyed
+river_locations : dictionary that lists the river name and the locations surveyed
+-->
+<div class="modal fade" id="lakes_rivers">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title">Lakes and rivers inlcuded in this survey.</h5>
+        <button type="button" class="close align text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <dl class="row">
+          <dt class="col-sm-3" style="color:DodgerBlue;"><h6>Lakes:</h6></dt>
+          <dd class="col-sm-9" style="color:DodgerBlue"><h6>List of survey locations:</h6></dd>
+        </dl>
+        <dl class="row">
+          {% for s, t in lake_locations.items  %}
+          <dt class="col-sm-3">{{ s }}</dt>
+          <dd class="col-sm-9">{{ t|join:", " }} </dd>
+          {% endfor %}
+        </dl>
+        <dl class="row">
+          <dt class="col-sm-3"  style="color:DodgerBlue;"><h6>Rivers:</h6></dt>
+          <dd class="col-sm-9"  style="color:DodgerBlue;"><h6>List of survey locations:</h6></dd>
+        </dl>
+        <dl class="row">
+          {% for s, t in river_locations.items  %}
+          <dt class="col-sm-3">{{ s }}</dt>
+          <dd class="col-sm-9">{{ t|join:", " }} </dd>
+          {% endfor %}
+        </dl>
+      </div>
+      <div class="modal-footer bg-info">
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span></button>
+      </div>
+    </div>
+  </div>
+</div>

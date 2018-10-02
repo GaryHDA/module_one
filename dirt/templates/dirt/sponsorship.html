@@ -1,0 +1,392 @@
+{% extends "dirt/hd_base.html" %}
+<!--
+Variables called:
+this is a dynamic page with regular additions
+variables will be announced as called
+-->
+{% block og_data %}
+<!--
+This is the load spinner and the
+div that centers it, they are both made
+inivisible when the map is finished loading
+-->
+<!-- <div id="loading2" class="cn">
+  <div id="loading" class="spinner"></div>
+</div> -->
+{% load static %}
+<title>Sponsor a beach</title>
+<!-- Open Graph Data -->
+<meta property="og:title" content="hammerdirt" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://mwshovel.pythonanywhere.com/dirt/sponsorship.html" />
+<meta property="og:image" content= "{% static "images/sponsor_og.jpeg" %}" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="800" />
+<meta property="og:description" content="Help stop the flow of trash into the ocean, beach-litter inventories supply valuable data to other NGOs, government officials and the public. If you want to know what is floating in your water sponsor a beach clean with hammerdirt." />
+<meta property="og:site_name" content="Sponosr a beach" />
+{% endblock %}
+{% block style %}
+.col-sm{
+  min-width:400px;
+}
+@import url('https://fonts.googleapis.com/css?family=Rock+Salt');
+{% endblock %}
+{% block content  %}
+{% load humanize %}
+{% load static %}
+<div id="" class="container-fluid p-0 m-0" style="width:100%; ">
+  <div class="d-flex flex-row" id="" style="font-family:'Montserrat';min-width:400px">
+    <div class="flex-column mr-auto pl-2 pt-2" style="">
+      <h4><strong>Sponsor a beach</strong></h4>
+      <h5 >When an organization sponsors a beach they are supporting:</h5>
+      <ul>
+        <li>The removal of garbage from the environment.</li>
+        <li>Citizen science and constructive engagement of the public.</li>
+        <li>A strategy that prioritizes measurable results.</li>
+        <li>A partnership approach to environmental surveillance.</li>
+      </ul>
+    </div>
+    <div class="flex-column">
+    <div class="ml-auto rounded p-2 mr-2 mt-2 bg-primary text-white" style="width:20vh; ">
+      <p>*You are also creating jobs and reducing impact.</p>
+    </div>
+  </div>
+  </div>
+  <div class="d-flex flex-row mt-2" id="" style="min-width:400px">
+    <div class="mx-auto " style="font-family:'Montserrat'; width:45rem">
+      <h4><strong>In return?</strong></h4>
+      <h5 class="">Your logo and message will be visible:</h5>
+      <ul>
+        <li>Any data summary table where the sponosred location is inlcuded.*</li>
+        <li>Message and logo in the Open-Graph data on social media.</li>
+        <li>One click access to all the operations and results.</li>
+      </ul>
+    </div>
+  </div>
+    <div class="d-flex flex-row mt-2" id="" style="min-width:400px">
+    <div class="card-group mx-auto">
+      <div class="card " style="width:22rem; height:auto">
+        <div class="card-header text-primary p-1" id="" style="font-family:'Montserrat'">
+              <h6><small>On social media - your logo, your message<br>Visibility: everytime the location page is shared</small></h6>
+        </div>
+        <img class="card-img-top" style="height:10rem" src="{% static "images/children.svg" %}">
+        <div class="card-body">
+          <h6 class="card-title">Another beach cleaned: Sponsor name</h6>
+          <div class="card-text">Thanks to the survey crew for taking care of this beach. See you next month... (or something similar)</div>
+          <h6 class="card-title"><a href="#">Link to webpage of survey results</a></h6>
+          <small class="text-muted">*sample out put when event is shared on social media</small>
+        </div>
+      </div>
+      <div class="card" id="data-summary-one" style="width:23rem; height:auto">
+        <div class="card-header text-primary p-1" id="" style="font-family:'Montserrat'">
+              <h6><small>Location search - one sponsor - one logo<br>Visibility: on search for location "click on sponsor"</small></h6>
+        </div>
+        <div class="card-header w-100 bg-dark text-left text-white" id="" style="font-family:'Montserrat'">
+              Summary: &nbsp;Jardin-Botanique
+        </div>
+        <div class="card-body p-0 text-left" style="height:auto">
+          <table id="summary-table" class="table table-sm table-striped text-left mb-0 float-right"  style="width:100%">
+            <tbody>
+              <tr>
+                <td class="bg-white p-0 pt-1 border-0" style="">
+                  <div class="btn-group pl-1 bg-white">
+                    <button id="" class="btn bg-white text-left"  style="min-width:72px"  href="#">
+                      <small><strong>Sponsor:</strong></small>
+                    </button>
+                    <button id="sponsor" class="btn popover p-0" data-html='true' data-toggle="popover" href="#">
+                       <img src="{% static  'images/ubuntu.png' %}" height="50" alt='django logo'>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="bg-white p-0 pt-1 border-0" style="">
+                  <div class="btn-group pl-1 bg-white" >
+                    <button id="" class="btn bg-white text-left" style="min-width:72px" href="#">
+                       <small><strong>Crew:</strong></small>
+                    </button>
+                    <button id="crew_one" class="btn popover p-0" data-html='true' data-toggle="popover" href="#">
+                       <img src="{% static  "images/litter_location.jpeg" %}" height="40" alt="django logo">
+                    </button>
+                    <button id="crew_two" class="btn popover p-0" data-html='true' data-toggle="popover" href="#">
+                       <img src="{% static  "images/icon_four.svg" %}" height="40" alt="django logo">
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="ml-auto">N<sup>o</sup> of Samples:</td>
+                <td class="mr-auto">3</td>
+              </tr>
+              <tr>
+                <td class="ml-auto">N<sup>o</sup> of locations:</td>
+                <td class="mr-auto">1</td>
+              </tr>
+              <tr>
+                <td class="ml-auto">N<sup>o</sup> of rivers - lakes:</td>
+                <td class="mr-auto">0 - 1</td>
+              </tr>
+              <tr>
+                <td class="ml-auto">First sample date:</td>
+                <td class="mr-auto">2016-04</td>
+              </tr>
+              <tr>
+                <td class="ml-auto">Last sample date:</td>
+                <td class="mr-auto">2016-05</td>
+              </tr>
+              <tr>
+                <td class="ml-auto"><small class="text-muted">*sample out-put from data-summary table</small></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card" id="data-summary-two" style="width:23rem; height:auto">
+        <div class="card-header text-primary p-1" id="" style="font-family:'Montserrat'">
+              <h6><small>Regional search - many locations & sponsors<br>Visibility: everytime the beach-litter app is opened</small></h6>
+        </div>
+        <div class="card-header w-100 bg-dark text-left text-white" id="" style="font-family:'Montserrat'">
+          Summary: &nbsp;Lac Léman
+        </div>
+        <div class="card-body p-0 text-left" style="height:auto">
+          <table id="summary-table" class="table table-sm table-striped text-left mb-0 float-right"  style="width:100%">
+            <tbody>
+              <tr>
+                <td class="bg-white p-0 pt-1 border-0" style="">
+                  <div class="btn-group pl-1 bg-white">
+                    <button id="" class="btn bg-white text-left"  style="min-width:72px"  href="#">
+                      <small><strong>Sponsor:</strong></small>
+                    </button>
+                    <button id="sponsor-three" class="btn popover p-0" data-html='true' data-toggle="popover"  href="#">
+                      <img src="{% static  'images/ubuntu.png' %}" height="50" alt='django logo'>
+                    </button>
+                    <button id="sponsor-two" class="btn popover p-0" data-html='true' data-toggle="popover" href="#">
+                      <img src="{% static  'images/math.jpg' %}" height="50" alt='django logo'>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="bg-white p-0 pt-1 border-0" style="">
+                  <div class="btn-group pl-1 bg-white" >
+                    <button id="" class="btn bg-white text-left" style="min-width:72px" href="#">
+                      <small><strong>Crew:</strong></small>
+                    </button>
+                    <button id="crew_onex" class="btn popover p-0" data-html='true' data-toggle="popover" href="#">
+                      <img src="{% static  "images/litter_location.jpeg" %}" height="40" alt="django logo">
+                    </button>
+                    <button id="crew_twox" class="btn popover p-0" data-html='true' data-toggle="popover" href="#">
+                      <img src="{% static  "images/icon_four.svg" %}" height="40" alt="django logo">
+                    </button>
+                    <button id="crew_three" class="btn popover p-0" data-html='true' data-toggle="popover" href="#">
+                      <img src="{% static  "images/icon_three.svg" %}" height="40" alt="django logo">
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="ml-auto">N<sup>o</sup> of Samples:</td>
+                <td class="mr-auto">146</td>
+              </tr>
+              <tr>
+                <td class="ml-auto">N<sup>o</sup> of locations:</td>
+                <td class="mr-auto">29</td>
+              </tr>
+              <tr>
+                <td class="ml-auto">N<sup>o</sup> of rivers - lakes:</td>
+                <td class="mr-auto">0 - 1</td>
+              </tr>
+              <tr>
+                <td class="ml-auto">First sample date:</td>
+                <td class="mr-auto">2015-11-01</td>
+              </tr>
+              <tr>
+                <td class="ml-auto">Last sample date:</td>
+                <td class="mr-auto">2018-07</td>
+              </tr>
+              <tr>
+               <td class="ml-auto">...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+ </div>
+ <div class="row no-gutters " style="width:100%;" >
+   <p class="p-1 mt-1"><strong>*Companies can sponsor multiple beaches, limit is one logo per-beach. The number of logos accumulate the less the data is sorted, too many logos and there is no room for the data.</strong></p>
+ </div>
+ <div class="row no-gutters pt-2" id="" style="min-width:400px">
+   <div class="col-sm mx-auto">
+     <div class="card mx-auto">
+       <div class="card-header text-primary p-1" id="" style="font-family:'Montserrat'">
+         <h5>Sponsorhip Costs:</h5>
+       </div>
+       <div class="card-body">
+         The sponsorship for one beach per year is 3600 CHF.
+         <br>
+         This includes:
+         <br>
+         <br>
+         <ul>
+           <li>12 beach inventories</li>
+           <li>End of year report</li>
+           <li>Presence in social media</li>
+           <li>Logo associated with the beach</li>
+          </ul>
+          <br>
+          <p>This covers: salaries to pick-up, sort, dispose of trash and enter data, including equipment and transportation costs for the "crew". A portion of that is used
+            to pay the developers salary(the developer also does liiter-inventories), server costs and adminstrative functions.</p>
+          <p>We also consult with experts in the field of mathematics and solid waste engineering. A portion of the sponsorhip fee makes it possible to develop analytical models and pursue activites through "hammerdirt labs"</p>
+          <p>If you would like more details we are available to explain our goals and how we intend to achieve them, send an email:</p>
+          <p>Contact roger[at]hammerdirt.ch</p>
+       </div>
+     </div>
+   </div>
+   <div class="col-sm mx-auto">
+     <div class="card mx-auto">
+       <div class="card-header text-primary p-1" id="" style="font-family:'Montserrat'">
+         <h5>How many litter inventories in one year?</h5>
+       </div>
+       <div class="card-body">
+         <h6>We can do between  7-10 invetories per week</h6>
+         <p>The size of the beach plays a role and also the amount of trash. Picking it up is quick. However sorting it takes the most time. We have done this hundreds of times, we have developed methods and roles within our team that speeds up the process.</p>
+         <p>Initially the identification of items was the most time consuming. But once we could associate codes with objects, the data entry became a bottleneck. We have automated the process by building an app(this app), the data is entered once and everything is updated.
+           There is no "magical spreadsheet" that has the most recent data.</p>
+         <p>All this means we can be in the field more often!</p>
+         <div class="card-header text-primary p-1" id="" style="font-family:'Montserrat'">
+           <h5>How many beaches to break even?</h5>
+         </div>
+         <p>We need 30 beaches a year to provide salaries and continue to grow the hammerdirt labs.</p>
+         <p>Beyond 35 beaches we would open up the opportunity to other groups. In exchange for a share of the sponsorship fee we would provide the platform, training, quality-control, manage user-accounts and data services.</p>
+       </div>
+     </div>
+   </div>
+   <div class="col-sm mx-auto">
+     <div class="card mx-auto">
+       <div class="card-header text-primary p-1" id="" style="font-family:'Montserrat'">
+         <h5>Who looks at this data?</h5>
+       </div>
+       <div class="card-body">
+         <p><strong>Students in "Solid Waste Engineering"</strong></p>
+         <p>This is the third year that we open up the semester for engineering students at the École Polytechnique Fédérale Lausanne.</p>
+         <p><strong>Students from the École International de Genève</strong></p>
+         <p>This is the third year that students from different classes do a beach-inventory at Versoix with hammerdirt staff. We have also started to
+           assemble a project for "Science Technology Engineering Students", the hammerdirt-labs will play a central role in exploring mathematics, the environment and programming.</p>
+        <p><strong>The Swiss Federal Office of the Environment</strong></p>
+        <p>In july of this year we briefed the section chief and the scientific officers of Municpal Waste Section on the application, how we get the data and possible anlytical techniques.</p>
+        <p><strong>You</strong></p>
+        <p>What are you waiting for send us an email?</p>
+       </div>
+     </div>
+   </div>
+ </div>
+ <div class="row no-gutters bg-dark mt-1">
+   <p class="text-white p-2"> We have grants for organizations with unfunded requirements. Contact us for more information.</p>
+ </div>
+</div>
+
+<!--
+Modals go here
+-->
+
+{% endblock %}
+{% block charts %}
+<!--
+Slugifies the sponosr data so that it can be used
+as id values in jas, for the placement of user icons
+-->
+
+<script type="text/javascript">
+    var popOverClose = '<button onclick="$(this).closest(\'div.popover\').popover(\'hide\');" type="button" class="close" aria-hidden="true">&times;</button>'
+    $('#sponsor').popover({
+      container: 'body',
+      content:'Ubuntu is not a real sponsor, however we do use the <a href="http://releases.ubuntu.com/18.04/"> LTS 18.04</a> as our standard  desktop OS. We also use Lubuntu on our older machines' + popOverClose,
+      title:'<img src="{% static  "images/ubuntu.png" %}" height="40" alt="django logo">&nbsp;Ubuntu - not a real sponsor',
+      placement:'top',
+      trigger:'click',
+    });
+</script>
+<script type="text/javascript">
+    $('#sponsor-three').popover({
+      container: 'body',
+      content:'Ubuntu is not a real sponsor, however we do use the <a href="http://releases.ubuntu.com/18.04/"> LTS 18.04</a> as our standard  desktop OS. We also use Lubuntu on our older machines' + popOverClose,
+      title:'<img src="{% static  "images/ubuntu.png" %}" height="40" alt="django logo">&nbsp;Ubuntu - not a real sponsor',
+      placement:'top',
+      trigger:'click',
+    });
+</script>
+<script type="text/javascript">
+    $('#sponsor-two').popover({
+      container: 'body',
+      content:'Math Stack Echange is not a real sponsor, however we do use the <a href="https://math.stackexchange.com/">forum alot</a>. Once in awhile we ask questions.' + popOverClose,
+      title:'<img src="{% static  "images/math.jpg" %}" height="40" alt="django logo">&nbsp;Math Exchange - not a sponsor',
+      placement:'top',
+      trigger:'click',
+    });
+</script>
+<script type="text/javascript">
+    $('#crew_one').popover({
+      container: 'body',
+      content:'Participants can also leave a message and a URL for contact - the icon is limited to black and white. The message is approved by hammeridrt staff. In general the message is to be non judgemental or political' + popOverClose,
+      title:'<img src="{% static  "images/litter_location.jpeg" %}" height="40" alt="django logo">&nbsp;Group - not a real group',
+      placement:'top',
+      trigger:'click',
+
+    });
+</script>
+<script type="text/javascript">
+    $('#crew_two').popover({
+      container: 'body',
+      content:'Participants can also leave a message and a URL for contact -  the icon is limited to black and white. The message is approved by hammeridrt staff. In general the message is to be non judgemental or political.' + popOverClose,
+      title:'<img src="{% static  "images/icon_four.svg" %}" height="40" alt="django logo">&nbsp;Group - not a real group',
+      placement:'top',
+      trigger:'click',
+
+    });
+</script>
+<script type="text/javascript">
+    $('#crew_three').popover({
+      container: 'body',
+      content:'Participants can also leave a message and a URL for contact -  the icon is limited to black and white. The message is approved by hammeridrt staff. In general the message is to be non judgemental or political.' + popOverClose,
+      title:'<img src="{% static  "images/icon_four.svg" %}" height="40" alt="django logo">&nbsp;Group - not a real group',
+      placement:'top',
+      trigger:'click',
+
+    });
+</script>
+<script type="text/javascript">
+    $('#crew_onex').popover({
+      container: 'body',
+      content:'Participants can also leave a message and a URL for contact - the icon is limited to black and white. The message is approved by hammeridrt staff. In general the message is to be non judgemental or political' + popOverClose,
+      title:'<img src="{% static  "images/litter_location.jpeg" %}" height="40" alt="django logo">&nbsp;Group - not a real group',
+      placement:'top',
+      trigger:'click',
+
+    });
+</script>
+<script type="text/javascript">
+    $('#crew_twox').popover({
+      container: 'body',
+      content:'Participants can also leave a message and a URL for contact -  the icon is limited to black and white. The message is approved by hammeridrt staff. In general the message is to be non judgemental or political.' + popOverClose,
+      title:'<img src="{% static  "images/icon_four.svg" %}" height="40" alt="django logo">&nbsp;Group - not a real group',
+      placement:'top',
+      trigger:'click',
+
+    });
+</script>
+
+
+<!--
+The template 'body' tag is hidden durring loading
+this makes it visible right away when index is called
+-->
+<script type="text/javascript">
+    document.getElementById('hide-me').style.visibility='visible'
+</script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+{% endblock %}

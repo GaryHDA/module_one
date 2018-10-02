@@ -15,16 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.urls import path, re_path
 from  dirt import views
-from merter import views
+# handler500 = 'dirt.views.handle_500'
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^dirt/', include('dirt.urls')),
-    url(r'^merter/', include('merter.urls')),
-    url(r'^$', views.index, name='index'),
-
-
+    re_path(r'^admin/', admin.site.urls),
+    re_path(r'^dirt/', include('dirt.urls')),
+    re_path(r'^$', views.index, name='home'),
+    # re_path(r'^api-auth/', include('rest_framework.urls')),
 ]
 
 from django.conf import settings

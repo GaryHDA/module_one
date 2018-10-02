@@ -1,0 +1,184 @@
+{% extends "dirt/hd_base.html" %}
+{% block loader %}
+<!--
+Variables called:
+this is a dynamic page with regular additions
+variables will be announced as called
+-->
+<!--
+This is the load spinner and the
+div that centers it, they are both made
+inivisible when the map is finished loading
+-->
+<!-- <div id="loading2" class="cn">
+  <div style:"width:100%;"><h4>maps...</h4></div>
+  <div id="loading" class="spinner"><strong></strong></div>
+</div> -->
+{% endblock %}
+{% block og_data %}
+
+{% load static %}
+<title>Hammerdirt Probability</title>
+<!-- Open Graph Data -->
+<meta property="og:title" content="hammerdirt" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="{% url 'probability-lab' %}" />
+<meta property="og:image" content= "{% static "images/weblogo.jpg" %}" />
+<meta property="og:image:width" content="400" />
+<meta property="og:image:height" content="246" />
+<meta property="og:description" content="hammerdirt Python/JS lab: The hammerdirt notebook for understanding the math behind data analyis creating using data visualisations this notebokk follows the Python lab very closely. Posts every two to three weeks." />
+<meta property="og:site_name" content="Hammerdirt Probability lab" />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+{% endblock %}
+{% block style %}
+.col-sm{
+  min-width:400px;
+}
+{% endblock %}
+{% block content  %}
+{% load humanize %}
+{% load static %}
+<div id="" class="container-fluid p-0 m-0" style="width:100%; ">
+  <div class="row no-gutters" id="" style="">
+    <div class="col-sm borders-0 " id="" style="">
+      <div class="card pb-0 border-white" id="cd_10"  style="">
+        <div class="card-header w-100 bg-secondary text-left text-white" id="" style="font-family:'Montserrat'">
+          Welcome to hammerdirt labs - Probability
+        </div>
+        <div class="card-body p-0 borders-0 text-left"  style="height:100%">
+          <div class="list-group border-right-0 border-left-0 ">
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Application and visualisation of probability methods</h6>
+                <br>
+                <p class="text-muted">In this section the idea is to ensure that the visualisations convey a real concept. I am drawing a line between the derivation of some statisitical or probability method
+                  and the visualisation. Most of the 'math' will be done in Python and formatted in JSON so it can be consumed by a JavaScript method that places it in the browser. That workflow will
+                  cary over as we move to react and android platforms.</p>
+            </div>
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Inform itelligently<br>
+                <small class="text-muted">This lab is meant to add value to the visualisations and the data collection by connecting the results of one beach-litter-survey to the results of all other surveys mathematically.
+                  Thus the relationship to other variables can be potentially identified. This is a place to use visualisations to explain basic concepts and develop models, so the the Python lab and this one will follow very closely.</small>
+              </h6>
+            </div>
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Integrate early
+                <br><small class="text-muted">All of what is done here will be used on the app. For those reasons there will be sections devoted to MySQL or Django model-serializers. At the same time the
+                  template for generating posts is being developed. So this all going to be used to make this platform a better place. Eventually there will be a user input code or comment section.</small>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm" id="" style="">
+      <div class="card pb-0 border-white" id=""  style="">
+        <div class="card-body p-0 borders-0 text-left"  style="height:100%">
+          <div class="list-group border-right-0 border-left-0 ">
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">What are you working on?<br>
+                <small class="text-muted">If your stuff is organized and you would like to take advantage of this platform, contact me ( roger@hammerdirt.ch )</small>
+              </h6>
+            </div>
+            <!--
+            Call the open_acces_modal
+            -->
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="" style="font-family:'Montserrat'">Open access is a critical ressource
+                <br><small class="text-muted">This is a list of all the different tools used to make this app:</small>
+              </h6>
+              <button class="btn bg-info text-white border-white text-left" style=""  role="button" data-toggle="modal" data-target="#open-acces" aria-expanded="false" aria-controls="">
+                Thanks</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card pb-0 border-white" id=""  style="">
+        <div class="card-header w-100 bg-secondary text-left text-white" id="" style="font-family:'Montserrat'">
+          Project :The binomial variable
+        </div>
+        <div class="card-body p-0 borders-0 text-left"  style="height:100%">
+          <div class="list-group border-right-0 border-left-0 ">
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Recurring events </h6>
+                <br><p class="text-muted">Alot of emphasis is given to calculating "How much trash?" is in the environment. I don't think it is possible to calculate any number that has any real meaning.
+                   However we can calculate the probability of how much trash you may find each time you go to the shore. The differnce is subtle, but we can test the results of a probability model far more reliably
+                   than an extraplotation.</p>
+            </div>
+            <!--
+              call the stoplights modalS
+            -->
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Testing the probability model<br>
+                <small class="text-muted">To test the probability model, all you have to do is go down to the beach and do a litter-inventory. The bonus is that the results from that inventory will be added to the model. Thus refining the model
+                  each time you go out.</small>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm" id='' style="">
+      <div class="card pb-0 border-white " id=""  style="">
+        <div class="card-body p-0 text-left"  style="height:100%">
+          <div class="list-group border-right-0 border-left-0 ">
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'"> Inspiration and motivations: 26-09-2018<br>
+                <small class="text-muted">The binomial variable has come up several times while I was looking for a way to express the siginifigance of results or predict a value:
+                  <br><br>
+                <ul>
+                  <li>Determining if the microbio results were just random</li>
+                  <li>Predicting the qty of trash you might find per meter of shoreline
+                </ul> </small>
+              </h6>
+            </div>
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Binomial succes or not<br>
+                <small class="text-muted"> The questions both ask the same thing "What are the chances that 'this event' will happen ?". In the first
+                  case if the probability is high then it would not be prudent to associate other independent variables with the 'event'. In the second case if
+                  the probaility is high we may be approaching a baseline value for deteriming trash levels on the shoreline.</small>
+              </h6>
+            </div>
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+               <h6 class="mb-1" style="font-family:'Montserrat'">\(x^2\)</h6>
+               <p> <small class="text-muted">The first challenge in this section is getting <a href="https://www.mathjax.org/">MathJax</a> up and running on the page. I will get that all sorted and start the next post.
+               To use Scipy or Pandas it is not necesary to memorize the formulas, but to understand what is REALLY going on the formulas are essential.</small></p>
+            </div>
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Next post<br>
+                <small class="text-muted">In the next post: Look at how the two applications are similar by understanding the Binomial variable</small>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row no-gutters p-1 bg-dark w-100 mt-1">
+      <p class="text-white w-100"> We have grants for organizations with unfunded requirements. Contact us for more information.</p>
+    </div>
+  </div>
+</div>
+<!--
+Modals go here
+-->
+{% include 'dirt/stoplights_modal.html' %}
+{% include 'dirt/open_acces_modal.html' %}
+{% endblock %}
+{% block charts %}
+<!--
+Slugifies the sponosr data so that it can be used
+as id values in jas, for the placement of user icons
+-->
+
+<!--
+The template 'body' tag is hidden durring loading
+this makes it visible right away when index is called
+-->
+<script type="text/javascript">
+    document.getElementById('hide-me').style.visibility='visible'
+</script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends 'rest_framework/base.html' %}
+
+{% block content %}
+<div class="Row w-100" style="heght=100vh">
+  <div class="col-sm-4">
+    <div class="card p-1 bg-secondary " id="" style="height:100%; ">
+      <div class="bg-dark text-white card-header mb-1 p-2 pl-3 text-left" id="" style="">
+        <h3>Welcome to the hammerdirt API</h3>
+      </div>
+      <div class="card-body p-0 m-0 text-left bg-white" style="height:100%; width:100%">
+        <h4 class="" style="">All the data from the models in the beach litter section is available.</h4>
+        <h4 class="" style="width:100%">Sign in is not required to hookin, to make changes or create projects you will need a log in.</h4>
+        <h4 class="" style="width:100%">The URLs are structured to to make it easy to search.</h4>
+        <h4 class="" style="">If you need to log in, here is the link:</h4>
+        <br>
+        <a href="http://127.0.0.1:8000/dirt/api-auth/login/"><h4>127.0.0.1:8000/dirt/api-auth/login/</h4></a>
+        <br>
+        <h4 class="" style="">Although this interface is simpler, <strong>the admin sight is much quicker for putting in data because most of the fields can be prepopulated with your last entry.</strong></h4>
+        <h4 class="" style="">  However in this format there is no risk that you accidentally wipe out the whole data-set!</h4>
+        <h4>CREATE A BEACH EUROPE:</h4>
+        <br>
+        <a href="http://127.0.0.1:8000/dirt/create-beach/"><h4>http://127.0.0.1:8000/dirt/create-beach/</h4></a>
+        <br>
+        <h4 class="" style="">ENTER BEACH LITTER EUROPE:</h4>
+        <br>
+        <a href="http://127.0.0.1:8000/dirt/create-record/"><h4> http://127.0.0.1:8000/dirt/create-record/</h4></a>
+        <br>
+        <h4>CREATE A BEACH CALIFORNIA:</h4>
+        <br>
+        <a href="http://127.0.0.1:8000/dirt/ca-create-beach/"><h4>http://127.0.0.1:8000/dirt/ca-create-beach/</h4></a>
+        <br>
+        <h4 class="" style="">ENTER BEACH LITTER CALIFORNIA:</h4>
+        <br>
+         <a href="http://127.0.0.1:8000/dirt/ca-create-record/"><h4>http://127.0.0.1:8000/dirt/ca-create-record/</h4></a>
+        <br>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card p-1 bg-secondary " id="" style="height:100%; ">
+      <div class="bg-dark text-white card-header mb-1 p-2 pl-3 text-left" id="" style="">
+        <h3>Finding what you need</h5>
+      </div>
+      <div class="card-body p-0 m-0 text-left bg-white" style="height:100%; width:100%">
+        <h4 class="" style="">The search is done by URL structure and not search terms.</h4>
+        <h4 class="" style="width:100%">In the beach litter section the smallest unit is one aggregated observation of one item type. For example:</h4>
+        <br>
+        <p>{'location':a-beach, 'date':a-day, 'length':beach-length-m, 'quantity': # pieces, 'code':MLW-code, 'project':a-project}</>
+        <br>
+        <h4 class="" style="width:100%">The code is the basic unit of counting and then it can be grouped or sorted by location.</h4>
+        <h4 class="" style="">So you would start with the key-word 'codes' and then choose a location</h4>
+        <br>
+        <p>~/dirt/codes/Vevey: will give you all the code data for the city of Vevey:</p>
+        <br>
+        <a href="http://127.0.0.1:8000/dirt/codes/Vevey/"><h4>http://127.0.0.1:8000/dirt/codes/Vevey/</h4></a>
+        <h4>Suppose you only want data on plastic films in Cordova Creek?</h4>
+        <br>
+        <a href="http://127.0.0.1:8000/dirt/codes/Cordova-Creek/G67/"><h4>http://127.0.0.1:8000/dirt/codes/Cordova-Creek/G67/</h4></a>
+        <br>
+        <h4>Where 'G67' is the code for plastic films</h4>
+        <h4>If you get it wrong, no worries. It will throw a 404 error and on that page their will be links to help you get what you want</h4>
+        <h4>Getting beach information is the same, the key word is 'beaches':</h4>
+        <br>
+        <a href="http://127.0.0.1:8000/dirt/beaches/Lac-L%C3%A9man/"><h4>http://127.0.0.1:8000/dirt/beaches/Lac-L%C3%A9man/</h4></a>
+        <br>
+        <h4> Will give you a set of data that has the geo data for all locations on 'Lac Léman'.</h4>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card p-1 bg-secondary " id="" style="height:100%; ">
+      <div class="bg-dark text-white card-header mb-1 p-2 pl-3 text-left" id="" style="">
+        <h3>Aggregated Data</h3>
+      </div>
+      <div class="card-body p-0 m-0 text-left bg-white" style="height:100%; width:100%">
+        <h4 class="" style="">Their are two levels/types of aggregation</h4>
+        <h4 class="" style="">-->Summary data</h4>
+        <h4 class="" style="">-->Daily totals</h4>
+        <h4 class="" style="width:100%">Sumary data key word 'summary':</h4>
+        <ul>
+          <li>Number of locations</li>
+          <li>Total pieces</li>
+          <li>Num of samples</li>
+          <li>First sample</li>
+          <li>Last sample</li>
+          <li>Average pieces per meter</li>
+          <li>Max pieces per meter</li>
+          <li>Min pieces per meter </li>
+          <li>25th percentile</li>
+          <li>75th percentile</li>
+          <li>Number of lakes</li>
+          <li>Number of rivers</li>
+          <li>Standard deviation</li>
+          <li>Search term</li>
+        </ul>
+        <h4> So the following would give you the summary data for all the surveys on the Aare river</h4>
+
+        <a href="http://127.0.0.1:8000/dirt/summary/Aare/"><h4>http://127.0.0.1:8000/dirt/summary/Aare/</h4></a>
+        <br>
+        <h4 class="" style="width:100%">Daily totals key word 'daily-total:</h4>
+        <h4 class="" style="width:100%">This adds up all the code values for a given day and groups them by location. If you search for a river then you would get all the daily totals for all the surveys on that river</h4>
+        <p>{"location": a-beach, "date": a-date, "length": length of beach, "total": pieces}</p>
+        <a href="http://127.0.0.1:8000/dirt/daily-total/Aare/"><h4>http://127.0.0.1:8000/dirt/daily-total/Aare/</h4></a>
+        <h4>Returns  all the daily totals for the Aare.</h4>
+        <h4>Need a list of cities in the survey:</h4>
+        <a href="http://127.0.0.1:8000/dirt/city-list/"><h4>http://127.0.0.1:8000/dirt/city-list/</h4></a>
+        <h3>hammerdirt</h3>
+
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

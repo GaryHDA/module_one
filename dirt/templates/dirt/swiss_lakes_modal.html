@@ -1,0 +1,181 @@
+<!--
+Variables called:
+none
+indus_groups.png
+infra_groups.png
+cons_groups.png
+groups.png
+-->
+{% load static %}
+<div class="modal fade" id="swiss_lakes">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title" style="font-family:'Montserrat'">Comparing litter survey results from 15 Swiss lakes<br>
+          <small class="text-white">- Identify similarities and differences of composition and quantity<br>- Identify best use of limited resources and opportunites for investment<br>- Identify limitations of the survey</small>
+        </h5>
+        <button type="button" class="close align text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card w-100 border-white">
+          <div class ="card-header border-bottom border-dark">
+            <h6 style="font-family:'Montserrat'"><strong>Our questions:</strong></h6>
+            <ul class="list-group w-100">
+              <li class="list-group-item border-left-0 border-right-0">Is there a difference in observed trash quantities on the shoreline of Swiss lakes?</li>
+              <li class="list-group-item border-left-0 border-right-0">If so is the difference only in quantity or composition?</li>
+              <li class="list-group-item border-left-0 border-right-0">How can this information be used in relation to ressource allocation?</li>
+            </ul>
+          </div>
+          <div class="card-body">
+                <p class="card-text"><strong>Method:</strong> The average pcs/m of survey results of groups of specific items from 15 lakes were compared . The criteria for choosing and categorizing items was based on:</p>
+                <ul>
+                  <li> Place in the top ten of all items for Switzerland</li>
+                  <li> Easily recognizable source </li>
+                  <li> Place in the Marine Litter Watch top-ten list*</li>
+                </ul>
+                <p><small class="text-muted">*Cigarette butts were left out, they are everywhere and tend to obscure the abundance of other objects. All bottle caps were combined (metal and plastic). Objects that are
+                  sourced to comercial fishing or maritime transport were ommitted (these are not signifigant industries on Swiss lakes).</small></p>
+                <h6 style="font-family:'Montserrat'"><strong>Table one, categories and compostion of categories:</strong></h6>
+                <br>
+                <dl class="row">
+                  <dt class="col-sm-3"><h6><strong>Group</strong></h6></dt>
+                  <dd class="col-sm-9"><h6><strong>Objects</strong></h6></dd>
+                </dl>
+                <dl class="row border-bottom border-top border-info">
+                  <dt class="col-sm-3"><strong>Industrial activity</strong></dt>
+                  <dd class="col-sm-9">fragmented Styrofoam, fragmented plastics, plastic construction waste, industrial sheeting </dd>
+                </dl>
+                <dl class="row border-bottom border-info">
+                  <dt class="col-sm-3"><strong>Water treatment</strong></dt>
+                  <dd class="col-sm-9">Cotton swabs, tampons & maxi pads, tampon applicators, media filters</dd>
+                </dl>
+                <dl class="row border-bottom border-info">
+                  <dt class="col-sm-3"><strong>Individual consumer</strong></dt>
+                  <dd class="col-sm-9">Candy wrappers, lolipop sticks, bottle caps(metal and plastic), straws</dd>
+                </dl>
+                <br>
+                <h6 style="font-family:'Montserrat'"><strong>Chart one, comparing the three categories:</strong></h6>
+                <br>
+                <table class="table table-sm m-0, p-0">
+                  <thead>
+                    <tr>
+                      <th>Water treatment</th>
+                      <th>Consumer</th>
+                      <th>Industry</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="background-color:#00008b; height:40px; width:20%"></td>
+                      <td style="background-color:#1e90ff; height:40px; width:20%"></td>
+                      <td style="background-color:#40e0d0; height:40px; width:20%"></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <img src="{% static 'images/groups.png' %}" class="mx-auto img-fluid d-block " alt="image">
+                <br>
+                <h6 style="font-family:'Montserrat'"><strong>Chart two, comparing the "Industry" category:</strong></h6>
+                <br>
+                <table class="table table-sm m-0, p-0">
+                  <thead>
+                    <tr>
+                      <th>Plastic films</th>
+                      <th>Frag plastics</th>
+                      <th>Frag styrofoam</th>
+                      <th>Construction</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="background-color:#00008b; height:40px; width:20%"></td>
+                      <td style="background-color:#1e90ff; height:40px; width:20%"></td>
+                      <td style="background-color:#40e0d0; height:40px; width:20%"></td>
+                      <td style="background-color:#FF00FF; height:40px; width:20%"></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <img src="{% static 'images/indus_groups.png' %}" class="mx-auto img-fluid d-block" alt="image">
+                <br>
+                <h6 style="font-family:'Montserrat'"><strong>Chart three, comparing the "Consumer" category:</strong></h6>
+                <br>
+                <table class="table table-sm m-0, p-0">
+                  <thead>
+                    <tr>
+                      <th>Wrappers</th>
+                      <th>Metal caps</th>
+                      <th>Drink lids</th>
+                      <th>Plastic lids</th>
+                      <th>Lollipop sticks</th>
+                      <th>Straws stirers</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="background-color:#00008b; height:40px; width:16%"></td>
+                      <td style="background-color:#1e90ff; height:40px; width:16%"></td>
+                      <td style="background-color:#40e0d0; height:40px; width:16%"></td>
+                      <td style="background-color:#FF00FF; height:40px; width:16%"></td>
+                      <td style="background-color:#7fff00; height:40px; width:16%"></td>
+                      <td style="background-color:#54ff9f; height:40px; width:16%"></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <img src="{% static 'images/cons_groups.png' %}" class="mx-auto img-fluid d-block" alt="image">
+                <br>
+                <h6 style="font-family:'Montserrat'"><strong>Chart four, comparing the "Water treatment" category:</strong></h6>
+                <br>
+                <table class="table table-sm m-0, p-0">
+                  <thead>
+                    <tr>
+                      <th>Q-tips</th>
+                      <th>Tampon applicators</th>
+                      <th>Media filter</th>
+                      <th>Tampons</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="background-color:#00008b; height:40px; width:20%"></td>
+                      <td style="background-color:#1e90ff; height:40px; width:20%"></td>
+                      <td style="background-color:#40e0d0; height:40px; width:20%"></td>
+                      <td style="background-color:#FF00FF; height:40px; width:20%"></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <img src="{% static 'images/infra_groups.png' %}" class="mx-auto img-fluid d-block" alt="image">
+
+                <h6 style="font-family:'Montserrat'"><strong>Discussion</strong></h6>
+                <p>
+                  Fragmented plastics, styrofoam and plastic films are present on almost all the lakes shores in this survey.  These objects fragment and along with candy wrappers,
+                  were identified as a major source of microplastics by this study by the EPFL in 2014 <a href="http://www.news.admin.ch/NSBSubscriber/message/attachments/37656.pdf">(study mandated by the OFEV)</a>. However
+                  the quantities reported vary considerably.</p>
+                <p>
+                  The quantities of objects issue from 'Water treatment' identified on Lac Léman in the first survey by hammerdirt in 2015-2016 appears to be verified by the survey results from the Swiss Litter Report. According to the Canton of Valais
+                  in <a href="https://www.vs.ch/web/dmte/news-svce/-/asset_publisher/PwkSlXNTePwa/content/bilan-2016-d-epuration-des-eaux-usees-en-valais-azote-mieux-elimine-mais-toujours-trop-d-eaux-claires-parasites/529400?inheritRedirect=false">this report</a> there is an "Important amount of work" needed to reduce the amount of "industrial overflows" and the introduction of "clear water" (ie.. rain-water, fountains, snow-melt) into the water treatment system.
+                   The <a href="https://www.vd.ch/fileadmin/user_upload/themes/environnement/eau/fichiers_pdf/DIREV_PRE/Bilans_de_l_%C3%A9puration_2017.pdf">corresponding report</a> for the Canton of Vaud states clearly that overflows or the release of partially treated water remains a problem and are not well quantified. Cotton swabs, tampons and tampon appilcators are disposed of in toilets and are then released by water treatment plants. These objects, found on the
+                   shoreline are not considered "pollution" by federal or state authorities, therfore the presence of these objects in the water system is not considered a priority.</p>
+                <p>
+                  The differences in quantities and objects identified on the shore-line can be influenced by the experience and training of the individuals completing the survey. Factors that influence survey results inlcude fatigue, misidentification, bias(do the surveyors have an agenda), time alloted for the survey, weather and many other factors.</p>
+                <p>
+                <h6 style="font-family:'Montserrat'"><strong>Conclusion</strong></h6>
+                <p>There is a difference in both composition and quantity of trash found on Swiss lakes. Size or population density does not appear to play an important role in these survey results(some of the smaller lakes have the higher reported values). Although the Water treatment plants in Vaud and Valais have made great improvements in the treatment of waste water there is still a signifigant amount of objects that are deposited into the lake by this route.</p>
+                  <h6 style="font-family:'Montserrat'"><strong>Actions -- minimum</strong></h6>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Repeat the surveys at Zurichsee,  Wallenssee and Sempachsee. Train the particpants in identiifcation and ensure that a wide variety of locations are sampled</li>
+                    <li class="list-group-item">Repeat the surveys at four to five other lakes (12-15 surveys per year per lake). Train the particpants in identiifcation and ensure that a wide variety of locations are sampled</li>
+                    <li class="list-group-item">Compare the water treatement facilities(age, technology, size) and clear water network upstream of Zurich to those of Lac Léman.</li>
+                    <li class="list-group-item">Investigate the water treatement facilities on Lac Leman and upstream. Identify where the inputs are and invest to stop the flow</li>
+                </ul>
+
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer bg-info">
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span></button>
+      </div>
+    </div>
+  </div>
+</div>

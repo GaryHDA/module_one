@@ -1,0 +1,25 @@
+<!--
+Variables called:
+probability_card.html
+-->
+<div class="modal fade" id="probability">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title">The Probability of Garbage - garbage is a "user experience" <br>
+          <small class="text-white">Comparing year over year probability distributions of trash survey results on Lac Léman</small>
+        </h5>
+        <button type="button" class="close align text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% include 'dirt/probability_card.html' %}
+      </div>
+      <div class="modal-footer bg-info">
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span></button>
+      </div>
+    </div>
+  </div>
+</div>

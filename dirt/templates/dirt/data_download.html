@@ -1,0 +1,52 @@
+<!--
+Variables called:
+code_data.csv: csv with daily results per object per location
+site_data.csv: csv with Geo data about loactions
+daily_data.csv: csv with daily pieces/m figure for all loactions
+-->
+{% load static %}
+<div class="modal fade" id="data">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title">All data on record for Switzerland<br>
+          <small class="text-white"> Updated every 24 hours, csv format </small>
+        </h5>
+        <button type="button" class="close alig text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title">Location information</h6>
+                <p class="card-text">File that contains the indentifying information per sample location. Including city, postal code, GPS, name of lake/river, project id.</p>
+                <a href="{% static '/site_data.csv' %}" class="btn btn-primary">Get location information</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title">Daily totals by location</h6>
+                <p class="card-text">File that contains the daily totals for each sample site. Including date, location name, pcs/m, quantity, project id and sample number.</p>
+                <a href="{% static '/daily_data.csv' %}" class="btn btn-primary">Get daily totals</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title">Daily totals by MLW code</h6>
+                <p class="card-text">File that contains the daily values per MLW code per location. Includes code id, date, pcs/m, quantity, location, project id and beach length.</p>
+                <a href="{% static '/code_data.csv' %}" class="btn btn-primary">Get all code data</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

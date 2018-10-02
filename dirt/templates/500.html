@@ -1,0 +1,36 @@
+{% extends "dirt/hd_base.html" %}
+
+{% block style %}
+
+
+.bg-red {
+  background-color: rgba(199, 31, 22, 1);
+
+}
+.col-sm{
+  min-width:380px;
+}
+
+
+.wide-88 {
+  width:88px;
+  height:88px;
+}
+@media (max-width: 380px) {
+    .wide-88 {
+      width:68px;
+      height:68px; }
+}
+
+{% endblock %}
+
+
+{% block content  %}
+{% load humanize %}
+{% load static %}
+<div class="container-fluid p-0 m-0" style="width:100%">
+  custom error message
+
+</div>
+
+{% endblock}

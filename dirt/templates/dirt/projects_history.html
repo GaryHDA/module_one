@@ -1,0 +1,52 @@
+<!--
+Variables called:
+history.html
+about_technology.html
+open_acces_modal.html
+data_search modal
+-->
+{% load static %}
+<div class="card border-white" id="history_projects" style="" >
+  <div class="card-header w-100 bg-dark text-left text-white" id="" style="font-family:'Montserrat'">
+    History and projects
+  </div>
+  <div class="card-body p-1 w-100 text-left" >
+    <div class="list-group border-right-0 border-left-0 ">
+      <div class="list-group-item flex-column border-right-0 border-left-0">
+        <h6 class="mb-1" style="font-family:'Montserrat'">All good things take time:
+          <br><small class="text-muted"> The project was built from the ground up. From the first set of observations noted on paper
+              to developing the application that allows all stakeholders to use the data as they see fit.</small></h6>
+        <div class="btn-group">
+          <button class="btn bg-info text-white border-white" style="" data-toggle="modal" data-target="#mcbp-1" aria-expanded="false" aria-controls="">
+             MCBP-1
+          </button>
+          <button class="btn bg-info text-white border-white " style="" data-toggle="modal"  data-target="#mcbp-2" aria-expanded="false" aria-controls="">
+             MCBP-2
+          </button>
+          <button class="btn bg-info text-white border-white" style="" data-toggle="modal"  data-target="#mcbp-3" aria-expanded="false" aria-controls="table-of-results">
+             MCBP-3
+          </button>
+          <button class="btn bg-info text-white border-white" style="" data-toggle="modal"  data-target="#mcbp-4" aria-expanded="false" aria-controls="">
+             MCBP-4
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="list-group border-right-0 border-left-0 ">
+      <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+        <h6 class="" style="font-family:'Montserrat'">Open access is a critical resource
+          <br><small class="text-muted">This is a list of all the different tools used to make this app:</small>
+        </h6>
+        <button class="btn bg-info text-white border-white text-left" style=""  role="button" data-toggle="modal" data-target="#open-acces" aria-expanded="false" aria-controls="">
+          Thanks</button>
+      </div>
+      <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+        <h6 class="" style="font-family:'Montserrat'">Search litter data:
+          <br><small class="text-muted">Start your search here or scroll down to see the combined data for Switzerland.</small>
+        </h6>
+        <button id="data-search-button" class="btn bg-danger text-white border-white text-left" style=""  role="button" data-toggle="modal" data-target="#data_search" aria-expanded="false" aria-controls="">
+          Search by city, body of water or project</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<!--
+Variables called:
+calls jazz_dif.svg
+-->
+{% load static %}
+<div class="card pb-0 w-100" id="">
+  <div class="card-body text-left" style="height:100%;font-family:'Montserrat'">
+    <h6 class="card-title mb-2" style="font-family:'Montserrat';" >The Montreux Jazz Festival
+      <br><small class="text-muted">Second largest jazz festival in the world
+      <br>Most of the events happen within 100 meters of the lake shore</small>
+    </h6>
+    <p> The Montreux Jazz festival draws between 200K and 250K people per year. The organizers install temporary toilets that hook up to the local water treatment facility. As opposed to using chemical toilets.</p>
+    <p> The samples for this study were taken before, during and after the jazz festival.</p>
+    <figure class="figure w-100 mb-1" style="">
+      <img src="{% static 'images/jazz_dif.svg' %}" class="img-fluid" style="">
+      <figcaption class="figure-caption text-right pr-2"><small><a href="https://github.com/hammerdirt/notes/blob/master/micro/output_for_hdch.ipynb">Check the repository too see how this was calculated</a></small></figcaption>
+    </figure>
+
+    <dl class="row mt-2">
+      <dt class="col-sm-3">Interpretation of results</dt>
+      <dd class="col-sm-9">
+        <ul>
+          <li>
+            UV (2017 only): E.coli colonies will fluoresce under longwave UV light.
+          </li>
+          <li>
+            Big Blue: E. coli colonies will have a dark blue/purple overall colony color.
+          </li>
+          <li>
+            Med Blue: Non-fecal coliforms (Enterobacter, Citrobacter and Klebsiella spp. & others) are lighter blue/grey to purplish in color.
+          </li>
+          <li>
+            Gram-positive organisms are generally inhibited
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+</div>

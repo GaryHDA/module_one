@@ -1,0 +1,62 @@
+
+<!--
+Variables called:
+dist_y_two, dist_y_one
+the parser is not needed for this
+-->
+{% load static %}
+<script type="text/javascript">
+var dist_y_one = {{ dist_y_one|safe}}
+var dist_y_two = {{ dist_y_two|safe}}
+Highcharts.chart('probchart', {
+    chart: {
+    },
+    credits:{
+      text:'hammerdirt 2018',
+    },
+    title: {
+         text: ''
+    },
+    exporting: {
+      enabled:false,
+    },
+    xAxis: {
+        labels: {
+            format: 'e^{value}'
+        },
+        minRange: 5,
+        title: {
+            text: 'log(pcs/m)'
+        }
+    },
+    yAxis: {
+        title: {
+            text: 'frequency'
+        },
+        labels: {
+            format: '{value}'
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    series: [{
+        data: dist_y_one,
+        lineColor: '#E76F51',
+        name: 'Year one',
+        marker: {
+            enabled: false
+        },
+        threshold: null
+    },{
+        data: dist_y_two,
+        lineColor: '#2A9D8F',
+        name: 'Year two',
+        marker: {
+            enabled: false
+        },
+        threshold: null
+    }
+  ]
+});
+</script>

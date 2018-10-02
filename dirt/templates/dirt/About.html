@@ -1,0 +1,116 @@
+{% extends "dirt/hd_base.html" %}
+<!--
+Variables called:
+-->
+{% block og_data %}
+<!--
+The load spinner and the
+div that centers it goes here, they are both made
+inivisible when the map is finished loading
+-->
+{% load static %}
+<title>Hammerdirt - about</title>
+<!-- Open Graph Data -->
+<meta property="og:title" content="About hammerdirt" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="{% url 'beach-litter-home' %}" />
+<meta property="og:image" content= "{% static "images/weblogo.jpg" %}" />
+<meta property="og:image:width" content="400" />
+<meta property="og:image:height" content="246" />
+<meta property="og:description" content="About hammerdirt: what we do, why we do it and how this got started." />
+<meta property="og:site_name" content="About hammerdirtt" />
+{% endblock %}
+{% block style %}
+{% endblock %}
+{% block content  %}
+{% load humanize %}
+{% load static %}
+<div id="" class="container-fluid p-0 m-0" style="width:100%; ">
+  <div class="row no-gutters" id="" style="">
+    <div class="col-sm" id="" style="">
+      <div class="card pb-0 border-white p-2" id="cd_10"  style="">
+        <div class="container mb-2 w-100 text-left border-dark border-left-0, border-right-0, border-top border-bottom" id="" style="font-family:'Montserrat'">
+          <h5 class="pb-2 pt-3">About hammerdirt:</h5>
+        </div>
+        <div class="card-body p-0 text-left"  style="height:100%">
+          <h5 class="mt-1" style="font-family:'Montserrat'">A service and a concept</h5>
+          <p>Crowd sourced data is important. In general terms it is the state of the environment as documented by those who experience it.</p>
+          <p>Hammerdirt seeks to present that data objectively and effciently. There is a great potential for citizen science projects and/or crowd sourced data <strong> to shape policy and resource allocation in favor of the environment and away from special interests.</strong></p>
+          <p>That will not happen if the data is locked away in a spreadsheet or in a scientific journal of limited distribution.</p>
+          <h5 class="mt-1" style="font-family:'Montserrat'">A common starting point</h5>
+          <p>Automated systems improve transparency and access. By providing real time analysis and descriptive statistics we hope that discussions can begin and evolve in terms of measured results.</p>
+          <p>Hammerdirt provides that service by <strong>remaining objective and rigorous in data collection methods, presentation and analysis</strong>.</p>
+          <h4 class="mt-1 text-right mr-3" style="font-family:'Montserrat'"><strong>Can you hammerdirt?</strong></h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm" id="" style="">
+      <div class="card pb-0 border-white p-2" id="cd_10"  style="">
+        <div class="container mb-2 w-100 text-left border-dark border-left-0, border-right-0, border-top border-bottom" id="" style="font-family:'Montserrat'">
+          <h5 class="pb-2 pt-3">Services</h5>
+        </div>
+        <div class="card-body p-0 text-left"  style="height:100%">
+          <h5 class="mt-1" style="font-family:'Montserrat'"><strong>Data services</strong></h5>
+          <p>Preparation of chart packages for publications and applications, ensuring consistent user experience from document to app.</p>
+          <p>Development of a content manager using Django and MySQL, this application is an example.</p>
+          <p>Complete applications for collecting analysing and distributing data this appilcation is an example.</p>
+          <p>Creation of JavaScript charts for your website, using Highcharts, Google-charts or D3. Hosting and serving the data to populate those charts via the hammerdirt API.</p>
+          <h5 class="mt-1" style="font-family:'Montserrat'"><strong>Project hosting</strong></h5>
+          <p>Host your project on this app. With a seperate data-base and log in.</p>
+          <h5 class="mt-1" style="font-family:'Montserrat'"><strong>Assistant or Team-member</strong></h5>
+          <p>For any project that requires the handling and analysis of data</p>
+          <p>For work in the field or in the lab.</p>
+          <h5 class="mt-1" style="font-family:'Montserrat'"><strong>Visa eiligibility</strong></h5>
+          <p>Eligible to work in the EU and USA</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm" id='' style="">
+      <div class="card pb-0 border-white p-2" id="cd_10"  style="font-family:'Montserrat'">
+        <div class="container mb-2 w-100 text-left border-dark border-left-0, border-right-0, border-top border-bottom" id="" style="font-family:'Montserrat'">
+          <h5 class="pb-2 pt-3">How did hammerdirt start ?</h5>
+        </div>
+        <div class="card-body p-0 text-left"  style="height:100%">
+          <p>After finishing the MBA in 2014, I did an <i>informal survey of local NGO's and other groups active in the environment and specifically trash-littering</i>. I had one question in particular:</p>
+          <blockquote class="blockquote">
+            How do you measure effectiveness?
+          </blockquote>
+          <p>I was expecting a metric of some sort that related the project to an actual reduction in litter. There is no such metric and this seems a contradiction if we are serious about reducing our impact. So hammerdirt started on the lake-shore of Lac Léman with a notepad, pen and a pile of collected trash.</p>
+          <blockquote class="blockquote">
+            By measuring results
+          </blockquote>
+          <p>Rather than complain about the state of affairs, I chose to develop a platform that can be used to display results and develop analytical tools based on the data as reported by the participants.</p>
+          <p>Combined, "hammerdirt labs" and the API are an environment to explore analysis methods and visualisations using the full range of tools available.</p>
+          <p>Check my linkedIn profile <a href="https://www.linkedin.com/in/rogererismann/">here<a>. Thanks
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row no-gutters" id="combined-data-row" style="">
+    <div class="col-sm h-100" id="data-summary-column" style=""></div>
+    <div class="col-sm h-100" id="map-search-column"  style=""></div>
+    <div class="col-sm h-100" id="charts-column"  style="" ></div>
+  </div>
+  <div class="row no-gutters bg-dark mt-1">
+    <p class="text-white p-2"> We have grants for organizations with unfunded requirements. Contact us for more information.</p>
+  </div>
+</div>
+<!--
+Modals go here
+-->
+{% endblock %}
+{% block charts %}
+<!--
+The template 'body' tag is hidden durring loading
+this makes it visible right away when index is called
+-->
+<script type="text/javascript">
+    document.getElementById('hide-me').style.visibility='visible'
+</script>
+
+<!-- <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script> -->
+
+{% endblock %}

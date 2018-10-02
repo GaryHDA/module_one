@@ -1,0 +1,25 @@
+<!--
+Variables called:
+culture_medium_card.html
+-->
+<div class="modal fade" id="medium-modal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title">ECA Check Easygel Specification guide <br>
+          <small class="text-white">Source: Micrology laboratories, <a href="https://www.micrologylabs.com/index"> Micrology labs</a></small>
+        </h5>
+        <button type="button" class="close align text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% include 'dirt/culture_medium_card.html' %}
+      </div>
+      <div class="modal-footer bg-info">
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span></button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+
+<!--
+Variables called:
+summary.3 : calls the earliest sample from the query
+summary.4 : calls the last sample from the query
+list_locations_button : calls the modal that lists all locations in the query
+combined_ts: div id that references the output from combined_scatter.html
+  1) combined_ts.js calls the variable 'all_item_data_scatter'
+      1) script loaded in beach_litter.html
+combined_chart_button.html : calls the combined chart modal
+-->
+<div class="card pb-0" id="cd_10"  style="">
+  <div class="card-header w-100 bg-dark text-left text-white" id="" style="font-family:'Montserrat'">
+    Plot {{ summary.13}}:
+  </div>
+  <div class="card-body p-0 text-left"  style="height:100%">
+    <div class="embed-responsive" style="padding-bottom: 130%">
+      <div id="combined-ts" class="embed-responsive-item" style=""></div>
+    </div>
+    <div class="btn-toolbar">
+      <div class="btn-grp w-100" style="">
+        <button class="btn bg-info text-white w-100 border-white text-left" style="" role="button" data-toggle="modal" data-target="#locations-samples" aria-expanded="false" aria-controls="">
+            list of locations in this summary</button>
+        <button class="btn bg-info text-white w-100 border-white text-left" role="button" data-toggle="modal" data-target="#box_one" aria-expanded="false" aria-controls="">
+              Combined box and scatter chart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

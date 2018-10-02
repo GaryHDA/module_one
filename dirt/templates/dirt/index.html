@@ -1,182 +1,153 @@
 <!DOCTYPE HTML>
-<html lang="en">
+{% extends "dirt/hd_base.html" %}
+{% load static %}
+{% block og_data %}
+  <title>Hammerdirt - home</title>
+   <!-- Open Graph Data -->
+   <meta property="og:title" content="hammerdirt" />
+   <meta property="og:type" content="article" />
+   <meta property="og:url" content="http://mwshovel.pythonanywhere.com/dirt/index.html" />
+   <meta property="og:image" content= "{% static "images/prob_og.jpeg" %}" />
+   <meta property="og:image:width" content="1151" />
+   <meta property="og:image:height" content="712" />
+   <meta property="og:description" content="hammerdirt, helping you create knowledge.  A research partner that specializes in the development of data products for and from crowd sourced research projects." />
+   <meta property="og:site_name" content="hammerdirt- home />
 
-
-<head>
-  <meta http-equiv="x-ua-compatible" content="IE=edge" />
-  {% load static %}
-
-  <meta http-equiv="content-type" content="text/html" charset="utf-8">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MW. Shovel</title>
-  <meta name="description" content="hammerdirt, helping you create knowledge.  A research partner that specializes in the development of data products for and from crowd sourced research projects.">
-
- <!-- twitter card data -->
- <meta name="twitter:card" content="summary">
- <meta name="twitter:site" content="@hammerdirt">
- <meta name="twitter:title" content="MW. Shovel">
- <meta name="twitter:description" content="hammerdirt, helping you create knowledge.  A research partner that specializes in the development of data products for and from crowd sourced research projects.">
- <meta name="twitter:creator" content="@hammerdirt">
- <meta name="twitter:image" content= "{% static "images/weblogo.jpg" %}"  >
-
- <!-- Open Graph Data -->
- <meta property="og:title" content="hammerdirt" />
- <meta property="og:type" content="article" />
- <meta property="og:url" content="http://mwshovel.pythonanywhere.com/dirt/beach_litter.html" />
- <meta property="og:image" content= "{% static "images/weblogo.jpg" %}" />
- <meta property="og:image:width" content="400" />
-<meta property="og:image:height" content="246" />
- <meta property="og:description" content="hammerdirt, helping you create knowledge.  A research partner that specializes in the development of data products for and from crowd sourced research projects." />
- <meta property="og:site_name" content="MW. Shovel" />
- <!-- <meta property="fb:admins" content="" /> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="{% static 'css/font-awesome-4.7.0/css/font-awesome.min.css' %}"></link>
-  <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}"></link>
-  <script src="{% static 'js/jquery.js' %}"></script>
-  <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  <script type="text/javascript">
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
-  </script>
-  <style>
-
-
-
-  .txt-12 {
-    font-size: 12px;
-  }
-
-  .txt-14 {
-    font-size: 14px;
-  }
-
-  .col-sm {
-      width: 100%;
-    }
-
-  }
-
-
-.bttn{
-  width:100%;
-  height:100%;
-}
-
+{% endblock %}
+{% block style %}
 .col-sm{
-  width:25%
+  min-width:400px;
 }
-a {
-  font-size: 2rem;
-
-}
-li{
-  padding:2;
-  margin:2;
+#link-one, #link-two, #link-three, #link-four, #link-five {
+  text-decoration:underline;
+  color: white;
 }
 
-  </style>
-</head>
-
-<body>
+{% endblock %}
+{% block content  %}
 {% load humanize %}
-<div class="container-fluid p-0 m-0" style="height:100vh; width:100%; background-color:#464646">
-  <div class="w-100 p-1 pl-3 text-left" style="height:20%">
-    <h1 class="display-3" style="color:#008080"> HAMMER</h1>
-  </div>
-
-
-
-  <div class="fixed-bottom w-100 ml-auto pr-3 text-right">
-    <h1 class="display-2" style="color:#008080; opacity:0.6">dirt</h1>
-  </div>
-
-  <nav class="navbar navbar-expand-md navbar-dark text-white">
-  
-    <div class="collapse navbar-collapse show" id="navbarNavDropdown">
-      <ul class="navbar-nav text-white">
-        <li class="nav-item p-2">
-          <a class="nav-link text-white"  href={% url 'litter_home' %}>Beach litter</a>
-        </li>
-        <li class="nav-item p-2">
-          <a class="nav-link text-white"  href={% url 'microbiology' %}>Water quality</a>
-        </li>
-        <li class="nav-item p-2">
-          <a class="nav-link text-white"  href={% url 'in_the_works' %}>In the works</a>
-        </li>
-        <li class="nav-item p-2">
-          <a class="nav-link text-white" href={% url 'services' %}>Services</a>
-        </li>
-      </ul>
-      <span class="navbar-text ml-auto text-white">
-        Believe what you see and take good notes.
-      </span>
+{% load static %}
+<div class="container-fluid  p-0 " style="background-color:#464646; min-height:100vh">
+  <div class="row no-gutters w-100" id="" style="background-color:#464646; min-height:100vh">
+    <div class="col-sm h-100 mx-auto" id="" style="width:100%; background-color:#464646">
+      <div class="p-1 pl-3 text-left" style="width:100%">
+        <h3 class="display-3" style="color:#008080;">HAMMER...</h3>
+        <h5 style="color:#008080;">Believe what you see and take notes</h5>
+      </div>
+      <div class="p-2 mt-3 mr-2 text-left mx-auto text-white"  style="width:80%; background-color:#464646">
+        <p style="font-family:'Montserrat';">
+          Working with you to develop applications that collect and display data.
+        </p>
+        <p>
+          <ul style="font-family:'Montserrat';">
+            <li>In the field</li>
+            <li>In the office</li>
+            <li>We go where you go</li>
+          </ul>
+        </p>
+        <p style="font-family:'Montserrat'">
+          We work with Python, Django, Pandas, MySQL, Scipy, Bootstrap, D3, highcharts and linux(debian) everyday.
+        </p>
+      </div>
+      <div class="p-1 pl-3 mt-3 mx-auto text-left text-white"  style="width:100%; background-color:#464646">
+        <h4 class="display-4" style="font-family:'Montserrat';color:#008080;">
+          What can we build together?
+        </h4>
+        <p class="mt-4" style=""><small>Brought to you with love by roger at hammerdirt.</small></p>
+      </div>
+      <div class="ml-auto mt-2 pr-3 text-right" style="width:90%">
+        <h1 class="display-3 bg-transparent" style="color:#008080;">...dirt</h1>
+      </div>
     </div>
-  </nav>
+
+    <div class="col-sm h-100 mx-auto p-2 text-white" id="" style="background-color:#464646">
+      <div class="container text-white p-2 pt-0" style="width:100%">
+        <h4 class="" style="font-family:'Fredoka One', cursive;">New in this app: 02 Oct 18</h4>
+        <br>
+        <div class="container">
+          <div class="d-inline rounded-circle border border-white text-center mr-1 mb-1 p-1" style="width:4vh; height:4vh;">
+            &nbsp;1
+          </div>
+          <p class="d-inline" style="font-family:'Fredoka One', cursive;"> &nbsp;Sponsor a beach:</p>
+          <p class="mt-2" style="font-family:'Montserrat';">There is now a sponsorhip plan for beaches on Lac Léman. Check out how we attribute "work" in the <a id="link-one" href="{% url 'beach-litter-home' %}">data output</a>
+            and then see the details on the <a id="link-two" href="{% url 'sponsor-promo' %}">sponsorship program</a>.</p>
+        </div>
+        <div class="container mt-2">
+          <div class="d-inline rounded-circle border border-white text-center mr-1 mb-1 p-1" style="width:4vh; height:4vh;">
+            &nbsp;2
+          </div>
+          <p class="d-inline" style="font-family:'Fredoka One', cursive;"> &nbsp;REST API online:</p>
+          <p class="mt-2" style="font-family:'Montserrat';">For those of you who just want the data you can hook into the API and get all the
+            latest beach litter data from Swizterland. See the <a id="link-three" href="{% url 'api-home' %}">api homepage </a>for examples of how to format the urls.
+            The rest of our data will gradually make its way to the API.</p>
+        </div>
+        <div class="container mt-2">
+          <div class="d-inline rounded-circle border border-white text-center mr-1 mb-1 p-1" style="width:4vh; height:4vh;">
+            &nbsp;3
+          </div>
+          <p class="d-inline" style="font-family:'Fredoka One', cursive;"> &nbsp;hammerdirt labs:</p>
+          <p class="mt-2" style="font-family:'Montserrat';">Here we work through the math and the code for analysing and displaying data. For now we have two
+            broad topics <a id="link-four" href="{% url 'python-lab' %}">"Python/JS"</a> and <a id="link-five" href="{% url 'probability-lab' %}">"Probability"</a>. You can expect posts about every two weeks
+            as we go over the math and code needed to integrate the analysis into this app (or any other app).</p>
+        </div>
+        <div class="container mt-2">
+          <div class="d-inline rounded-circle border border-white text-center mr-1 mb-1 p-1" style="width:4vh; height:4vh;">
+            &nbsp;4
+          </div>
+          <p class="d-inline" style="font-family:'Fredoka One', cursive;"> &nbsp;Improved layout:</p>
+          <p class="mt-2" style="font-family:'Montserrat';">The beach litter section is easier to navigate and (should) be more mobile friendly. You can now drill down to the "beach" level on a search. Analysis and methods are at the top of the page.
+             All works in progress and code samples will be available in the "lab".</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm h-100" id='' style="background-color:#464646">
+    <!--
+    Variables called:
+    latest_sample
+    last_post
+    last_read
+    last_commit
+    -->
+      <div class="container text-white p-2" style="width:100%">
+          <h4 class="" style="font-family:'Fredoka One', cursive;">Recent activity:</h4>
+      </div>
+      <div class="p-2 mt-3 mr-2 pb-0 text-left float-right bg-light" style="width:98%">
+        <h6 style="font-family:'Montserrat'"><strong>Latest litter-survey:</strong><small>
+          <br>{% for s in latest_sample %}<strong>City:</strong> {{ s.2 }},<strong> Location:</strong> {{ s.0 }},
+          <br><strong>Date:</strong> {{ s.1 }},<strong> N<sup>o</sup> of pieces:</strong> {{ s.3 }}</small></h6>
+          {% endfor %}
+        <p class="pb-0 mb-0" style="font-family:'Montserrat'"><small><strong><a href="{{ see_latest }}"> see the results</a></strong></small></p>
+      </div>
+      <div class="p-2 pb-0 mt-3 mr-2 text-left float-right bg-light"  style="width:98%">
+        <p style="font-family:'Montserrat'"><strong>Latest posts:</strong><small>
+          <br><strong>Platform:</strong> {{ last_post.0 }}, Date: {{ last_post.1 }},
+          <br><strong>Comments:</strong> {{ last_post.3 }}. <strong>Owner:</strong> {{ last_post.5 }}</small></p>
+        <p class="pb-0 mb-0" style="font-family:'Montserrat'"><small><strong><a href="{{ last_post.4 }}"> check it</a></strong></small></p>
+      </div>
+      <div class="p-2 pb-0 mt-3 mr-2 text-left float-right bg-light"  style="width:98%">
+        <p style="font-family:'Montserrat'"><strong>Latest reads:</strong><small>
+          <br><strong>Title:</strong> {{ last_read.0 }}<br><strong>Author(s):</strong> {{ last_read.1 }},
+          <br> {{ last_read.3|truncatewords:"30" }}... <br>Google that title to find out more  --> </small></p>
+      </div>
+      <div class="p-2 pb-0 mt-3 mr-2 mb-2 text-left float-right bg-light"  style="width:98%">
+        <p style="font-family:'Montserrat'"><strong>Latest commit: </strong><small>
+          <br><strong>Repo: {{ last_commit.1 }}, {{ last_commit.0 }}</strong> <br><strong>Comments: {{ last_commit.2 }}</strong>
+          <br><a href="{{ last_commit.3 }}"><strong>check it</strong></a></small></p>
+      </div>
+
+  </div>
 </div>
-
-
-
-
-
+<div class="row no-gutters bg-dark mt-1">
+  <p class="text-white p-2"> We have grants for organizations with unfunded requirements. Contact us for more information.</p>
+</div>
+</div>
+{% endblock %}
+{% block charts %}
+<!--
+The template 'body' tag is hidden durring loading
+this makes it visible right away when index is called
+-->
 <script type="text/javascript">
-
-
-$(document).ready(function() {
-
-  $('.shutterTitle').click(function() {
-    var parentTag = $( this ).parent();
-    var this_height = $(this);
-    var this_child = $(this).children()[1];
-    console.log(this_child);
-
-    // if($(this).height() <= 100 ){
-    // console.log('true');
-    // $(this).removeClass('bg-info').addClass('bg-dark');
-    // };
-
-
-    $( parentTag ).each(function(i){
-      if ($(parentTag).hasClass('close-animate') || !$(parentTag).hasClass('shutterExpanded')) {
-      console.log(this);
-      $(this_height ).css("height", "auto");
-      $(this_height).addClass('text-right');
-      $(this_height).addClass('pr-3');
-      $(this_height).removeClass('p-1');
-      // $(this_child).addClass('text-right');
-      $(parentTag).removeClass('close-animate').addClass('shutterExpanded');
-      $('.wrapper').addClass('shutterOpen');
-      console.log(this_child)
-
-    } else {
-      console.log("Else");
-      $(this).removeClass('shutterExpanded').addClass('close-animate');
-      $(this_height).removeClass('text-right');
-      $(this_height).removeClass('pr-3');
-      $(this_height).addClass('p-1');
-      // $(this_height).children(".p").css("display", "visible");
-      $(this_height ).css("height", "100%");
-      $('.wrapper').removeClass('shutterOpen');
-      console.log(this);
-    }
-    // console.log(this)
-  });
-})}
-);
+    document.getElementById('hide-me').style.visibility='visible'
 </script>
-
-
-<script type="text/javascript">
-// $(function(){
-//   $("a").addClass("m-3");
-//   $("#dips").css({"font-size":"80px"});
-//
-//   $("#make_me").css({"height":"600px", "width":"600px", "margin-left":"60px",})
-//   $("#dips2").fadeIn(1000, function(){
-//     })
-// })
-
-</script>
-</body>
-</html>
+{% endblock %}

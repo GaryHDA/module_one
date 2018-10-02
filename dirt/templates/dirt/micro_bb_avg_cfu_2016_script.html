@@ -1,0 +1,210 @@
+<!--
+Variables called:
+b_blue16_svt
+b_blue16_vnx
+b_blue16_mrd
+rain_16
+-->
+<script type="text/javascript">
+var b_blue16_svt = {{ b_blue16_svt|safe }}
+var b_blue16_mrd = {{ b_blue16_mrd|safe }}
+var b_blue16_vnx = {{ b_blue16_vnx|safe }}
+var rain_16 = {{ rain_16|safe }}
+var b_b16_mrd = [];
+b_blue16_mrd.forEach(function(element){
+  element.x = Date.parse(element.x);
+  element.y = parseFloat(element.y);
+  b_b16_mrd.push({"name":element.location, "x":element.x, "y":element.y});
+});
+var b_b16_svt = [];
+b_blue16_svt.forEach(function(element){
+  element.x = Date.parse(element.x);
+  element.y = parseFloat(element.y);
+  b_b16_svt.push({"name":element.location, "x":element.x, "y":element.y});
+});
+var b_b16_vnx = [];
+b_blue16_vnx.forEach(function(element){
+  element.x = Date.parse(element.x);
+  element.y = parseFloat(element.y);
+  b_b16_vnx.push({"name":element.location, "x":element.x, "y":element.y});
+});
+var rain16 = [];
+rain_16.forEach(function(element){
+  element[0] = Date.parse(element[0]);
+  element[1] = parseFloat(element[1]);
+  rain16.push([element[0], element[1]]);
+});
+Highcharts.chart('2016-plot-bb', {
+    chart: {
+        type: 'line',
+        spacingBottom: 20,
+    },
+    title: {
+        text: '',
+        style:{
+          fontSize: '14px',
+          color:'#0A2E5C',
+        },
+    },
+    subtitle: {
+      text: '',
+      style:{
+        fontSize: '10px',
+        color:'#0A2E5C',
+      }
+    },
+    credits:{
+      text:'hammerdirt 2018',
+    },
+    exporting: {
+      enabled:false,
+    },
+    legend: {
+      enabled: true,
+      verticalAlign: 'top',
+      horizontalAlign: 'right',
+      layout:'vertical',
+      floating:true,
+      align:'right',
+      x:0,
+      backgroundColor:'rgba(255,255,255, .4)',
+      borderColor:'rgba(10, 46, 92, .5)',
+      borderWidth:2,
+      itemMarginTop:4,
+      itemMarginBottom:4,
+      itemStyle:{
+        color: 'black',
+        fontSize: '10px',
+      },
+    },
+    plotOptions:{
+      series:{
+        marker: {
+          enabled: false
+        },
+        label:{
+          enabled: false
+        },
+      },
+    },
+    xAxis: [{
+      type: 'datetime',
+      tickInterval:null,
+      tickColor:'rgba(00, 00, 00, 1)',
+      labels: {
+        enabled: true,
+        style: {
+          color:'rgba(00, 00, 00, 1)',
+        }
+      },
+      dateTimeLabelFormats: {
+        month: '%b-%d',
+      },
+    },
+  ],
+    yAxis: [{
+      min:0,
+      tickInterval:400,
+      minPadding:0.2,
+      title: {
+          align: 'low',
+          offset: 50,
+          text: 'Average total CFU per 100mL',
+          style:{
+            fontSize: '14px',
+            color:'#000000',
+          },
+      },
+      gridLineColor:'rgba(10, 46, 92, .2)',
+      labels:{
+        style: {
+          color:'rgba(00, 00, 00, 1)',
+          fontSize: '10px'
+        }
+      },
+    },
+    {
+      min:0,
+      minPadding:0.2,
+      title: {
+          align: 'middle',
+          rotation: 270,
+          offset: 50,
+          text: 'Daily rainfall in millimeters',
+          style:{
+            fontSize: '14px',
+            color:'#000000',
+          },
+      },
+      opposite:true,
+    }
+  ],
+    series:
+    [{
+      zIndex:3,
+      xAxis:0,
+      yAxis:0,
+      type: 'line',
+      name: 'Quai de Vernex - SVT',
+      color:'#18c4d8',
+      lineWidth:2,
+      marker:{
+        enabled:false
+      },
+      data: t_cfu_16_svt,
+      tooltip: {
+          headerFormat: '<em>{point.key}</em><br/>'
+      }
+     },
+     {
+      zIndex:3,
+      xAxis:0,
+      yAxis:0,
+      type: 'line',
+      name: 'Montreux - marché - MRD',
+      color:'#1bb35e',
+      lineWidth:2,
+      marker:{
+        enabled:false
+      },
+      data: t_cfu_16_mrd,
+      tooltip: {
+        headerFormat: '<em>{point.key}</em><br/>'
+        }
+      },
+      {
+       zIndex:3,
+       xAxis:0,
+       yAxis:0,
+       type: 'line',
+       name: 'Parc de Vernex - VNX',
+       color:'#ffb100',
+       lineWidth:2,
+       marker:{
+         enabled:false
+       },
+       data: t_cfu_16_vnx,
+       tooltip: {
+         headerFormat: '<em>{point.key}</em><br/>'
+         }
+       },
+       {
+        zIndex:3,
+        xAxis:0,
+        yAxis:1,
+        type: 'area',
+        name: 'Rainfall',
+        color:'rgba(00, 00, 00, .2)',
+        fillColor:'rgba(00, 00, 00, .2)',
+        lineColor:'rgba(00, 00, 00, .2)',
+        lineWidth:0,
+        marker:{
+          enabled:false
+        },
+        data: rain16,
+        tooltip: {
+          headerFormat: '<em>{point.key}</em><br/>'
+        }},
+      ]
+    });
+</script>

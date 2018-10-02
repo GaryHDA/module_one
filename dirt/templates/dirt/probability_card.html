@@ -1,0 +1,59 @@
+<!--
+Variables called:
+probability_dist.html
+probability_scatter.html
+-->
+<div class="card w-100 border-white" id="probability-card">
+  <div class ="card-header border-bottom border-dark">
+    <h6 style="font-family:'Montserrat'"><strong>Our questions:</strong></h6>
+    <ul class="list-group w-100">
+      <li class="list-group-item border-left-0 border-right-0">What if we look at trash on the shore-line as a probability rather than a quantity?</li>
+      <li class="list-group-item border-left-0 border-right-0">How does the probability of finding trash change year over year?</li>
+      <li class="list-group-item border-left-0 border-right-0">What does this imply for allocation of resources? What does this say about the success of current efforts?</li>
+    </ul>
+  </div>
+  <br>
+  <div class="card-body text-left" style="height:100%;font-family:'Montserrat'">
+    <h6 class="card-title mb-2" style="font-family:'Montserrat';" >How can we compare year over year results?
+      <br><small class="text-muted">Log normal distribution <a href=" https://github.com/hammerdirt/notes/blob/master/notes-hammerdirt.ch/how%20normal%20is%20normal.ipynb">(click to see how 'normal')</a>
+        <br>Allows for the application of standard analysis techniques</small></h6>
+        <br>
+    <div class="row w-100 mt-1">
+      <div class="col-sm-4" id='' style="">
+        <p>The scatter plot for 2015 - 2018 displays the results, grouped by year (Nov - Nov). The surveys were completed by different groups with different motivations*.</p>
+        <p>Despite these differences the results vary only in maximum and minumum values. The criteria for counting (limiting the lower size limit) does not really effect the mid range of the results.</p>
+      </div>
+      <div class="col-sm-8">
+        <h6 style="font-family:'Montserrat'">  Observations from 2015 - 2018</br>
+          <small class="text-muted">30 different locations, diverse survey groups</small></h6>
+        <div id="probability-scatter" class="" style="height:auto; width:100%; background-color:#ffffff"></div>
+        <br>
+        <h6 style="font-family:'Montserrat'"> Was there was a change from 2016 to 2017 ?</h6>
+        <br>
+      </div>
+    </div>
+    <div class="row "><div class="col"><p class="pl- pr-2"><small class="text-muted">*The samples for 2017-2018 were collected by five groups: SLR, EPFL, hammerdirt, Geneva International School, Precious collect</small></p></div></div>
+    <div class="row w-100 mt-1 pt-1 border-top-dark">
+      <div class="col-sm-4" id='' style="">
+        <p>The distribution of the "natural log" of the results doesn't say anything about the total quantity you might find. However the peak of the bell curve tells us where most of results from years in the study fall.</p>
+      </div>
+      <div class="col-sm-8">
+        <h6 style="font-family:'Montserrat'">Year over year probability distribution of pcs/m <br>
+          <small class="text-muted"> year one n={{ y_one_s }}, year two n={{ y_two_s }}  </small></h6>
+        <div id="probchart" class="" style="height:auto; width:100%; background-color:#ffffff"> </div>
+      </div>
+    </div>
+    <div class="row w-100">
+      <div class="col-12">
+        <p>As the peak of the bell curve goes to the right (as x gets bigger) the greater the chance of finding elevated values of trash per meter. <strong>What we want to see is the peak of the chart go to the left</strong>.</p>
+        <p>That is clearly not the case for 2016-2017. So that means your chances of finding 1 piece of trash or less per meter in 2017 were about the same in 2016(about 3%).</p>
+        <p>How is 2018 looking?(hint: take a look at the scatter plot)</p>
+        <p><strong>The year over year probability of finding trash on the shoreline is unchanged.</strong> This could mean that current efforts are keeping up with increases in ecomnomic activity or
+        population density. So if the current course is maintained (strategy/allocation of resources) then we should not expect any signifigant changes in the amount of trash on the shoreline of Lac Léman.
+        From a user standpoint you should expect to find between 1-5 pieces of trash per meter.<p>
+        <p><a href="https://github.com/hammerdirt/notes/blob/master/notes-hammerdirt.ch/Beach-Litter%20home.ipynb">You can check our code and calculations here</a></p>
+      </div>
+     </div>
+    </div>
+  </div>
+</div>

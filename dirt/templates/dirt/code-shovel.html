@@ -1,0 +1,184 @@
+{% extends "dirt/hd_base.html" %}
+{% block loader %}
+<!--
+Variables called:
+this is a dynamic page with regular additions
+variables will be announced as called
+-->
+<!--
+This is the load spinner and the
+div that centers it, they are both made
+inivisible when the map is finished loading
+-->
+<!-- <div id="loading2" class="cn">
+  <div style:"width:100%;"><h4>maps...</h4></div>
+  <div id="loading" class="spinner"><strong></strong></div>
+</div> -->
+{% endblock %}
+{% block og_data %}
+{% load static %}
+<title>Hammerdirt labs</title>
+<!-- Open Graph Data -->
+<meta property="og:title" content="Hammerdirt Python/JS lab" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="{% url 'python-lab' %}" />
+<meta property="og:image" content= "{% static "images/code_shovel_og.png" %}" />
+<meta property="og:image:width" content="1015" />
+<meta property="og:image:height" content="630" />
+<meta property="og:description" content="hammerdirt Python/JS lab: The hammerdirt notebook for creating data visualisations and formatting data for export. Posts every two to three weeks." />
+<meta property="og:site_name" content="Exploring Python and JavaScript" />
+{% endblock %}
+{% block style %}
+.col-sm{
+  min-width:400px;
+}
+{% endblock %}
+{% block content  %}
+{% load humanize %}
+{% load static %}
+<div id="" class="container-fluid p-0 m-0" style="width:100%; ">
+  <div class="row no-gutters" id="" style="">
+    <div class="col-sm borders-0 " id="" style="">
+      <div class="card pb-0 border-white" id="cd_10"  style="">
+        <div class="card-header w-100 bg-secondary text-left text-white" id="" style="font-family:'Montserrat'">
+          Welcome to hammerdirt labs - Python-JS
+        </div>
+        <div class="card-body p-0 borders-0 text-left"  style="height:100%">
+          <div class="list-group border-right-0 border-left-0 ">
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Visualisation of common statistical indicators</h6>
+                <br>
+                <p class="text-muted">In this section the idea is integrate different methods to convey the meaning of statistical results. The posts will follow release date (kind of like a blog).
+                   In the first few posts it will be about integrating the Observable note book (or sections of), how to connect and get data from the API and some basic SVG manipulation.</p>
+            </div>
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Inform itelligently<br>
+                <small class="text-muted">While classic scatter plots are quite clear, not everybody understands a histogram or a distribution plot. It is not our intention to teach the world 'statistics'.
+                   The idea here is to convey 'meaning' in the statistical context using JavaScript and Python.</small>
+              </h6>
+            </div>
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Integrate early
+                <br><small class="text-muted">All of what is done here will be used on the app. For those reasons there will be sections devoted to MySQL or Django model-serializers. At the same time the
+                  template for generating posts is being developed. So this all going to be used to make this platform a better place. Eventually there will be a user input code or comment section.</small>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm" id="" style="">
+      <div class="card pb-0 border-white" id=""  style="">
+        <div class="card-body p-0 borders-0 text-left"  style="height:100%">
+          <div class="list-group border-right-0 border-left-0 ">
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">What are you working on?<br>
+                <small class="text-muted">If your stuff is organized and you would like to take advantage of this platform, contact me ( roger@hammerdirt.ch )</small>
+              </h6>
+            </div>
+            <!--
+            Call the open_acces_modal
+            -->
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="" style="font-family:'Montserrat'">Open access is a critical resource
+                <br><small class="text-muted">This is a list of all the different tools used to make this app:</small>
+              </h6>
+              <button class="btn bg-info text-white border-white text-left" style=""  role="button" data-toggle="modal" data-target="#open-acces" aria-expanded="false" aria-controls="">
+                Thanks</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card pb-0 border-white" id=""  style="">
+        <div class="card-header w-100 bg-secondary text-left text-white" id="" style="font-family:'Montserrat'">
+          Project : Finish the stoplights poster
+        </div>
+        <div class="card-body p-0 borders-0 text-left"  style="height:100%">
+          <div class="list-group border-right-0 border-left-0 ">
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Comparing percentile rankings</h6>
+                <br><p class="text-muted">A common evaluation technique is to compare one member of a group to other members of that group. In school this was done on bell curve.
+                  The idea is to bring that simplicity to the results of 130 locations across the country with the results from the litter-surveys.</p>
+            </div>
+            <!--
+              call the stoplights modalS
+            -->
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">There is math involved<br>
+                <small class="text-muted">A 'bell curve' is representation of a distribution of values. In the case of the poster the values are pcs/m of trash on the water line.
+                   In the probability section that whole model will be treated (but not now)</small>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm" id='' style="">
+      <div class="card pb-0 border-white " id=""  style="">
+        <div class="card-body p-0 text-left"  style="height:100%">
+          <div class="list-group border-right-0 border-left-0 ">
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'"> Inspiration and motivations: 26-09-2018<br>
+                <small class="text-muted">Trash is a problem everywhere, it ends up in the ocean and fish and people end up eating it. How do you convey the abundance of trash in the natural environment ?</small>
+              </h6>
+            </div>
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Originally done in Pandas with output to Matplotlob.<br>
+                <small class="text-muted"> Here is the repo <a href="https://github.com/hammerdirt/stopLight"> Stoplights</a> take a look. Depending on your personality you should either be laughing or crying, but it works.
+                <br>here is the poster (opens a modal):</small> <button class="btn bg-info btn-sm text-white border-white text-left" style=""role="button" data-toggle="modal" data-target="#stoplights" aria-expanded="false" aria-controls="">
+                <small>Stoplights</small></button>
+              </h6>
+            </div>
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+               <h6 class="mb-1" style="font-family:'Montserrat'">Another way to draw a circle</h6>
+        <pre ><code>
+&lt;svg width="50" height="50"&gt;
+  &lt;circle cx="25" cy="25" r="20" fill="yellow"&lt;/&gt;
+&lt;/svg&gt;
+          </code></pre>
+               <p> <small class="text-muted">Will draw an SVG in the browser like this:</small></p>
+               <div class="container ml-2">
+                <svg width="50" height="50">
+                  <circle cx="25" cy="25" r="20" fill="yellow" />
+                </svg>
+               </div>
+            </div>
+            <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'">Control the tag variables<br>
+                <small class="text-muted">In the next post: get data from the API and make some circles with it ~ Oct 10th 2018</small>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row no-gutters p-1 bg-dark w-100 mt-1">
+      <p class="text-white w-100"> We have grants for organizations with unfunded requirements. Contact us for more information.</p>
+    </div>
+  </div>
+</div>
+<!--
+Modals go here
+-->
+{% include 'dirt/stoplights_modal.html' %}
+{% include 'dirt/open_acces_modal.html' %}
+{% endblock %}
+{% block charts %}
+<!--
+Slugifies the sponosr data so that it can be used
+as id values in jas, for the placement of user icons
+-->
+
+<!--
+The template 'body' tag is hidden durring loading
+this makes it visible right away when index is called
+-->
+<script type="text/javascript">
+    document.getElementById('hide-me').style.visibility='visible'
+</script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+{% endblock %}

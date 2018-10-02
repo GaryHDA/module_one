@@ -1,0 +1,126 @@
+{% extends "dirt/hd_base.html" %}
+{% block loader %}
+<!-- The template for litter data searches
+used for city, projet, lake/river and location data displays
+Variables used:
+litter_search_row_one.html
+total_inventory.html
+top_ten_code_material.html
+box_one.html
+list_of_lakes_rivers.html
+locations_samples.html
+data_search.html
+'sponsor_data':sponsor_data
+'sponsor', 'sponsor_icon_name', 'sponsor_url', 'message'
+survey_map.html
+combined_scatter_two.html
+ -->
+ <!--
+ This is the load spinner and the
+ div that centers it, they are both made
+ inivisible when the map is finished loading
+ The css style is loaded with hd_base and included with that style sheet
+ -->
+ <div id="loading2" class="cn">
+   <!-- <div style:"width:100%;"><h4>maps...</h4></div> -->
+   <div id="loading" class="spinner"><strong></strong></div>
+ </div>
+ {% endblock %}
+ {% block og_data %}
+ {% load static %}
+ <title>Beach litter search</title>
+ <!-- Open Graph Data -->
+ <meta property="og:title" content="Another clean beach" />
+ <meta property="og:type" content="article" />
+ <meta property="og:url" content="{{ og_return_url }}" />
+ <meta property="og:image" content= "{% static "images/litter_location.jpeg" %}" />
+ <meta property="og:image:width" content="700" />
+ <meta property="og:image:height" content="623" />
+ <meta property="og:description" content="Search results from the hammerdirt beach-litter data-base. Location map, data-summary, graphs everything you need to know about the garbage floating in your river or lake." />
+ <meta property="og:site_name" content="Beach litter search results" />
+ <!-- <meta property="fb:admins" content="" /> -->
+ {% endblock %}
+{% block style %}
+.col-sm{
+  min-width:400px;
+}
+{% endblock %}
+{% block content  %}
+{% load humanize %}
+{% load static %}
+<div class="container-fluid p-0 m-0" style="width:100%; height:auto">
+  {%include 'dirt/litter_search_row_one.html'%}
+  <div class="row no-gutters bg-dark mt-1 p-1 w-100">
+    <p class="text-white p-1"> We have grants for organizations with unfunded requirements. Contact us for more information.</p>
+    <nav aria-label="breadcrumb ">
+      <div class="text-right container w-100">
+        <ol class="breadcrumb text-right bg-dark p-1 float-right text-white border-white">
+          <li class="breadcrumb-item text-white"><a class="text-white" href="{% url 'beach-litter-home' %}">Combined Data</a></li>
+          <li class="breadcrumb-item" aria-current="page">Search results</li>
+        </ol>
+      </div>
+    </nav>
+  </div>
+</div>
+{% include 'dirt/total_inventory.html' %}
+{% include 'dirt/top_ten_code_material.html' %}
+{% include 'dirt/box_one.html' %}
+{% include 'dirt/list_of_lakes_rivers.html' %}
+{% include 'dirt/locations_samples.html' %}
+{% include 'dirt/data_search.html' %}
+{% endblock %}
+{% block buttons %}
+<!--
+These are the scripts that control the popover for
+the sponsor and participant icons in the data summary
+-->
+<script type="text/javascript">
+  var popOverClose = '<button onclick="$(this).closest(\'div.popover\').popover(\'hide\');" type="button" class="close" aria-hidden="true">&times;</button>'
+</script>
+{% for x in sponsors %}
+<script type="text/javascript">
+  $('#{{ x.0|slugify }}').popover({
+      container: 'body',
+      title:"Not a real Sponsor",
+      content:'{{ x.3 }}'+ popOverClose,
+      placement:'top',
+      trigger:'click',
+      });
+</script>
+{% endfor %}
+{% for x in crew %}
+<script type="text/javascript">
+  $('#{{ x.0|slugify }}').popover({
+      container: 'body',
+      title:"Terry Pratchet Quote:",
+      content:'{{ x.3 }}'+ popOverClose,
+      placement:'top',
+      trigger:'click',
+      });
+</script>
+{% endfor %}
+  <script type="text/javascript">
+     $('#help').popover({
+        container: 'body',
+        title:"Sponsor a beach?",
+        content:"Beaches can be sponsored by companies or groups of companies. Logos would appear here. Company information, message or url in this message box."+ popOverClose,
+        placement:'top',
+        trigger:'click',
+      });
+      $('#helpx').popover({
+        container: 'body',
+        title:"Participate?",
+        content:"Members or volunteer icon goes here. If you want to contribute take a look the site. We need front end developers, dev-ops would be good too. Math and stats people are alaways welcome. Dedicated individuals are what is needed." + popOverClose,
+        placement:'top',
+        trigger:'click',
+      });
+</script>
+{% endblock %}
+{% block charts %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+{% include 'dirt/survey_map.html' %}
+{% include 'dirt/combined_scatter_two.html' %}
+{% endblock %}

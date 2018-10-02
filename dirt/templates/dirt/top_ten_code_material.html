@@ -1,0 +1,72 @@
+<!--
+Variables called:
+material_percents : the list of materials idenitified as a % of the total
+code_top_ten : the top ten codes and the % of total objects
+-->
+{% load humanize %}
+<div class="modal fade" id="top-ten-code-material">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title">The top-ten items identified in this summary.<small class="text-mutted">
+        <br>Units are "pieces", the description and code are Marine Litter Watch</small>
+        </h5>
+        <button type="button" class="close align text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+            <div class="card-body">
+              <div class="card-title"><h6>Table of results: sorted by material type</h6></div>
+              <table class="table-striped table table-sm">
+                <thead class="">
+                  <tr class="text-left">
+                    <th class="">Material:</th>
+                    <th class="">Quantity:</th>
+                    <th class="">% of total:</th>
+                  </tr>
+                </thead>
+                  {% for s in material_percents %}
+                <tr class="text-left">
+                  <td class="">{{ s.0 }}</td>
+                  <td class=""> {{ s.1|intcomma }} </td>
+                  <td class=""> {{ s.2|floatformat:0 }}% </td>
+
+                </tr>
+                {% endfor %}
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title"><h6>Table of results: ten most identified objects</h6>
+              </div>
+              <table class="table-striped table table-sm">
+                <thead class="">
+                  <tr class="text-left">
+                    <th>Item:</th>
+                    <th>Material:</th>
+                    <th>Qty:</th>
+                    <th>% total:</th>
+                  </tr>
+                </thead>
+                {% for s in code_top_ten %}
+                <tr class="text-left">
+                  <td>{{ s.1 }}</td>
+                  <td>{{ s.2 }}</td>
+                  <td>{{ s.3|intcomma }}</td>
+                  <td>{{ s.4|floatformat:0}}%</td>
+                </tr>
+                {% endfor %}
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer bg-info">
+          <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span></button>
+        </div>
+    </div>
+  </div>
+</div>
