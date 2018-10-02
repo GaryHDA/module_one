@@ -6,10 +6,10 @@
    <!-- Open Graph Data -->
    <meta property="og:title" content="hammerdirt" />
    <meta property="og:type" content="article" />
-   <meta property="og:url" content="http://mwshovel.pythonanywhere.com/dirt/beach_litter.html" />
-   <meta property="og:image" content= "{% static "images/weblogo.jpg" %}" />
-   <meta property="og:image:width" content="400" />
-   <meta property="og:image:height" content="246" />
+   <meta property="og:url" content="http://mwshovel.pythonanywhere.com/dirt/index.html" />
+   <meta property="og:image" content= "{% static "images/prob_og.jpeg" %}" />
+   <meta property="og:image:width" content="1151" />
+   <meta property="og:image:height" content="712" />
    <meta property="og:description" content="hammerdirt, helping you create knowledge.  A research partner that specializes in the development of data products for and from crowd sourced research projects." />
    <meta property="og:site_name" content="MW-Shovel" />
 
@@ -18,7 +18,10 @@
 .col-sm{
   min-width:400px;
 }
-
+#link-one, #link-two, #link-three, #link-four, #link-five {
+  text-decoration:underline;
+  color: white;
+}
 
 {% endblock %}
 {% block content  %}
@@ -26,12 +29,12 @@
 {% load static %}
 <div class="container-fluid  p-0 " style="background-color:#464646; min-height:100vh">
   <div class="row no-gutters w-100" id="" style="background-color:#464646; min-height:100vh">
-    <div class="col-sm h-100" id="" style="">
-      <div class="p-1 pl-3 text-left" style="">
+    <div class="col-sm h-100 mx-auto" id="" style="width:100%; background-color:#464646">
+      <div class="p-1 pl-3 text-left" style="width:100%">
         <h3 class="display-3" style="color:#008080;">HAMMER...</h3>
         <h5 style="color:#008080;">Believe what you see and take notes</h5>
       </div>
-      <div class="p-1 pl-3 mt-3 mr-2 pb-0 text-left bg-light"  style="width:100%">
+      <div class="p-2 mt-3 mr-2 text-left mx-auto text-white"  style="width:80%; background-color:#464646">
         <p style="font-family:'Montserrat';">
           Working with you to develop applications that collect and display data.
         </p>
@@ -39,14 +42,14 @@
           <ul style="font-family:'Montserrat';">
             <li>In the field</li>
             <li>In the office</li>
-            <li>We go where you are</li>
+            <li>We go where you go</li>
           </ul>
         </p>
         <p style="font-family:'Montserrat'">
           We work with Python, Django, Pandas, MySQL, Scipy, Bootstrap, D3, highcharts and linux(debian) everyday.
         </p>
       </div>
-      <div class="p-1 mt-3 mx-auto text-left text-white"  style="width:80%">
+      <div class="p-1 pl-3 mt-3 mx-auto text-left text-white"  style="width:100%; background-color:#464646">
         <h4 class="display-4" style="font-family:'Montserrat';color:#008080;">
           What can we build together?
         </h4>
@@ -56,18 +59,48 @@
         <h1 class="display-3 bg-transparent" style="color:#008080;">...dirt</h1>
       </div>
     </div>
-    <div>    </div>
-    <div class="col-sm " id="" style="">
-      
 
+    <div class="col-sm h-100 mx-auto p-2 text-white" id="" style="background-color:#464646">
+      <div class="container text-white p-2 pt-0" style="width:100%">
+        <h4 class="" style="font-family:'Fredoka One', cursive;">New in this app:</h4>
+        <br>
+        <div class="container">
+          <div class="d-inline rounded-circle border border-white text-center mr-1 mb-1 p-1" style="width:4vh; height:4vh;">
+            &nbsp;1
+          </div>
+          <p class="d-inline" style="font-family:'Fredoka One', cursive;"> &nbsp;Sponsor a beach:</p>
+          <p class="mt-2"style="font-family:'Montserrat';">There is now a sponsorhip plan for beaches on Lac Léman. Check out how we attribute "work" in the <a id="link-one" href="{% url 'beach-litter-home' %}">data output</a>
+            and then see the details on the <a id="link-two" href="{% url 'sponsor-promo' %}">sponsorship program</a>.</p>
+        </div>
+        <div class="container mt-2">
+          <div class="d-inline rounded-circle border border-white text-center mr-1 mb-1 p-1" style="width:4vh; height:4vh;">
+            &nbsp;2
+          </div>
+          <p class="d-inline" style="font-family:'Fredoka One', cursive;"> &nbsp;REST API online:</p>
+          <p class="mt-2"style="font-family:'Montserrat';">For those of you who just want the data you can hook into the API and get all the
+            latest beach litter data from Swizterland. See the <a id="link-three" href="{% url 'api-home' %}">api homepage </a>for examples of how to format the urls.
+            The rest of our data will gradually make its way to the API.</p>
+        </div>
+        <div class="container mt-2">
+          <div class="d-inline rounded-circle border border-white text-center mr-1 mb-1 p-1" style="width:4vh; height:4vh;">
+            &nbsp;3
+          </div>
+          <p class="d-inline" style="font-family:'Fredoka One', cursive;"> &nbsp;hammerdirt labs:</p>
+          <p class="mt-2"style="font-family:'Montserrat';">Here we work through the math and the code for analysing and displaying data. For now we have two
+            broad topics <a id="link-four" href="{% url 'python-lab' %}">"Python/JS"</a> and <a id="link-five" href="{% url 'probability-lab' %}">"Probability"</a>. You can expect posts about every two weeks
+            as we go over the math and code needed to integrate the analysis into this app (or any other app).</p>
+        </div>
+        <div class="container mt-2">
+          <div class="d-inline rounded-circle border border-white text-center mr-1 mb-1 p-1" style="width:4vh; height:4vh;">
+            &nbsp;4
+          </div>
+          <p class="d-inline" style="font-family:'Fredoka One', cursive;"> &nbsp;Improved layout:</p>
+          <p class="mt-2"style="font-family:'Montserrat';">The beach litter section is easier to navigate and (should) be more mobile friendly. You can now drill down to the "beach" level on a search. Analysis and methods are at the top of the page.
+             All works in progress and code samples will be available in the "lab".</p>
+        </div>
       </div>
-
-
-
-
-
-
-    <div class="col-sm" id='' style="">
+    </div>
+    <div class="col-sm h-100" id='' style="background-color:#464646">
     <!--
     Variables called:
     latest_sample
@@ -75,6 +108,9 @@
     last_read
     last_commit
     -->
+      <div class="container text-white p-2" style="width:100%">
+          <h4 class="" style="font-family:'Fredoka One', cursive;">Recent activity:</h4>
+      </div>
       <div class="p-2 mt-3 mr-2 pb-0 text-left float-right bg-light" style="width:98%">
         <h6 style="font-family:'Montserrat'"><strong>Latest litter-survey:</strong><small>
           <br>{% for s in latest_sample %}<strong>City:</strong> {{ s.2 }},<strong> Location:</strong> {{ s.0 }},
@@ -103,6 +139,7 @@
 </div>
 <div class="row no-gutters bg-dark mt-1">
   <p class="text-white p-2"> We have grants for organizations with unfunded requirements. Contact us for more information.</p>
+</div>
 </div>
 {% endblock %}
 {% block charts %}
