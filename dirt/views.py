@@ -6,7 +6,7 @@ from django.http import Http404
 from django.conf import settings
 
 # model imports from
-from dirt.models import AllData, Beaches, HDC_Beaches, HDC_Data, PlatformActivity, References, Sponsors
+from dirt.models import AllData, Beaches, HDC_Beaches, HDC_Data, PlatformActivity, References, Sponsors, LastCommit
 
 # python imports
 from statistics import mean
@@ -590,8 +590,14 @@ def index(request):
         a = References.objects.values_list('title','author', 'subject', 'abstract').latest()
         b = [a[0], a[1], a[2], a[3]]
         return b
+    def last_commit():
+        a = LastCommit.objects.values_list('date','repo', 'comments', 'ur_l').latest()
+        b = [a[0].strftime("%Y-%m-%d"), a[1], a[2], a[3]]
+        return b
 
-    return render(request, 'dirt/index.html',{'latest_sample':latest_sample, "see_latest":see_latest, 'last_post':last_post, 'last_read':last_read})
+
+    return render(request, 'dirt/index.html',{'latest_sample':latest_sample, "see_latest":see_latest, 'last_post':last_post(),
+                  'last_read':last_read(), 'last_commit':last_commit()})
 def code_shovel(request):
     return render(request, 'dirt/code-shovel.html')
 def probability_view(request):

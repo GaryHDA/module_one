@@ -19,21 +19,21 @@ button_top_ten_inventory_material.html
 
           <tr>
             <td class="bg-white p-0 pt-1 border-0"><small><strong>Sponsor:</strong></small>
-              <div class="btn-group pl-1 bg-white">  {% for x in sponsors %}
-                <button id="{{ x.0|slugify }}" class="btn p-0" data-content="{{ x.3 }}" rel="popover" data-placement="bottom" data-original-title="Not a real Sponsor" data-trigger="hover" href="#">
+              <div class="btn-group pl-1 bg-white" style="z-index:0">  {% for x in sponsors %}
+                <button id="{{ x.0|slugify }}" class="btn p-0 popover " data-html='true'   href="#">
                   <img src={% static  x.1 %}  height="40" alt='django logo'>
                 </button>{% endfor %}
-              <button id="help" style="height:40px" class="btn btn-outline-primary border-white " data-content="Beaches can be sponsored by companies or groups of companies. Logos would appear here. Company information, message or url in this message box." rel="popover" data-placement="top" data-original-title="Sponsor a beach?" data-trigger="hover" href="#">
+              <button id="help" style="height:40px" class="btn bg-primary btn-primary border border-primary popover text-white ml-1" data-html='true' href="#">
               <strong><- What is that? </strong></button></div></td>
           </tr>
          <tr>
             <td class="bg-white p-0 pt-1 border-0"><small><strong>Crew:</strong></small>
               {% for b in crew %}
-              <div class="btn-group pl-1 bg-white">
-                <button id="{{ b.0|slugify }}" class="btn p-0" data-content="{{ b.3|safe }}" rel="popover" data-placement="bottom" data-original-title="Terry Pratchet Quote:" data-trigger="hover" href="#">
+              <div class="btn-group pl-1 bg-white" style="z-index:0">
+                <button id="{{ b.0|slugify }}" class="btn popover p-0 " data-html='true'  href="#">
                    <img src={% static  b.1 %}  height="40" alt='django logo'>
                 </button>{% endfor %}
-                <button id="helpx" style="height:40px" class="btn btn-outline-primary border-white " data-content="Members or volunteer icon goes here. If you want to contribute take a look the site. We need front end developers, dev-ops would be good too. Math and stats people are alaways welcome. Dedicated individuals are what is needed." rel="popover" data-placement="top" data-original-title="Participate?" data-trigger="hover" href="#">
+                <button id="helpx" type="button" style="height:40px" class="btn bg-primary btn-primary border border-primary popover text-white ml-1" data-html='true'  href="#">
                   <strong><- What is that? </strong>
                 </button>
               </div>

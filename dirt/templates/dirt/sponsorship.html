@@ -22,9 +22,8 @@ inivisible when the map is finished loading
 <meta property="og:image" content= "{% static "images/sponsor_og.jpeg" %}" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="800" />
-<meta property="og:description" content="Help stop the pollution of our water, beach-litter inventories supply valuable data to other NGOs, government officials and the public. If you want to know what is floating in your water sponsor a beach clean with hammerdirt." />
-<meta property="og:site_name" content="MW-Shovel" />
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+<meta property="og:description" content="Help stop the flow of trash into the ocean, beach-litter inventories supply valuable data to other NGOs, government officials and the public. If you want to know what is floating in your water sponsor a beach clean with hammerdirt." />
+<meta property="og:site_name" content="Sponosr a beach" />
 {% endblock %}
 {% block style %}
 .col-sm{
@@ -36,8 +35,8 @@ inivisible when the map is finished loading
 {% load humanize %}
 {% load static %}
 <div id="" class="container-fluid p-0 m-0" style="width:100%; ">
-  <div class="d-flex flex-row" id="" style="font-family:'Montserrat';">
-    <div class="mr-auto pl-2 pt-2">
+  <div class="d-flex flex-row" id="" style="font-family:'Montserrat';min-width:400px">
+    <div class="flex-column mr-auto pl-2 pt-2" style="">
       <h4><strong>Sponsor a beach</strong></h4>
       <h5 >When an organization sponsors a beach they are supporting:</h5>
       <ul>
@@ -48,15 +47,12 @@ inivisible when the map is finished loading
       </ul>
     </div>
     <div class="flex-column">
-    <div class="ml-auto rounded p-2 mr-2 mt-2 bg-primary text-white" style="">
-      <p>*You are also:</p>
-      <p>&nbsp;&nbsp;Improving your community</p>
-      <p>&nbsp;&nbsp;Creating jobs</p>
-      <p>&nbsp;&nbsp;Reducing environmental impact</p>
+    <div class="ml-auto rounded p-2 mr-2 mt-2 bg-primary text-white" style="width:20vh; ">
+      <p>*You are also creating jobs and reducing impact.</p>
     </div>
   </div>
   </div>
-  <div class="d-flex flex-row mt-2" id="" style="">
+  <div class="d-flex flex-row mt-2" id="" style="min-width:400px">
     <div class="mx-auto " style="font-family:'Montserrat'; width:45rem">
       <h4><strong>In return?</strong></h4>
       <h5 class="">Your logo and message will be visible:</h5>
@@ -67,7 +63,7 @@ inivisible when the map is finished loading
       </ul>
     </div>
   </div>
-    <div class="d-flex flex-row mt-2" id="" style="">
+    <div class="d-flex flex-row mt-2" id="" style="min-width:400px">
     <div class="card-group mx-auto">
       <div class="card " style="width:22rem; height:auto">
         <div class="card-header text-primary p-1" id="" style="font-family:'Montserrat'">
@@ -109,10 +105,10 @@ inivisible when the map is finished loading
                     <button id="" class="btn bg-white text-left" style="min-width:72px" href="#">
                        <small><strong>Crew:</strong></small>
                     </button>
-                    <button id="crew_one" class="btn popover p-0" data-html='true' data-placement="top" data-toggle="popover" data-trigger="hover" href="#">
+                    <button id="crew_one" class="btn popover p-0" data-html='true' data-toggle="popover" href="#">
                        <img src="{% static  "images/litter_location.jpeg" %}" height="40" alt="django logo">
                     </button>
-                    <button id="crew_two" class="btn popover p-0" data-html='true' data-placement="top" data-toggle="popover" data-trigger="hover" href="#">
+                    <button id="crew_two" class="btn popover p-0" data-html='true' data-toggle="popover" href="#">
                        <img src="{% static  "images/icon_four.svg" %}" height="40" alt="django logo">
                     </button>
                   </div>
@@ -176,13 +172,13 @@ inivisible when the map is finished loading
                     <button id="" class="btn bg-white text-left" style="min-width:72px" href="#">
                       <small><strong>Crew:</strong></small>
                     </button>
-                    <button id="crew_onex" class="btn popover p-0" data-html='true' data-placement="top" data-toggle="popover" data-trigger="hover" href="#">
+                    <button id="crew_onex" class="btn popover p-0" data-html='true' data-toggle="popover" href="#">
                       <img src="{% static  "images/litter_location.jpeg" %}" height="40" alt="django logo">
                     </button>
-                    <button id="crew_twox" class="btn popover p-0" data-html='true' data-placement="top" data-toggle="popover" data-trigger="hover" href="#">
+                    <button id="crew_twox" class="btn popover p-0" data-html='true' data-toggle="popover" href="#">
                       <img src="{% static  "images/icon_four.svg" %}" height="40" alt="django logo">
                     </button>
-                    <button id="crew_three" class="btn popover p-0" data-html='true' data-placement="top" data-toggle="popover" data-trigger="hover" href="#">
+                    <button id="crew_three" class="btn popover p-0" data-html='true' data-toggle="popover" href="#">
                       <img src="{% static  "images/icon_three.svg" %}" height="40" alt="django logo">
                     </button>
                   </div>
@@ -220,7 +216,7 @@ inivisible when the map is finished loading
  <div class="row no-gutters " style="width:100%;" >
    <p class="p-1 mt-1"><strong>*Companies can sponsor multiple beaches, limit is one logo per-beach. The number of logos accumulate the less the data is sorted, too many logos and there is no room for the data.</strong></p>
  </div>
- <div class="row no-gutters pt-2" id="" style="">
+ <div class="row no-gutters pt-2" id="" style="min-width:400px">
    <div class="col-sm mx-auto">
      <div class="card mx-auto">
        <div class="card-header text-primary p-1" id="" style="font-family:'Montserrat'">
@@ -332,40 +328,50 @@ as id values in jas, for the placement of user icons
 <script type="text/javascript">
     $('#crew_one').popover({
       container: 'body',
-      content:'Participants can also leave a message and a URL for contact - the icon is limited to black and white. The message is approved by hammeridrt staff. In general the message is to be non judgemental or political',
+      content:'Participants can also leave a message and a URL for contact - the icon is limited to black and white. The message is approved by hammeridrt staff. In general the message is to be non judgemental or political' + popOverClose,
       title:'<img src="{% static  "images/litter_location.jpeg" %}" height="40" alt="django logo">&nbsp;Group - not a real group',
+      placement:'top',
+      trigger:'click',
 
     });
 </script>
 <script type="text/javascript">
     $('#crew_two').popover({
       container: 'body',
-      content:'Participants can also leave a message and a URL for contact -  the icon is limited to black and white. The message is approved by hammeridrt staff. In general the message is to be non judgemental or political.',
+      content:'Participants can also leave a message and a URL for contact -  the icon is limited to black and white. The message is approved by hammeridrt staff. In general the message is to be non judgemental or political.' + popOverClose,
       title:'<img src="{% static  "images/icon_four.svg" %}" height="40" alt="django logo">&nbsp;Group - not a real group',
+      placement:'top',
+      trigger:'click',
 
     });
 </script>
 <script type="text/javascript">
     $('#crew_three').popover({
       container: 'body',
-      content:'Participants can also leave a message and a URL for contact -  the icon is limited to black and white. The message is approved by hammeridrt staff. In general the message is to be non judgemental or political.',
+      content:'Participants can also leave a message and a URL for contact -  the icon is limited to black and white. The message is approved by hammeridrt staff. In general the message is to be non judgemental or political.' + popOverClose,
       title:'<img src="{% static  "images/icon_four.svg" %}" height="40" alt="django logo">&nbsp;Group - not a real group',
+      placement:'top',
+      trigger:'click',
 
     });
 </script>
 <script type="text/javascript">
     $('#crew_onex').popover({
       container: 'body',
-      content:'Participants can also leave a message and a URL for contact - the icon is limited to black and white. The message is approved by hammeridrt staff. In general the message is to be non judgemental or political',
+      content:'Participants can also leave a message and a URL for contact - the icon is limited to black and white. The message is approved by hammeridrt staff. In general the message is to be non judgemental or political' + popOverClose,
       title:'<img src="{% static  "images/litter_location.jpeg" %}" height="40" alt="django logo">&nbsp;Group - not a real group',
+      placement:'top',
+      trigger:'click',
 
     });
 </script>
 <script type="text/javascript">
     $('#crew_twox').popover({
       container: 'body',
-      content:'Participants can also leave a message and a URL for contact -  the icon is limited to black and white. The message is approved by hammeridrt staff. In general the message is to be non judgemental or political.',
+      content:'Participants can also leave a message and a URL for contact -  the icon is limited to black and white. The message is approved by hammeridrt staff. In general the message is to be non judgemental or political.' + popOverClose,
       title:'<img src="{% static  "images/icon_four.svg" %}" height="40" alt="django logo">&nbsp;Group - not a real group',
+      placement:'top',
+      trigger:'click',
 
     });
 </script>

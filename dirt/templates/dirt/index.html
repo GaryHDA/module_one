@@ -11,7 +11,7 @@
    <meta property="og:image:width" content="1151" />
    <meta property="og:image:height" content="712" />
    <meta property="og:description" content="hammerdirt, helping you create knowledge.  A research partner that specializes in the development of data products for and from crowd sourced research projects." />
-   <meta property="og:site_name" content="MW-Shovel" />
+   <meta property="og:site_name" content="hammerdirt-home" />
 
 {% endblock %}
 {% block style %}
@@ -55,21 +55,21 @@
         </h4>
         <p class="mt-4" style=""><small>Brought to you with love by roger at hammerdirt.</small></p>
       </div>
-      <div class="ml-auto mt-2 pr-3 text-right ">
+      <div class="ml-auto mt-2 pr-3 text-right" style="width:90%">
         <h1 class="display-3 bg-transparent" style="color:#008080;">...dirt</h1>
       </div>
     </div>
 
     <div class="col-sm h-100 mx-auto p-2 text-white" id="" style="background-color:#464646">
       <div class="container text-white p-2 pt-0" style="width:100%">
-        <h4 class="" style="font-family:'Fredoka One', cursive;">New in this app:</h4>
+        <h4 class="" style="font-family:'Fredoka One', cursive;">New in this app: 02 Oct 18</h4>
         <br>
         <div class="container">
           <div class="d-inline rounded-circle border border-white text-center mr-1 mb-1 p-1" style="width:4vh; height:4vh;">
             &nbsp;1
           </div>
           <p class="d-inline" style="font-family:'Fredoka One', cursive;"> &nbsp;Sponsor a beach:</p>
-          <p class="mt-2"style="font-family:'Montserrat';">There is now a sponsorhip plan for beaches on Lac Léman. Check out how we attribute "work" in the <a id="link-one" href="{% url 'beach-litter-home' %}">data output</a>
+          <p class="mt-2" style="font-family:'Montserrat';">There is now a sponsorhip plan for beaches on Lac Léman. Check out how we attribute "work" in the <a id="link-one" href="{% url 'beach-litter-home' %}">data output</a>
             and then see the details on the <a id="link-two" href="{% url 'sponsor-promo' %}">sponsorship program</a>.</p>
         </div>
         <div class="container mt-2">
@@ -77,7 +77,7 @@
             &nbsp;2
           </div>
           <p class="d-inline" style="font-family:'Fredoka One', cursive;"> &nbsp;REST API online:</p>
-          <p class="mt-2"style="font-family:'Montserrat';">For those of you who just want the data you can hook into the API and get all the
+          <p class="mt-2" style="font-family:'Montserrat';">For those of you who just want the data you can hook into the API and get all the
             latest beach litter data from Swizterland. See the <a id="link-three" href="{% url 'api-home' %}">api homepage </a>for examples of how to format the urls.
             The rest of our data will gradually make its way to the API.</p>
         </div>
@@ -86,7 +86,7 @@
             &nbsp;3
           </div>
           <p class="d-inline" style="font-family:'Fredoka One', cursive;"> &nbsp;hammerdirt labs:</p>
-          <p class="mt-2"style="font-family:'Montserrat';">Here we work through the math and the code for analysing and displaying data. For now we have two
+          <p class="mt-2" style="font-family:'Montserrat';">Here we work through the math and the code for analysing and displaying data. For now we have two
             broad topics <a id="link-four" href="{% url 'python-lab' %}">"Python/JS"</a> and <a id="link-five" href="{% url 'probability-lab' %}">"Probability"</a>. You can expect posts about every two weeks
             as we go over the math and code needed to integrate the analysis into this app (or any other app).</p>
         </div>
@@ -95,7 +95,7 @@
             &nbsp;4
           </div>
           <p class="d-inline" style="font-family:'Fredoka One', cursive;"> &nbsp;Improved layout:</p>
-          <p class="mt-2"style="font-family:'Montserrat';">The beach litter section is easier to navigate and (should) be more mobile friendly. You can now drill down to the "beach" level on a search. Analysis and methods are at the top of the page.
+          <p class="mt-2" style="font-family:'Montserrat';">The beach litter section is easier to navigate and (should) be more mobile friendly. You can now drill down to the "beach" level on a search. Analysis and methods are at the top of the page.
              All works in progress and code samples will be available in the "lab".</p>
         </div>
       </div>
@@ -130,9 +130,9 @@
           <br> {{ last_read.3|truncatewords:"30" }}... <br>Google that title to find out more  --> </small></p>
       </div>
       <div class="p-2 pb-0 mt-3 mr-2 mb-2 text-left float-right bg-light"  style="width:98%">
-        <p style="font-family:'Montserrat'"><strong>Latest commit:</strong><small>
-          <br><strong>Repo:</strong> <br><strong>Comments:</strong>
-          <br></small></p>
+        <p style="font-family:'Montserrat'"><strong>Latest commit: </strong><small>
+          <br><strong>Repo: {{ last_commit.1 }}, {{ last_commit.0 }}</strong> <br><strong>Comments: {{ last_commit.2 }}</strong>
+          <br><a href="{{ last_commit.3 }}"><strong>check it</strong></a></small></p>
       </div>
 
   </div>
