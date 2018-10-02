@@ -1,29 +1,32 @@
 {% extends "dirt/hd_base.html" %}
+{% block loader %}
 <!--
 Variables called:
 this is a dynamic page with regular additions
 variables will be announced as called
 -->
-{% block og_data %}
 <!--
 This is the load spinner and the
 div that centers it, they are both made
 inivisible when the map is finished loading
 -->
 <!-- <div id="loading2" class="cn">
-  <div id="loading" class="spinner"></div>
+  <div style:"width:100%;"><h4>maps...</h4></div>
+  <div id="loading" class="spinner"><strong></strong></div>
 </div> -->
+{% endblock %}
+{% block og_data %}
 {% load static %}
-<title>Hammerdirt</title>
+<title>Hammerdirt labs</title>
 <!-- Open Graph Data -->
-<meta property="og:title" content="hammerdirt" />
+<meta property="og:title" content="Hammerdirt Python/JS lab" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="{% url 'python-lab' %}" />
-<meta property="og:image" content= "{% static "images/weblogo.jpg" %}" />
-<meta property="og:image:width" content="400" />
-<meta property="og:image:height" content="246" />
-<meta property="og:description" content="hammerdirt lab: Visualising data with Pthon and JavaScript" />
-<meta property="og:site_name" content="MW-Shovel" />
+<meta property="og:image" content= "{% static "images/code_shovel_og.png" %}" />
+<meta property="og:image:width" content="1015" />
+<meta property="og:image:height" content="630" />
+<meta property="og:description" content="hammerdirt Python/JS lab: The hammerdirt notebook for creating data visualisations and formatting data for export. Posts every two to three weeks." />
+<meta property="og:site_name" content="Exploring Python and JavaScript" />
 {% endblock %}
 {% block style %}
 .col-sm{

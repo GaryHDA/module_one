@@ -9,8 +9,8 @@
 <meta property="og:image" content= "{% static "images/micro_og.jpeg" %}" />
 <meta property="og:image:width" content="700" />
 <meta property="og:image:height" content="623" />
-<meta property="og:description" content="hammerdirt, helping you create knowledge.  A research partner that specializes in the development of data products for and from crowd sourced research projects." />
-<meta property="og:site_name" content="MW-Shovel" />
+<meta property="og:description" content="Hammerdirt & Hackuarium, a partnership. Results from the 2016-2017 water sampling campaign during the Montreu Jazz Festival." />
+<meta property="og:site_name" content="Water quality" />
 <!-- <meta property="fb:admins" content="" /> -->
 {% endblock %}
 
@@ -18,7 +18,6 @@
 .col-sm{
   min-width:400px;
 }
-
 
 {% endblock %}
 
@@ -61,8 +60,6 @@
         {% include 'dirt/micro_array_modal.html' %}
         {% include 'dirt/open_acces_modal.html' %}
 {% endblock %}
-
-
 {% block charts %}
 <!--
 The template 'body' tag is hidden durring loading
@@ -85,7 +82,6 @@ this makes it visible right away when index is called
 <script type="text/javascript">
 
 var rain_17 = {{ rain_17|safe }}
-
 var b_blue17_svt = {{ b_blue17_svt|safe }}
 var b_blue17_mrd = {{ b_blue17_mrd|safe }}
 var b_blue17_vnx = {{ b_blue17_vnx|safe }}

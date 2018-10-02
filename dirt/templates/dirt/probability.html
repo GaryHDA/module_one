@@ -1,20 +1,24 @@
 {% extends "dirt/hd_base.html" %}
+{% block loader %}
 <!--
 Variables called:
 this is a dynamic page with regular additions
 variables will be announced as called
 -->
-{% block og_data %}
 <!--
 This is the load spinner and the
 div that centers it, they are both made
 inivisible when the map is finished loading
 -->
 <!-- <div id="loading2" class="cn">
-  <div id="loading" class="spinner"></div>
+  <div style:"width:100%;"><h4>maps...</h4></div>
+  <div id="loading" class="spinner"><strong></strong></div>
 </div> -->
+{% endblock %}
+{% block og_data %}
+
 {% load static %}
-<title>Hammerdirt</title>
+<title>Hammerdirt Probability</title>
 <!-- Open Graph Data -->
 <meta property="og:title" content="hammerdirt" />
 <meta property="og:type" content="article" />
@@ -22,8 +26,8 @@ inivisible when the map is finished loading
 <meta property="og:image" content= "{% static "images/weblogo.jpg" %}" />
 <meta property="og:image:width" content="400" />
 <meta property="og:image:height" content="246" />
-<meta property="og:description" content="hammerdirt lab: Understanding probability" />
-<meta property="og:site_name" content="MW-Shovel" />
+<meta property="og:description" content="hammerdirt Python/JS lab: The hammerdirt notebook for understanding the math behind data analyis creating using data visualisations this notebokk follows the Python lab very closely. Posts every two to three weeks." />
+<meta property="og:site_name" content="Hammerdirt Probability lab" />
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
 {% endblock %}
 {% block style %}

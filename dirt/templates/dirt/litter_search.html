@@ -1,4 +1,5 @@
 {% extends "dirt/hd_base.html" %}
+{% block loader %}
 <!-- The template for litter data searches
 used for city, projet, lake/river and location data displays
 Variables used:
@@ -14,7 +15,6 @@ data_search.html
 survey_map.html
 combined_scatter_two.html
  -->
- {% block og_data %}
  <!--
  This is the load spinner and the
  div that centers it, they are both made
@@ -22,11 +22,13 @@ combined_scatter_two.html
  The css style is loaded with hd_base and included with that style sheet
  -->
  <div id="loading2" class="cn">
-   <div style:"width:100%;"><h4>Loading maps...</h4></div>
-   <div id="loading" class="spinner"></div>
+   <!-- <div style:"width:100%;"><h4>maps...</h4></div> -->
+   <div id="loading" class="spinner"><strong></strong></div>
  </div>
+ {% endblock %}
+ {% block og_data %}
  {% load static %}
- <title>Hammerdirt</title>
+ <title>Beach litter search</title>
  <!-- Open Graph Data -->
  <meta property="og:title" content="Another clean beach" />
  <meta property="og:type" content="article" />
@@ -34,8 +36,8 @@ combined_scatter_two.html
  <meta property="og:image" content= "{% static "images/litter_location.jpeg" %}" />
  <meta property="og:image:width" content="700" />
  <meta property="og:image:height" content="623" />
- <meta property="og:description" content="hammerdirt, helping you create knowledge.  A research partner that specializes in the development of data products for and from crowd sourced research projects." />
- <meta property="og:site_name" content="MW-Shovel" />
+ <meta property="og:description" content="Search results from the hammerdirt beach-litter data-base. Location map, data-summary, graphs everything you need to know about the garbage floating in your river or lake." />
+ <meta property="og:site_name" content="Beach litter search results" />
  <!-- <meta property="fb:admins" content="" /> -->
  {% endblock %}
 {% block style %}
@@ -67,33 +69,54 @@ combined_scatter_two.html
 {% include 'dirt/locations_samples.html' %}
 {% include 'dirt/data_search.html' %}
 {% endblock %}
-{% block charts %}
+{% block buttons %}
 <!--
-Slugifies the sponosr data so that it can be used
-as id values in template, for the placement of sponsor/participant icons
+These are the scripts that control the popover for
+the sponsor and participant icons in the data summary
 -->
+<script type="text/javascript">
+  var popOverClose = '<button onclick="$(this).closest(\'div.popover\').popover(\'hide\');" type="button" class="close" aria-hidden="true">&times;</button>'
+</script>
 {% for x in sponsors %}
 <script type="text/javascript">
-    $('#{{ x.0|slugify }}').popover({
-      container: 'body'
-    });
+  $('#{{ x.0|slugify }}').popover({
+      container: 'body',
+      title:"Not a real Sponsor",
+      content:'{{ x.3 }}'+ popOverClose,
+      placement:'top',
+      trigger:'click',
+      });
 </script>
 {% endfor %}
 {% for x in crew %}
 <script type="text/javascript">
-    $('#{{ x.0|slugify }}').popover({
-      container: 'body'
-     });
+  $('#{{ x.0|slugify }}').popover({
+      container: 'body',
+      title:"Terry Pratchet Quote:",
+      content:'{{ x.3 }}'+ popOverClose,
+      placement:'top',
+      trigger:'click',
+      });
 </script>
 {% endfor %}
-<script type="text/javascript">
-    $('#help').popover({
-      container: 'body'
-    });
-    $('#helpx').popover({
-      container: 'body'
-    });
+  <script type="text/javascript">
+     $('#help').popover({
+        container: 'body',
+        title:"Sponsor a beach?",
+        content:"Beaches can be sponsored by companies or groups of companies. Logos would appear here. Company information, message or url in this message box."+ popOverClose,
+        placement:'top',
+        trigger:'click',
+      });
+      $('#helpx').popover({
+        container: 'body',
+        title:"Participate?",
+        content:"Members or volunteer icon goes here. If you want to contribute take a look the site. We need front end developers, dev-ops would be good too. Math and stats people are alaways welcome. Dedicated individuals are what is needed." + popOverClose,
+        placement:'top',
+        trigger:'click',
+      });
 </script>
+{% endblock %}
+{% block charts %}
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>

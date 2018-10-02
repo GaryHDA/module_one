@@ -1,5 +1,6 @@
 {% extends "dirt/hd_base.html" %}
 {% load static %}
+{% block loader %}
 <!-- The template for hammerdirt california
 Variables used:
 summary_table.html
@@ -14,16 +15,17 @@ dirt/data_search.html
 dirt/survey_map.html
 dirt/combined_scatter.html
  -->
- {% block og_data %}
  <!--
  This is the load spinner and the
  div that centers it, they are both made
  inivisible when the map is finished loading
  -->
  <div id="loading2" class="cn">
-   <div style:"width:100%;"><h4>Loading maps...</h4></div>
-   <div id="loading" class="spinner"></div>
+   <!-- <div style:"width:100%;"><h4>maps...</h4></div> -->
+   <div id="loading" class="spinner"><strong></strong></div>
  </div>
+ {% endblock %}
+ {% block og_data %}
  <title>H-dirt California</title>
  <!-- Open Graph Data -->
  <meta property="og:title" content="Hammerdirt California" />
@@ -66,42 +68,56 @@ dirt/combined_scatter.html
 {% include 'dirt/locations_samples.html' %}
 {% include 'dirt/data_search.html' %}
 {% endblock %}
-{% block charts %}
+{% block buttons %}
 <!--
-Slugifies the sponosr and crew data so that it can be used
-as id values in jas, for the placement of user icons
-Assigns the popover attirbute to the element with the id
+These are the scripts that control the popover for
+the sponsor and participant icons in the data summary
 -->
+<script type="text/javascript">
+  var popOverClose = '<button onclick="$(this).closest(\'div.popover\').popover(\'hide\');" type="button" class="close" aria-hidden="true">&times;</button>'
+</script>
 {% for x in sponsors %}
-  <script type="text/javascript">
-
-      $('#{{ x.0|slugify }}').popover({
-        container: 'body'
+<script type="text/javascript">
+  $('#{{ x.0|slugify }}').popover({
+      container: 'body',
+      title:"Not a real Sponsor",
+      content:'{{ x.3 }}'+ popOverClose,
+      placement:'top',
+      trigger:'click',
       });
-  </script>
+</script>
 {% endfor %}
 {% for x in crew %}
-  <script type="text/javascript">
-
-      $('#{{ x.0|slugify }}').popover({
-        container: 'body'
-       });
-  </script>
+<script type="text/javascript">
+  $('#{{ x.0|slugify }}').popover({
+      container: 'body',
+      title:'{{ x.0 }}',
+      content:'{{ x.3 }}'+ popOverClose,
+      placement:'top',
+      trigger:'click',
+      });
+</script>
 {% endfor %}
-<!--
-Assigns the popover attribute to the help elements
-int the data summary table
--->
-
   <script type="text/javascript">
-
-      $('#help').popover({
-        container: 'body'
+     $('#help').popover({
+        container: 'body',
+        title:"Sponsor a beach?",
+        content:"Beaches can be sponsored by companies or groups of companies. Logos would appear here. Company information, message or url in this message box."+ popOverClose,
+        placement:'top',
+        trigger:'click',
       });
       $('#helpx').popover({
-        container: 'body'
+        container: 'body',
+        title:"Participate?",
+        content:"Members or volunteer icon goes here. If you want to contribute take a look the site. We need front end developers, dev-ops would be good too. Math and stats people are alaways welcome. Dedicated individuals are what is needed." + popOverClose,
+        placement:'top',
+        trigger:'click',
       });
-  </script>
+</script>
+
+{% endblock %}
+{% block charts %}
+
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
