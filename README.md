@@ -5,7 +5,7 @@ The development of the analysis methods(math) and the visualisations happens in 
 
 ### I would like to propose a topic:
 
-You do not need to be a member to propose a topic, however we are here to add value to existing work. If you have a "topic of interest" but have not completed any research it is unlikeley that we will be able to help you. On the other hand if you have developed a topic and done the basic researh we may be interested if your subject is in the following categories:
+You do not need to be a member to propose a topic, however we are here to add value to existing work. If you have a "topic of interest" but have not completed any research it is unlikeley that we will be able to help you. On the other hand if you have developed a topic and done the basic research we may be interested if your subject is in the following categories:
 
 1. Water quality 
 2. Bio diversity - riparian/aquaitc habitats
