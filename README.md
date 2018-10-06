@@ -32,45 +32,30 @@ Write me an email that addresses the previous section, I will discuss with other
 
 ### I would like to help develop the platform
 
-We are always looking for people who want to contribute to the development of this platform. The issues tab is a good place to start. You can clone this repo and take a look at the [requirements.txt](requirements.txt).
+We are always looking for people who want to contribute to the development of this platform. The issues tab is a good place to start. 
 
-We use Anaconds for the virutal environment and pythonanywhere for the server.
+1) You can clone this repo and take a look at the [requirements.txt](requirements.txt) to set up an environment.
 
-### I would like to see a feature added
+Django is the ORM and MySQL is the database, Bootstrap 4 is the css framework. Once the envrionment is installed you will most likeley need to add the following:
 
+[Django REST framework](https://www.django-rest-framework.org/)
 
+[Django_admin_listfilter_dropdown](https://github.com/mrts/django-admin-list-filter-dropdown)
 
+2) Setup a MySQL data base on your local machine, you can use the current data to popuplate it you like, [go here](https://mwshovel.pythonanywhere.com/dirt/beach_litter.html) click the button "Get data in CSV format" there you can build the database so it fits the models.
 
+__The settings files are different in production and dev__ for those of you used to Django this is no suprise. Send me a request and I will be happy to help you build a settings file that works on your machine.
 
+#### I would like to help with visualisation and analysis
 
+To partiicpate in analysis and visualistation you will need to be familiar with:
 
-and 
+1. Python 3.6
+2. Pandas --- scipy et all
+3. MySQL
+4. Observable notebooks
+5. JavaScript
+6. Matehmatics and Statistics
 
-1. T
-2. You written a paper
+__Or__ you have a sincere desire to learn and you have a topic of interest __or__ You have expertise in the fields of chemistry, finance, biology(aquatic or micro), zoology, botany and you wnat to learn __or__ you are willing to trade 'work' to learn.
 
-
-
-#### This repository produces an application that queries a database, calculates various descriptive statistics and displays them using a variety of visualisations:
-1. Scatter plots
-2. Histograms
-3. Maps
-4. Box plots
-5. Tables
-
-Displayed in a browser, this will run independently in a virtual env on any computer. The site is curently live, you can see it here: [mwshovel module one](http://mwshovel.pythonanywhere.com/) .
-
-__This is a beta version:__ For me that means it works, but could be better. As the next two sections are completed, updates will also be made to the 'dirt' app.
-1. Data transformations will be abstracted further
-2. Better exception handling
-3. Automated cache
-4. Sample reports (probably one of two existing scripts)
-5. More efficient use of builtin methods
-6. Add an API
-
-This work is my own and I am sharing it with you. (but I wouldn't use it just yet)
-
-### Contributing
-All work contribtutions are well recieved, specifically:
-1. Frontend person -- stay with js/bootstrap just better
-2. Experienced stats person -- check method provide feedback
