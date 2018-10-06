@@ -1,10 +1,12 @@
-from django.conf.urls import url, include
-from django.views.decorators.cache import cache_page
-from django.urls import path, re_path
+from django.conf.urls import include
+# from django.views.decorators.cache import cache_page
+from django.urls import re_path
 from  dirt import views
+from django.views.generic import TemplateView
 from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
+    # re_path(r'^robots.txt$', TemplateView.as_view(template_name="dirt/robots.txt", content_type="text/plain"), name="robots_file"),
     re_path(r'^beach_litter.html', views.beach_litter, name='beach-litter-home'),
     re_path(r'^california.html', views.litter_california, name='california'),
     re_path(r'^code-shovel.html', views.code_shovel, name='python-lab'),

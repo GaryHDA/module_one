@@ -13,9 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.views.generic import TemplateView
+from django.conf.urls import include
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import re_path
 from  dirt import views
 # handler500 = 'dirt.views.handle_500'
 
@@ -23,6 +24,7 @@ urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^dirt/', include('dirt.urls')),
     re_path(r'^$', views.index, name='home'),
+    re_path(r'^robots.txt$', TemplateView.as_view(template_name="dirt/robots.txt", content_type="text/plain"), name="robots_file"),
     # re_path(r'^api-auth/', include('rest_framework.urls')),
 ]
 

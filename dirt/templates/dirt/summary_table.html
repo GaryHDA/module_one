@@ -16,18 +16,24 @@ button_top_ten_inventory_material.html
       <table id="summary-table" class="table table-sm table-striped text-left mb-0 embed-responsive-item"  style="">
         <tbody>
           <tr>
-            <td class="bg-white p-0 pt-1 border-0"><small><strong>Sponsor:</strong></small>
-              <div class="btn-group pl-1 bg-white" style="z-index:0">  {% for x in sponsors %}
+            <td colspan="2" class="bg-white p-0 pt-1 border-0">
+              <div class="btn-group pl-1 bg-white" style="z-index:0">
+                   <button id="" class="btn bg-white text-left"  style="min-width:72px"  href="#">
+                      <small><strong>Sponsor:</strong></small>
+                    </button> {% for x in sponsors %}
                 <button id="{{ x.0|slugify }}" class="btn p-0 popover " data-html='true'   href="#">
                   <img src={% static  x.1 %}  height="40" alt='django logo'>
                 </button>{% endfor %}
               <button id="help" style="height:40px" class="btn bg-primary btn-primary border border-primary popover text-white ml-1" data-html='true' href="#">
-              <strong><- What is that? </strong></button></div></td>
+              <strong><- What is that? </strong></button></div>
+              </td>
           </tr>
          <tr>
-            <td class="bg-white p-0 pt-1 border-0"><small><strong>Crew:</strong></small>
-              {% for b in crew %}
+            <td colspan="2" class="bg-white p-0 pt-1 border-0">
               <div class="btn-group pl-1 bg-white" style="z-index:0">
+                 <button id="" class="btn bg-white text-left"  style="min-width:72px"  href="#">
+                    <small><strong>Crew:</strong></small>
+                </button>{% for b in crew %}
                 <button id="{{ b.0|slugify }}" class="btn popover p-0 " data-html='true'  href="#">
                    <img src={% static  b.1 %}  height="40" alt='django logo'>
                 </button>{% endfor %}

@@ -40,8 +40,17 @@ daily_data.csv: csv with daily pieces/m figure for all loactions
             <div class="card">
               <div class="card-body">
                 <h6 class="card-title">Daily totals by MLW code</h6>
-                <p class="card-text">File that contains the daily values per MLW code per location. Includes code id, date, pcs/m, quantity, location, project id and beach length.</p>
+                <p class="card-text">Contains the daily values per code per location. Includes code, date, pcs/m, quantity, location, project id and beach length.</p>
                 <a href="{% static '/code_data.csv' %}" class="btn btn-primary">Get all code data</a>
+              </div>
+            </div>
+          </div>
+           <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title">MLW code definitions</h6>
+                <p class="card-text">File that contains the MLW code definition and material type for items identified.</p>
+                <a href="{% static '/newCriteria.csv' %}" class="btn btn-primary">Get code definitions</a>
               </div>
             </div>
           </div>

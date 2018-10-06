@@ -1,6 +1,7 @@
 {% extends "dirt/hd_base.html" %}
+
 {% load static %}
-{% block loader %}
+{% block templateComments %}
 <!-- The template for hammerdirt california
 Variables used:
 summary_table.html
@@ -20,6 +21,8 @@ dirt/combined_scatter.html
  div that centers it, they are both made
  inivisible when the map is finished loading
  -->
+{% endblock %}
+{% block loader %}
  <div id="loading2" class="cn">
    <!-- <div style:"width:100%;"><h4>maps...</h4></div> -->
    <div id="loading" class="spinner"><strong></strong></div>
@@ -30,18 +33,19 @@ dirt/combined_scatter.html
  <!-- Open Graph Data -->
  <meta property="og:title" content="Hammerdirt California" />
  <meta property="og:type" content="article" />
- <meta property="og:url" content="{% url 'california' %}" />
- <meta property="og:image" content= "{% static "images/garys_og_image.jpg" %}" />
+ <meta property="og:url" content="http://mwshovel.pythonanywhere.com/dirt/california.html" />
+ <meta property="og:image" content= "https://www.pythonanywhere.com/user/mwshovel/files/home/mwshovel/module_one/dirt/static/images/garys_og_image.jpg" />
  <meta property="og:image:width" content="720" />
  <meta property="og:image:height" content="540" />
  <meta property="og:description" content="Helping you create knowledge.  A research partner that specializes in the development of data products for and from crowd sourced research projects." />
- <meta property="og:site_name" content="MW-Shovel" />
+ <meta property="og:site_name" content="This is hammerdirt California" />
  {% endblock %}
 {% block style %}
 .col-sm{
   min-width:400px;
 }
 {% endblock %}
+
 {% block content  %}
 {% load humanize %}
 {% load static %}

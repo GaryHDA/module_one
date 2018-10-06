@@ -1,5 +1,6 @@
 {% extends "dirt/hd_base.html" %}
-{% block loader %}
+{% load static %}
+{% block templateComments %}
 <!--
 Variables called:
 this is a dynamic page with regular additions
@@ -10,10 +11,6 @@ This is the load spinner and the
 div that centers it, they are both made
 inivisible when the map is finished loading
 -->
-<!-- <div id="loading2" class="cn">
-  <div style:"width:100%;"><h4>maps...</h4></div>
-  <div id="loading" class="spinner"><strong></strong></div>
-</div> -->
 {% endblock %}
 {% block og_data %}
 {% load static %}
@@ -21,8 +18,8 @@ inivisible when the map is finished loading
 <!-- Open Graph Data -->
 <meta property="og:title" content="Hammerdirt Python/JS lab" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="{% url 'python-lab' %}" />
-<meta property="og:image" content= "{% static "images/code_shovel_og.png" %}" />
+<meta property="og:url" content="http://mwshovel.pythonanywhere.com/dirt/code-shovel.html" />
+<meta property="og:image" content= "https://www.pythonanywhere.com/user/mwshovel/files/home/mwshovel/module_one/dirt/static/images/code_shovel_og.png" />
 <meta property="og:image:width" content="1015" />
 <meta property="og:image:height" content="630" />
 <meta property="og:description" content="hammerdirt Python/JS lab: The hammerdirt notebook for creating data visualisations and formatting data for export. Posts every two to three weeks." />
@@ -33,6 +30,7 @@ inivisible when the map is finished loading
   min-width:400px;
 }
 {% endblock %}
+
 {% block content  %}
 {% load humanize %}
 {% load static %}

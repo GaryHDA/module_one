@@ -365,7 +365,7 @@ def litter_city(request, city):
     other_scatter = daily_pcs_m(item_data_exclude_locations(other_data, all_locations))
     total_scatter = [[c[0], c[1].strftime("%Y-%m-%d"), c[2]] for c in other_scatter]
     def see_that():
-        a = ''.join(["/dirt/litter/city","/",city,"/"])
+        a = ''.join(["http://mwshovel.pythonanywhere.com/dirt/litter/city","/",city,"/"])
         return a
     og_return_url = see_that()
 
@@ -416,7 +416,7 @@ def litter_water(request, lakeRiver):
     total_scatter = [[c[0], c[1].strftime("%Y-%m-%d"), c[2]] for c in other_scatter]
 
     def see_that():
-        a = ''.join(["/dirt/litter/lake-river","/",lakeRiver,"/"])
+        a = ''.join(["http://mwshovel.pythonanywhere.com/dirt/litter/lake-river","/",lakeRiver,"/"])
         return a
     og_return_url = see_that()
 
@@ -461,7 +461,7 @@ def litter_project(request, project):
     total_scatter = [[c[0], c[1].strftime("%Y-%m-%d"), c[2]] for c in other_scatter]
 
     def see_that():
-        a = ''.join(["/dirt/litter/project","/",project,"/"])
+        a = ''.join(["http://mwshovel.pythonanywhere.com/dirt/litter/project","/",project,"/"])
         return a
     og_return_url = see_that()
 
@@ -507,7 +507,7 @@ def litter_location(request, location):
     total_scatter = [[c[0], c[1].strftime("%Y-%m-%d"), c[2]] for c in other_scatter]
 
     def see_that():
-        a = ''.join(["/dirt/litter/location","/",location,"/"])
+        a = ''.join(["http://mwshovel.pythonanywhere.com/dirt/litter/location","/",location,"/"])
         return a
     og_return_url = see_that()
 

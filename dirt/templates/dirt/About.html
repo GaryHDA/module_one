@@ -1,27 +1,32 @@
 {% extends "dirt/hd_base.html" %}
+
+{% load static %}
+{% block templateComments %}
 <!--
 Variables called:
 -->
-{% block og_data %}
+
 <!--
 The load spinner and the
 div that centers it goes here, they are both made
 inivisible when the map is finished loading
 -->
+{% endblock %}
+{% block og_data %}
 {% load static %}
 <title>Hammerdirt - about</title>
 <!-- Open Graph Data -->
 <meta property="og:title" content="About hammerdirt" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="{% url 'beach-litter-home' %}" />
-<meta property="og:image" content= "{% static "images/weblogo.jpg" %}" />
+<meta property="og:url" content="http://mwshovel.pythonanywhere.com/dirt/About.html" />
+<meta property="og:image" content= "https://www.pythonanywhere.com/user/mwshovel/files/home/mwshovel/module_one/dirt/static/images/weblogo.jpg"  />
 <meta property="og:image:width" content="400" />
 <meta property="og:image:height" content="246" />
 <meta property="og:description" content="About hammerdirt: what we do, why we do it and how this got started." />
 <meta property="og:site_name" content="About hammerdirtt" />
 {% endblock %}
-{% block style %}
-{% endblock %}
+
+
 {% block content  %}
 {% load humanize %}
 {% load static %}

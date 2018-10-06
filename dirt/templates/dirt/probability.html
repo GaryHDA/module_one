@@ -1,5 +1,7 @@
 {% extends "dirt/hd_base.html" %}
-{% block loader %}
+
+{% load static %}
+{% block templateComments %}
 <!--
 Variables called:
 this is a dynamic page with regular additions
@@ -10,23 +12,18 @@ This is the load spinner and the
 div that centers it, they are both made
 inivisible when the map is finished loading
 -->
-<!-- <div id="loading2" class="cn">
-  <div style:"width:100%;"><h4>maps...</h4></div>
-  <div id="loading" class="spinner"><strong></strong></div>
-</div> -->
 {% endblock %}
 {% block og_data %}
-
 {% load static %}
 <title>Hammerdirt Probability</title>
 <!-- Open Graph Data -->
 <meta property="og:title" content="hammerdirt" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="{% url 'probability-lab' %}" />
-<meta property="og:image" content= "{% static "images/weblogo.jpg" %}" />
+<meta property="og:url" content="http://mwshovel.pythonanywhere.com/dirt/probability.html" />
+<meta property="og:image" content= "https://www.pythonanywhere.com/user/mwshovel/files/home/mwshovel/module_one/dirt/static/images/weblogo.jpg" />
 <meta property="og:image:width" content="400" />
 <meta property="og:image:height" content="246" />
-<meta property="og:description" content="hammerdirt Python/JS lab: The hammerdirt notebook for understanding the math behind data analyis creating using data visualisations this notebokk follows the Python lab very closely. Posts every two to three weeks." />
+<meta property="og:description" content="hammerdirt probability lab: The hammerdirt notebook for understanding the math behind data analyis creating using data visualisations this notebokk follows the Python lab very closely. Posts every two to three weeks." />
 <meta property="og:site_name" content="Hammerdirt Probability lab" />
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
 {% endblock %}
@@ -35,6 +32,7 @@ inivisible when the map is finished loading
   min-width:400px;
 }
 {% endblock %}
+
 {% block content  %}
 {% load humanize %}
 {% load static %}
