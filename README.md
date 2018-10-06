@@ -32,7 +32,13 @@ Write me an email that addresses the previous section, I will discuss with other
 
 ### I would like to help develop the platform
 
-We are always looking for people who want to contribute to the development of this platform. The issues tab is a good place to start. You can clone this repo and take a look at the requirements.txt
+We are always looking for people who want to contribute to the development of this platform. The issues tab is a good place to start. You can clone this repo and take a look at the [requirements.txt](requirements.txt).
+
+We use Anaconds for the virutal environment and pythonanywhere for the server.
+
+### I would like to see a feature added
+
+
 
 
 
