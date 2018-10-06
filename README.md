@@ -54,8 +54,11 @@ To partiicpate in analysis and visualistation you will need to be familiar with:
 2. Pandas --- scipy et all
 3. MySQL
 4. Observable notebooks
-5. JavaScript
-6. Matehmatics and Statistics
+5. Jupyter notebooks
+6. JavaScript
+7. Matehmatics and Statistics
 
-__Or__ you have a sincere desire to learn and you have a topic of interest __or__ You have expertise in the fields of chemistry, finance, biology(aquatic or micro), zoology, botany and you wnat to learn __or__ you are willing to trade 'work' to learn.
+__Or__ you have a sincere desire to learn and you have a topic of interest __or__ You have expertise in the fields of __chemistry, finance, biology(aquatic or micro), zoology, botany, mathematics__ and you want to learn __or__ you are willing to trade 'work' to learn.
+
+
 
