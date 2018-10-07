@@ -16,15 +16,14 @@ dirt/data_search.html
 dirt/survey_map.html
 dirt/combined_scatter.html
  -->
- <!--
+{% endblock %}
+{% block loader %}
+<!--
  This is the load spinner and the
  div that centers it, they are both made
  inivisible when the map is finished loading
  -->
-{% endblock %}
-{% block loader %}
  <div id="loading2" class="cn">
-   <!-- <div style:"width:100%;"><h4>maps...</h4></div> -->
    <div id="loading" class="spinner"><strong></strong></div>
  </div>
  {% endblock %}
@@ -102,27 +101,8 @@ the sponsor and participant icons in the data summary
       });
 </script>
 {% endfor %}
-<!--  <script type="text/javascript">-->
-<!--     $('#help').popover({-->
-<!--        container: 'body',-->
-<!--        title:"Sponsor a beach?",-->
-<!--        content:"Beaches can be sponsored by companies or groups of companies. Logos would appear here. Company information, message or url in this message box."+ popOverClose,-->
-<!--        placement:'top',-->
-<!--        trigger:'click',-->
-<!--      });-->
-<!--      $('#helpx').popover({-->
-<!--        container: 'body',-->
-<!--        title:"Participate?",-->
-<!--        content:"Members or volunteer icon goes here. If you want to contribute take a look the site. We need front end developers, dev-ops would be good too. Math and stats people are alaways welcome. Dedicated individuals are what is needed." + popOverClose,-->
-<!--        placement:'top',-->
-<!--        trigger:'click',-->
-<!--      });-->
-<!--</script>-->
-
 {% endblock %}
 {% block charts %}
-
-
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
