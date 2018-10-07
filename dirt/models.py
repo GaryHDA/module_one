@@ -121,7 +121,7 @@ class AllData(models.Model):
         return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location.location, self.length, self.quantity, self.code  )
 
 class HDC_Data(models.Model):
-     """
+    """
     The survey results by item code for surveys in California. The base unit for surveys
     """
     location = models.ForeignKey(HDC_Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)
