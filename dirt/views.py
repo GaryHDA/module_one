@@ -29,17 +29,17 @@ def location_filter(q,l):
     return q.filter(location=l)
 def project_filter(q,p):
     """
-    Returns all the data for a project in the ItemData db.
+    Returns all the data for a project in the AllData model.
     """
     return q.filter(location__project=p)
 def water_filter(q,w):
     """
-    Returns all the data for a body of water in the ItemData db.
+    Returns all the data for a body of water in the AllData model.
     """
     return q.filter(location__water_name=w)
 def city_filter(q,c):
     """
-    Returns all the data for a body of water in the ItemData db.
+    Returns all the data for a body of water in the AllData modela db.
     """
     return q.filter(location__city=c)
 def city_list(q):
@@ -75,7 +75,7 @@ def list_of_rivers(q):
 def water_body_dict(q):
     """
     Returns a dicitionary {lake or river name: [list of locations on lake or river]}
-    Takes a query and a list of river or lake names
+    Accepts a querry from the AllData model
     """
     b = list(q.values('location__water_name', 'location').distinct())
     c = {s['location__water_name']:[] for s in b}
@@ -112,7 +112,7 @@ def pcs_m_tup(a,l):
 def beaches_in_a_region(a,l):
     """
     Returns the name, number of samples and avg pcs/m for locations
-    in query. C is equal to a list of location names,
+    in query. a id pcs/m tup and l is equal to a list of location names,
     """
     b = {x:[] for x in l}
     for y in a:
@@ -124,7 +124,6 @@ def map_info(l,t,q):
     Returns lat, on, city and project name from the Beaches tables
     accepts a list of location names and list of tuples from beaches in a region
     """
-    # a = Beaches.objects.all()
     b = q.filter(location__in=l)
     c = b.values_list('location','latitude', 'longitude', 'city', 'project')
     d = {x[0]:(x[1],x[2], x[3],x[4]) for x in c}
@@ -190,21 +189,18 @@ def twenty_fith(t):
     Returns the 25th percentile from an array
     Accepts a tuple where the array is in the [1] position
     """
-    #a = np.array(t[1])
     return np.percentile(t[1], 25)
 def seventy_fifth(t):
     """
     Returns the 75th percentile from an array
     Accepts a tuple where the array is in the [1] position
     """
-    # a = np.array(t[1])
     return np.percentile(t[1], 75)
 def standard_dev(t):
     """
     Returns the standard deviation from an array
     Accepts a tuple where the array is in the [1] position
     """
-    # a = np.array(t[1])
     return np.std(t[1])
 def number_of_locations_region(q):
     """
