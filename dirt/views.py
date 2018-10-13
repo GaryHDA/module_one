@@ -574,7 +574,7 @@ def index(request):
         return d
     latest_sample = last_litter_activity()
     def see_that():
-        a = ''.join(["http://127.0.0.1:8000/dirt/litter/location","/",latest_sample[0][0],"/"])
+        a = ''.join(["https://mwshovel.pythonanywhere.com/dirt/litter/location","/",latest_sample[0][0],"/"])
         return a
     see_latest = see_that()
     print(latest_sample[0][0])
