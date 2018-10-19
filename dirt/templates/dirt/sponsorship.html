@@ -19,14 +19,14 @@ inivisible when the map is finished loading
 {% load static %}
 <title>Sponsor a beach</title>
 <!-- Open Graph Data -->
-<meta property="og:title" content="hammerdirt" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://mwshovel.pythonanywhere.com/dirt/sponsorship.html" />
-<meta property="og:image" content= "https://www.pythonanywhere.com/user/mwshovel/files/home/mwshovel/module_one/dirt/static/images/sponsor_og.jpeg"  />
+<meta name="title" property="og:title" content="Just sponsor a beach" />
+<meta name="type" property="og:type" content="article" />
+<meta name="url" property="og:url" content="http://mwshovel.pythonanywhere.com/dirt/sponsorship.html" />
+<meta name="image" property="og:image" content= "{% static 'images/sponsor_og.jpg' %}" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="800" />
-<meta property="og:description" content="Help stop the flow of trash into the ocean, beach-litter inventories supply valuable data to other NGOs, government officials and the public. If you want to know what is floating in your water sponsor a beach clean with hammerdirt." />
-<meta property="og:site_name" content="Sponosr a beach" />
+<meta name="description" property="og:description" content="Help stop the flow of trash into the ocean, beach-litter inventories supply valuable data to other NGOs, government officials and the public. If you want to know what is floating in your water sponsor a beach clean with hammerdirt." />
+<meta property="og:site_name" content="Sponsor a beach" />
 {% endblock %}
 {% block style %}
 .col-sm{

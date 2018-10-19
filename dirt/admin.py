@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Beaches, Codes, AllData, References, Finance, SLR_Beaches, SLR_Data, Projects, HDC_Beaches, HDC_Data
+from .models import Beaches, Codes, AllData, References, Finance, Projects, HDC_Beaches, HDC_Data
 import dirt.forms
-import dirt.models as models
+#import dirt.models as models
 from django_admin_listfilter_dropdown.filters import DropdownFilter, RelatedDropdownFilter
 from django.contrib.auth.models import User
 
@@ -56,7 +56,7 @@ class AllDataAdmin(admin.ModelAdmin):
         return obj.location.location
 
     def save_model(self, request, obj, form, change):
-        object.owner = request.user
+        obj.owner = request.user
         super().save_model(request, obj, form, change)
 
 admin.site.register(AllData, AllDataAdmin)

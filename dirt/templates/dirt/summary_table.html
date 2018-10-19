@@ -24,8 +24,9 @@ button_top_ten_inventory_material.html
                 <button id="{{ x.0|slugify }}" class="btn p-0 popover " data-html='true'   href="#">
                   <img src={% static  x.1 %}  height="40" alt='django logo'>
                 </button>{% endfor %}
-              <button id="help" style="height:40px" class="btn bg-primary btn-primary border border-primary popover text-white ml-1" data-html='true' href="#">
-              <strong><- What is that? </strong></button></div>
+              <!--<button id="help" style="height:40px" class="btn bg-primary btn-primary border border-primary popover text-white ml-1" data-html='true' href="#">-->
+              <!--<strong><- What is that? </strong></button>-->
+              </div>
               </td>
           </tr>
          <tr>
@@ -35,11 +36,11 @@ button_top_ten_inventory_material.html
                     <small><strong>Crew:</strong></small>
                 </button>{% for b in crew %}
                 <button id="{{ b.0|slugify }}" class="btn popover p-0 " data-html='true'  href="#">
-                   <img src={% static  b.1 %}  height="40" alt='django logo'>
+                   <img src={% static  b.1 %}  height="36" alt='django logo'>
                 </button>{% endfor %}
-                <button id="helpx" type="button" style="height:40px" class="btn bg-primary btn-primary border border-primary popover text-white ml-1" data-html='true'  href="#">
-                  <strong><- What is that? </strong>
-                </button>
+                <!--<button id="helpx" type="button" style="height:40px" class="btn bg-primary btn-primary border border-primary popover text-white ml-1" data-html='true'  href="#">-->
+                <!--  <strong><- What is that? </strong>-->
+                <!--</button>-->
               </div>
             </td>
           </tr>

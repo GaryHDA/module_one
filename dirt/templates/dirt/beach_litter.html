@@ -31,13 +31,7 @@ probability_scatter.html
 probability_dist.html
 
 -->
-<!--
-This is the load spinner and the
-div that centers it, they are both made
-inivisible when the map is finished loading
--->
 {% endblock %}
-
 {% block og_data %}
 {% load static %}
 <title>Beach litter</title>
@@ -45,24 +39,24 @@ inivisible when the map is finished loading
 <meta property="og:title" content="hammerdirt" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://mwshovel.pythonanywhere.com/dirt/beach_litter.html" />
-<meta property="og:image" content= "https://www.pythonanywhere.com/user/mwshovel/files/home/mwshovel/module_one/dirt/static/images/index_og_image.jpg" />
+<meta property="og:image" content= "{% static 'images/index_og_image.jpg' %}" />
 <meta property="og:image:width" content="1100" />
 <meta property="og:image:height" content="680" />
 <meta property="og:description" content="hammerdirt, math, trash and water.  Answering that burning question: 'What is the probability of garbage ?'.  Beach litter data for freshwater systems in Switzerland and California. Maps, graphs summary data and analysis for each location in the data-base." />
 <meta property="og:site_name" content="Beach litter home" />
 {% endblock %}
-
 {% block style %}{% endblock %}
 {% block loader %}
+<!--
+This is the load spinner and the
+div that centers it, they are both made
+inivisible when the map is finished loading
+-->
 <div id="loading2" class="cn">
-  <!-- <div style:"width:100%;"><h4>maps...</h4></div> -->
   <div id="loading" class="spinner"><strong></strong></div>
 </div>
 {% endblock %}
-
-{% block content  %}
-{% load humanize %}
-{% load static %}
+{% block content  %}{% load humanize %}{% load static %}
 <div id="" class="container-fluid p-0 m-0" style="width:100%; ">
   <div class="row no-gutters" id="" style="">
     <div class="col-sm" id="" style="min-width:400px;">
@@ -105,8 +99,6 @@ inivisible when the map is finished loading
   {% include 'dirt/probability_modal.html' %}
   {% include 'dirt/swiss_lakes_modal.html' %}
   {% include 'dirt/open_acces_modal.html' %}
-
-
 {% endblock %}
 {% block buttons %}
 <!--
@@ -120,7 +112,7 @@ the sponsor and participant icons in the data summary
 <script type="text/javascript">
   $('#{{ x.0|slugify }}').popover({
       container: 'body',
-      title:"Not a real Sponsor",
+      title:"<a href='{{ x.2 }}'> {{ x.0 }}</a>",
       content:'{{ x.3 }}'+ popOverClose,
       placement:'top',
       trigger:'click',
@@ -131,33 +123,15 @@ the sponsor and participant icons in the data summary
 <script type="text/javascript">
   $('#{{ x.0|slugify }}').popover({
       container: 'body',
-      title:"Terry Pratchet Quote:",
+      title:"<a href='{{ x.2 }}'> {{ x.0 }}</a>",
       content:'{{ x.3 }}'+ popOverClose,
       placement:'top',
       trigger:'click',
       });
 </script>
 {% endfor %}
-  <script type="text/javascript">
-     $('#help').popover({
-        container: 'body',
-        title:"Sponsor a beach?",
-        content:"Beaches can be sponsored by companies or groups of companies. Logos would appear here. Company information, message or url in this message box."+ popOverClose,
-        placement:'top',
-        trigger:'click',
-      });
-      $('#helpx').popover({
-        container: 'body',
-        title:"Participate?",
-        content:"Members or volunteer icon goes here. If you want to contribute take a look the site. We need front end developers, dev-ops would be good too. Math and stats people are alaways welcome. Dedicated individuals are what is needed." + popOverClose,
-        placement:'top',
-        trigger:'click',
-      });
-</script>
 {% endblock %}
-
 {% block charts %}
-
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
@@ -166,5 +140,4 @@ the sponsor and participant icons in the data summary
 {% include 'dirt/combined_scatter.html' %}
 {% include 'dirt/probability_scatter.html' %}
 {% include 'dirt/probability_dist.html' %}
-
 {% endblock %}

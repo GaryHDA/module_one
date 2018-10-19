@@ -16,25 +16,24 @@ dirt/data_search.html
 dirt/survey_map.html
 dirt/combined_scatter.html
  -->
- <!--
+{% endblock %}
+{% block loader %}
+<!--
  This is the load spinner and the
  div that centers it, they are both made
  inivisible when the map is finished loading
  -->
-{% endblock %}
-{% block loader %}
  <div id="loading2" class="cn">
-   <!-- <div style:"width:100%;"><h4>maps...</h4></div> -->
    <div id="loading" class="spinner"><strong></strong></div>
  </div>
  {% endblock %}
  {% block og_data %}
  <title>H-dirt California</title>
  <!-- Open Graph Data -->
- <meta property="og:title" content="Hammerdirt California" />
+ <meta property="og:title" content="This is hammerdirt California" />
  <meta property="og:type" content="article" />
  <meta property="og:url" content="http://mwshovel.pythonanywhere.com/dirt/california.html" />
- <meta property="og:image" content= "https://www.pythonanywhere.com/user/mwshovel/files/home/mwshovel/module_one/dirt/static/images/garys_og_image.jpg" />
+ <meta property="og:image" content= "{% static 'images/garys_og_image.jpg' %}" />
  <meta property="og:image:width" content="720" />
  <meta property="og:image:height" content="540" />
  <meta property="og:description" content="Helping you create knowledge.  A research partner that specializes in the development of data products for and from crowd sourced research projects." />
@@ -84,7 +83,7 @@ the sponsor and participant icons in the data summary
 <script type="text/javascript">
   $('#{{ x.0|slugify }}').popover({
       container: 'body',
-      title:"Not a real Sponsor",
+      title:"<a href='{{ x.2 }}'> {{ x.0 }}</a>",
       content:'{{ x.3 }}'+ popOverClose,
       placement:'top',
       trigger:'click',
@@ -95,34 +94,15 @@ the sponsor and participant icons in the data summary
 <script type="text/javascript">
   $('#{{ x.0|slugify }}').popover({
       container: 'body',
-      title:'{{ x.0 }}',
+      title:"<a href='{{ x.2 }}'> {{ x.0 }}</a>",
       content:'{{ x.3 }}'+ popOverClose,
       placement:'top',
       trigger:'click',
       });
 </script>
 {% endfor %}
-  <script type="text/javascript">
-     $('#help').popover({
-        container: 'body',
-        title:"Sponsor a beach?",
-        content:"Beaches can be sponsored by companies or groups of companies. Logos would appear here. Company information, message or url in this message box."+ popOverClose,
-        placement:'top',
-        trigger:'click',
-      });
-      $('#helpx').popover({
-        container: 'body',
-        title:"Participate?",
-        content:"Members or volunteer icon goes here. If you want to contribute take a look the site. We need front end developers, dev-ops would be good too. Math and stats people are alaways welcome. Dedicated individuals are what is needed." + popOverClose,
-        placement:'top',
-        trigger:'click',
-      });
-</script>
-
 {% endblock %}
 {% block charts %}
-
-
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>

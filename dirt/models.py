@@ -36,7 +36,7 @@ class Projects(models.Model):
         verbose_name_plural = 'Projects'
 class Beaches(models.Model):
     """
-    Beach names and gps data, Beaches.beachList() returns a list of just beach names.
+    Beach names and gps data.
     """
     location = models.CharField(db_column='location', max_length=100, primary_key=True, blank=False, null=False,  default='location required')
     latitude = models.DecimalField(db_column='latitude', max_digits=11, decimal_places=8, blank=False, null=False,  default=111.11111)
@@ -58,7 +58,7 @@ class Beaches(models.Model):
         verbose_name_plural = 'Beaches-Europe'
 class HDC_Beaches(models.Model):
     """
-    Beach names for hd california and gps data, Beaches.beachList() returns a list of just beach names.
+    Beach names for hd california and gps data.
     """
     location = models.CharField(db_column='location', max_length=100, primary_key=True, blank=False, null=False,  default='location required')
     latitude = models.DecimalField(db_column='latitude', max_digits=11, decimal_places=8, blank=False, null=False,  default=111.11111)
@@ -81,9 +81,7 @@ class HDC_Beaches(models.Model):
 
 class Codes(models.Model):
     """
-    MLW codes and decriptions, Codes.materials() gives a list of the materials,
-    Codes.describe() gives a list of the items characeterized by the MLW code,
-    Codes.sources() gives a list of the sources as defined for this study.
+    MLW codes and decriptions
     """
     code = models.CharField(db_column='code', max_length=5, primary_key=True, blank=False, null=False, default='Code')
     material = models.CharField(db_column='material', max_length=30, blank=False, null=False, default='An MLW material type')
@@ -103,6 +101,9 @@ class Codes(models.Model):
         verbose_name_plural = 'MLW codes'
 
 class AllData(models.Model):
+    """
+    The survey results by item code for surveys in Switzerland. The base unit for surveys
+    """
     location = models.ForeignKey(Beaches, db_column='location',null=True, on_delete=models.DO_NOTHING)
     date = models.DateField(db_column='date', blank=False, null=False, default=datetime.date.today )
     length = models.IntegerField(db_column='length', blank=False, null=False, default=1)
@@ -120,6 +121,9 @@ class AllData(models.Model):
         return u"date:%s, source:%s, location:%s, length:%s, quantity:%s, code:%s, " %(self.date, self.code.source, self.location.location, self.length, self.quantity, self.code  )
 
 class HDC_Data(models.Model):
+    """
+    The survey results by item code for surveys in California. The base unit for surveys
+    """
     location = models.ForeignKey(HDC_Beaches, db_column='location', null=True, on_delete=models.DO_NOTHING)
     date = models.DateField(db_column='date', blank=False, null=False, default=datetime.date.today )
     length = models.IntegerField(db_column='length', blank=False, null=False, default=1)
@@ -167,6 +171,9 @@ PAID = (
 )
 
 class Finance(models.Model):
+    """
+    The interim finance model
+    """
     date = models.DateField(db_column='date', blank=False, null=False, default=datetime.date.today)
     entry = models.CharField(db_column='type', max_length=30, blank=False, null=False, choices=ENTRY_CHOICES)
     origin = models.CharField(db_column='source', max_length=30, blank=False, null=False, choices=FINANCE_CHOICES)
@@ -210,6 +217,9 @@ SUBJECT_CHOICES = (
 )
 
 class References(models.Model):
+    """
+    The library or reading list for hammerdirt projects
+    """
     title = models.CharField(db_column='title', max_length=240, blank=False, null=False, default='Titles are required')
     author = models.CharField(db_column='author', max_length=120, blank=False, null=False, default='Authors deserve credit')
     abstract = models.CharField(db_column='abstract', max_length=300,  blank=False, null=False, default='What is this about')
@@ -230,9 +240,13 @@ PLATFORM_CHOICES = (
     ('SO', 'Stack Overflow'),
     ('SE-M', 'StackExchange Math'),
     ('M', 'Medium'),
+    ('O', 'Observable'),
     )
 
 class PlatformActivity(models.Model):
+    """
+    Platforms that hammerdirt posts to
+    """
     platform = models.CharField(db_column='platform', max_length=30, choices=PLATFORM_CHOICES)
     subject = models.CharField(db_column='subject', max_length=30, choices=SUBJECT_CHOICES)
     comments = models.CharField(db_column='comments', max_length=240, blank=False, null=False, default='What is this about')
@@ -250,6 +264,9 @@ class PlatformActivity(models.Model):
         verbose_name_plural = 'Recent posts'
 
 class LastCommit(models.Model):
+    """
+    Git hub data
+    """
     repo = models.CharField(db_column='repo', max_length=240, blank=False, null=False, default='Name of the repository')
     comments = models.CharField(db_column='comments', max_length=240, blank=False, null=False, default='What is this about')
     date = models.DateField(db_column='date', blank=False, null=False, default=datetime.date.today)
@@ -281,6 +298,9 @@ STAFF = (
 
 
 class Sponsors(models.Model):
+    """
+    Table that holds sponsor and participant data, one to may relationship with beach models
+    """
     sponsor = models.CharField(db_column='sponsor', max_length=120, blank=False, null=False, primary_key=True)
     is_staff = models.CharField(db_column='is_staff', max_length=14, choices=STAFF)
     sponsor_url = models.URLField(db_column='url', blank=True, null=True)
@@ -299,7 +319,7 @@ class Sponsors(models.Model):
     def __str__(self):
         return u"sponsor:%s, url:%s, icon:%s, message:%s" %(self.sponsor, self.sponsor_url, self.sponsor_icon_name, self.message,)
 
-# The modles below are not managed by the ORM, this data is static. The data tables exist.
+# The models below are not managed by the ORM, this data is static. The data tables exist.
 # the contentst of SLR_Data and SLR_Beaches has been folded into AllData and Beaches.
 class SLR_Beaches(models.Model):
     """
