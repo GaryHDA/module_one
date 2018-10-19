@@ -425,7 +425,7 @@ def litter_water(request, lakeRiver):
     'sponsors':sponsors, 'crew':crew, 'search_city': search_city, 'search_water':search_water,'search_project':search_project, 'search_location':search_location})
 def litter_project(request, project):
 
-    if project in ['MCBP', 'SLR', 'PC', 'MWP']:
+    if project in ['MCBP', 'SLR', 'PC', 'MWP', 'tiger-duck']:
         a = project_filter(item_data(), project)
         all_locations = location_list(a)
         other_data = item_data()
