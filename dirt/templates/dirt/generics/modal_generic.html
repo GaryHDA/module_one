@@ -1,22 +1,33 @@
-
 <!--
 Variables called:
-none
-
+reading_list
 -->
 <div class="modal fade" id="stoplights">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header bg-info text-white">
-        <h5 class="modal-title">The stoplights poster<br>
-          <small class="text-white">Done with Pandas and Matplotlib</small>
+        <h5 class="modal-title">The reading list<br>
+          <small class="text-white">References essential to understanding beach-litter<b>
+          Includes programing and math references used for this app and the models presented</small>
         </h5>
         <button type="button" class="close align text-white" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <img src="{% static 'images/stopLightsFinished600.jpg' %}" class="max-width:70%; height:80%">
+        <dl class="row">
+          <dt class="col-sm-3" style="color:DodgerBlue;"><h6>Lakes:</h6></dt>
+          <dd class="col-sm-9" style="color:DodgerBlue"><h6>List of survey locations:</h6></dd>
+        </dl>
+        <dl class="row">
+          {% for s, t in reading_list.items  %}
+          <dt class="col-sm-4">{{ subject_keys.s }}</dt>
+          <dd class="col-sm-4">{{ t[0] }} </dd>
+          <dd class="col-sm-4">{{ t[1] }} </dd>
+          <dd class="col-sm-8">{{ t[2] }} </dd>
+
+          {% endfor %}
+        </dl>
       </div>
       <div class="modal-footer bg-info">
         <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">

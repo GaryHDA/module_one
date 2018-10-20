@@ -6,7 +6,7 @@ from django.http import Http404
 from django.conf import settings
 
 # model imports from
-from dirt.models import AllData, Beaches, HDC_Beaches, HDC_Data, PlatformActivity, References, Sponsors, LastCommit
+from dirt.models import AllData, Beaches, HDC_Beaches, HDC_Data, PlatformActivity, References, Sponsors, LastCommit, SUBJECT_CHOICES
 
 # python imports
 from statistics import mean
@@ -273,10 +273,26 @@ def lists_for_search_button(q):
     c = project_list(q)
     d = location_list(q)
     return a, b, c, d
+def library_list():
+    """
+    Returns the data from the references model.
+    Returns a dict of subjects {'abreviation':'subject'} from SUBJECT_CHOICES
+    Creates a dict grouped by subjecet {'subject'[[title, author, abstract]....[title, author, abstract]]}
+    """
+    a = References.objects.all().values_list('title', 'author', 'abstract', 'subject')
+    b = SUBJECT_CHOICES
+    c = {x[0]:x[1] for x in b}
+    def makeDict():
+        d = {c[x[3]]:[] for x in a}
+        for x in a:
+            if c[x[3]] in list(d.keys()):
+                d[c[x[3]]].append([x[0],x[1],x[2]])
+        return d
+
+    return c, makeDict()
 # These are views for the app they use the functions above
 def beach_litter(request):
     a = item_data()
-
     # fills the modal lake/river locations
     lake_locations = water_body_dict(a.filter(location__water = 'l'))
     river_locations = water_body_dict(a.filter(location__water = 'r'))
@@ -301,6 +317,8 @@ def beach_litter(request):
     # computing the scatter plots and distributions for the probability of garbage
     # this limits the locations to lac leman
     lac_leman = Beaches.objects.filter(water_name='Lac-Léman')
+    # reading list out put for library modal
+    subject_keys, reading_list = library_list()
     # these gets the values from scatter_plot limits them to locations on lac Leman
     # and seperates them by year
 
@@ -326,7 +344,8 @@ def beach_litter(request):
     'inventory':inventory,  'material_percents':material_percents,'code_top_ten':code_top_ten,'locations_samples':locations_samples,
     'all_locations':all_locations, 'scatter_plot':scatter_plot,'combined_map':combined_map, 'year_one':year_one, 'year_two':year_two,
     'year_three':year_three, 'dist_y_one':dist_y_one, 'dist_y_two':dist_y_two, 'y_one_s':y_one_s, 'y_two_s':y_two_s,  'sponsors':sponsors,
-    'crew':crew, 'search_city': search_city, 'search_water':search_water, 'search_project':search_project, 'search_location':search_location})
+    'crew':crew, 'search_city': search_city, 'search_water':search_water, 'search_project':search_project, 'search_location':search_location,
+    'reading_list':reading_list, 'subject_keys':subject_keys})
 def litter_city(request, city):
 
     x = city_list(item_data())
@@ -605,6 +624,7 @@ def sponsor_program(request):
 
 
 # imports specific to the API
+# These should be up on top, but the API is a seperate App so we will keep it separate
 from django.http import HttpResponse, JsonResponse
 from rest_framework.response import Response
 from dirt.serializers import SummarySerializer, MakeJson, AllDataSerial, BeachSerial, AllDataCreate, CitySerializer, AllDataSerial, BeachCreate, DailyTotalSerial, DailyLogSerial, HdcDataCreate, HdcBeachCreate
