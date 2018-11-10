@@ -171,9 +171,10 @@ function initMap() {
     google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
       this.setZoom(map.getZoom()-5);
       if (this.getZoom() < 9) {
-        this.setZoom(9);
+        this.setZoom(7);
       }
     });
+
     map.fitBounds(bounds);
     //this function listens for the event "tiles loaded" and then hides the spiiner and center div
     var div_hide = google.maps.event.addListenerOnce(map,'tilesloaded', function () {
