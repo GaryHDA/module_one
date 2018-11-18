@@ -98,7 +98,7 @@
           <h4 class="" style="font-family:'Fredoka One', cursive;">Recent activity:</h4>
       </div>
       <div class="p-2 pb-0 mt-3 mr-2 mb-2 text-left float-right bg-light"  style="width:98%">
-          <p style="font-family:'Montserrat'"><strong>Latest commit: </strong><small>
+          <p style="font-family:'Montserrat'"><strong>Latest commit: &nbsp;<text id="date"></text> </strong><small>
             <br><strong>Repo:&nbsp; <text id="repo"></text>, Owner:&nbsp; <text id="who"></text></strong><br><strong>Comments: &nbsp;<text id="notes"></text></strong>
             <br><a id="urL" href=""><strong>check it</strong></a></small></p>
         </div>
@@ -147,7 +147,9 @@ this makes it visible right away when index is called
           console.log(data[0]);
           // var b = data[0]['actor']['login'][0];
           var b = data[0]['repo']['name'];
-          var c = [["repo", b], ["who", a.author.name], ["notes", a.message]];
+          var d = data[0]['created_at'];
+          var dateS = d.slice(0,10);
+          var c = [["date", dateS], ["repo", b], ["who", a.author.name], ["notes", a.message]];
           c.forEach(function(element){
             d = document.getElementById(element[0]);
             e = document.createTextNode(element[1]);

@@ -328,8 +328,10 @@ def beach_litter(request):
     # these make the distributions for the distribution plot
     dist_y_one = log_dist(year_one)
     dist_y_two = log_dist(year_two)
+    dist_y_three = log_dist(year_three)
     y_one_s = len(dist_y_one)
     y_two_s = len(dist_y_two)
+    y_three_s = len(dist_y_three)
 
     # this gets the og_data for the header and participant data
     def og_data(l):
@@ -343,7 +345,7 @@ def beach_litter(request):
     return render(request, 'dirt/beach_litter.html',  {'lake_locations':lake_locations, 'summary':summary,'river_locations':river_locations,
     'inventory':inventory,  'material_percents':material_percents,'code_top_ten':code_top_ten,'locations_samples':locations_samples,
     'all_locations':all_locations, 'scatter_plot':scatter_plot,'combined_map':combined_map, 'year_one':year_one, 'year_two':year_two,
-    'year_three':year_three, 'dist_y_one':dist_y_one, 'dist_y_two':dist_y_two, 'y_one_s':y_one_s, 'y_two_s':y_two_s,  'sponsors':sponsors,
+    'year_three':year_three, 'dist_y_one':dist_y_one, 'dist_y_two':dist_y_two, 'dist_y_three':dist_y_three, 'y_one_s':y_one_s, 'y_two_s':y_two_s, 'y_three_s':y_three_s,  'sponsors':sponsors,
     'crew':crew, 'search_city': search_city, 'search_water':search_water, 'search_project':search_project, 'search_location':search_location,
     'reading_list':reading_list, 'subject_keys':subject_keys})
 def litter_city(request, city):
