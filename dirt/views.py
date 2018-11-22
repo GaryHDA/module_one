@@ -611,7 +611,7 @@ def index(request):
 
 
     return render(request, 'dirt/index.html',{'latest_sample':latest_sample, "see_latest":see_latest, 'last_post':last_post(),
-                  'last_read':last_read(), 'last_commit':last_commit()})
+                  'last_read':last_read(), })
 def code_shovel(request):
     return render(request, 'dirt/code-shovel.html')
 def probability_view(request):
