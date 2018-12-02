@@ -1,0 +1,40 @@
+<!--
+Variables called:
+reading_list
+-->
+<div class="modal fade" id="reading">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title">The reading list<br>
+          <small class="text-white">References essential to understanding beach-litter<br>
+          Includes programing and math references used for this app and the models presented<br>
+          This list grows as the app grows --- got a suggestion ?</small>
+        </h5>
+        <button type="button" class="close align text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="list-group border-right-0 border-left-0 ">
+            {% for s, t in reading_list.items  %}
+          <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+            <h4 class="mb-1" style="font-family:'Montserrat'"> {{ s }}</h4>
+          </div>
+          {% for u in t %}
+          <div class="list-group-item flex-column align-items-start border-right-0 border-left-0">
+              <h6 class="mb-1" style="font-family:'Montserrat'"> {{ u.0 }}
+                <br><small class="text-muted">Author(s):{{ u.1 }}<br>
+                {{ u.2 }}</small></h6>
+          </div>
+          {% endfor %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="modal-footer bg-info">
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span></button>
+      </div>
+    </div>
+  </div>
+</div>

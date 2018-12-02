@@ -99,6 +99,7 @@ inivisible when the map is finished loading
   {% include 'dirt/probability_modal.html' %}
   {% include 'dirt/swiss_lakes_modal.html' %}
   {% include 'dirt/open_acces_modal.html' %}
+  {% include 'dirt/reading_modal.html' %}
 {% endblock %}
 {% block buttons %}
 <!--
@@ -112,7 +113,7 @@ the sponsor and participant icons in the data summary
 <script type="text/javascript">
   $('#{{ x.0|slugify }}').popover({
       container: 'body',
-      title:"Anonymous Sponsor",
+      title:"<a href='{{ x.2 }}'> {{ x.0 }}</a>",
       content:'{{ x.3 }}'+ popOverClose,
       placement:'top',
       trigger:'click',
@@ -123,7 +124,7 @@ the sponsor and participant icons in the data summary
 <script type="text/javascript">
   $('#{{ x.0|slugify }}').popover({
       container: 'body',
-      title:"{{ x.0 }}",
+      title:"<a href='{{ x.2 }}'> {{ x.0 }}</a>",
       content:'{{ x.3 }}'+ popOverClose,
       placement:'top',
       trigger:'click',

@@ -263,24 +263,7 @@ class PlatformActivity(models.Model):
         db_table = 'platform_activity'
         verbose_name_plural = 'Recent posts'
 
-class LastCommit(models.Model):
-    """
-    Git hub data
-    """
-    repo = models.CharField(db_column='repo', max_length=240, blank=False, null=False, default='Name of the repository')
-    comments = models.CharField(db_column='comments', max_length=240, blank=False, null=False, default='What is this about')
-    date = models.DateField(db_column='date', blank=False, null=False, default=datetime.date.today)
-    ur_l = models.URLField(db_column='url', blank=True, null=True)
-    owner = models.CharField(db_column='owner', max_length=40, blank=False, null=False,default='mwshovel',)
 
-    def __str__(self):
-        return u"repo:%s, comments:%s, date:%s, ur_l:%s, owner:%s" %(self.repo, self.comments, self.date, self.ur_l, self.owner)
-
-    class Meta:
-        managed = True
-        get_latest_by = 'date'
-        db_table = 'last_commit'
-        verbose_name_plural = 'Recent posts'
 
 
 CONTRACT_CHOICES = (

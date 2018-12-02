@@ -1,4 +1,4 @@
-
+'#264653'
 <!--
 Variables called:
 dist_y_two, dist_y_one
@@ -8,8 +8,11 @@ the parser is not needed for this
 <script type="text/javascript">
 var dist_y_one = {{ dist_y_one|safe}}
 var dist_y_two = {{ dist_y_two|safe}}
+var dist_y_three = {{ dist_y_three|safe}}
 Highcharts.chart('probchart', {
     chart: {
+        margin: [10, 80, 30, 80],
+        spacing: [10, 10, 10, 10]
     },
     credits:{
       text:'hammerdirt 2018',
@@ -38,11 +41,28 @@ Highcharts.chart('probchart', {
         }
     },
     legend: {
-        enabled: false
+      enabled: true,
+      align: 'right',
+      verticalAlign: 'top',
+      horizontalAlign: 'right',
+      layout:'vertical',
+      floating:true,
+      x:0,
+      y:10,
+      backgroundColor:'rgba(255,255,255, .4)',
+      borderColor:'rgba(10, 46, 92, .5)',
+      borderWidth:1,
+      itemMarginTop:4,
+      itemMarginBottom:4,
+      itemStyle:{
+        color: 'black',
+        fontSize: 14,
+        fontWeight: 'bold',
+      }
     },
     series: [{
         data: dist_y_one,
-        lineColor: '#E76F51',
+        color: '#E76F51',
         name: 'Year one',
         marker: {
             enabled: false
@@ -50,8 +70,16 @@ Highcharts.chart('probchart', {
         threshold: null
     },{
         data: dist_y_two,
-        lineColor: '#2A9D8F',
+        color: '#2A9D8F',
         name: 'Year two',
+        marker: {
+            enabled: false
+        },
+        threshold: null
+    },{
+        data: dist_y_three,
+        color: '#264653',
+        name: 'Year three',
         marker: {
             enabled: false
         },

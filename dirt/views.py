@@ -6,7 +6,7 @@ from django.http import Http404
 from django.conf import settings
 
 # model imports from
-from dirt.models import AllData, Beaches, HDC_Beaches, HDC_Data, PlatformActivity, References, Sponsors, LastCommit
+from dirt.models import AllData, Beaches, HDC_Beaches, HDC_Data, PlatformActivity, References, Sponsors, SUBJECT_CHOICES
 
 # python imports
 from statistics import mean
@@ -273,10 +273,26 @@ def lists_for_search_button(q):
     c = project_list(q)
     d = location_list(q)
     return a, b, c, d
+def library_list():
+    """
+    Returns the data from the references model.
+    Returns a dict of subjects {'abreviation':'subject'} from SUBJECT_CHOICES
+    Creates a dict grouped by subjecet {'subject'[[title, author, abstract]....[title, author, abstract]]}
+    """
+    a = References.objects.all().values_list('title', 'author', 'abstract', 'subject')
+    b = SUBJECT_CHOICES
+    c = {x[0]:x[1] for x in b}
+    def makeDict():
+        d = {c[x[3]]:[] for x in a}
+        for x in a:
+            if c[x[3]] in list(d.keys()):
+                d[c[x[3]]].append([x[0],x[1],x[2]])
+        return d
+
+    return c, makeDict()
 # These are views for the app they use the functions above
 def beach_litter(request):
     a = item_data()
-
     # fills the modal lake/river locations
     lake_locations = water_body_dict(a.filter(location__water = 'l'))
     river_locations = water_body_dict(a.filter(location__water = 'r'))
@@ -301,6 +317,8 @@ def beach_litter(request):
     # computing the scatter plots and distributions for the probability of garbage
     # this limits the locations to lac leman
     lac_leman = Beaches.objects.filter(water_name='Lac-Léman')
+    # reading list out put for library modal
+    subject_keys, reading_list = library_list()
     # these gets the values from scatter_plot limits them to locations on lac Leman
     # and seperates them by year
 
@@ -310,8 +328,10 @@ def beach_litter(request):
     # these make the distributions for the distribution plot
     dist_y_one = log_dist(year_one)
     dist_y_two = log_dist(year_two)
+    dist_y_three = log_dist(year_three)
     y_one_s = len(dist_y_one)
     y_two_s = len(dist_y_two)
+    y_three_s = len(dist_y_three)
 
     # this gets the og_data for the header and participant data
     def og_data(l):
@@ -325,8 +345,9 @@ def beach_litter(request):
     return render(request, 'dirt/beach_litter.html',  {'lake_locations':lake_locations, 'summary':summary,'river_locations':river_locations,
     'inventory':inventory,  'material_percents':material_percents,'code_top_ten':code_top_ten,'locations_samples':locations_samples,
     'all_locations':all_locations, 'scatter_plot':scatter_plot,'combined_map':combined_map, 'year_one':year_one, 'year_two':year_two,
-    'year_three':year_three, 'dist_y_one':dist_y_one, 'dist_y_two':dist_y_two, 'y_one_s':y_one_s, 'y_two_s':y_two_s,  'sponsors':sponsors,
-    'crew':crew, 'search_city': search_city, 'search_water':search_water, 'search_project':search_project, 'search_location':search_location})
+    'year_three':year_three, 'dist_y_one':dist_y_one, 'dist_y_two':dist_y_two, 'dist_y_three':dist_y_three, 'y_one_s':y_one_s, 'y_two_s':y_two_s, 'y_three_s':y_three_s,  'sponsors':sponsors,
+    'crew':crew, 'search_city': search_city, 'search_water':search_water, 'search_project':search_project, 'search_location':search_location,
+    'reading_list':reading_list, 'subject_keys':subject_keys})
 def litter_city(request, city):
 
     x = city_list(item_data())
@@ -425,7 +446,7 @@ def litter_water(request, lakeRiver):
     'sponsors':sponsors, 'crew':crew, 'search_city': search_city, 'search_water':search_water,'search_project':search_project, 'search_location':search_location})
 def litter_project(request, project):
 
-    if project in ['MCBP', 'SLR', 'PC', 'MWP']:
+    if project in ['MCBP', 'SLR', 'PC', 'MWP', 'tiger-duck']:
         a = project_filter(item_data(), project)
         all_locations = location_list(a)
         other_data = item_data()
@@ -574,7 +595,7 @@ def index(request):
         return d
     latest_sample = last_litter_activity()
     def see_that():
-        a = ''.join(["http://127.0.0.1:8000/dirt/litter/location","/",latest_sample[0][0],"/"])
+        a = ''.join(["https://mwshovel.pythonanywhere.com/dirt/litter/location","/",latest_sample[0][0],"/"])
         return a
     see_latest = see_that()
     print(latest_sample[0][0])
@@ -586,14 +607,11 @@ def index(request):
         a = References.objects.values_list('title','author', 'subject', 'abstract').latest()
         b = [a[0], a[1], a[2], a[3]]
         return b
-    def last_commit():
-        a = LastCommit.objects.values_list('date','repo', 'comments', 'ur_l').latest()
-        b = [a[0].strftime("%Y-%m-%d"), a[1], a[2], a[3]]
-        return b
+    
 
 
     return render(request, 'dirt/index.html',{'latest_sample':latest_sample, "see_latest":see_latest, 'last_post':last_post(),
-                  'last_read':last_read(), 'last_commit':last_commit()})
+                  'last_read':last_read(), })
 def code_shovel(request):
     return render(request, 'dirt/code-shovel.html')
 def probability_view(request):
@@ -605,6 +623,7 @@ def sponsor_program(request):
 
 
 # imports specific to the API
+# These should be up on top, but the API is a seperate App so we will keep it separate
 from django.http import HttpResponse, JsonResponse
 from rest_framework.response import Response
 from dirt.serializers import SummarySerializer, MakeJson, AllDataSerial, BeachSerial, AllDataCreate, CitySerializer, AllDataSerial, BeachCreate, DailyTotalSerial, DailyLogSerial, HdcDataCreate, HdcBeachCreate

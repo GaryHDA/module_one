@@ -16,6 +16,7 @@
 {% block style %}
 .col-sm{
   min-width:400px;
+
 }
 #link-one, #link-two, #link-three, #link-four, #link-five {
   text-decoration:underline;
@@ -48,54 +49,41 @@
         </p>
       </div>
       <div class="p-1 pl-3 mt-3 mx-auto text-left text-white"  style="width:100%; background-color:#464646">
-        <h1 class="display-4" style="font-family:'Montserrat';color:#008080;">
+        <h1 class="" style="font-family:'Montserrat';color:#008080;">
           What can we build together?
         </h1>
         <p class="mt-4" style=""><small>Brought to you with love by hammerdirt.</small></p>
       </div>
       <div class="ml-auto mt-2 pr-3 text-right" style="width:90%">
-        <h1 class="display-4 bg-transparent" style="color:#008080;">...anything</h1>
+        <h1 class="bg-transparent" style="color:#008080;">...anything</h1>
       </div>
     </div>
 
     <div class="col-sm h-100 mx-auto p-2 text-white" id="" style="background-color:#464646">
       <div class="container text-white p-2 pt-0" style="width:100%">
-        <h4 class="" style="font-family:'Fredoka One', cursive;">New in this app: 02 Oct 18</h4>
+        <h4 class="" style="font-family:'Fredoka One', cursive;">New in this app: 23 Oct 18</h4>
         <br>
         <div class="container">
           <div class="d-inline rounded-circle border border-white text-center mr-1 mb-1 p-1" style="width:4vh; height:4vh;">
             &nbsp;1
           </div>
-          <p class="d-inline" style="font-family:'Fredoka One', cursive;"> &nbsp;Sponsor a beach:</p>
-          <p class="mt-2" style="font-family:'Montserrat';">There is now a sponsorhip plan for beaches on Lac Léman. Check out how we attribute "work" in the <a id="link-one" href="{% url 'beach-litter-home' %}">data output</a>
-            and then see the details on the <a id="link-two" href="{% url 'sponsor-promo' %}">sponsorship program</a>.</p>
+          <p class="d-inline" style="font-family:'Fredoka One', cursive;"> &nbsp; Testing the probability of garbage:</p>
+          <p class="mt-2" style="font-family:'Montserrat';">This year students from the <a id="link-two" href="https://enac.epfl.ch/environmental-engineering"><strong>EPFL</strong></a> are testing the theory that litter density on the shores of
+             Lac Léman is predictable. You can follow the work by using our interactive binder
+              at mybinder.org : <a id="link-one" href="https://mybinder.org/v2/gh/hammerdirt/solidWaste2018/master"><strong>Binder</strong></a>. It takes a second or two to load
+              but then you can use your own code and functions with the data from the api.
         </div>
         <div class="container mt-2">
           <div class="d-inline rounded-circle border border-white text-center mr-1 mb-1 p-1" style="width:4vh; height:4vh;">
             &nbsp;2
           </div>
-          <p class="d-inline" style="font-family:'Fredoka One', cursive;"> &nbsp;REST API online:</p>
-          <p class="mt-2" style="font-family:'Montserrat';">For those of you who just want the data you can hook into the API and get all the
-            latest beach litter data from Swizterland. See the <a id="link-three" href="{% url 'api-home' %}">api homepage </a>for examples of how to format the urls.
-            The rest of our data will gradually make its way to the API.</p>
+          <p class="d-inline" style="font-family:'Fredoka One', cursive;"> &nbsp; Réseau Déchets Sauvages:</p>
+          <p class="mt-2" style="font-family:'Montserrat';">We participated in the 3<sup>rd</sup> annual "Rencontres Nationales des Collecteurs de Déchets Sauvages" in Dieppe, France. It is a meeting of independent organizations that are trying to add value to the environment
+            and those who activeley work to protect it.</p>
+            <img src="{% static 'images/P1170335.JPG' %}" class="img-fluid" alt="Responsive image">
+
         </div>
-        <div class="container mt-2">
-          <div class="d-inline rounded-circle border border-white text-center mr-1 mb-1 p-1" style="width:4vh; height:4vh;">
-            &nbsp;3
-          </div>
-          <p class="d-inline" style="font-family:'Fredoka One', cursive;"> &nbsp;hammerdirt labs:</p>
-          <p class="mt-2" style="font-family:'Montserrat';">Here we work through the math and the code for analysing and displaying data. For now we have two
-            broad topics <a id="link-four" href="{% url 'python-lab' %}">"Python/JS"</a> and <a id="link-five" href="{% url 'probability-lab' %}">"Probability"</a>. You can expect posts about every two weeks
-            as we go over the math and code needed to integrate the analysis into this app (or any other app).</p>
-        </div>
-        <div class="container mt-2">
-          <div class="d-inline rounded-circle border border-white text-center mr-1 mb-1 p-1" style="width:4vh; height:4vh;">
-            &nbsp;4
-          </div>
-          <p class="d-inline" style="font-family:'Fredoka One', cursive;"> &nbsp;Improved layout:</p>
-          <p class="mt-2" style="font-family:'Montserrat';">The beach litter section is easier to navigate and (should) be more mobile friendly. You can now drill down to the "beach" level on a search. Analysis and methods are at the top of the page.
-             All works in progress and code samples will be available in the "lab".</p>
-        </div>
+
       </div>
     </div>
     <div class="col-sm h-100" id='' style="background-color:#464646">
@@ -109,6 +97,11 @@
       <div class="container text-white p-2" style="width:100%">
           <h4 class="" style="font-family:'Fredoka One', cursive;">Recent activity:</h4>
       </div>
+      <div class="p-2 pb-0 mt-3 mr-2 mb-2 text-left float-right bg-light"  style="width:98%">
+          <p style="font-family:'Montserrat'"><strong>Latest commit: &nbsp;<text id="date"></text> </strong><small>
+            <br><strong>Repo:&nbsp; <text id="repo"></text>, Owner:&nbsp; <text id="who"></text></strong><br><strong>Comments: &nbsp;<text id="notes"></text></strong>
+            <br><a id="urL" href=""><strong>check it</strong></a></small></p>
+        </div>
       <div class="p-2 mt-3 mr-2 pb-0 text-left float-right bg-light" style="width:98%">
         <h6 style="font-family:'Montserrat'"><strong>Latest litter-survey:</strong><small>
           <br>{% for s in latest_sample %}<strong>City:</strong> {{ s.2 }},<strong> Location:</strong> {{ s.0 }},
@@ -127,11 +120,7 @@
           <br><strong>Title:</strong> {{ last_read.0 }}<br><strong>Author(s):</strong> {{ last_read.1 }},
           <br> {{ last_read.3|truncatewords:"30" }}... <br>Google that title to find out more  --> </small></p>
       </div>
-      <div class="p-2 pb-0 mt-3 mr-2 mb-2 text-left float-right bg-light"  style="width:98%">
-        <p style="font-family:'Montserrat'"><strong>Latest commit: </strong><small>
-          <br><strong>Repo: {{ last_commit.1 }}, {{ last_commit.0 }}</strong> <br><strong>Comments: {{ last_commit.2 }}</strong>
-          <br><a href="{{ last_commit.3 }}"><strong>check it</strong></a></small></p>
-      </div>
+
 
   </div>
 </div>
@@ -148,4 +137,32 @@ this makes it visible right away when index is called
 <script type="text/javascript">
     document.getElementById('hide-me').style.visibility='visible'
 </script>
+<script>
+        var getLatest = function(){
+        var request = new XMLHttpRequest();
+        request.open('GET', 'https://api.github.com/users/hammerdirt/events');
+        request.onload = function(){
+          var data = JSON.parse(this.response);
+          var a = data[0]['payload']['commits'][0];
+          console.log(data[0]);
+          // var b = data[0]['actor']['login'][0];
+          var b = data[0]['repo']['name'];
+          var d = data[0]['created_at'];
+          var dateS = d.slice(0,10);
+          var c = [["date", dateS], ["repo", b], ["who", a.author.name], ["notes", a.message]];
+          c.forEach(function(element){
+            d = document.getElementById(element[0]);
+            e = document.createTextNode(element[1]);
+            d.appendChild(e);
+          })
+          f = "https://github.com/" + b;
+          g = document.getElementById('urL');
+          g.setAttribute('href', f);
+
+        };
+        request.send();
+      }
+      getLatest()
+
+ </script>
 {% endblock %}
